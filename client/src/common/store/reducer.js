@@ -3,7 +3,7 @@ import {
   ACTIVE_LOADING,
   DISABLED_LOADING,
   ADD_ITEM,
-} from "./action-types"
+} from "./types"
 import initialState from "./state"
 
 
