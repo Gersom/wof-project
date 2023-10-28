@@ -1,13 +1,17 @@
-const mongoConnect = require("./mongo")
-const mysqlConnect = require("./mysql")
-const DB_TYPE = process.env.DB_TYPE || 'nosql'
+require('dotenv').config()
 
-const dbConnect = () => {
-  const dbTypes = {
-    nosql: mongoConnect,
-    mysql: mysqlConnect
-  }
-  dbTypes[DB_TYPE]()
+const DB_ENGINE = process.env.DB_ENGINE
+let dbConnect = ()=>null
+
+switch (DB_ENGINE) {
+  case "postgresql":
+    dbConnect = require("./engines/postgresql")
+    break
+  case "mongodb":
+    dbConnect = require("./engines/mongodb")
+    break
+  default:
+    throw new Error("Environment variable 'DB_ENGINE' is not valid.")
 }
 
 module.exports = dbConnect
