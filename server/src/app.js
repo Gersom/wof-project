@@ -1,18 +1,14 @@
 const express = require("express")
 const middlewares = require("./config/middlewares")
 const listen = require("./config/listen")
-const dbConnect = require("./config/dbConnect")
+const { dbConnect } = require("./config/dbConnect")
 
 const app = express()
-
-
 
 // MIDDLEWARES
 middlewares(app)
 
-
-
-// ROUTERS
+// ROUTES
 // http://localhost/api/
 app.use("/api", require("./routes"))
 
@@ -23,12 +19,8 @@ app.use((_, res) => {
   });
 });
 
-
-
 // LISTEN
-listen(app)
-
-
-
-// DATABASE CONEXION
-dbConnect()
+listen(app, () => {
+  // Database conexion
+  dbConnect()
+})
