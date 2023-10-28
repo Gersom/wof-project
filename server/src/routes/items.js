@@ -1,32 +1,17 @@
 const express = require("express")
 const router = express.Router()
-const { 
-  getItems, 
-  getItemDetail, 
-  createItem, 
-  updateItem, 
-  deleteItem
-} = require("../handlers/items")
+const handlers = require("../handlers/items")
 
+// route => /breeds/...
 
+router.get("/", handlers.getAllItems)
 
-// route => /items/...
+router.get("/:id", handlers.getItem)
 
-// READ ITEMS
-router.get("/", getItems)
+router.post("/", handlers.createItem)
 
-// DETAIL ITEM
-router.get("/:id", getItemDetail)
+router.put("/:id", handlers.updateItem)
 
-// CREATE ITEM
-router.post("/", createItem)
-
-// UPDATE ITEM
-router.put("/:id", updateItem)
-
-// DELETE ITEM
-router.delete("/:id", deleteItem)
-
-
+router.delete("/:id", handlers.deleteItem)
 
 module.exports = router

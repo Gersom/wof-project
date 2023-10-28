@@ -1,13 +1,16 @@
 const {
-  getItemsController,
-  getItemDetailController
+  getAllItemsController,
+  getItemController,
+  postItemController,
+  updateItemController,
+  deleteItemController
 } = require("../controllers/items")
 
 // READ ITEMS
-const getItems = async (req, res) => {
+const getAllItems = async (req, res) => {
   try {
-    const items = await getItemsController()
-    res.status(200).send(items)
+    const items = await getAllItemsController()
+    res.status(200).json(items)
   }
   catch (error) {
     res.status(500).json({error: error.message})
@@ -15,11 +18,11 @@ const getItems = async (req, res) => {
 }
 
 // DETAIL ITEM
-const getItemDetail = async (req, res) => {
+const getItem = async (req, res) => {
   try {
     const {id} = req.params
-    const item = await getItemDetailController(id)
-    res.status(200).send(item);
+    const item = await getItemController(id)
+    res.status(200).json(item);
   } 
   catch (error) {
     res.status(500).json({error: error.message})
@@ -29,7 +32,8 @@ const getItemDetail = async (req, res) => {
 // CREATE ITEM
 const createItem = async (req, res) => {
   try {
-    res.status(200).send('createItem not configured');
+    const success = await postItemController(req.body)
+    res.status(200).json(success);
   } catch (error) {
     res.status(500).json({error: error.message});
   }
@@ -38,7 +42,10 @@ const createItem = async (req, res) => {
 // UPDATE ITEM
 const updateItem = async (req, res) => {
   try {
-    res.status(200).send('updateItem not configured');
+    const { id } = req.params
+    const { body } = req
+    const success = await updateItemController(id, body)
+    res.status(200).json(success)
   } catch (error) {
     res.status(500).json({error: error.message});
   }
@@ -47,17 +54,17 @@ const updateItem = async (req, res) => {
 // DELETE ITEM
 const deleteItem = async (req, res) => {
   try {
-    res.status(200).send('deleteItem not configured');
+    const { id } = req.params
+    const success = await deleteItemController(id)
+    res.status(200).json(success)
   } catch (error) {
-    res.status(500).json({error: error.message});
+    res.status(500).json({error: error.message})
   }
 };
 
-
-
 module.exports = {
-  getItems,
-  getItemDetail,
+  getAllItems,
+  getItem,
   createItem,
   updateItem,
   deleteItem
