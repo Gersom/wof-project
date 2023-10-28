@@ -1,7 +1,19 @@
-const DB_TYPE = process.env.DB_TYPE || 'nosql'
+const DB_ENGINE = process.env.DB_ENGINE
+let pathModel = ''
+
+switch (DB_ENGINE) {
+  case "postgresql":
+    pathModel = 'sequelize'
+    break
+  case "mongodb":
+    pathModel = 'mongoose'
+    break
+  default:
+    throw new Error("Environment variable 'DB_ENGINE' is not valid.")
+}
 
 const models = {
-  itemsModel: require(`./${DB_TYPE}/items`)
+  itemsModel: require(`./${pathModel}/items`)
 }
 
 module.exports = models
