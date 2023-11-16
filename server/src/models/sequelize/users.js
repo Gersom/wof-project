@@ -62,20 +62,20 @@ const schema = {
   },
 }
 
-const ItemsModel = sequelize.define(name, schema, config)
+const UsersModel = sequelize.define(name, schema, config)
 
 // add static methods (functions) to model
-ItemsModel['findAllData'] = () => {
-  return ItemsModel.findAll()
+UsersModel['findAllData'] = () => {
+  return UsersModel.findAll()
 }
-ItemsModel['findOneData'] = (id) => {
-  return ItemsModel.findByPk(id)
+UsersModel['findOneData'] = (id) => {
+  return UsersModel.findByPk(id)
 }
-ItemsModel['updateData'] = (id, body) => {
-  return ItemsModel.update(body, { where: {id} })
+UsersModel['updateData'] = (id, body) => {
+  return UsersModel.update(body, { where: {id} })
 }
-ItemsModel['removeData'] = (id) => {
-  return ItemsModel.destroy({ where: {id} })
+UsersModel['removeData'] = (id) => {
+  return UsersModel.destroy({ where: {id} })
 }
 
-module.exports = ItemsModel
+module.exports = UsersModel
