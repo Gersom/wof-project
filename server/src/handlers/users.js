@@ -7,7 +7,7 @@ const {
 } = require("../controllers/items")
 
 // READ ITEMS
-const getAllItems = async (req, res) => {
+const getAllUsers = async (req, res) => {
   try {
     const items = await getAllItemsController()
     res.status(200).json(items)
@@ -18,7 +18,7 @@ const getAllItems = async (req, res) => {
 }
 
 // DETAIL ITEM
-const getItem = async (req, res) => {
+const getUser = async (req, res) => {
   try {
     const {id} = req.params
     const item = await getItemController(id)
@@ -30,7 +30,7 @@ const getItem = async (req, res) => {
 }
 
 // CREATE ITEM
-const createItem = async (req, res) => {
+const createUser = async (req, res) => {
   try {
     const success = await postItemController(req.body)
     res.status(200).json(success);
@@ -40,7 +40,7 @@ const createItem = async (req, res) => {
 };
 
 // UPDATE ITEM
-const updateItem = async (req, res) => {
+const updateUser = async (req, res) => {
   try {
     const { id } = req.params
     const { body } = req
@@ -52,7 +52,7 @@ const updateItem = async (req, res) => {
 };
 
 // DELETE ITEM
-const deleteItem = async (req, res) => {
+const deleteUser = async (req, res) => {
   try {
     const { id } = req.params
     const success = await deleteItemController(id)
@@ -63,9 +63,9 @@ const deleteItem = async (req, res) => {
 };
 
 module.exports = {
-  getAllItems,
-  getItem,
-  createItem,
-  updateItem,
-  deleteItem
+  getAllUsers,
+  getUser,
+  createUser,
+  updateUser,
+  deleteUser
 };
