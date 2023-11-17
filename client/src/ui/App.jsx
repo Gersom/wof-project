@@ -8,8 +8,8 @@ import {
 } from "react-redux";
 
 // Common
-import {activateLoading} from "~src/common/store/actions/action"
-import routerNames from '~common/constants/routes'
+import {activateLoading} from "@src/common/store/actions/action"
+import routerNames from '@common/constants/routes'
 
 // Imports Router
 import { 

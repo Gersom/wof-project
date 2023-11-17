@@ -1,6 +1,6 @@
 
 import { NavLink } from "react-router-dom";
-import routerNames from '~common/constants/routes'
+import routerNames from '@common/constants/routes'
 
 const NotFound = () => {
 
