@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import reactLogo from '~icons/react.svg'
-import viteLogo from '~icons/vite.svg'
+import reactLogo from '@icons/react.svg'
+import viteLogo from '@icons/vite.svg'
 
 const Home = () => {
   const [count, setCount] = useState(0)
