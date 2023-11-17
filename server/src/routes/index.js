@@ -15,5 +15,6 @@ const router = express.Router()
 // })
 
 router.use(`/users`, require(`./users`))
+router.use(`/provinces`, require(`./provinces`))
 
 module.exports = router
