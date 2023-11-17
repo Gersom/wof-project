@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Max",
+    "breed": "Labrador Retriever",
+    "description": "Friendly and energetic dog, loves to play fetch.",
+    "size": "60",
+    "user": {
+      "name": "John Doe",
+      "id": "12345"
+    },
+    "images": [
+      "https://example.com/max_image1.jpg",
+      "https://example.com/max_image2.jpg"
+    ]
+  },
+  {
+    "name": "Luna",
+    "breed": "German Shepherd",
+    "description": "Intelligent and loyal, great with kids.",
+    "size": "55",
+    "user": {
+      "name": "Jane Smith",
+      "id": "67890"
+    },
+    "images": [
+      "https://example.com/luna_image1.jpg",
+      "https://example.com/luna_image2.jpg"
+    ]
+  },
+  {
+    "name": "Buddy",
+    "breed": "Golden Retriever",
+    "description": "Playful and affectionate, enjoys swimming.",
+    "size": "55",
+    "user": {
+      "name": "Robert Johnson",
+      "id": "54321"
+    },
+    "images": [
+      "https://example.com/buddy_image1.jpg",
+      "https://example.com/buddy_image2.jpg"
+    ]
+  },
+  {
+    "name": "Coco",
+    "breed": "Poodle",
+    "description": "Hypoallergenic and intelligent, perfect for families.",
+    "size": "30",
+    "user": {
+      "name": "Alice Williams",
+      "id": "98765"
+    },
+    "images": [
+      "https://example.com/coco_image1.jpg",
+      "https://example.com/coco_image2.jpg"
+    ]
+  },
+  {
+    "name": "Rocky",
+    "breed": "Boxer",
+    "description": "Energetic and loyal, great for outdoor activities.",
+    "size": "65",
+    "user": {
+      "name": "Michael Brown",
+      "id": "13579"
+    },
+    "images": [
+      "https://example.com/rocky_image1.jpg",
+      "https://example.com/rocky_image2.jpg"
+    ]
+  }
+]
