@@ -65,22 +65,4 @@ const NavBar = () => {
 	);
 };
 
-{
-	/* <Link to='/dashboard' className={styles.linkContainer}>
-<img src={arrows} />
-{show && <li>Ofertas</li>}
-</Link>
-<Link to='/dashboard' className={styles.linkContainer}>
-<img src={star} />
-{show && <li>Mis clientes</li>}
-</Link>
-<Link to='/dashboard' className={styles.linkContainer}>
-<img src={user} />
-{show && <li>Perfil</li>}
-</Link>
-<Link to='/dashboard' className={styles.linkContainer}>
-<img src={padlock} />
-{show && <li>Cerrar sesión</li>}
-</Link> */
-}
 export default NavBar;
