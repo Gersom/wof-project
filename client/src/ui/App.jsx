@@ -8,7 +8,7 @@ import {
 } from "react-redux";
 
 // Common
-import {activateLoading} from "~common/store/action"
+import {activateLoading} from "~src/common/store/actions/action"
 import routerNames from '~common/constants/routes'
 
 // Imports Router
@@ -20,6 +20,7 @@ import {
 // Imports Pages
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import Prueba from "./pages/Prueba";
 
 // Imports Components
 // import SearchBar from "./components/SearchBar";
@@ -27,7 +28,7 @@ import NotFound from "./pages/NotFound";
 function App() {
   const dispatch = useDispatch()
   const isLoading = useSelector(
-    (state) => state.loading
+    (state) => state.reducer.loading
   )
 
   useEffect(() => {
@@ -43,7 +44,10 @@ function App() {
         path={routerNames['home']}
         element={ <Home /> }
       />
-
+      <Route
+      path={routerNames['prueba']}
+      element={ <Prueba /> }
+      />
       {/* Not Found 404 */}
       <Route 
         path={'*'}

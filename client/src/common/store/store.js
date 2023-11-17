@@ -1,19 +1,19 @@
 // imports
-import { 
-  createStore, 
-  applyMiddleware, 
-  compose 
-} from 'redux'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import ThunkMiddleware from 'redux-thunk'
-import reducer from "./reducer"
+import reducer from "./reducers/reducer"
+import navBarSlice from './slices/navBarSlice';
 
-// explorer extension
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// combinaed Reducers
+const rootReducerCombined = combineReducers({
+  reducer: reducer,
+  navBarReducer: navBarSlice, // rename the assignment reducer name
+});
 
-// Create Store
-const store = createStore(
-  reducer,
-  composeEnhancer(applyMiddleware(ThunkMiddleware))
-)
+// configured store
+const store = configureStore({
+reducer: rootReducerCombined,
+middleware: [ThunkMiddleware],
+});
 
 export default store
