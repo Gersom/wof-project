@@ -8,10 +8,7 @@
       "name": "John Doe",
       "id": "12345"
     },
-    "images": [
-      "https://example.com/max_image1.jpg",
-      "https://example.com/max_image2.jpg"
-    ]
+    "image": "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"
   },
   {
     "name": "Luna",
@@ -22,10 +19,7 @@
       "name": "Jane Smith",
       "id": "67890"
     },
-    "images": [
-      "https://example.com/luna_image1.jpg",
-      "https://example.com/luna_image2.jpg"
-    ]
+    "image": "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"
   },
   {
     "name": "Buddy",
@@ -36,10 +30,7 @@
       "name": "Robert Johnson",
       "id": "54321"
     },
-    "images": [
-      "https://example.com/buddy_image1.jpg",
-      "https://example.com/buddy_image2.jpg"
-    ]
+    "image": "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"
   },
   {
     "name": "Coco",
@@ -50,10 +41,7 @@
       "name": "Alice Williams",
       "id": "98765"
     },
-    "images": [
-      "https://example.com/coco_image1.jpg",
-      "https://example.com/coco_image2.jpg"
-    ]
+    "image": "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"
   },
   {
     "name": "Rocky",
@@ -64,9 +52,6 @@
       "name": "Michael Brown",
       "id": "13579"
     },
-    "images": [
-      "https://example.com/rocky_image1.jpg",
-      "https://example.com/rocky_image2.jpg"
-    ]
+    "image": "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"
   }
 ]
