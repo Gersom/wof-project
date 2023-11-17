@@ -1,13 +1,10 @@
-import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 import { useState } from 'react';
+import CustomLinks from './CustomLinks';
+import { LINKS } from './links';
 import logo from '~images/logo.png';
 import burgerClose from '~icons/nav/burgerClose.svg';
 import burgerOpen from '~icons/nav/burgerOpen.svg';
-import arrows from '~icons/nav/arrows.svg';
-import user from '~icons/nav/user.svg';
-import star from '~icons/nav/star.svg';
-import padlock from '~icons/nav/padlock.svg';
 import handshake from '~icons/nav/handshake.svg';
 
 const NavBar = () => {
@@ -16,6 +13,7 @@ const NavBar = () => {
 	const handleShow = () => {
 		setShow(!show);
 	};
+
 	return (
 		<aside className={`${styles.aside} ${classShow}`}>
 			<div className={styles.containerLogo}>
@@ -51,26 +49,37 @@ const NavBar = () => {
 			</div>
 			<nav className={styles.nav}>
 				<ul className={styles.ul}>
-					<Link to='/dashboard' className={styles.linkContainer}>
-						<img src={arrows} />
-						{show && <li>Ofertas</li>}
-					</Link>
-					<Link to='/dashboard' className={styles.linkContainer}>
-						<img src={star} />
-						{show && <li>Mis clientes</li>}
-					</Link>
-					<Link to='/dashboard' className={styles.linkContainer}>
-						<img src={user} />
-						{show && <li>Perfil</li>}
-					</Link>
-					<Link to='/dashboard' className={styles.linkContainer}>
-						<img src={padlock} />
-						{show && <li>Cerrar sesión</li>}
-					</Link>
+					{LINKS.map((link, index) => (
+						<CustomLinks
+							key={index}
+							to={link.to}
+							imgSrc={link.imgSrc}
+							label={link.label}
+							show={show}
+						/>
+					))}
 				</ul>
 			</nav>
 		</aside>
 	);
 };
 
+{
+	/* <Link to='/dashboard' className={styles.linkContainer}>
+<img src={arrows} />
+{show && <li>Ofertas</li>}
+</Link>
+<Link to='/dashboard' className={styles.linkContainer}>
+<img src={star} />
+{show && <li>Mis clientes</li>}
+</Link>
+<Link to='/dashboard' className={styles.linkContainer}>
+<img src={user} />
+{show && <li>Perfil</li>}
+</Link>
+<Link to='/dashboard' className={styles.linkContainer}>
+<img src={padlock} />
+{show && <li>Cerrar sesión</li>}
+</Link> */
+}
 export default NavBar;

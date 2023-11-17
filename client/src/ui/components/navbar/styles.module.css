@@ -135,7 +135,6 @@
 	width: 100%;
 }
 .show .linkContainer {
-	background-color: #52C1E4;
 	width: 100%;
 	align-items: center;
 	justify-content: flex-start;
@@ -151,4 +150,7 @@
 .show .linkContainer img {
     margin: 0.25vw 0.5vw;
 	margin-right: 1vw;
+}
+.show .selected{
+    background-color: #52C1E4;
 }
