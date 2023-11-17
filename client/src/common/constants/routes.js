@@ -1,6 +1,7 @@
 const routerNames = {
-  home: '/',
-  about: '/about',
-}
+  landing: "/",
+  home: "/home",
+  about: "/about",
+};
 
-export default routerNames
+export default routerNames;
