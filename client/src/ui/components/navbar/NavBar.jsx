@@ -32,7 +32,10 @@ const NavBar = () => {
 						className={styles.burger}
 					/>
 				)}
-				<img src={logo} alt='logo' className={styles.logo} />
+				<div className={styles.containerLogoChild}>
+					<img src={logo} alt='logo' className={styles.logo} />
+					{show && <h4>.com</h4>}
+				</div>
 			</div>
 			<div className={styles.containerProfile}>
 				<img
