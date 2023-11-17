@@ -11,6 +11,6 @@ const CustomLinks = ({ to, imgSrc, label, show }) => {
 			{show && <li>{label}</li>}
 		</Link>
 	);
-};
+}; //comp
 
 export default CustomLinks;
