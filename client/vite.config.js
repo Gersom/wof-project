@@ -5,6 +5,8 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // Permite conexiones desde cualquier IP 
+  server: { host: '0.0.0.0' },
   plugins: [react()],
   resolve: {
     alias: {

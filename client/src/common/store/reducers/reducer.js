@@ -3,8 +3,8 @@ import {
   ACTIVE_LOADING,
   DISABLED_LOADING,
   ADD_ITEM,
-} from "./types"
-import initialState from "./state"
+} from "../types/types"
+import initialState from "../states/state"
 
 
 // Reducer

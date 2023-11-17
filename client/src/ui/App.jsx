@@ -5,16 +5,16 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // Common
-import { activateLoading } from "~common/store/action";
+import { activateLoading } from "~src/common/store/actions/action";
 import routerNames from "~common/constants/routes";
 
 // Imports Router
 import { Routes, Route } from "react-router-dom";
 
 // Imports Pages
+import LandingPage from "./pages/LandingPage/LandingPage";
 import Home from "./pages/Home/Home";
 import NotFound from "./pages/NotFound";
-import LandingPage from "./pages/LandingPage/LandingPage";
 
 // Imports Components
 // import SearchBar from "./components/SearchBar";
@@ -31,9 +31,12 @@ function App() {
 
   const AllRoutes = (
     <Routes>
-      {/* Home */}
       <Route path={routerNames["landing"]} element={<LandingPage />} />
+      {/* Home */}
+
       <Route path={routerNames["home"]} element={<Home />} />
+
+      {/* Not Found 404 */}
       <Route path={"*"} element={<NotFound />} />
     </Routes>
   );

@@ -2,7 +2,7 @@ import {
   ACTIVE_LOADING,
   DISABLED_LOADING,
   ADD_ITEM,
-} from "./types"
+} from "../types/types"
 
 export const activateLoading = () => {
   return { type: ACTIVE_LOADING }

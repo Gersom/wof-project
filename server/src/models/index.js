@@ -13,7 +13,8 @@ switch (DB_ENGINE) {
 }
 
 const models = {
-  itemsModel: require(`./${pathModel}/items`)
+  usersModel: require(`./${pathModel}/users`),
+  ProvincesModel: require(`./${pathModel}/provinces`)
 }
 
 module.exports = models

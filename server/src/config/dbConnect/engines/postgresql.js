@@ -9,7 +9,8 @@ const host = process.env.PG_HOST
 const uri = process.env.PG_URI
 
 const sequelize = new Sequelize(
-  buildURI({ uri, database, username, password, host })
+  buildURI({ uri, database, username, password, host }),
+  { logging: false } // Disable SQL log messages
 )
 
 const dbConnectPostgresql = async () => {
@@ -18,7 +19,7 @@ const dbConnectPostgresql = async () => {
     console.log('*** PostgreSQL SUCCESS CONEXION ***');
 
     console.log('\nModel synchronization:\n');
-    await sequelize.sync();
+    await sequelize.sync({ force: true });
   } catch (e) {
     console.error('\n*** PostgreSQL ERROR CONEXION ***\n\n', e.message)
   }

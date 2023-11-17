@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
-import routerNames from "~common/constants/routes";
 import React from "react";
 
 const LandingPage = () => {
@@ -30,8 +29,8 @@ const LandingPage = () => {
 
         <div className={styles.feature}>
           <img src="src/ui/assets/images/navegar.jpg" alt="Navegar 2" />
-          <h2>Easy to use</h2>
-          <p>Navigate easily to find the perfect petsitter for your pet.</p>
+          <h2>Fácil de usar</h2>
+          <p>Navega fácilmente por nuestra app.</p>
         </div>
       </section>
 
