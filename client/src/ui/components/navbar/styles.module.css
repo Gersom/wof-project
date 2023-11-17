@@ -5,6 +5,7 @@
 	height: 100vh;
 	background-color: #282c34;
 	padding: 0vw 0.25vw;
+	width: max-content;
 }
 
 .containerLogo {
