@@ -20,6 +20,7 @@ db.json
 .env.production.local
 
 # package manager
+package-lock.json
 pnpm-lock.yaml
 npm-debug.log*
 yarn-debug.log*

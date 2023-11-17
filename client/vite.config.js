@@ -10,12 +10,12 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "~src": path.resolve(__dirname, "./src"),
-      "~common": path.resolve(__dirname, "./src/common"),
-      "~components": path.resolve(__dirname, "./src/ui/components"),
-      "~icons": path.resolve(__dirname, "./src/ui/assets/icons"),
-      "~images": path.resolve(__dirname, "./src/ui/assets/images"),
-      "~styles": path.resolve(__dirname, "./src/ui/assets/styles"),
+      "@src": path.resolve(__dirname, "./src"),
+      "@common": path.resolve(__dirname, "./src/common"),
+      "@components": path.resolve(__dirname, "./src/ui/components"),
+      "@icons": path.resolve(__dirname, "./src/ui/assets/icons"),
+      "@images": path.resolve(__dirname, "./src/ui/assets/images"),
+      "@styles": path.resolve(__dirname, "./src/ui/assets/styles"),
     },
   },
 });

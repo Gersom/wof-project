@@ -1,16 +1,16 @@
 const {
-  getAllItemsController,
-  getItemController,
-  postItemController,
-  updateItemController,
-  deleteItemController
-} = require("../controllers/items")
+  getAllUsersController,
+  getUserController,
+  postUserController,
+  updateUserController,
+  deleteUserController
+} = require("../controllers/users")
 
 // READ ITEMS
 const getAllUsers = async (req, res) => {
   try {
-    const items = await getAllItemsController()
-    res.status(200).json(items)
+    const users = await getAllUsersController()
+    res.status(200).json(users)
   }
   catch (error) {
     res.status(500).json({error: error.message})
@@ -21,8 +21,8 @@ const getAllUsers = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     const {id} = req.params
-    const item = await getItemController(id)
-    res.status(200).json(item);
+    const user = await getUserController(id)
+    res.status(200).json(user);
   } 
   catch (error) {
     res.status(500).json({error: error.message})
@@ -32,8 +32,8 @@ const getUser = async (req, res) => {
 // CREATE ITEM
 const createUser = async (req, res) => {
   try {
-    const success = await postItemController(req.body)
-    res.status(200).json(success);
+    const newUser = await postUserController(req.body)
+    res.status(200).json(newUser);
   } catch (error) {
     res.status(500).json({error: error.message});
   }
@@ -44,8 +44,8 @@ const updateUser = async (req, res) => {
   try {
     const { id } = req.params
     const { body } = req
-    const success = await updateItemController(id, body)
-    res.status(200).json(success)
+    const updatedUser = await updateUserController(id, body)
+    res.status(200).json(updatedUser)
   } catch (error) {
     res.status(500).json({error: error.message});
   }
@@ -55,8 +55,8 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.params
-    const success = await deleteItemController(id)
-    res.status(200).json(success)
+    const deletedUser = await deleteUserController(id)
+    res.status(200).json(deletedUser)
   } catch (error) {
     res.status(500).json({error: error.message})
   }
