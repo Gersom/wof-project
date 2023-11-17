@@ -1,10 +1,10 @@
-import React from 'react';
-import NavBar from '../components/navbar/NavBar';
+import FilterSortLocationBar from '../components/filter-sort-location-bar/FilterSortLocationBar';
+
  const Prueba = () => {
 	return (
-		<div>
+		<div style={{width: '100vh', backgroundColor: 'black', padding:'4vw'}}>
 			Render
-			<NavBar />
+			<FilterSortLocationBar />
 		</div>
 	);
 };
