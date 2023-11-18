@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import React from "react";
+import Logo from "@images/logo.png";
+import routerNames from "@src/common/constants/routes";
 
 const LandingPage = () => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <img
-          className={styles.image}
-          src="src/ui/assets/images/Logo_1.png"
-          alt="Logo"
-        />
+        <img className={styles.image} src={Logo} alt="Logo" />
         <p className={styles.subtitle}>Your reliable source for petsitters</p>
       </header>
 
@@ -34,7 +32,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <Link to="/home" className={styles.ctaButton}>
+      <Link to={routerNames["home"]} className={styles.ctaButton}>
         Join Now!
       </Link>
     </div>
