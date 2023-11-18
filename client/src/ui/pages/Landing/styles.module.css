@@ -1,54 +1,47 @@
 .container {
     max-width: 100%;
-    margin: 0 auto;
     padding: 40px;
-    background-color: antiquewhite;
+    background-color: gray;
+    background-image: url("@images/background1.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100vh;
-  }
-  
-  .header {
-    text-align: center;
-    margin-bottom: 40px;
+    
   }
   .image{
-    padding: 30px;
-    margin: 10px;
-    width: 200px;
-  }
-  
-  .title {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .subtitle {
-    font-size: 2.5rem;
-    color: #777;
-  }
-  
-  .features {
+    position: relative;
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 40px;
+    justify-content: flex-start;
+    width: 300px;
+    z-index: 2;
+  }
+  .collage{
+    position: fixed;
+    top: 205px;
+    left: 150px;
+  }
+  .wrapper {
+    position: fixed;
+    top: 300px;
+    right: 400px;
+    z-index: 1;
+    padding: 20px; 
+    font-size: 40px;
+    max-width: 30%;
+    text-align: center;
+  }
+  .btn{
+    position: fixed;
+    top: 500px;
+    right: 600px;
+    z-index: 1;
   }
 
-  .feature {
-    text-align: center;
-    font-size: 1.5rem;
-  }
-  
-  .feature img {
-    width: 280px;
-    height: 250px;
-    margin-bottom: 10px;
-  }
-  
   .ctaButton {
-    display: block;
     width: 200px;
     margin: 0 auto;
     padding: 10px 20px;
-    background-color: rgb(113, 172, 216);
+    background-color: rgb(9, 142, 243);
     color: #fff;
     text-align: center;
     text-decoration: none;
@@ -59,4 +52,18 @@
   
   .ctaButton:hover {
     background-color: darkblue;
+  }
+  .pol3{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+  .pol {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    box-sizing: border-box;
+    z-index: 1;
   }
