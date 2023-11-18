@@ -1,9 +1,9 @@
-const {DataTypes} = require("sequelize")
+const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 
 const name = 'pets'
 const config = { 
-  timestamps: true, // createAt, updateAt
+  timestamps: false, // createAt, updateAt
   freezeTableName: true
 }
 const schema = {
@@ -16,11 +16,11 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  breed: {
+  description: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  description: {
+  breed: {
     type: DataTypes.STRING,
     allowNull: false,
   },

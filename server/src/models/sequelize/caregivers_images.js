@@ -1,9 +1,9 @@
-const {DataTypes} = require("sequelize")
+const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 
 const name = 'caregivers_images'
 const config = { 
-  timestamps: true, // createAt, updateAt
+  timestamps: false, // createAt, updateAt
   freezeTableName: true
 }
 const schema = {
