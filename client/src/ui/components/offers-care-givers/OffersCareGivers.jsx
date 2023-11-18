@@ -1,0 +1,39 @@
+import { useEffect, useState } from 'react';
+import styles from './styles.module.css';
+import CardOffersCaregivers from '../card-offers-caregivers/CardOffersCaregivers';
+import { getOffersCareGivers } from '@src/common/utils/getOffersCareGivers';
+
+const OffersCareGivers = () => {
+    const [offers, setOffers] = useState([]);
+    useEffect(() => {
+        const getOffers = async () => {
+            const offers = await getOffersCareGivers();
+            setOffers(offers);
+        };
+        getOffers();
+    }, []);
+    console.log(offers);
+	return (
+		<div className={styles.containerMainGrid}>
+			<div className={styles.containerCardInfo}>
+				<h1>tukis</h1>
+				<h1>tukis</h1>
+			</div>
+			<div className={styles.containerOffers}>
+				{offers.slice(0,1).map((offer,index) => (
+                    <CardOffersCaregivers
+                        key={index}
+                        name={offer.name}
+                        rango={offer.experiencie}
+                        imgSrc={offer.imgProfile}
+                        address={offer.address}
+                        price={offer.price}
+                        rating={offer.rating}
+                    />
+                ))}
+			</div>
+		</div>
+	);
+};
+
+export default OffersCareGivers;

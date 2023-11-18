@@ -1,0 +1,29 @@
+.section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.containerData{
+    display: flex;
+    flex-direction: column;
+}
+
+.containerButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+.imgProfile{
+    width: 20px;
+    height: 20px;
+}

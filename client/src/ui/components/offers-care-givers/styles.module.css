@@ -1,0 +1,14 @@
+.containerMainGrid{
+    display:grid;
+    grid-template-columns: auto auto;
+}
+
+.containerCardInfo{
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+.containerOffers{
+    display: grid;
+    grid-template-rows: repeat(10, auto);
+}
