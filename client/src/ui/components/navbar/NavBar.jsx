@@ -15,14 +15,18 @@ const NavBar = () => {
 	useEffect(() => {
 		setShow(window.innerWidth > 768);
 	}, []);
+	
+	const handleShow = () =>  {
+		setShow(!show);
+	};
 
 	return (
 		<aside className={`${styles.aside} ${classShow}`}>
 			<div className={styles.containerLogo}>
 				{show ? (
-					<img src={burgerOpen} className={styles.burger} />
+					<img src={burgerOpen} className={styles.burger} onClick={handleShow}/>
 				) : (
-					<img src={burgerClose} className={styles.burger} />
+					<img src={burgerClose} className={styles.burger} onClick={handleShow}/>
 				)}
 				<div className={styles.containerLogoChild}>
 					<img src={logo} alt='logo' className={styles.logo} />

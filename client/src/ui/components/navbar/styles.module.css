@@ -4,7 +4,7 @@
 	align-items: center;
 	height: 100vh;
 	background-color: #282c34;
-	padding: 0vw 2vw;
+	padding: 0px 24px;
 	width: max-content;
 }
 
@@ -12,49 +12,50 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 2vh 0vw;
+	margin: 24px 0px;
 }
 .containerLogoChild {
 	display: flex;
 	flex-direction: row;
 }
 .containerLogoChild h4{
-	padding: 0vw;
-	margin: 0vw 0vw ;
+	padding: 0px;
+	margin: 0px 0px ;
 	align-self: flex-end;
 	color:#52C1E4;
 }
 .burger {
-	height: 18px;
-	width: 28px;
-	margin-bottom: 1vh;
+	height: 36px;
+	width: 36px;
+	margin-bottom: 12px;
+	cursor: pointer;
 }
 .logo {
-	height: 16px;
-	width: 41.54px;
+	height: 24px;
+	width: 48px;
 }
 .containerProfile {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 2vh 0vw;
+	margin: 24px 0px;
 }
 
 .containerProfile h5 {
 	color: #ffffff;
-	font-size: 10px;
-	margin: 0vw;
+	font-size: 18px;
+	margin: 0px;
 }
 
 .containerProfile span {
 	color: #ffffff85;
-	font-size: 8px;
+	font-size: 16px;
 }
 .imgProfile {
-	width: 40px;
-	height: 40px;
+	width: 64px;
+	height: 64px;
 	border-radius: 50%;
-	border: 0.25vh solid #f6f6f6;
+	border: 3px solid #f6f6f6;
 	object-fit: cover;
 }
 .containerProfileChild {
@@ -64,8 +65,8 @@
 }
 
 .containerProfileChild img {
-    width: 14px;
-	height: 14px;
+    width: 18px;
+	height: 18px;
 }
 .containerHandshake {
 	display: flex;
@@ -73,30 +74,30 @@
 	align-items: center;
 }
 .nav {
-	margin: 1vh 0vw;
-    border-bottom: 0.25vh solid rgba(255, 255, 255, 0.10);
-    padding-bottom: 2.5vh;
+	margin: 12px 0px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.10);
+    padding-bottom: 26px;
 }
 .ul {
 	display: flex;
 	flex-direction: column;
-	margin: 0vw;
-	padding: 0vw;
+	margin: 0px;
+	padding: 0px;
 	list-style: none;
 }
 .ul img {
-	height: 20px;
-	width: 20px;
-	padding: 0.25vh;
+	height: 36px;
+	width: 36px;
+	padding: 6px;
 }
 .linkContainer {
-	border-radius: 0.5vh;
+	border-radius: 8px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	margin: 1vh 0vw;
+	margin: 12px 0px;
 }
 .selected{
 	background-color: #52C1E4;
@@ -107,7 +108,7 @@
 
 
 .show {
-	padding: 0vw 2vh;
+	padding: 0px 26px;
 }
 .show .containerLogo {
 	flex-direction: row-reverse;
@@ -115,8 +116,8 @@
 	width: 100%;
 }
 .show .burger {
-	width: 36px;
-	height: 36px;
+	width: 42px;
+	height: 42px;
 }
 .show .logo {
 	height: 52px;
@@ -131,7 +132,7 @@
 .show .imgProfile {
 	width: 100px;
 	height: 100px;
-	margin-right: 2vh;
+	margin-right: 24px;
 }
 .show .containerProfileChild {
 	align-items: flex-start;
@@ -149,19 +150,19 @@
 .show .containerHandshake img {
 	width: 22px;
 	height: 22px;
-	margin-right: 0.5vh;
+	margin-right: 8px;
 }
 .show .nav {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	padding: 0vw;
-	margin: 0vw;
+	padding: 0px;
+	margin: 0px;
 }
 .show .ul {
 	width: 100%;
-	padding: 0vw 6vh;
+	padding: 0px 64px;
 }
 .show .linkContainer {
 	width: 100%;
@@ -169,16 +170,203 @@
 	justify-content: flex-start;
 	text-decoration: none;
 	color: inherit;
-	border-radius: 1.5vh;
+	border-radius: 16px;
 }
 .show .linkContainer li{
-    font-size: 20px;
-    margin: 0vh 0vh;
+    font-size: 24px;
+    margin: 0px 0px;
     color: #ffffff;
 }
 .show .linkContainer img {
 	width: 36px;
 	height: 36px;
-    margin: 0.25vh 1vh;
-	margin-right: 1.5vh;
+    margin: 6px 12px;
+	margin-right: 14px;
+}
+
+
+
+
+@media screen and (max-width: 1400px) {
+	.aside{
+		padding: 0px 12px;
+	}
+	.containerLogo {
+		margin: 18px 0px;
+	}
+	.containerLogo h4 {
+		font-size: 12px;
+	}
+	.burger{
+		width: 24px;
+		height: 24px;
+		margin-bottom: 8px;
+	}
+	.logo{
+		height: 15px;
+		width: 36px;
+	}
+	.containerProfile {
+		margin: 12px 0px;
+	}
+	.containerProfile h5 {
+		font-size: 13px;
+	}
+	.containerProfile span {
+		font-size: 12px;
+	}
+	.imgProfile {
+		width: 48px;
+		height: 48px;
+		border-width: 2px;
+	}
+	.containerProfileChild img {
+		width: 14px;
+		height: 14px;
+	}
+	.containerHandshake {
+		margin: 2px 0px;
+	}
+	.nav {
+		margin: 0px 0px;
+	}
+	.ul img {
+		height: 24px;
+		width: 24px;
+		padding: 4px;
+	}
+	.linkContainer {
+		margin: 8px 0px;
+	}
+	.show {
+		padding: 0px 16px;
+	}
+	.show .burger{
+		width: 26px;
+		height: 26px;
+	}
+	.show .logo{
+		height: 42px;
+		width: 108px;
+	}
+	.show .imgProfile{
+		margin-right: 12px;
+		width: 80px;
+		height: 80px;
+	}
+	.show .containerProfileChild h5{
+		font-size: 16px;
+	}
+	.show .containerProfileChild span{
+		font-size: 12px;
+	}
+	.show .containerHandshake img{
+		width: 16px;
+		height: 16px;
+		margin-right: 4px;
+	}
+	.show .ul{
+		padding: 0px 32px;
+	}
+	.show .linkContainer li{
+		font-size: 14px;
+		margin: 0px 0px;
+	}
+	.show .linkContainer img{
+		width: 22px;
+		height: 22px;
+		margin: 4px 8px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.aside {
+		padding: 0px 8px;
+	}
+	.containerLogo {
+		margin: 12px 0px;
+	}
+	.containerLogo h4 {
+		font-size: 10px;
+	}
+	.burger {
+		width: 18px;
+		height: 18px;
+		margin-bottom: 6px;
+	}
+	.logo {
+		height: 14px;
+		width: 28px;
+	}
+	.containerProfile {
+		margin: 8px 0px;
+	}
+	.containerProfile h5 {
+		font-size: 10px;
+	}
+	.containerProfile span {
+		font-size: 8px;
+	}
+	.imgProfile {
+		width: 36px;
+		height: 36px;
+		border-width: 1px;
+	}
+	.containerProfileChild img {
+		width: 10px;
+		height: 10px;
+	}
+	.containerHandshake {
+		margin: 2px 0px;
+	}
+	.nav {
+		margin: 0px 0px;
+	}
+	.ul img {
+		height: 18px;
+		width: 18px;
+		padding: 4px;
+	}
+	.linkContainer {
+		margin: 8px 0px;
+	}
+	.show {
+		padding: 0px 8px;
+	}
+	.show .burger {
+		width: 18px;
+		height: 18px;
+	}
+	.show .logo {
+		height: 28px;
+		width: 72px;
+	}
+	.show .imgProfile {
+		margin-right: 12px;
+		width: 48px;
+		height: 48px;
+	}
+	.show .containerProfileChild h5 {
+		font-size: 12px;
+	}
+	.show .containerProfileChild span {
+		font-size: 8px;
+	}
+	.show .containerHandshake img {
+		width: 10px;
+		height: 10px;
+		margin-right: 4px;
+	}
+	.show .ul {
+		padding: 0px 16px;
+	}
+	.show .linkContainer li {
+		font-size: 12px;
+		margin: 0px 0px;
+	}
+	.show .linkContainer img {
+		width: 18px;
+		height: 18px;
+		margin: 4px 8px;
+	}
 }
