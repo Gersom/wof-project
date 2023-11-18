@@ -13,8 +13,17 @@ switch (DB_ENGINE) {
 }
 
 const models = {
-  usersModel: require(`./${pathModel}/users`),
-  ProvincesModel: require(`./${pathModel}/provinces`)
+  BreedsModel: require(`./${pathModel}/breeds`),
+  CaregiversImagesModel: require(`./${pathModel}/caregivers_images`),
+  CaregiversModel: require(`./${pathModel}/caregivers`),
+  OwnersModel: require(`./${pathModel}/owners`),
+  PetsImagesModel: require(`./${pathModel}/pets_images`),
+  PetsModel: require(`./${pathModel}/pets`),
+  PostsModel: require(`./${pathModel}/posts`),
+  ProvincesModel: require(`./${pathModel}/provinces`),
+  RequestsModel: require(`./${pathModel}/requests`),
+  ReviewsModel: require(`./${pathModel}/reviews`),
+  UsersModel: require(`./${pathModel}/users`),
 }
 
 module.exports = models

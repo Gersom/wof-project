@@ -1,4 +1,4 @@
-const {DataTypes} = require("sequelize")
+const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 
 const name = 'users'
@@ -20,45 +20,42 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  role:{
+    allowNull: false,
+    type: DataTypes.STRING,
+    // 1 caregivers
+    // 2 owner
+    // 3 admin
+  },
+
+  profile_image:{
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 
   name: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   last_name: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
-  birthdate: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
-  dni: {
+  cell_phone:{
     type: DataTypes.STRING,
-    allowNull: false,
-  },
-  phone:{
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  profile_image:{
-    type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   address: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
-  role:{
-    type: DataTypes.INTEGER,
-    // 1 cuidador
-    // 2 dueño
-    // 3 admin
-    allowNull: false,
-  },
-  experience: {
+  dni: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
+  },
+  birthdate: {
+    type: DataTypes.DATE,
+    allowNull: true,
   },
 }
 
