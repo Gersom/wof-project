@@ -281,13 +281,10 @@
 
 @media screen and (max-width: 768px) {
 	.aside {
-		padding: 0px 8px;
+		padding: 0px 10px;
 	}
 	.containerLogo {
 		margin: 12px 0px;
-	}
-	.containerLogo h4 {
-		font-size: 10px;
 	}
 	.burger {
 		width: 18px;
@@ -300,12 +297,6 @@
 	}
 	.containerProfile {
 		margin: 8px 0px;
-	}
-	.containerProfile h5 {
-		font-size: 10px;
-	}
-	.containerProfile span {
-		font-size: 8px;
 	}
 	.imgProfile {
 		width: 36px;
@@ -334,8 +325,8 @@
 		padding: 0px 8px;
 	}
 	.show .burger {
-		width: 18px;
-		height: 18px;
+		width: 20px;
+		height: 20px;
 	}
 	.show .logo {
 		height: 28px;
@@ -343,14 +334,9 @@
 	}
 	.show .imgProfile {
 		margin-right: 12px;
-		width: 48px;
-		height: 48px;
-	}
-	.show .containerProfileChild h5 {
-		font-size: 12px;
-	}
-	.show .containerProfileChild span {
-		font-size: 8px;
+		align-self: center;
+		width: 58px;
+		height: 58px;
 	}
 	.show .containerHandshake img {
 		width: 10px;
@@ -358,11 +344,7 @@
 		margin-right: 4px;
 	}
 	.show .ul {
-		padding: 0px 16px;
-	}
-	.show .linkContainer li {
-		font-size: 12px;
-		margin: 0px 0px;
+		padding: 0px 24px;
 	}
 	.show .linkContainer img {
 		width: 18px;
