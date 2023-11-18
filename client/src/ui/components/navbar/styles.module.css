@@ -4,7 +4,7 @@
 	align-items: center;
 	height: 100vh;
 	background-color: #282c34;
-	padding: 0vw 0.5vw;
+	padding: 0vw 2vw;
 	width: max-content;
 }
 
@@ -12,7 +12,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 1vw 0vw;
+	margin: 2vh 0vw;
 }
 .containerLogoChild {
 	display: flex;
@@ -25,37 +25,36 @@
 	color:#52C1E4;
 }
 .burger {
-	height: 2vw;
-	width: 2vw;
-	margin-bottom: 0.5vw;
-	cursor:pointer;
+	height: 18px;
+	width: 28px;
+	margin-bottom: 1vh;
 }
 .logo {
-	height: 1.25vw;
-	width: 2.5vw;
+	height: 16px;
+	width: 41.54px;
 }
 .containerProfile {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 1vw 0vw;
+	margin: 2vh 0vw;
 }
 
 .containerProfile h5 {
 	color: #ffffff;
-	font-size: 1vw;
+	font-size: 10px;
 	margin: 0vw;
 }
 
 .containerProfile span {
 	color: #ffffff85;
-	font-size: 0.8vw;
+	font-size: 8px;
 }
 .imgProfile {
-	width: 2.5vw;
-	height: 2.5vw;
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
-	border: 0.125vw solid #f6f6f6;
+	border: 0.25vh solid #f6f6f6;
 	object-fit: cover;
 }
 .containerProfileChild {
@@ -65,8 +64,8 @@
 }
 
 .containerProfileChild img {
-    width: 1.25vw;
-	height: 1.25vw;
+    width: 14px;
+	height: 14px;
 }
 .containerHandshake {
 	display: flex;
@@ -74,9 +73,9 @@
 	align-items: center;
 }
 .nav {
-	margin: 1vw 0vw;
-    border-bottom: 0.1vw solid rgba(255, 255, 255, 0.10);
-    padding-bottom: 1vw;
+	margin: 1vh 0vw;
+    border-bottom: 0.25vh solid rgba(255, 255, 255, 0.10);
+    padding-bottom: 2.5vh;
 }
 .ul {
 	display: flex;
@@ -86,18 +85,18 @@
 	list-style: none;
 }
 .ul img {
-	height: 2vw;
-	width: 2vw;
-	padding: 0.2vw;
+	height: 20px;
+	width: 20px;
+	padding: 0.25vh;
 }
 .linkContainer {
-	border-radius: 0.5vw;
+	border-radius: 0.5vh;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	margin: 0.5vw 0vw;
+	margin: 1vh 0vw;
 }
 .selected{
 	background-color: #52C1E4;
@@ -108,16 +107,20 @@
 
 
 .show {
-	padding: 0vw 1.5vw;
+	padding: 0vw 2vh;
 }
 .show .containerLogo {
 	flex-direction: row-reverse;
 	justify-content: space-between;
 	width: 100%;
 }
+.show .burger {
+	width: 36px;
+	height: 36px;
+}
 .show .logo {
-	height: 3vw;
-	width: 7vw;
+	height: 52px;
+	width: 139.8px;
 }
 .show .containerProfile {
 	width: 100%;
@@ -126,22 +129,27 @@
 	justify-content: flex-start;
 }
 .show .imgProfile {
-	width: 5vw;
-	height: 5vw;
-	margin-right: 1vw;
+	width: 100px;
+	height: 100px;
+	margin-right: 2vh;
 }
 .show .containerProfileChild {
 	align-items: flex-start;
 }
 .show .containerProfileChild h5 {
-	font-size: 1.25vw;
+	font-size: 22px;
+}
+.show .containerProfileChild span {
+	font-size: 18px
 }
 .show .containerHandshake {
 	flex-direction: row;
 	align-items: flex-start;
 }
 .show .containerHandshake img {
-	margin-right: 0.25vw;
+	width: 22px;
+	height: 22px;
+	margin-right: 0.5vh;
 }
 .show .nav {
 	display: flex;
@@ -153,7 +161,7 @@
 }
 .show .ul {
 	width: 100%;
-	padding: 0vw 4vw;
+	padding: 0vw 6vh;
 }
 .show .linkContainer {
 	width: 100%;
@@ -161,13 +169,16 @@
 	justify-content: flex-start;
 	text-decoration: none;
 	color: inherit;
+	border-radius: 1.5vh;
 }
 .show .linkContainer li{
-    font-size: 1vw;
-    margin: 0.25vw 0.5vw;
+    font-size: 20px;
+    margin: 0vh 0vh;
     color: #ffffff;
 }
 .show .linkContainer img {
-    margin: 0.25vw 0.5vw;
-	margin-right: 1vw;
+	width: 36px;
+	height: 36px;
+    margin: 0.25vh 1vh;
+	margin-right: 1.5vh;
 }

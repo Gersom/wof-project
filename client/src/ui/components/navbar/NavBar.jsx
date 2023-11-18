@@ -1,5 +1,5 @@
 import styles from './styles.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CustomLinks from './CustomLinks';
 import { obtainLinks } from './links';
 import logo from '@images/logo.png';
@@ -7,29 +7,22 @@ import burgerClose from '@icons/nav/burgerClose.svg';
 import burgerOpen from '@icons/nav/burgerOpen.svg';
 import handshake from '@icons/nav/handshake.svg';
 const NavBar = () => {
-	const [show, setShow] = useState(false);
+	const [show, setShow] = useState(true);
 	const classShow = show ? styles.show : '';
 	const role = 'cuidador';
 	const LINKS = obtainLinks(role);
-	const handleShow = () => {
-		setShow(!show);
-	};
-	
+
+	useEffect(() => {
+		setShow(window.innerWidth > 768);
+	}, []);
+
 	return (
 		<aside className={`${styles.aside} ${classShow}`}>
 			<div className={styles.containerLogo}>
 				{show ? (
-					<img
-						src={burgerOpen}
-						onClick={handleShow}
-						className={styles.burger}
-					/>
+					<img src={burgerOpen} className={styles.burger} />
 				) : (
-					<img
-						src={burgerClose}
-						onClick={handleShow}
-						className={styles.burger}
-					/>
+					<img src={burgerClose} className={styles.burger} />
 				)}
 				<div className={styles.containerLogoChild}>
 					<img src={logo} alt='logo' className={styles.logo} />
