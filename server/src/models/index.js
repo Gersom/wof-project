@@ -16,6 +16,7 @@ const models = {
   BreedsModel: require(`./${pathModel}/breeds`),
   CaregiversImagesModel: require(`./${pathModel}/caregivers_images`),
   CaregiversModel: require(`./${pathModel}/caregivers`),
+  CountriesModel: require(`./${pathModel}/countries`),
   OwnersModel: require(`./${pathModel}/owners`),
   PetsImagesModel: require(`./${pathModel}/pets_images`),
   PetsModel: require(`./${pathModel}/pets`),

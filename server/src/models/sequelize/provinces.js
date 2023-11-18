@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
+const CountriesModel = require(`./countries`)
 
 const name = 'provinces'
 const config = { 
@@ -19,6 +20,10 @@ const schema = {
 }
 
 const ProvincesModel = sequelize.define(name, schema, config)
+
+// Add relationship
+CountriesModel.hasMany(ProvincesModel)
+ProvincesModel.belongsTo(CountriesModel)
 
 // add static methods (functions) to model
 ProvincesModel['findAllData'] = () => {
