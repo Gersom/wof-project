@@ -339,9 +339,10 @@
 		height: 58px;
 	}
 	.show .containerHandshake img {
-		width: 10px;
-		height: 10px;
+		width: 12px;
+		height: 12px;
 		margin-right: 4px;
+		align-self: center;
 	}
 	.show .ul {
 		padding: 0px 24px;
