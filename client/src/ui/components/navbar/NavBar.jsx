@@ -6,7 +6,6 @@ import logo from '@images/logo.png';
 import burgerClose from '@icons/nav/burgerClose.svg';
 import burgerOpen from '@icons/nav/burgerOpen.svg';
 import handshake from '@icons/nav/handshake.svg';
-
 const NavBar = () => {
 	const [show, setShow] = useState(false);
 	const classShow = show ? styles.show : '';
@@ -15,7 +14,7 @@ const NavBar = () => {
 	const handleShow = () => {
 		setShow(!show);
 	};
-
+	
 	return (
 		<aside className={`${styles.aside} ${classShow}`}>
 			<div className={styles.containerLogo}>

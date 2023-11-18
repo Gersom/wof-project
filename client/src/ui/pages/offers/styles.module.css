@@ -1,0 +1,12 @@
+.containerGrid{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 2vw;
+    row-gap: 1vw;
+}
+
+.containerGrid h1{
+    color:black;
+    padding: 0vw;
+    margin: 0vw;
+}

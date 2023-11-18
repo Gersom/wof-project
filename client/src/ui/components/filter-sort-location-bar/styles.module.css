@@ -3,11 +3,12 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 1vw;
+    width: auto;
+    padding: 1.5vw;
     background-color: #ffffff;
     border-radius: 0.5vw;
     color: #6E88AD;
+    height: max-content;
 }
 
 .navContainer img{

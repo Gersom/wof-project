@@ -1,0 +1,7 @@
+.containerGrid{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: flex-start;
+    background-color: #F3F4F8;
+    width: 100%;
+}

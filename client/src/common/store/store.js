@@ -1,12 +1,14 @@
 // imports
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import ThunkMiddleware from 'redux-thunk'
-import reducer from "./reducers/reducer"
+import reducer from "./reducers/reducer";
+import userReducer from './reducers/userReducer';
 import navBarSlice from './slices/navBarSlice';
 
 // combinaed Reducers
 const rootReducerCombined = combineReducers({
   reducer: reducer,
+  userReducer: userReducer,
   navBarReducer: navBarSlice, // rename the assignment reducer name
 });
 
