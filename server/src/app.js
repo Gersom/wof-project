@@ -2,6 +2,7 @@ const express = require("express")
 const middlewares = require("./config/middlewares")
 const listen = require("./config/listen")
 const { dbConnect } = require("./config/dbConnect")
+const insertCountries = require("./services/database/insertCountries")
 
 const app = express()
 
@@ -20,7 +21,10 @@ app.use((_, res) => {
 });
 
 // LISTEN
-listen(app, () => {
+listen(app, async () => {
   // Database conexion
-  dbConnect()
+  await dbConnect()
+
+  // Insert o not Countries into Database.
+  await insertCountries()
 })

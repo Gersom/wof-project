@@ -16,6 +16,14 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  domain: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  iconUrl: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 }
 
 const CountriesModel = sequelize.define(name, schema, config)
@@ -32,6 +40,13 @@ CountriesModel['updateData'] = (id, body) => {
 }
 CountriesModel['removeData'] = (id) => {
   return CountriesModel.destroy({ where: {id} })
+}
+CountriesModel['dataExist'] = async () => {
+  const amountData = await CountriesModel.count()
+  return amountData > 0
+}
+CountriesModel['createMany'] = (data = []) => {
+  return CountriesModel.bulkCreate(data, { ignoreDuplicates: true })
 }
 
 module.exports = CountriesModel

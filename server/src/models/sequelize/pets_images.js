@@ -13,7 +13,7 @@ const schema = {
     primaryKey: true,
     autoIncrement: true,
   },
-  url: {
+  imageUrl: {
     type: DataTypes.STRING,
     allowNull: false,
   },

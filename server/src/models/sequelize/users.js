@@ -29,7 +29,7 @@ const schema = {
     // 3 admin
   },
 
-  profileImage:{
+  profilePicture:{
     type: DataTypes.STRING,
     allowNull: true,
   },
