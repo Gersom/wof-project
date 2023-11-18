@@ -2,7 +2,7 @@
     max-width: 100%;
     padding: 40px;
     background-color: gray;
-    background-image: url("@images/background1.svg");
+    background-image: url("@images/landing/background1.svg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -28,7 +28,11 @@
     padding: 20px; 
     font-size: 40px;
     max-width: 30%;
+    font-family: Nanum Brush Script;
     text-align: center;
+    line-height: 50.5px;
+    color: #FFF;
+    text-shadow: 3px 4px 3.700000047683716px rgba(0, 0, 0, 0.50);
   }
   .btn{
     position: fixed;

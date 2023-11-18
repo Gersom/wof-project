@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import React from "react";
-import logo from "@images/logo.svg";
-import pol from "@images/pol.svg";
-import poligono3 from "@images/poligono3.svg";
-import collage from "@images/collage.svg";
+import logo from "@images/landing/logo.svg";
+import pol from "@images/landing/pol.svg";
+import poligono3 from "@images/landing/poligono3.svg";
+import collage from "@images/landing/collage.svg";
 import routerNames from "@src/common/constants/routes";
 
 const LandingPage = () => {
