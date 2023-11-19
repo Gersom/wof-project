@@ -3,7 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 	height: 100vh;
-	background-color: #282c34;
+	background-color: var(--color-background-dark);
 	padding: 0px 1rem;
 	width: max-content;
 }
@@ -22,7 +22,7 @@
 	padding: 0px;
 	margin: 0px 0px ;
 	align-self: flex-end;
-	color:#52C1E4;
+	color:var(--color-blue-light);
 }
 .burger {
 	height: 2.5rem;
@@ -42,20 +42,20 @@
 }
 
 .containerProfile h5 {
-	color: #ffffff;
+	color: var(--color-text-primary);
 	font-size: 1.25rem;
 	margin: 0px;
 }
 
 .containerProfile span {
-	color: #ffffff85;
+	color: var(--color-text-muted);
 	font-size: 1rem;
 }
 .imgProfile {
 	width: 4rem;
 	height: 4rem;
 	border-radius: 50%;
-	border: 0.2rem solid #f6f6f6;
+	border: 0.2rem solid var(--color-text-primary);
 	object-fit: cover;
 }
 .containerProfileChild {
@@ -100,7 +100,7 @@
 	margin: 0.8rem 0px;
 }
 .selected{
-	background-color: #52C1E4;
+	background-color: var(--color-blue-light);
 }
 
 
@@ -171,7 +171,10 @@
 .show .linkContainer li{
     font-size: 1.5rem;
     margin: 0px 0px;
-    color: #ffffff;
+    color: var(--color-text-gray);
+}
+.show .selected {
+	color: var(--color-text-primary);
 }
 .show .linkContainer img {
 	width: 2.2rem;
