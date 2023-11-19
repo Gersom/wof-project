@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+@media screen and (max-width:1400px) {
+  :root{
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  :root{
+    font-size: 10px;
+  }
+}
