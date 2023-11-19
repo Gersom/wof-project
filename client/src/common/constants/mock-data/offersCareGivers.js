@@ -1,11 +1,11 @@
 export const offers = [
   {
     imgProfile: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Foto_Perfil_.jpg",
-    name: "Usuario 1",
-    experiencie: "profesional-medio-bajo",
-    address: "Calle 1",
-    price: "$100",
-    rating: 4
+    name: "Guayin",
+    experiencie: "Profesional",
+    address: "Calle dueña del corason 23A",
+    price: "$20 por dia",
+    rating: 4.5
   },
   {
     imgProfile: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Foto_Perfil_.jpg",
