@@ -1,21 +1,23 @@
 .container {
     max-width: 100%;
     padding: 40px;
-    background-color: gray;
-    background-image: url("@images/landing/background1.svg");
+    background-image: url("@images/landing/pets.svg");
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    
+    background-size: contain;
+    background-position: center;
+    height: 100vh;    
+    background-color: rgb(80, 76, 70);
   }
-  .image{
+
+  .image {
     position: relative;
     display: flex;
     justify-content: flex-start;
     width: 300px;
     z-index: 2;
   }
-  .collage{
+
+  .collage {
     position: fixed;
     top: 205px;
     left: 150px;
@@ -26,37 +28,50 @@
     right: 400px;
     z-index: 1;
     padding: 20px; 
-    font-size: 40px;
+    font-size: 50px;
+    font-family: 'Nanum';
     max-width: 30%;
-    font-family: Nanum Brush Script;
     text-align: center;
     line-height: 50.5px;
-    color: #FFF;
+    color:white;
+    background-color: rgb(80, 76, 70);
+    opacity: 0.9;
+    border-radius: 10px;
     text-shadow: 3px 4px 3.700000047683716px rgba(0, 0, 0, 0.50);
+  }
+  @font-face {
+    font-family: 'Nanum';
+    src: url('../../assets/fonts/NanumBrushScript-Regular.ttf') format('truetype');
   }
   .btn{
     position: fixed;
-    top: 500px;
+    top: 600px;
     right: 600px;
-    z-index: 1;
+    z-index: 1;  
   }
 
-  .ctaButton {
+  .btnLog{
+   position: absolute;
+  }
+
+  .ctaButton, .btnLog {
+    top: 40px;
+    right: -300px;
     width: 200px;
-    margin: 0 auto;
-    padding: 10px 20px;
-    background-color: rgb(9, 142, 243);
+    padding: 10px 30px;
+    background-color:  rgb(80, 76, 70);
     color: #fff;
     text-align: center;
     text-decoration: none;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     border-radius: 5px;
+    text-shadow: 3px 4px 3.700000047683716px rgba(0, 0, 0, 0.50);
     transition: background-color 0.3s;
   }
-  
-  .ctaButton:hover {
-    background-color: darkblue;
+  .btnLog:hover, .ctaButton:hover {
+    background-color: #6E88AD;
   }
+
   .pol3{
     position: absolute;
     top: 0;

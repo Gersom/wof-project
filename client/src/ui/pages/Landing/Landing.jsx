@@ -12,6 +12,9 @@ const LandingPage = () => {
     <div>
       <div className={styles.pol3}>
         <img src={poligono3} alt="Poligono" />
+        <Link to={routerNames["home"]} className={styles.btnLog}>
+          Inicia Sesión
+        </Link>
       </div>
       <div className={styles.container}>
         <div className={styles.header}>
@@ -21,13 +24,13 @@ const LandingPage = () => {
       <div>
         <div className={styles.wrapper}>
           <h3>
-            ¡Encuentra rápidamente al cuidador ideal para tu amigo peludo!
+            ¡Encuentra al instante el cuidador ideal para tu amigo peludo!
           </h3>
-          <div className={styles.btn}>
-            <Link to={routerNames["home"]} className={styles.ctaButton}>
-              Regístrate
-            </Link>
-          </div>
+        </div>
+        <div className={styles.btn}>
+          <Link to={routerNames["home"]} className={styles.ctaButton}>
+            Regístrate
+          </Link>
         </div>
       </div>
       <div>
