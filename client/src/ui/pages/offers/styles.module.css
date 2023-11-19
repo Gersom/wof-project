@@ -1,8 +1,8 @@
 .containerGrid{
     display: grid;
     grid-template-rows: auto auto auto;
-    padding: 2vw;
-    row-gap: 1vw;
+    padding: 1.5rem;
+    row-gap: 2rem;
 }
 
 .containerGrid h1{
