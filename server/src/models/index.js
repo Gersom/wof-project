@@ -24,6 +24,7 @@ const models = {
   ProvincesModel: require(`./${pathModel}/provinces`),
   RequestsModel: require(`./${pathModel}/requests`),
   ReviewsModel: require(`./${pathModel}/reviews`),
+  SpeciesModel: require(`./${pathModel}/species`),
   UsersModel: require(`./${pathModel}/users`),
 }
 
