@@ -4,7 +4,7 @@ const {
   postUserController,
   updateUserController,
   deleteUserController
-} = require("../services/users/users")
+} = require("../services/internal_services/users")
 
 // READ ITEMS
 const getAllUsers = async (req, res) => {

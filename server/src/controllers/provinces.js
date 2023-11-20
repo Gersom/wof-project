@@ -1,5 +1,5 @@
 const { getAllProvincesErrorHandler } = require("../handlers/provinces");
-const { getProvincesController } = require("../services/provinces/provinces");
+const { getProvincesController } = require("../services/external_services/provinces");
 const catchedAsync = require("../utils/catchedAsync");
 
 const getAllProvinces = catchedAsync(async(req, res) => {

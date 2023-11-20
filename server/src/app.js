@@ -2,9 +2,9 @@ const express = require("express")
 const middlewares = require("./config/middlewares")
 const listen = require("./config/listen")
 const { dbConnect } = require("./config/dbConnect")
-const insertCountries = require("./services/database/insertCountries")
-const insertSpecies = require("./services/database/insertSpecies")
-const insertBreeds = require("./services/database/insertBreeds")
+const insertCountries = require("./services/internal_services/insertBreeds")
+const insertSpecies = require("./services/internal_services/insertSpecies")
+const insertBreeds = require("./services/internal_services/insertBreeds")
 
 const app = express()
 
