@@ -1,13 +1,10 @@
-const { getProvincesController } = require("../controllers/provinces");
+const getAllProvincesErrorHandler = (error, req, res, next) => {
+
+    console.error("Error in getAllProvinces:", error);
+    res.status(500).json({ error: "An error occurred while retrieving the provinces." });
+};
 
 
-const getAllProvinces = async (req,res) => {
-    try {
-        const provinces = await getProvincesController();
-        res.status(200).json(provinces)
-    } catch (error) {
-        res.status(500).json({error: error.message})
-    }
+module.exports = {
+    getAllProvincesErrorHandler
 }
-
-module.exports= {getAllProvinces};
