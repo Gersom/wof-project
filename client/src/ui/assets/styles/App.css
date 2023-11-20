@@ -41,9 +41,22 @@
   color: #888;
 }
 
-@media screen and (max-width:1400px) {
+
+@media screen and (max-width: 1550px) {
+  :root{
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width:1425px) {
   :root{
     font-size: 12px;
+  }
+}
+
+@media screen and (max-width:1024px) {
+  :root{
+    font-size: 11px;
   }
 }
 
