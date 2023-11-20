@@ -1,10 +1,8 @@
 .container {
     max-width: 100%;
     padding: 40px;
-    background-image: url("@images/landing/pets.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+    background-image: url("@images/landing/paws.svg");
+    background-size: cover;
     height: 100vh;    
     background-color: rgb(80, 76, 70);
   }
@@ -20,12 +18,12 @@
   .collage {
     position: fixed;
     top: 205px;
-    left: 150px;
+    left: 180px;
   }
   .wrapper {
     position: fixed;
     top: 300px;
-    right: 400px;
+    right: 260px;
     z-index: 1;
     padding: 20px; 
     font-size: 50px;
@@ -46,12 +44,13 @@
   .btn{
     position: fixed;
     top: 600px;
-    right: 600px;
+    right: 450px;
     z-index: 1;  
   }
 
   .btnLog{
    position: absolute;
+
   }
 
   .ctaButton, .btnLog {
@@ -59,17 +58,18 @@
     right: -300px;
     width: 200px;
     padding: 10px 30px;
-    background-color:  rgb(80, 76, 70);
-    color: #fff;
+    background-color: yellow;
+    color: #282C34;
     text-align: center;
     text-decoration: none;
     font-size: 1.6rem;
-    border-radius: 5px;
-    text-shadow: 3px 4px 3.700000047683716px rgba(0, 0, 0, 0.50);
+    border-radius: 20px;
+    /* text-shadow: 3px 4px 3.700000047683716px rgba(0, 0, 0, 0.50); */
     transition: background-color 0.3s;
   }
   .btnLog:hover, .ctaButton:hover {
-    background-color: #6E88AD;
+    background-color: rgb(32, 129, 255);
+    color: white;
   }
 
   .pol3{
