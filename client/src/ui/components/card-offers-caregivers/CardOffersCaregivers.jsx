@@ -1,4 +1,5 @@
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
+import starReview from '@icons/starReview.svg';
 
 const CardOffersCaregivers = ({
 	name,
@@ -24,7 +25,10 @@ const CardOffersCaregivers = ({
 					<h4>{address}</h4>
 					<h3>{price}</h3>
 				</div>
-				<span>{rating}</span>
+				<div className={styles.containerReview}>
+					<img src={starReview} alt='star' />
+					<span>{rating}</span>
+				</div>
 			</header>
 			<div className={styles.containerButtons}>
 				<button className={styles.buttonAccept}>Aceptar</button>

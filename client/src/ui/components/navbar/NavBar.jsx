@@ -1,4 +1,4 @@
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import { useState, useEffect } from 'react';
 import CustomLinks from './CustomLinks';
 import { obtainLinks } from './links';

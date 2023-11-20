@@ -1,0 +1,13 @@
+.containerGrid{
+    display: grid;
+    grid-template-rows: auto auto auto;
+    padding: 1.5rem;
+    row-gap: 2rem;
+    h1{
+        font-family: 'Nanum-Brush';
+        color: var(--color-text-secondary);
+        padding: 0vw;
+        margin: 0vw;
+        font-size: 4rem;
+    }
+}

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import CardOffersCaregivers from '../card-offers-caregivers/CardOffersCaregivers';
 import { getOffersCareGivers } from '@src/common/utils/getOffersCareGivers';
 import CardInfo from '../card-info/CardInfo';
 
 const OffersCareGivers = () => {
     const [offers, setOffers] = useState([]);
+
     useEffect(() => {
         const getOffers = async () => {
             const offers = await getOffersCareGivers();
@@ -13,7 +14,7 @@ const OffersCareGivers = () => {
         };
         getOffers();
     }, []);
-    console.log(offers);
+
 	return (
 		<div className={styles.containerMainGrid}>
 			<div className={styles.containerCardInfo}>
@@ -21,7 +22,7 @@ const OffersCareGivers = () => {
 				<CardInfo />
 			</div>
 			<div className={styles.containerOffers}>
-				{offers.slice(0,1).map((offer,index) => (
+				{offers.slice(0,3).map((offer,index) => (
                     <CardOffersCaregivers
                         key={index}
                         name={offer.name}

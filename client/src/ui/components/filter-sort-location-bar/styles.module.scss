@@ -1,4 +1,4 @@
-.navContainer{
+.navContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -8,32 +8,34 @@
     background-color: var(--color-text-primary);
     border-radius: 0.8rem;
     height: max-content;
+
+    img {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    h4 {
+        color: #6E88AD;
+        font-size: 1.3rem;
+        padding: 0px;
+        margin: 0px 0.6rem;
+    }
 }
 
-.navContainer img{
-    width: 2rem;
-    height: 2rem;
-}
-.navContainer h4{
-    color: #6E88AD;
-    font-size:1.3rem;
-    padding: 0px;
-    margin: 0px 0.6rem;
-}
-.locationContainer{
+.locationContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-.sortContainer{
+.sortContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.filterContainer{
+.filterContainer {
     display: flex;
     flex-direction: row;
     align-items: center;

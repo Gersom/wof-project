@@ -1,7 +1,9 @@
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import arrows from '@icons/filterSortLocationBar/arrows.svg';
 import filter from '@icons/filterSortLocationBar/filter.svg';
 import peru from '@icons/filterSortLocationBar/peru.svg';
+
+
 const FilterSortLocationBar = () => {
 	return (
 		<nav className={styles.navContainer}>
