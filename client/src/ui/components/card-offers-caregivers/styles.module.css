@@ -5,9 +5,10 @@
     justify-content: space-around;
     background-color: var(--color-text-primary);
     border-radius: 0.5rem;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1rem;
     margin: 0;
-    width: max-content;
+    width: fit-content;
+    height: min-content;
 }
 .header{
     display: flex;
@@ -52,7 +53,7 @@
     width: 100%;
 }
 .containerButtons button{
-    font-size: 1.5rem;
+    font-size: 1.26rem;
     border-radius: 1rem;
     margin: 0.5rem;
     padding: 1rem 3rem;
