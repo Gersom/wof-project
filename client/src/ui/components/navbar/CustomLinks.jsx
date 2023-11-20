@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 const CustomLinks = ({ to, imgSrc, label, show }) => {
 	const selected = useSelector((state) => state.navBarReducer.selected);

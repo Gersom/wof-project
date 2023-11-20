@@ -1,8 +1,8 @@
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import { useState, useEffect } from 'react';
 import CustomLinks from './CustomLinks';
 import { obtainLinks } from './links';
-import logo from '@images/logo.png';
+import logo from '@icons/nav/logo.svg';
 import burgerClose from '@icons/nav/burgerClose.svg';
 import burgerOpen from '@icons/nav/burgerOpen.svg';
 import handshake from '@icons/nav/handshake.svg';
@@ -22,6 +22,7 @@ const NavBar = () => {
 
 	return (
 		<aside className={`${styles.aside} ${classShow}`}>
+			<div className={styles.containerSticky}> 
 			<div className={styles.containerLogo}>
 				{show ? (
 					<img src={burgerOpen} className={styles.burger} onClick={handleShow}/>
@@ -61,6 +62,7 @@ const NavBar = () => {
 					))}
 				</ul>
 			</nav>
+			</div>
 		</aside>
 	);
 };

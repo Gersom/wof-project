@@ -1,23 +1,23 @@
 #root {
   width: 100%;
-  margin: 0vw;
-  padding: 0vw;
+  margin: 0;
+  padding: 0;
   text-align: center;
+  font-size: 16px;
+  box-sizing: border-box;
+  height: 100%;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.App{
+  height: 100%;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+html{
+  height: 100%;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
