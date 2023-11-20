@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import CardOffersCaregivers from '../card-offers-caregivers/CardOffersCaregivers';
 import { getOffersCareGivers } from '@src/common/utils/getOffersCareGivers';
 import CardInfo from '../card-info/CardInfo';

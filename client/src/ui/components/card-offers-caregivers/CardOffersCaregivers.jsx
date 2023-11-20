@@ -1,4 +1,4 @@
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import starReview from '@icons/starReview.svg';
 
 const CardOffersCaregivers = ({

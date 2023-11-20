@@ -1,4 +1,4 @@
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import FilterSortLocationBar from '@src/ui/components/filter-sort-location-bar/FilterSortLocationBar';
 import OffersCareGivers from '@src/ui/components/offers-care-givers/OffersCareGivers';
 
