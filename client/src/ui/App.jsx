@@ -20,12 +20,12 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        /* Home */
+        {/* Home */}
         <Route path={routerNames["home"]} element={<Home />} />
         <Route path={routerNames["landing"]} element={<Landing />} />
-        /* Form */
+        {/* Form */}
         <Route path={routerNames["formRegister"]} element={<FormRegister />} />
-        /* dashboard */
+        {/* dashboard */}
         <Route path={routerNames["dashboard"]} element={<Dashboard />}>
           <Route index path={routerNames["offers"]} element={<Offers />} />
           <Route path={routerNames["details"]} element={<Details />} />

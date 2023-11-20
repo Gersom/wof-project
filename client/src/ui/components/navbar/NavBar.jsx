@@ -22,6 +22,7 @@ const NavBar = () => {
 
 	return (
 		<aside className={`${styles.aside} ${classShow}`}>
+			<div className={styles.containerSticky}> 
 			<div className={styles.containerLogo}>
 				{show ? (
 					<img src={burgerOpen} className={styles.burger} onClick={handleShow}/>
@@ -61,6 +62,7 @@ const NavBar = () => {
 					))}
 				</ul>
 			</nav>
+			</div>
 		</aside>
 	);
 };

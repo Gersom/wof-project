@@ -7,7 +7,11 @@
 	padding: 0px 1rem;
 	width: max-content;
 }
-
+.containerSticky{
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0px;
+}
 .containerLogo {
 	display: flex;
 	flex-direction: column;
@@ -73,6 +77,9 @@
 	align-items: center;
 }
 .nav {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	margin: 0.8rem 0px;
 	border-bottom: 0.2rem solid rgba(255, 255, 255, 0.1);
 	padding-bottom: 1.6rem;
@@ -83,6 +90,7 @@
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
+	width: fit-content;
 	img {
 		height: 2rem;
 		width: 2rem;
