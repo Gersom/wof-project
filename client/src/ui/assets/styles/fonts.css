@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'Lexend-Regular';
+    src: url('../fonts/Lexend-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lexend-Bold';
+    src: url('../fonts/Lexend-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lexend-Medium';
+    src: url('../fonts/Lexend-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Nanum-Brush';
+    src: url('../fonts/NanumBrushScript-Regular.ttf') format('truetype');
+}

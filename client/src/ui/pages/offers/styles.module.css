@@ -6,7 +6,9 @@
 }
 
 .containerGrid h1{
-    color:black;
+    font-family: 'Nanum-Brush';
+    color: var(--color-text-secondary);
     padding: 0vw;
     margin: 0vw;
+    font-size: 4rem;
 }
