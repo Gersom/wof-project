@@ -1,21 +1,10 @@
-const { ProvincesModel } = require("../models")
-const axios = require("axios")
-const getProvincesController = async () => {
-    const provinces = await ProvincesModel.findAllData();
+const { getAllProvincesErrorHandler } = require("../handlers/provinces");
+const { getProvincesController } = require("../services/provinces/provinces");
+const catchedAsync = require("../utils/catchedAsync");
 
-    if(!provinces.length){
-        const { data } = await axios("https://apis.datos.gob.ar/georef/api/provincias");
-        const provinces = data.provincias.map(province => province.nombre)
-        provinces.forEach(async province => {
-            await ProvincesModel.findOrCreate({
-                where: {name: province}
-            })
-        });
-        return provinces;
-        
-    }
-    return provinces.map(province => province.name)
-}
+const getAllProvinces = catchedAsync(async(req, res) => {
+    const provinces = await getProvincesController();
+    res.status(200).json(provinces)
+}, getAllProvincesErrorHandler)
 
-module.exports = { getProvincesController }
-
+module.exports = { getAllProvinces };

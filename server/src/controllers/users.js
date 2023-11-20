@@ -1,41 +1,71 @@
-const { usersModel } = require("../models")
-
-const getAllUsersController = async () => {
-  const User = await usersModel.findAllData()
-  return User
-}
-
-const getUserController = async (id) => {
-  const User = await usersModel.findOneData(id)
-  if(!User) throw Error("User not found")
-  return User
-};
-
-const postUserController = async (data) => {
-  const newUser = await usersModel.create(data)
-  return newUser
-  // return {
-  //   success: 'The user was created successfully.'
-  // }
-}
-
-const updateUserController = async (id, data) => {
-  await usersModel.updateData(id, data)
-  return {
-    success: 'User was update correctly.'
-  }
-}
-const deleteUserController = async (id, data) => {
-  await usersModel.removeData(id)
-  return {
-    success: 'User was deleted correctly.'
-  }
-}
-
-module.exports = {
+const {
   getAllUsersController,
   getUserController,
   postUserController,
   updateUserController,
   deleteUserController
+} = require("../services/users/users")
+
+// READ ITEMS
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await getAllUsersController()
+    res.status(200).json(users)
+  }
+  catch (error) {
+    res.status(500).json({error: error.message})
+  }
+}
+
+// DETAIL ITEM
+const getUser = async (req, res) => {
+  try {
+    const {id} = req.params
+    const user = await getUserController(id)
+    res.status(200).json(user);
+  } 
+  catch (error) {
+    res.status(500).json({error: error.message})
+  }
+}
+
+// CREATE ITEM
+const createUser = async (req, res) => {
+  try {
+    const newUser = await postUserController(req.body)
+    res.status(200).json(newUser);
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
+};
+
+// UPDATE ITEM
+const updateUser = async (req, res) => {
+  try {
+    const { id } = req.params
+    const { body } = req
+    const updatedUser = await updateUserController(id, body)
+    res.status(200).json(updatedUser)
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
+};
+
+// DELETE ITEM
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params
+    const deletedUser = await deleteUserController(id)
+    res.status(200).json(deletedUser)
+  } catch (error) {
+    res.status(500).json({error: error.message})
+  }
+};
+
+module.exports = {
+  getAllUsers,
+  getUser,
+  createUser,
+  updateUser,
+  deleteUser
 };
