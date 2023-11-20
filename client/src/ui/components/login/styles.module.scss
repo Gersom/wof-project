@@ -1,0 +1,16 @@
+body {
+  background-color: var(--color-background-dark);
+}
+
+h1 {
+  font-family: "Nanum-Brush";
+  color: var(--color-text-primary);
+}
+
+input {
+  border-radius: 10px;
+}
+
+form {
+  display: block;
+}
