@@ -1,8 +1,8 @@
-const { BreedsModel } = require("./../../models")
-const { SpeciesModel } = require("./../../models")
+const { BreedsModel } = require("../../models")
+const { SpeciesModel } = require("../../models")
 
-const breddsDogs = require("./data/breeds/dogs-es.json")
-const breddsCats = require("./data/breeds/cats-es.json")
+const breddsDogs = require("../../database/data/breeds/dogs-es.json")
+const breddsCats = require("../../database/data/breeds/cats-es.json")
 
 const insertRecords = require("./insertRecords")
 

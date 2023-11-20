@@ -1,15 +1,15 @@
 import styles from './styles.module.scss';
 import FilterSortLocationBar from '@src/ui/components/filter-sort-location-bar/FilterSortLocationBar';
 import OffersCareGivers from '@src/ui/components/offers-care-givers/OffersCareGivers';
-
+import OffersOwner from '@src/ui/components/offers-owner/OffersOwner';
 const Offers = () => {
-    const role = 'cuidador';
+    const role = 'owner';
 
 	const renderOffers = () => {
 		if (role === 'cuidador') {
 			return <OffersCareGivers/>;
 		} else {
-			return <h1>Ofertas de dueños</h1>;
+			return <OffersOwner/>;
 		}
 	}
 	return (

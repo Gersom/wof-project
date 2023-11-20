@@ -1,10 +1,10 @@
 const express = require("express")
 const router = express.Router()
-const handlers = require("../handlers/provinces")
+const controllers = require("../controllers/provinces")
 
 // route => /breeds/...
 
-router.get("/", handlers.getAllProvinces)
+router.get("/", controllers.getAllProvinces)
 
 // router.get("/:id", handlers.getUser)
 
