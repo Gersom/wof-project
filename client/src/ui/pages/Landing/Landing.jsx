@@ -1,40 +1,44 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import React from "react";
-import Logo from "@images/logo.png";
+import logo from "@images/landing/logo.svg";
+import pol from "@images/landing/pol.svg";
+import poligono3 from "@images/landing/poligono3.svg";
+import collage from "@images/landing/collage.svg";
 import routerNames from "@src/common/constants/routes";
 
 const LandingPage = () => {
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <img className={styles.image} src={Logo} alt="Logo" />
-        <p className={styles.subtitle}>Your reliable source for petsitters</p>
-      </header>
-
-      <section className={styles.features}>
-        <div className={styles.feature}>
-          <img src="src/ui/assets/images/perro1.jpg" alt="Perro 1" />
-          <h2>Reliability</h2>
-          <p>Our petsitters are reliable and love animals.</p>
+    <div>
+      <div className={styles.pol3}>
+        <img src={poligono3} alt="Poligono" />
+        <Link to={routerNames["home"]} className={styles.btnLog}>
+          Inicia Sesión
+        </Link>
+      </div>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <img className={styles.image} src={logo} alt="Logo" />
         </div>
-
-        <div className={styles.feature}>
-          <img src="src/ui/assets/images/perro2.jpeg" alt="Perro 2" />
-          <h2>Variety of Services</h2>
-          <p>We offer a variety of services to meet your pet's needs.</p>
+      </div>
+      <div>
+        <div className={styles.wrapper}>
+          <h3>
+            ¡Encuentra al instante el cuidador ideal para tu amigo peludo!
+          </h3>
         </div>
-
-        <div className={styles.feature}>
-          <img src="src/ui/assets/images/navegar.jpg" alt="Navegar 2" />
-          <h2>Fácil de usar</h2>
-          <p>Navega fácilmente por nuestra app.</p>
+        <div className={styles.btn}>
+          <Link to={routerNames["home"]} className={styles.ctaButton}>
+            Regístrate
+          </Link>
         </div>
-      </section>
-
-      <Link to={routerNames["home"]} className={styles.ctaButton}>
-        Join Now!
-      </Link>
+      </div>
+      <div>
+        <img className={styles.collage} src={collage} alt="Collage Pets" />
+      </div>
+      <div className={styles.pol}>
+        <img src={pol} alt="Poligono" />
+      </div>
     </div>
   );
 };
