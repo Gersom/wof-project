@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import { useState, useEffect } from 'react';
 import CustomLinks from './CustomLinks';
 import { obtainLinks } from './links';
-import logo from '@images/logo.png';
+import logo from '@icons/nav/logo.svg';
 import burgerClose from '@icons/nav/burgerClose.svg';
 import burgerOpen from '@icons/nav/burgerOpen.svg';
 import handshake from '@icons/nav/handshake.svg';
