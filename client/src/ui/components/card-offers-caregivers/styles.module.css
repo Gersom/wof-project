@@ -7,7 +7,7 @@
     border-radius: 0.5rem;
     padding: 0.8rem 1rem;
     margin: 0;
-    width: fit-content;
+    width: auto;
     height: min-content;
 }
 .header{
@@ -20,6 +20,7 @@
 .containerData{
     display: flex;
     flex-direction: column;
+    width: max-content;
 }
 .containerData h3{
     font-size: 1.25rem;
@@ -51,6 +52,15 @@
     justify-content: center;
     margin-left: 3rem;
     width: 100%;
+}
+.containerReview{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    height: fit-content;
+}
+.containerReview img{
+    align-self: center;
 }
 .containerButtons button{
     font-size: 1.26rem;

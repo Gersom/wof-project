@@ -12,6 +12,7 @@
 .containerOffers{
     display: grid;
     grid-template-rows: repeat(10, auto);
+    row-gap: 1.5rem;
     justify-content: center;
     width: 100%;
 }
