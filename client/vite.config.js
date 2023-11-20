@@ -18,4 +18,11 @@ export default defineConfig({
       "@styles": path.resolve(__dirname, "./src/ui/assets/styles"),
     },
   },
+  css: {
+    preprocessorOptions: {
+      sass: {
+        // Opciones de configuración de Sass si es necesario
+      },
+    },
+  },
 });
