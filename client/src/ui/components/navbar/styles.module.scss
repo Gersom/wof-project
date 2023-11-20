@@ -2,12 +2,16 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100vh;
+	height: 100%;
 	background-color: var(--color-background-dark);
 	padding: 0px 1rem;
 	width: max-content;
 }
-
+.containerSticky{
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0px;
+}
 .containerLogo {
 	display: flex;
 	flex-direction: column;
@@ -19,7 +23,7 @@
 	flex-direction: row;
 	h4 {
 		padding: 0px;
-		margin: 0px 0px;
+		margin: 0rem 0rem 0.25rem -1rem;
 		align-self: flex-end;
 		color: var(--color-blue-light);
 	}
@@ -73,19 +77,20 @@
 	align-items: center;
 }
 .nav {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	margin: 0.8rem 0px;
 	border-bottom: 0.2rem solid rgba(255, 255, 255, 0.1);
 	padding-bottom: 1.6rem;
 }
 .ul {
-	display: flex;
-	flex-direction: column;
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
 	img {
-		height: 2rem;
-		width: 2rem;
+		height: 2.5rem;
+		width: 2.5rem;
 		padding: 0.4rem;
 	}
 }
@@ -159,7 +164,6 @@
 }
 .show .ul {
 	width: 100%;
-	padding: 0px 2.8rem;
 	padding-bottom: 2rem;
 }
 .show .linkContainer {
@@ -175,8 +179,8 @@
 		color: var(--color-text-grey);
 	}
 	img {
-		width: 2rem;
-		height: 2rem;
+		width: 2.5rem;
+		height: 2.5rem;
 		margin: 0.4rem 0.5rem;
 		margin-right: 0.5rem;
 	}

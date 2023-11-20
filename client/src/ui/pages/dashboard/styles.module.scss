@@ -1,7 +1,8 @@
-.containerGrid{
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: flex-start;
-    background-color: #F3F4F8;
-    width: 100%;
+.containerGrid {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: flex-start;
+	background-color: #f3f4f8;
+	width: 100%;
+	min-height: 100%;
 }

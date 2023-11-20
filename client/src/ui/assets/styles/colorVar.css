@@ -3,10 +3,10 @@
 	--color-text-secondary: #6e88ad; /* utilizado en textos con fondo blanco total  */
 	--color-text-dark: #1e1e1e; /* utilizado en textos para destacar en fondos blancos  */
 	--color-text-grey: #717171; /* utilizado en textos con fondo blancos  */
-    --color-text-muted: #ffffff89; /* utilizado en textos menos destacados  */
+	--color-text-muted: #ffffff89; /* utilizado en textos menos destacados  */
 	--color-background-dark: #282c34; /* fondo oscuro  */
 	--color-background-light: #f3f4f8; /* fondo claro  */
-    --color-blue-light: #52C1E4; /* utilizado en varios puntos */
-    --color-button-green: #52CD8B; /* utilizado en botones */
-    --color-yellow: #FFD232; /* utilizado para destacar cosas */
+	--color-blue-light: #52c1e4; /* utilizado en varios puntos */
+	--color-button-green: #52cd8b; /* utilizado en botones */
+	--color-yellow: #ffd232; /* utilizado para destacar cosas */
 }

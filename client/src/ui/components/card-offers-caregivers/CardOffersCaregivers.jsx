@@ -20,7 +20,7 @@ const CardOffersCaregivers = ({
 					/>
 				</figure>
 				<div className={styles.containerData}>
-					<h3>{name}</h3>
+					<h2>{name}</h2>
 					<h5>{rango}</h5>
 					<h4>{address}</h4>
 					<h3>{price}</h3>
