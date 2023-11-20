@@ -1,6 +1,6 @@
 .containerGrid{
     display: grid;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: min-content min-content auto;
     padding: 1.5rem;
     row-gap: 2rem;
     h1{

@@ -26,8 +26,14 @@
 	display: flex;
 	flex-direction: column;
 	width: max-content;
+	h2{
+		font-size: 1.3rem;
+		color: var(--color-text-dark);
+		margin: 0;
+		padding: 0;
+	}
 	h3 {
-		font-size: 1.25rem;
+		font-size: 1.1rem;
 		color: var(--color-text-dark);
 		margin: 0;
 		padding: 0;
