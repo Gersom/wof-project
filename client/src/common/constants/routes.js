@@ -2,6 +2,7 @@ const routerNames = {
   landing: "/",
   home: "/home",
   about: "/about",
+  formRegister: "/formRegister",
   dashboard: "/dashboard",
   offers: "/dashboard/offers",
   profile: "/dashboard/profile",
