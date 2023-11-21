@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const ProvincesModel = require(`./provinces`)
-
+const CountriesModel = require(`./countries`)
 const name = 'users'
 const config = { 
   timestamps: true, // createAt, updateAt
@@ -65,6 +65,9 @@ const UsersModel = sequelize.define(name, schema, config)
 // Add relationship
 ProvincesModel.hasMany(UsersModel)
 UsersModel.belongsTo(ProvincesModel)
+
+CountriesModel.hasOne(UsersModel);
+UsersModel.belongsTo(CountriesModel);
 
 // add static methods (functions) to model
 UsersModel['findAllData'] = () => {
