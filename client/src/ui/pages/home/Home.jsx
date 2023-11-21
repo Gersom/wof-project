@@ -9,8 +9,9 @@ const Home = () => {
         <Link to={routerNames["formRegister"]}>
           <button>Register</button>
         </Link>
-
-        <button>Login</button>
+        <Link to={routerNames["login"]}>
+          <button>Login</button>
+        </Link>
       </div>
     </>
   );
