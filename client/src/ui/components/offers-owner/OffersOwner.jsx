@@ -1,20 +1,14 @@
 import styles from './styles.module.scss';
-import { useEffect, useState } from 'react';
-import { getOffersOwner } from '@src/common/utils/getOffersOwner';
 import CardOffersOwner from '../card-offers-owner/CardOffersOwner';
-function OffersOwner() {
-	const [offers, setOffers] = useState([]);
+import useOffersOwner from '@src/common/hooks/useOffersOwner';
 
-	useEffect(() => {
-		const getOffers = async () => {
-			const offers = await getOffersOwner();
-			setOffers(offers);
-		};
-		getOffers();
-	}, []);
+function OffersOwner() {
+	const offers = useOffersOwner();
+	const slicedOffers = offers.slice(0, 3);
+
 	return (
 		<div className={styles.container}>
-			{offers.slice(0, 3).map((offer, index) => (
+			{slicedOffers.map((offer, index) => (
 				<CardOffersOwner
 					key={index}
 					petName={offer.petName}
