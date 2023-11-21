@@ -4,8 +4,8 @@ import filter from '@icons/filterSortLocationBar/filter.svg';
 import peru from '@icons/filterSortLocationBar/peru.svg';
 import FilterModal from '../filter-modal/FilterModal';
 import { useState } from 'react';
-import { actionFilterOffersOwner } from '@src/common/store/actions/offersActions';
-
+import { actionFilterOffersOwner, actionSortOffersOwner } from '@src/common/store/actions/offersActions';
+import { useSelector } from 'react-redux';
 const FilterSortLocationBar = () => {
 	const [filterModal, setFilterModal] = useState(false);
 	const toggleFilterModal = () => {
@@ -16,6 +16,8 @@ const FilterSortLocationBar = () => {
 			setFilterModal(false);
 		}
 	};
+	const sortOffersOwner = useSelector((state) => state.offersReducer.sortOffersOwner);
+	
 	return (
 		<nav className={styles.navContainer}>
 			<div className={styles.locationContainer}>

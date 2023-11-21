@@ -1,4 +1,4 @@
-import { GET_OFFERS_OWNER , FILTER_OFFERS_OWNER } from '../types/offersTypes';
+import { GET_OFFERS_OWNER , FILTER_OFFERS_OWNER, SORT_OFFERS_OWNER } from '../types/offersTypes';
 
 import { getOffersOwner } from '@src/common/utils/helpers-redux/getOffersOwner';
 
@@ -16,3 +16,10 @@ export const actionFilterOffersOwner = (nameFilter) => {
 		payload: nameFilter,
 	};
 };
+
+export const actionSortOffersOwner = (nameSort) => {
+	return {
+		type: SORT_OFFERS_OWNER,
+		payload: nameSort,
+	};
+}

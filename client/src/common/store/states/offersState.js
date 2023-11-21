@@ -36,6 +36,23 @@ const offersState = {
 			},
 		],
 	},
+	sortOffersOwner:[
+		{
+			name: '📌 Ubicacón',
+			value: true,
+			key: 'location'
+		},
+		{
+			name: '⭐ Mejor puntuación',
+			value: false,
+			key: 'score'
+		},
+		{
+			name: '📅 Fecha de publicación',
+			value: false,
+			key: 'date'
+		}
+	],
 	filtersOffersCareGivers: {},
 };
 
