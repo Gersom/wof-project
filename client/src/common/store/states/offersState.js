@@ -6,7 +6,7 @@ const offersState = {
 	offersOwner: [],
 	offersCareGivers: [],
 	filtersOffersOwner: {
-		Especie: [
+		['Especie:']: [
 			{
 				name: '🐶 Perros',
 				value: false,
@@ -18,14 +18,14 @@ const offersState = {
 				key: 'cat'
 			},
 		],
-		Genero: [
+		['Genero:']: [
 			{
-				name: 'Macho',
+				name: '♂️ Machos',
 				value: false,
 				key : 'male'
 			},
 			{
-				name: 'Hembra',
+				name: '♀️ Hembras',
 				value: false,
 				key : 'female'
 			},
