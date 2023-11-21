@@ -13,7 +13,7 @@ function OffersOwner() {
 		getOffers();
 	}, []);
 	return (
-		<div className={styles.containerGrid}>
+		<div className={styles.container}>
 			{offers.slice(0, 3).map((offer, index) => (
 				<CardOffersOwner
 					key={index}
