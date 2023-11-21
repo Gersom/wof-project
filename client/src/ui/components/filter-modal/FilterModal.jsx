@@ -33,13 +33,15 @@ function FilterModal({ action, toggleFilterModal }) {
 									>
 										{filter.name}
 									</h3>
-									{filter.value && (
-										<img
-											src={cross}
-											alt='cross'
-											onClick={() => handleClick(filter.name)}
-										/>
-									)}
+									<img
+										className={
+											filter.value ? styles.crossActive : styles.crossInactive
+										}
+										src={cross}
+										alt='cross'
+										onClick={() => { filter.value && handleClick(filter.name)}}
+									/>
+									
 								</div>
 							);
 						})}

@@ -11,6 +11,11 @@ const FilterSortLocationBar = () => {
 	const toggleFilterModal = () => {
 		setFilterModal((prevFilterModal) => !prevFilterModal);
 	};
+	const handleOverlayClick = (event) => {
+		if (event.target.classList.contains(styles.containerOverlay)) {
+			setFilterModal(false);
+		}
+	};
 	return (
 		<nav className={styles.navContainer}>
 			<div className={styles.locationContainer}>
@@ -26,7 +31,7 @@ const FilterSortLocationBar = () => {
 				<img src={filter} alt='filter' />
 			</div>
 			{filterModal && (
-				<div className={styles.containerOverlay}>
+				<div className={styles.containerOverlay} onClick={handleOverlayClick}>
 					<div className={styles.containerModal}>
 						<FilterModal
 							action={actionFilterOffersOwner}
