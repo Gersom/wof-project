@@ -18,13 +18,17 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  description: {
+  temperaments: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  size: {
+  manners: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
+  },
+  notes: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
 }
 

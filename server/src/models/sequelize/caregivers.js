@@ -17,6 +17,14 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  myHouse: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  notes: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 }
 
 const CaregiversModel = sequelize.define(name, schema, config)
