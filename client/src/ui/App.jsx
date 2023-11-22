@@ -13,6 +13,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
 import Details from "./pages/details/Details";
 import FormRegister from "./components/formRegister/FormRegister";
+import FormReview from "./components/reviews/FormReview";
 // Imports Components
 // import SearchBar from "./components/SearchBar";
 
@@ -30,6 +31,7 @@ function App() {
           <Route index path={routerNames["offers"]} element={<Offers />} />
           <Route path={routerNames["details"]} element={<Details />} />
           <Route path={routerNames["profile"]} element={<Landing />} />
+          <Route path={routerNames["formReview"]} element={<FormReview />} />
         </Route>
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />
