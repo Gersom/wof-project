@@ -6,8 +6,11 @@ const insertOwners = require("./insertOwners")
 const insertPets = require("./insertPets")
 const insertPetsImages = require("./insertPetsImages")
 const insertPosts = require("./insertPosts")
+const insertProvinces = require("./insertProvinces")
+
 
 const insertData = async () => {
+  await insertProvinces()
   await insertSpecies()
   await setTimeout(()=>insertBreeds(), "250")
   await insertCountries()
