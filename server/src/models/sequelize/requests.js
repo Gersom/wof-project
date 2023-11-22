@@ -1,5 +1,8 @@
 const {DataTypes} = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
+const PostsModel = require("./posts")
+const CaregiversModel = require("./caregivers")
+const addMethods = require("../utils/addStaticMethods")
 
 const name = 'requests'
 const config = { 
@@ -18,28 +21,24 @@ const schema = {
   },
   description: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   price: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
 }
 
 const RequestsModel = sequelize.define(name, schema, config)
 
+// Add relationship
+PostsModel.hasMany(RequestsModel)
+RequestsModel.belongsTo(PostsModel)
+
+CaregiversModel.hasMany(RequestsModel)
+RequestsModel.belongsTo(CaregiversModel)
+
 // add static methods (functions) to model
-RequestsModel['findAllData'] = () => {
-  return RequestsModel.findAll()
-}
-RequestsModel['findOneData'] = (id) => {
-  return RequestsModel.findByPk(id)
-}
-RequestsModel['updateData'] = (id, body) => {
-  return RequestsModel.update(body, { where: {id} })
-}
-RequestsModel['removeData'] = (id) => {
-  return RequestsModel.destroy({ where: {id} })
-}
+addMethods(RequestsModel)
 
 module.exports = RequestsModel

@@ -1,0 +1,359 @@
+.aside {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	background-color: var(--color-background-dark);
+	padding: 0px 1rem;
+	width: max-content;
+}
+.containerSticky{
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0px;
+}
+.containerLogo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 1.5rem 0px;
+}
+.containerLogoChild {
+	display: flex;
+	flex-direction: row;
+	h4 {
+		padding: 0px;
+		margin: 0rem 0rem 0.25rem -1rem;
+		align-self: flex-end;
+		color: var(--color-blue-light);
+	}
+}
+.burger {
+	height: 2rem;
+	width: 2rem;
+	margin-bottom: 0.8rem;
+	cursor: pointer;
+}
+.logo {
+	height: 1.25rem;
+	width: 3.2rem;
+}
+.containerProfile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 1.5rem 0px;
+	h5 {
+		color: var(--color-text-primary);
+		font-size: 1rem;
+		margin: 0px;
+	}
+	span {
+		color: var(--color-text-muted);
+		font-size: 0.9rem;
+	}
+}
+
+.imgProfile {
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50%;
+	border: 0.2rem solid var(--color-text-primary);
+	object-fit: cover;
+}
+.containerProfileChild {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	img {
+		width: 1.05rem;
+		height: 1.05rem;
+	}
+}
+
+.containerHandshake {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.nav {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0.8rem 0px;
+	border-bottom: 0.2rem solid rgba(255, 255, 255, 0.1);
+	padding-bottom: 1.6rem;
+}
+.ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	img {
+		height: 2.5rem;
+		width: 2.5rem;
+		padding: 0.4rem;
+	}
+}
+
+.linkContainer {
+	border-radius: 0.6rem;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin: 0.5rem 0px;
+}
+.selected {
+	background-color: var(--color-blue-light);
+}
+
+/* -----------------------------------Active----------------------------------------*/
+
+.show {
+	padding: 0px 1rem;
+}
+.show .containerLogo {
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	width: 100%;
+}
+.show .logo {
+	height: 4rem;
+	width: 9rem;
+}
+.show .containerProfile {
+	width: 100%;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+	h5 {
+		font-size: 1.4rem;
+	}
+}
+.show .imgProfile {
+	width: 6rem;
+	height: 6rem;
+	margin-right: 1.25rem;
+}
+.show .containerProfileChild {
+	align-items: flex-start;
+	margin-bottom: 2.5rem;
+	span {
+		font-size: 1rem;
+	}
+}
+
+.show .containerHandshake {
+	flex-direction: row;
+	align-items: flex-start;
+	img {
+		width: 1.3rem;
+		height: 1.3rem;
+		margin-right: 0.5rem;
+	}
+}
+
+.show .nav {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+.show .ul {
+	width: 100%;
+	padding-bottom: 2rem;
+}
+.show .linkContainer {
+	width: 100%;
+	align-items: center;
+	justify-content: flex-start;
+	text-decoration: none;
+	color: inherit;
+	border-radius: 1rem;
+	li {
+		font-size: 1.3rem;
+		margin: 0px 0px;
+		color: var(--color-text-grey);
+	}
+	img {
+		width: 2.5rem;
+		height: 2.5rem;
+		margin: 0.4rem 0.5rem;
+		margin-right: 0.5rem;
+	}
+}
+.show .selected {
+	li {
+		color: var(--color-text-primary);
+	}
+}
+
+/* @media screen and (max-width: 1400px) {
+	.aside{
+		padding: 0px 12px;
+	}
+	.containerLogo {
+		margin: 18px 0px;
+	}
+	.containerLogo h4 {
+		font-size: 12px;
+	}
+	.burger{
+		width: 24px;
+		height: 24px;
+		margin-bottom: 8px;
+	}
+	.logo{
+		height: 15px;
+		width: 36px;
+	}
+	.containerProfile {
+		margin: 12px 0px;
+	}
+	.containerProfile h5 {
+		font-size: 13px;
+	}
+	.containerProfile span {
+		font-size: 12px;
+	}
+	.imgProfile {
+		width: 48px;
+		height: 48px;
+		border-width: 2px;
+	}
+	.containerProfileChild img {
+		width: 14px;
+		height: 14px;
+	}
+	.containerHandshake {
+		margin: 2px 0px;
+	}
+	.nav {
+		margin: 0px 0px;
+	}
+	.ul img {
+		height: 24px;
+		width: 24px;
+		padding: 4px;
+	}
+	.linkContainer {
+		margin: 8px 0px;
+	}
+	.show {
+		padding: 0px 16px;
+	}
+	.show .burger{
+		width: 26px;
+		height: 26px;
+	}
+	.show .logo{
+		height: 42px;
+		width: 108px;
+	}
+	.show .imgProfile{
+		margin-right: 12px;
+		width: 80px;
+		height: 80px;
+	}
+	.show .containerProfileChild h5{
+		font-size: 16px;
+	}
+	.show .containerProfileChild span{
+		font-size: 12px;
+	}
+	.show .containerHandshake img{
+		width: 16px;
+		height: 16px;
+		margin-right: 4px;
+	}
+	.show .ul{
+		padding: 0px 32px;
+	}
+	.show .linkContainer li{
+		font-size: 14px;
+		margin: 0px 0px;
+	}
+	.show .linkContainer img{
+		width: 22px;
+		height: 22px;
+		margin: 4px 8px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.aside {
+		padding: 0px 10px;
+	}
+	.containerLogo {
+		margin: 12px 0px;
+	}
+	.burger {
+		width: 18px;
+		height: 18px;
+		margin-bottom: 6px;
+	}
+	.logo {
+		height: 14px;
+		width: 28px;
+	}
+	.containerProfile {
+		margin: 8px 0px;
+	}
+	.imgProfile {
+		width: 36px;
+		height: 36px;
+		border-width: 1px;
+	}
+	.containerProfileChild img {
+		width: 10px;
+		height: 10px;
+	}
+	.containerHandshake {
+		margin: 2px 0px;
+	}
+	.nav {
+		margin: 0px 0px;
+	}
+	.ul img {
+		height: 18px;
+		width: 18px;
+		padding: 4px;
+	}
+	.linkContainer {
+		margin: 8px 0px;
+	}
+	.show {
+		padding: 0px 8px;
+	}
+	.show .burger {
+		width: 20px;
+		height: 20px;
+	}
+	.show .logo {
+		height: 28px;
+		width: 72px;
+	}
+	.show .imgProfile {
+		margin-right: 12px;
+		align-self: center;
+		width: 58px;
+		height: 58px;
+	}
+	.show .containerHandshake img {
+		width: 12px;
+		height: 12px;
+		margin-right: 4px;
+		align-self: center;
+	}
+	.show .ul {
+		padding: 0px 24px;
+	}
+	.show .linkContainer img {
+		width: 18px;
+		height: 18px;
+		margin: 4px 8px;
+	}
+} */

@@ -1,0 +1,26 @@
+[
+  {
+    "email": "anny@gmail.com",
+    "password": "123456",
+    "role": "owner",
+    "profilePicture": "/pictures/anny.png",
+    "name": "Anny",
+    "lastName": "X",
+    "cellPhone": "+51910999999",
+    "address": "Av los juarez",
+    "dni": "0070239657",
+    "birthdate": "04-08-2005"
+  },
+  {
+    "email": "gersom@gmail.com",
+    "password": "123456",
+    "role": "owner",
+    "profilePicture": "/pictures/gersom.png",
+    "name": "Gersom",
+    "lastName": "Alaja",
+    "cellPhone": "+51910999999",
+    "address": "Calle Buena esperanza",
+    "dni": "0070239657",
+    "birthdate": "06-02-1995"
+  }
+]

@@ -1,0 +1,108 @@
+.section {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	background-color: var(--color-text-primary);
+	border-radius: 0.5rem;
+	padding: 0.8rem 1rem;
+	margin: 0;
+	width: auto;
+	height: min-content;
+}
+.header {
+	display: flex;
+	flex-direction: row;
+	text-align: start;
+	justify-content: space-between;
+	width: 100%;
+	span {
+		color: var(--color-text-grey);
+		font-size: 1rem;
+		margin-left: 0.5rem;
+	}
+}
+.containerData {
+	display: flex;
+	flex-direction: column;
+	width: max-content;
+	h2{
+		font-size: 1.3rem;
+		color: var(--color-text-dark);
+		margin: 0;
+		padding: 0;
+	}
+	h3 {
+		font-size: 1.1rem;
+		color: var(--color-text-dark);
+		margin: 0;
+		padding: 0;
+	}
+	h4 {
+		font-size: 1rem;
+		margin: 0;
+		padding: 0;
+		color: var(--color-text-grey);
+	}
+	h5 {
+		font-size: 1rem;
+		margin: 0;
+		padding: 0;
+		color: var(--color-text-secondary);
+	}
+}
+.containerButtons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-left: 3rem;
+	width: 100%;
+	button {
+		font-size: 1.26rem;
+		border-radius: 1rem;
+		margin: 0.5rem;
+		padding: 1rem 3rem;
+		color: var(--color-text-primary);
+	}
+}
+.containerReview {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	height: fit-content;
+	img {
+		align-self: center;
+	}
+}
+
+.containerButtons .buttonAccept {
+	background-color: var(--color-button-green);
+}
+.buttonDetail {
+	background-color: var(--color-blue-light);
+}
+.figure {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	align-items: center;
+}
+.imgProfile {
+	object-fit: cover;
+	width: 6rem;
+	height: 6rem;
+	margin-right: 1rem;
+	border-radius: 50%;
+	border: 0.2rem solid var(--color-text-primary);
+}
+
+@media screen and (max-width: 768px) {
+	.section {
+		flex-direction: column;
+		padding: 1rem;
+	}
+	.containerButtons {
+		margin: 1rem;
+	}
+}

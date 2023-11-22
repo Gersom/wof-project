@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Max",
+    "breed": "Labrador Retriever",
+    "description": "Friendly and energetic dog, loves to play fetch.",
+    "size": "60",
+    "user": {
+      "name": "John Doe",
+      "id": "12345"
+    },
+    "image": "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"
+  },
+  {
+    "name": "Luna",
+    "breed": "German Shepherd",
+    "description": "Intelligent and loyal, great with kids.",
+    "size": "55",
+    "user": {
+      "name": "Jane Smith",
+      "id": "67890"
+    },
+    "image": "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"
+  },
+  {
+    "name": "Buddy",
+    "breed": "Golden Retriever",
+    "description": "Playful and affectionate, enjoys swimming.",
+    "size": "55",
+    "user": {
+      "name": "Robert Johnson",
+      "id": "54321"
+    },
+    "image": "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"
+  },
+  {
+    "name": "Coco",
+    "breed": "Poodle",
+    "description": "Hypoallergenic and intelligent, perfect for families.",
+    "size": "30",
+    "user": {
+      "name": "Alice Williams",
+      "id": "98765"
+    },
+    "image": "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"
+  },
+  {
+    "name": "Rocky",
+    "breed": "Boxer",
+    "description": "Energetic and loyal, great for outdoor activities.",
+    "size": "65",
+    "user": {
+      "name": "Michael Brown",
+      "id": "13579"
+    },
+    "image": "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"
+  }
+]

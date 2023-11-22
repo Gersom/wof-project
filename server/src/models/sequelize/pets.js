@@ -1,9 +1,13 @@
-const {DataTypes} = require("sequelize")
+const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
+const OwnersModel = require(`./owners`)
+const BreedsModel = require(`./breeds`)
+const SpeciesModel = require(`./species`)
+const addMethods = require("../utils/addStaticMethods")
 
 const name = 'pets'
 const config = { 
-  timestamps: true, // createAt, updateAt
+  timestamps: false, // createAt, updateAt
   freezeTableName: true
 }
 const schema = {
@@ -16,34 +20,33 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  breed: {
+  temperaments: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  description: {
+  manners: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
-  size: {
+  notes: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
 }
 
 const PetsModel = sequelize.define(name, schema, config)
 
+// Add relationship
+OwnersModel.hasMany(PetsModel)
+PetsModel.belongsTo(OwnersModel)
+
+BreedsModel.hasMany(PetsModel)
+PetsModel.belongsTo(BreedsModel)
+
+SpeciesModel.hasMany(PetsModel)
+PetsModel.belongsTo(SpeciesModel)
+
 // add static methods (functions) to model
-PetsModel['findAllData'] = () => {
-  return PetsModel.findAll()
-}
-PetsModel['findOneData'] = (id) => {
-  return PetsModel.findByPk(id)
-}
-PetsModel['updateData'] = (id, body) => {
-  return PetsModel.update(body, { where: {id} })
-}
-PetsModel['removeData'] = (id) => {
-  return PetsModel.destroy({ where: {id} })
-}
+addMethods(PetsModel)
 
 module.exports = PetsModel

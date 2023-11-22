@@ -1,9 +1,11 @@
-const {DataTypes} = require("sequelize")
+const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
+const PetsModel = require(`./pets`)
+const addMethods = require("../utils/addStaticMethods")
 
-const name = 'pets_images'
+const name = 'petsImages'
 const config = { 
-  timestamps: true, // createAt, updateAt
+  timestamps: false, // createAt, updateAt
   freezeTableName: true
 }
 const schema = {
@@ -12,7 +14,7 @@ const schema = {
     primaryKey: true,
     autoIncrement: true,
   },
-  url: {
+  imageUrl: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -20,18 +22,11 @@ const schema = {
 
 const PetsImagesModel = sequelize.define(name, schema, config)
 
+// Add relationship
+PetsModel.hasMany(PetsImagesModel)
+PetsImagesModel.belongsTo(PetsModel)
+
 // add static methods (functions) to model
-PetsImagesModel['findAllData'] = () => {
-  return PetsImagesModel.findAll()
-}
-PetsImagesModel['findOneData'] = (id) => {
-  return PetsImagesModel.findByPk(id)
-}
-PetsImagesModel['updateData'] = (id, body) => {
-  return PetsImagesModel.update(body, { where: {id} })
-}
-PetsImagesModel['removeData'] = (id) => {
-  return PetsImagesModel.destroy({ where: {id} })
-}
+addMethods(PetsImagesModel)
 
 module.exports = PetsImagesModel

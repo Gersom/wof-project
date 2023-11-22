@@ -1,0 +1,88 @@
+.container {
+    max-width: 100%;
+    padding: 40px;
+    background-image: url("@images/landing/paws.svg");
+    background-size: cover;
+    height: 100vh;    
+    background-color: rgb(80, 76, 70);
+  }
+
+  .image {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    width: 300px;
+    z-index: 2;
+  }
+
+  .collage {
+    position: fixed;
+    top: 205px;
+    left: 180px;
+  }
+  .wrapper {
+    position: fixed;
+    top: 300px;
+    right: 260px;
+    z-index: 1;
+    padding: 20px; 
+    font-size: 50px;
+    font-family: 'Nanum';
+    max-width: 30%;
+    text-align: center;
+    line-height: 50.5px;
+    color:white;
+    background-color: rgb(80, 76, 70);
+    opacity: 0.9;
+    border-radius: 10px;
+    text-shadow: 3px 4px 3.700000047683716px rgba(0, 0, 0, 0.50);
+  }
+  @font-face {
+    font-family: 'Nanum';
+    src: url('../../assets/fonts/NanumBrushScript-Regular.ttf') format('truetype');
+  }
+  .btn{
+    position: fixed;
+    top: 600px;
+    right: 450px;
+    z-index: 1;  
+  }
+
+  .btnLog{
+   position: absolute;
+
+  }
+
+  .ctaButton, .btnLog {
+    top: 40px;
+    right: -300px;
+    width: 200px;
+    padding: 10px 30px;
+    background-color: yellow;
+    color: #282C34;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.6rem;
+    border-radius: 20px;
+    /* text-shadow: 3px 4px 3.700000047683716px rgba(0, 0, 0, 0.50); */
+    transition: background-color 0.3s;
+  }
+  .btnLog:hover, .ctaButton:hover {
+    background-color: rgb(32, 129, 255);
+    color: white;
+  }
+
+  .pol3{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+  .pol {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    box-sizing: border-box;
+    z-index: 1;
+  }

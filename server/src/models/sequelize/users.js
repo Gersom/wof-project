@@ -1,5 +1,12 @@
-const {DataTypes} = require("sequelize")
+const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
+
+const ProvincesModel = require(`./provinces`)
+const CountriesModel = require(`./countries`)
+
+const addMethods = require("../utils/addStaticMethods")
+const generateServerPath = require("./../../utils/generateServerPath")
+const { path: serverPath } = generateServerPath()
 
 const name = 'users'
 const config = { 
@@ -20,62 +27,55 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  role:{
+    allowNull: false,
+    type: DataTypes.STRING,
+    // 1 caregivers
+    // 2 owner
+    // 3 admin
+  },
+
+  profilePicture:{
+    type: DataTypes.STRING,
+    defaultValue: `${serverPath}/pictures/profile.png`
+  },
 
   name: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
-  last_name: {
+  lastName: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
-  birthdate: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
-  dni: {
+  cellPhone:{
     type: DataTypes.STRING,
-    allowNull: false,
-  },
-  phone:{
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  profile_image:{
-    type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   address: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
-  role:{
-    type: DataTypes.INTEGER,
-    // 1 cuidador
-    // 2 dueño
-    // 3 admin
-    allowNull: false,
-  },
-  experience: {
+  dni: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
+  },
+  birthdate: {
+    type: DataTypes.DATE,
+    allowNull: true,
   },
 }
 
 const UsersModel = sequelize.define(name, schema, config)
 
+// Add relationship
+ProvincesModel.hasMany(UsersModel)
+UsersModel.belongsTo(ProvincesModel)
+
+CountriesModel.hasOne(UsersModel);
+UsersModel.belongsTo(CountriesModel);
+
 // add static methods (functions) to model
-UsersModel['findAllData'] = () => {
-  return UsersModel.findAll()
-}
-UsersModel['findOneData'] = (id) => {
-  return UsersModel.findByPk(id)
-}
-UsersModel['updateData'] = (id, body) => {
-  return UsersModel.update(body, { where: {id} })
-}
-UsersModel['removeData'] = (id) => {
-  return UsersModel.destroy({ where: {id} })
-}
+addMethods(UsersModel)
 
 module.exports = UsersModel
