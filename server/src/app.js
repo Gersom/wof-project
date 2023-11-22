@@ -2,9 +2,7 @@ const express = require("express")
 const middlewares = require("./config/middlewares")
 const listen = require("./config/listen")
 const { dbConnect } = require("./config/dbConnect")
-const insertCountries = require("./services/database/insertBreeds")
-const insertSpecies = require("./services/database/insertSpecies")
-const insertBreeds = require("./services/database/insertBreeds")
+const insertData = require("./services/database")
 
 const app = express()
 
@@ -28,7 +26,5 @@ listen(app, async () => {
   await dbConnect()
 
   // Insert into Database.
-  await insertCountries()
-  await insertSpecies()
-  await setTimeout(()=>insertBreeds(), "500")
+  await insertData()
 })
