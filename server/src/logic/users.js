@@ -19,7 +19,7 @@ const getAllUsersLogic = async () => {
       profilePicture: user.profilePicture,
       address: user.address,
       role: user.role,
-      province: user.province.name,
+      province: user.province?.name,
       provinceId: user.provinceId,
     }
   })
