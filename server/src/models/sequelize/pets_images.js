@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const PetsModel = require(`./pets`)
+const addMethods = require("../utils/addStaticMethods")
 
 const name = 'pets_images'
 const config = { 
@@ -26,17 +27,6 @@ PetsModel.hasMany(PetsImagesModel)
 PetsImagesModel.belongsTo(PetsModel)
 
 // add static methods (functions) to model
-PetsImagesModel['findAllData'] = () => {
-  return PetsImagesModel.findAll()
-}
-PetsImagesModel['findOneData'] = (id) => {
-  return PetsImagesModel.findByPk(id)
-}
-PetsImagesModel['updateData'] = (id, body) => {
-  return PetsImagesModel.update(body, { where: {id} })
-}
-PetsImagesModel['removeData'] = (id) => {
-  return PetsImagesModel.destroy({ where: {id} })
-}
+addMethods(PetsImagesModel)
 
 module.exports = PetsImagesModel

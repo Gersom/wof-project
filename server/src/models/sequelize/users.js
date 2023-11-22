@@ -4,6 +4,7 @@ const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const ProvincesModel = require(`./provinces`)
 const CountriesModel = require(`./countries`)
 
+const addMethods = require("../utils/addStaticMethods")
 const generateServerPath = require("./../../utils/generateServerPath")
 const { path: serverPath } = generateServerPath()
 
@@ -75,17 +76,6 @@ CountriesModel.hasOne(UsersModel);
 UsersModel.belongsTo(CountriesModel);
 
 // add static methods (functions) to model
-UsersModel['findAllData'] = () => {
-  return UsersModel.findAll()
-}
-UsersModel['findOneData'] = (id) => {
-  return UsersModel.findByPk(id)
-}
-UsersModel['updateData'] = (id, body) => {
-  return UsersModel.update(body, { where: {id} })
-}
-UsersModel['removeData'] = (id) => {
-  return UsersModel.destroy({ where: {id} })
-}
+addMethods(UsersModel)
 
 module.exports = UsersModel
