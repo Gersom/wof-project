@@ -1,11 +1,11 @@
 import styles from './styles.module.scss';
-import arrows from '@icons/filterSortLocationBar/arrows.svg';
 import filter from '@icons/filterSortLocationBar/filter.svg';
 import peru from '@icons/filterSortLocationBar/peru.svg';
 import FilterModal from '../filter-modal/FilterModal';
+import SortSelect from '../sort-select/SortSelect';
 import { useState } from 'react';
-import { actionFilterOffersOwner, actionSortOffersOwner } from '@src/common/store/actions/offersActions';
-import { useSelector } from 'react-redux';
+import useSelectorSortFilter from '@src/common/hooks/useSelectorSortFilter';
+
 const FilterSortLocationBar = () => {
 	const [filterModal, setFilterModal] = useState(false);
 	const toggleFilterModal = () => {
@@ -16,18 +16,15 @@ const FilterSortLocationBar = () => {
 			setFilterModal(false);
 		}
 	};
-	const sortOffersOwner = useSelector((state) => state.offersReducer.sortOffersOwner);
-	
+	const {filters, sorts, actionFilter, actionSort} = useSelectorSortFilter({role: 'owner'});
+
 	return (
 		<nav className={styles.navContainer}>
 			<div className={styles.locationContainer}>
 				<img src={peru} alt='peru' />
 				<h4>Perú</h4>
 			</div>
-			<div className={styles.sortContainer}>
-				<img src={arrows} alt='arrows' />
-				<h4>Ordenar por: localidad</h4>
-			</div>
+			<SortSelect sorts={sorts} actionSort={actionSort} />
 			<div className={styles.filterContainer} onClick={toggleFilterModal}>
 				<h4>Filtros</h4>
 				<img src={filter} alt='filter' />
@@ -36,7 +33,8 @@ const FilterSortLocationBar = () => {
 				<div className={styles.containerOverlay} onClick={handleOverlayClick}>
 					<div className={styles.containerModal}>
 						<FilterModal
-							action={actionFilterOffersOwner}
+							filters={filters}
+							action={actionFilter}
 							toggleFilterModal={toggleFilterModal}
 						/>
 					</div>
