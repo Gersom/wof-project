@@ -1,15 +1,10 @@
 import styles from './styles.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import cross from '@icons/filterSortLocationBar/cross.svg';
 
-function FilterModal({ action, toggleFilterModal }) {
+function FilterModal({ action, toggleFilterModal,filters}) {
 	const dispatch = useDispatch();
-	const role = 'owner';
-	const filters = useSelector((state) =>
-		role === 'owner'
-			? state.offersReducer.filtersOffersOwner
-			: state.offersReducer.filtersOffersCareGivers
-	);
+
 	const handleClick = (name) => {
 		dispatch(action(name));
 	};

@@ -15,7 +15,6 @@ import Details from "./pages/details/Details";
 import FormRegister from "./components/formRegister/FormRegister";
 import Login from "./components/login/Login";
 // Imports Components
-// import SearchBar from "./components/SearchBar";
 
 function App() {
   return (
@@ -24,7 +23,7 @@ function App() {
         {/* Home */}
         <Route path={routerNames["home"]} element={<Home />} />
         <Route path={routerNames["landing"]} element={<Landing />} />
-        /* Forms */
+        {/* Forms */}
         <Route path={routerNames["login"]} element={<Login />} />
         <Route path={routerNames["formRegister"]} element={<FormRegister />} />
         {/* dashboard */}
