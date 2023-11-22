@@ -1,8 +1,28 @@
 const { UsersModel, ProvincesModel } = require("../../models")
 
 const getAllUsersService = async () => {
-  const User = await UsersModel.findAllData()
-  return User
+  const User = await UsersModel.findAll({
+    include:{
+      model: ProvincesModel
+    }
+  })
+  return User.map(user => {
+    return {
+      id : user.id,
+      dni: user.dni,
+      name: user.name,
+      lastName: user.lastName,
+      birthdate: user.birthdate,
+      email: user.email,
+      password: user.password,
+      cellPhone: user.cellPhone,
+      profilePicture: user.profilePicture,
+      address: user.address,
+      role: user.role,
+      province: user.province.name,
+      provinceId: user.provinceId,
+    }
+  })
 }
 
 const getUserService = async (id) => {
@@ -12,7 +32,7 @@ const getUserService = async (id) => {
 };
 
 const postUserService = async (data) => {
-  const { province } = data
+  const { province, role } = data
   const newUser = await UsersModel.create(data)
   const provinceDB = await ProvincesModel.findOne({
     where: {
@@ -20,10 +40,20 @@ const postUserService = async (data) => {
     }
   })
   await newUser.setProvince(provinceDB)
- 
-  return {
-    success: 'The user was created successfully.'
+  if(role==="caregiver"){
+    newUser.createCaregiver({
+      userId:newUser.id
+    })
   }
+  if(role==="owner"){
+    newUser.createOwner({
+      userId:newUser.id
+    })
+  }
+  return newUser
+  // return {
+  //   success: 'The user was created successfully.'
+  // }
 }
 
 const updateUserService = async (id, data) => {
