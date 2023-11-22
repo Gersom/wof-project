@@ -1,30 +1,30 @@
 const ErrorHandler = require("../handlers/users")
 const {
-  getAllUsersService,
-  getUserService,
-  postUserService,
-  updateUserService,
-  deleteUserService
-} = require("../services/internal/users")
+  getAllUsersLogic,
+  getUserLogic,
+  postUserLogic,
+  updateUserLogic,
+  deleteUserLogic
+} = require("../logic/users")
 const catchedAsync = require("../utils/catchedAsync")
 
 // READ ITEMS
 const getAllUsers =catchedAsync( async (req, res) => {
-    const users = await getAllUsersService()
+    const users = await getAllUsersLogic()
     res.status(200).json(users)
 }, ErrorHandler.getAllUsersErrorHandler)
 
 // DETAIL ITEM
 const getUser =catchedAsync( async (req, res) => {
     const {id} = req.params
-    const user = await getUserService(id)
+    const user = await getUserLogic(id)
     res.status(200).json(user);
 },ErrorHandler.getUserErrorHandler)
 
 // CREATE ITEM
 const createUser =catchedAsync( async (req, res) => {
   
-    const newUser = await postUserService(req.body)
+    const newUser = await postUserLogic(req.body)
     res.status(200).json(newUser);
   
 },ErrorHandler.createUserErrorHandler);
@@ -33,7 +33,7 @@ const createUser =catchedAsync( async (req, res) => {
 const updateUser =catchedAsync( async (req, res) => {
     const { id } = req.params
     const { body } = req
-    const updatedUser = await updateUserService(id, body)
+    const updatedUser = await updateUserLogic(id, body)
     res.status(200).json(updatedUser)
 
 },ErrorHandler.updateUserErrorHandler);
@@ -41,7 +41,7 @@ const updateUser =catchedAsync( async (req, res) => {
 // DELETE ITEM
 const deleteUser =catchedAsync(async (req, res) => {
     const { id } = req.params
-    const deletedUser = await deleteUserService(id)
+    const deletedUser = await deleteUserLogic(id)
     res.status(200).json(deletedUser)
 }, ErrorHandler.deleteUserErrorHandler);
 

@@ -1,6 +1,6 @@
-const { CaregiversModel, UsersModel } = require("../../models")
+const { CaregiversModel, UsersModel } = require("../models")
 
-const getAllCaregiversService = async () => {
+const getAllCaregiversLogic = async () => {
   const caregivers = await CaregiversModel.findAll({
     include:{
       model: UsersModel
@@ -29,13 +29,13 @@ const getAllCaregiversService = async () => {
   })
 }
 
-const getCaregiverService = async (id) => {
+const getCaregiverLogic = async (id) => {
   const caregiver = await CaregiversModel.findOneData(id)
   if (!caregiver) throw Error("User not found")
   return caregiver
 };
 
-const postCaregiverService = async (data) => {
+const postCaregiverLogic = async (data) => {
   const { idUser } = data
   const user = await UsersModel.findOneData(idUser)
   if(user.role==1){
@@ -49,13 +49,13 @@ const postCaregiverService = async (data) => {
 //   }
 }
 
-const updateCaregiverService = async (id, data) => {
+const updateCaregiverLogic = async (id, data) => {
   await CaregiversModel.updateData(id, data)
   return {
     success: 'User was update correctly.'
   }
 }
-const deleteCaregiverService = async (id, data) => {
+const deleteCaregiverLogic = async (id, data) => {
   await CaregiversModel.removeData(id)
   return {
     success: 'User was deleted correctly.'
@@ -63,9 +63,9 @@ const deleteCaregiverService = async (id, data) => {
 }
 
 module.exports = {
-  getAllCaregiversService,
-  getCaregiverService,
-  postCaregiverService,
-  updateCaregiverService,
-  deleteCaregiverService
+  getAllCaregiversLogic,
+  getCaregiverLogic,
+  postCaregiverLogic,
+  updateCaregiverLogic,
+  deleteCaregiverLogic
 };

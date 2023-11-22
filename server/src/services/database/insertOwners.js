@@ -1,7 +1,7 @@
 const { UsersModel, OwnersModel } = require("../../models/index")
 const insertRecords = require("./insertRecords")
 
-const insertCountries = async () => {
+const insertOwners = async () => {
   try {
     const annyId = await UsersModel.findIdData("email", "anny@gmail.com")
     const gersomId = await UsersModel.findIdData("email", "gersom@gmail.com")
@@ -21,4 +21,4 @@ const insertCountries = async () => {
   }
 }
 
-module.exports = insertCountries
+module.exports = insertOwners

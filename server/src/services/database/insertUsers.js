@@ -5,7 +5,7 @@ const insertRecords = require("./insertRecords")
 const generateServerPath = require("./../../utils/generateServerPath")
 const { path: serverPath } = generateServerPath()
 
-const insertCountries = async () => {
+const insertUsers = async () => {
   try {
     const countryArId = await CountriesModel.findIdData("domain", "ar")
 
@@ -27,4 +27,4 @@ const insertCountries = async () => {
   }
 }
 
-module.exports = insertCountries
+module.exports = insertUsers
