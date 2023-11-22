@@ -1,6 +1,6 @@
 const { OwnersModel, UsersModel } = require("../models")
 
-const getAllOwnersService = async () => {
+const getAllOwnersLogic = async () => {
     const owners = await OwnersModel.findAll({
         include: {
             model: UsersModel
@@ -29,13 +29,13 @@ const getAllOwnersService = async () => {
     })
 }
 
-const getOwnerService = async (id) => {
+const getOwnerLogic = async (id) => {
     const owner = await OwnersModel.findOneData(id)
     if (!owner) throw Error("User not found")
     return owner
 };
 
-const postOwnerService = async (data) => {
+const postOwnerLogic = async (data) => {
     const { idUser } = data
     const user = await UsersModel.findOneData(idUser)
     if (user.role == 1) {
@@ -49,13 +49,13 @@ const postOwnerService = async (data) => {
     //   }
 }
 
-const updateOwnerService = async (id, data) => {
+const updateOwnerLogic = async (id, data) => {
     await OwnersModel.updateData(id, data)
     return {
         success: 'User was update correctly.'
     }
 }
-const deleteOwnerService = async (id, data) => {
+const deleteOwnerLogic = async (id, data) => {
     await OwnersModel.removeData(id)
     return {
         success: 'User was deleted correctly.'
@@ -63,9 +63,9 @@ const deleteOwnerService = async (id, data) => {
 }
 
 module.exports = {
-    getAllOwnersService,
-    getOwnerService,
-    postOwnerService,
-    updateOwnerService,
-    deleteOwnerService
+    getAllOwnersLogic,
+    getOwnerLogic,
+    postOwnerLogic,
+    updateOwnerLogic,
+    deleteOwnerLogic
 };

@@ -1,6 +1,6 @@
 const { RequestsModel } = require("../models");
 
-const getAllOffersService = async () => {
+const getAllOffersLogic = async () => {
     try {
         const offers = await RequestsModel.findAll();
         return offers;
@@ -10,7 +10,7 @@ const getAllOffersService = async () => {
     }
 }
 
-const getOfferService = async (offerId) => {
+const getOfferLogic = async (offerId) => {
     try {
         const offer = await RequestsModel.findByPk(offerId);
 
@@ -25,6 +25,6 @@ const getOfferService = async (offerId) => {
 }
 
 module.exports = {
-    getAllOffersService,
-    getOfferService
+    getAllOffersLogic,
+    getOfferLogic
 };

@@ -1,6 +1,6 @@
 const { UsersModel, ProvincesModel } = require("../models")
 
-const getAllUsersService = async () => {
+const getAllUsersLogic = async () => {
   const User = await UsersModel.findAll({
     include:{
       model: ProvincesModel
@@ -25,13 +25,13 @@ const getAllUsersService = async () => {
   })
 }
 
-const getUserService = async (id) => {
+const getUserLogic = async (id) => {
   const User = await UsersModel.findOneData(id)
   if (!User) throw Error("User not found")
   return User
 };
 
-const postUserService = async (data) => {
+const postUserLogic = async (data) => {
   const { province, role } = data
   const newUser = await UsersModel.create(data)
   const provinceDB = await ProvincesModel.findOne({
@@ -56,13 +56,13 @@ const postUserService = async (data) => {
   // }
 }
 
-const updateUserService = async (id, data) => {
+const updateUserLogic = async (id, data) => {
   await UsersModel.updateData(id, data)
   return {
     success: 'User was update correctly.'
   }
 }
-const deleteUserService = async (id, data) => {
+const deleteUserLogic = async (id, data) => {
   await UsersModel.removeData(id)
   return {
     success: 'User was deleted correctly.'
@@ -70,9 +70,9 @@ const deleteUserService = async (id, data) => {
 }
 
 module.exports = {
-  getAllUsersService,
-  getUserService,
-  postUserService,
-  updateUserService,
-  deleteUserService
+  getAllUsersLogic,
+  getUserLogic,
+  postUserLogic,
+  updateUserLogic,
+  deleteUserLogic
 };
