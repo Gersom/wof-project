@@ -1,7 +1,12 @@
 const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
+
 const ProvincesModel = require(`./provinces`)
 const CountriesModel = require(`./countries`)
+
+const generateServerPath = require("./../../utils/generateServerPath")
+const { path: serverPath } = generateServerPath()
+
 const name = 'users'
 const config = { 
   timestamps: true, // createAt, updateAt
@@ -31,7 +36,7 @@ const schema = {
 
   profilePicture:{
     type: DataTypes.STRING,
-    allowNull: true,
+    defaultValue: `${serverPath}/pictures/profile.png`
   },
 
   name: {
