@@ -2,6 +2,7 @@ const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const OwnersModel = require(`./owners`)
 const BreedsModel = require(`./breeds`)
+const SpeciesModel = require(`./species`)
 const addMethods = require("../utils/addStaticMethods")
 
 const name = 'pets'
@@ -41,6 +42,9 @@ PetsModel.belongsTo(OwnersModel)
 
 BreedsModel.hasMany(PetsModel)
 PetsModel.belongsTo(BreedsModel)
+
+SpeciesModel.hasMany(PetsModel)
+PetsModel.belongsTo(SpeciesModel)
 
 // add static methods (functions) to model
 addMethods(PetsModel)

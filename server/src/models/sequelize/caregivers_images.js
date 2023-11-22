@@ -3,7 +3,7 @@ const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const CaregiversModel = require(`./caregivers`)
 const addMethods = require("../utils/addStaticMethods")
 
-const name = 'caregivers_images'
+const name = 'caregiversImages'
 const config = { 
   timestamps: false, // createAt, updateAt
   freezeTableName: true

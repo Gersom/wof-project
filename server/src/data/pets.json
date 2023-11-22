@@ -1,0 +1,20 @@
+[
+  {
+    "name": "peluche",
+    "temperaments": "Tranquilo cariñoso y sobre todo sumiso",
+    "manners": "Si te avisa cuando quiere ir al baño",
+    "notes": "Le gusta que le acaricien la pancita"
+  },
+  {
+    "name": "simba",
+    "temperaments": "Mordelon",
+    "manners": "Si esta de buen humor se va a hacer sus cosas a fuera",
+    "notes": "Simba no te mira te juzga"
+  },
+  {
+    "name": "ramses",
+    "temperaments": "Dormilon",
+    "manners": "Solito se va a hacer sus necesidades a fuera",
+    "notes": "No molesta, solo duerme, pero si llora para que le des de comer"
+  }
+]
