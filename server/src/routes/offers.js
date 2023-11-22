@@ -6,4 +6,6 @@ router.get("/", controllers.getAllOffers)
 
 router.get("/:id", controllers.getOffer)
 
+router.post("/", controllers.postOffer )
+
 module.exports= router
