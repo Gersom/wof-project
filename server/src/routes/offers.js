@@ -2,8 +2,8 @@ const express = require("express")
 const controllers = require("../controllers/offers");
 const router = express.Router()
 
-router.get("/offer/:id", controllers.getOffer)
+router.get("/", controllers.getAllOffers)
 
-router.get("/offers", controllers.getAllOffers)
+router.get("/:id", controllers.getOffer)
 
 module.exports= router
