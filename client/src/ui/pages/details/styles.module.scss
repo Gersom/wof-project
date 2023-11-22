@@ -1,0 +1,27 @@
+.mainContainerGrid{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 2rem;
+    padding: 1rem;
+}
+
+.containerLeft{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    row-gap: 2rem;
+    justify-content: center;
+    padding: 2rem 0rem;
+}
+
+.containerRight{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto;
+    row-gap: 2rem;
+    justify-content: center;
+    h1{
+        color:black;
+        font-size: 6rem;
+    }
+}
