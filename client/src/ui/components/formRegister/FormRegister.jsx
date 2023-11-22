@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import routerNames from "@src/common/constants/routes";
@@ -5,9 +6,21 @@ import routerNames from "@src/common/constants/routes";
 const FormRegister = () => {
   const navigate = useNavigate();
 
-  const goBackHandler = () => {
-    navigate(-1);
-  };
+  // form´s fild states
+  const [dataForm, setDataForm] = useState({
+    nombre: "",
+    apellido: "",
+    dni: "",
+    email: "",
+    password: "",
+    telefono: "",
+    direccion: "",
+    provincia: "",
+    fechaNacimiento: "",
+    role: "",
+  });
+
+  const [errors, setErrors] = useState({}); //  errors state
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -15,11 +28,27 @@ const FormRegister = () => {
     setDataForm({ ...dataForm, [name]: value });
     validation({ ...dataForm, [name]: value }, errors, setErrors);
   };
+
+  const handleRoleChange = (event) => {
+    const role = event.target.value;
+
+    setDataForm({ ...dataForm, role: role });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // logic for the form submit
+  };
+
+  const goBackHandler = () => {
+    navigate(-1);
+  };
+
   return (
     <>
       <div>
         <h1 className={styles.titulo}>Crea tu Perfil</h1>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.campos}>
             <div className={styles.campos}>
               <label>Nombre: </label>
@@ -93,14 +122,42 @@ const FormRegister = () => {
           </div>
           <div className={styles.campos}>
             <label>Role </label>
-            <select name="" id="">
+            <select
+              name="role"
+              value={dataForm.role}
+              onChange={handleRoleChange}
+            >
               <option value="" disabled>
                 --Select
               </option>
-              <option value="">Dueño</option>
-              <option value="">Cuidador</option>
+              <option value="Dueño">Dueño</option>
+              <option value="Cuidador">Cuidador</option>
             </select>
           </div>
+          {dataForm.role === "Dueño" && (
+            <div className={styles.campos}>
+              <label> Adicional Dueño: </label>
+              <input
+                type="text"
+                name="additionalFieldDueño"
+                value={dataForm.additionalFieldDueño}
+                onChange={handleInputChange}
+              />
+              <span></span>
+            </div>
+          )}
+          {dataForm.role === "Cuidador" && (
+            <div className={styles.campos}>
+              <label> Adicional Cuidador: </label>
+              <input
+                type="text"
+                name="additionalFieldCuidador"
+                value={dataForm.additionalFieldCuidador}
+                onChange={handleInputChange}
+              />
+              <span></span>
+            </div>
+          )}
           <div className={styles.campos}>
             <button
               style={{

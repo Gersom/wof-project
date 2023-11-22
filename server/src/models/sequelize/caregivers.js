@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const UsersModel = require(`./users`)
+const addMethods = require("../utils/addStaticMethods")
 
 const name = 'caregivers'
 const config = { 
@@ -17,6 +18,14 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  myHouse: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  notes: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 }
 
 const CaregiversModel = sequelize.define(name, schema, config)
@@ -26,17 +35,6 @@ UsersModel.hasOne(CaregiversModel)
 CaregiversModel.belongsTo(UsersModel)
 
 // add static methods (functions) to model
-CaregiversModel['findAllData'] = () => {
-  return CaregiversModel.findAll()
-}
-CaregiversModel['findOneData'] = (id) => {
-  return CaregiversModel.findByPk(id)
-}
-CaregiversModel['updateData'] = (id, body) => {
-  return CaregiversModel.update(body, { where: {id} })
-}
-CaregiversModel['removeData'] = (id) => {
-  return CaregiversModel.destroy({ where: {id} })
-}
+addMethods(CaregiversModel)
 
 module.exports = CaregiversModel

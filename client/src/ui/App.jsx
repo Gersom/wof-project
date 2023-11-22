@@ -13,6 +13,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
 import Details from "./pages/details/Details";
 import FormRegister from "./components/formRegister/FormRegister";
+import Login from "./components/login/Login";
 import FormReview from "./components/reviews/FormReview";
 // Imports Components
 // import SearchBar from "./components/SearchBar";
@@ -24,7 +25,8 @@ function App() {
         {/* Home */}
         <Route path={routerNames["home"]} element={<Home />} />
         <Route path={routerNames["landing"]} element={<Landing />} />
-        {/* Form */}
+        /* Forms */
+        <Route path={routerNames["login"]} element={<Login />} />
         <Route path={routerNames["formRegister"]} element={<FormRegister />} />
         {/* dashboard */}
         <Route path={routerNames["dashboard"]} element={<Dashboard />}>

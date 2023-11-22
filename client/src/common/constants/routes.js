@@ -3,6 +3,7 @@ const routerNames = {
   home: "/home",
   about: "/about",
   formRegister: "/formRegister",
+  login: "/login",
   dashboard: "/dashboard",
   offers: "/dashboard/offers",
   profile: "/dashboard/profile",

@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
-const SpeciesModel = require(`./species`)
+const SpeciesModel = require("./species")
+const addMethods = require("../utils/addStaticMethods")
 
 const name = 'breeds'
 const config = { 
@@ -26,24 +27,6 @@ SpeciesModel.hasMany(BreedsModel)
 BreedsModel.belongsTo(SpeciesModel)
 
 // add static methods (functions) to model
-BreedsModel['findAllData'] = () => {
-  return BreedsModel.findAll()
-}
-BreedsModel['findOneData'] = (id) => {
-  return BreedsModel.findByPk(id)
-}
-BreedsModel['updateData'] = (id, body) => {
-  return BreedsModel.update(body, { where: {id} })
-}
-BreedsModel['removeData'] = (id) => {
-  return BreedsModel.destroy({ where: {id} })
-}
-BreedsModel['dataExist'] = async () => {
-  const amountData = await BreedsModel.count()
-  return amountData > 0
-}
-BreedsModel['createMany'] = (data = []) => {
-  return BreedsModel.bulkCreate(data, { ignoreDuplicates: true })
-}
+addMethods(BreedsModel)
 
 module.exports = BreedsModel
