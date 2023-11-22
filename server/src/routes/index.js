@@ -16,5 +16,8 @@ const router = express.Router()
 
 router.use(`/users`, require(`./users`))
 router.use(`/provinces`, require(`./provinces`))
+router.use(`/caregivers`, require(`./caregivers`))
+router.use(`/owners`, require(`./owners`))
+router.use(`/offers`, require(`./offers`))
 
 module.exports = router

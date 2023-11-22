@@ -3,6 +3,7 @@ const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const OwnersModel = require("./owners")
 const PetsModel = require("./pets")
 const CaregiversModel = require("./caregivers")
+const addMethods = require("../utils/addStaticMethods")
 
 const name = 'posts'
 const config = { 
@@ -52,17 +53,6 @@ CaregiversModel.hasOne(PostsModel, {
 PostsModel.belongsTo(CaregiversModel)
 
 // add static methods (functions) to model
-PostsModel['findAllData'] = () => {
-  return PostsModel.findAll()
-}
-PostsModel['findOneData'] = (id) => {
-  return PostsModel.findByPk(id)
-}
-PostsModel['updateData'] = (id, body) => {
-  return PostsModel.update(body, { where: {id} })
-}
-PostsModel['removeData'] = (id) => {
-  return PostsModel.destroy({ where: {id} })
-}
+addMethods(PostsModel)
 
 module.exports = PostsModel

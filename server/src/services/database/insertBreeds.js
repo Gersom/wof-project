@@ -1,8 +1,8 @@
-const { BreedsModel } = require("./../../models")
-const { SpeciesModel } = require("./../../models")
+const { BreedsModel } = require("../../models")
+const { SpeciesModel } = require("../../models")
 
-const breddsDogs = require("./data/breeds/dogs-es.json")
-const breddsCats = require("./data/breeds/cats-es.json")
+const breddsDogs = require("../../data/breeds/dogs-es.json")
+const breddsCats = require("../../data/breeds/cats-es.json")
 
 const insertRecords = require("./insertRecords")
 
@@ -13,13 +13,12 @@ const mixedData = {
 
 const insertBreeds = async () => {
   try {
-    const specieDog = await SpeciesModel.findOneData("dog", "name")
-    const specieCat = await SpeciesModel.findOneData("cat", "name")
+    const dogId = await SpeciesModel.findIdData("name", "dog")
+    const catId = await SpeciesModel.findIdData("name", "cat")
 
     let breedsData = []
 
-    if (specieDog) {
-      const dogId = specieDog.toJSON().id
+    if (dogId) {
       const dogsData = breddsDogs.map((ele) => {
         return { name: ele.name, speciesId: dogId }
       })
@@ -30,8 +29,7 @@ const insertBreeds = async () => {
       ]
     }
 
-    if (specieCat) {
-      const catId = specieCat.toJSON().id
+    if (catId) {
       const catsData = breddsCats.map((ele) => {
         return { name: ele.name, speciesId: catId }
       })

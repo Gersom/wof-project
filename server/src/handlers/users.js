@@ -1,71 +1,65 @@
-const {
-  getAllUsersController,
-  getUserController,
-  postUserController,
-  updateUserController,
-  deleteUserController
-} = require("../controllers/users")
+const getAllUsersErrorHandler = (error, req, res, next) => {
+    console.error("Error in getAllUsersService:", error);
 
-// READ ITEMS
-const getAllUsers = async (req, res) => {
-  try {
-    const users = await getAllUsersController()
-    res.status(200).json(users)
-  }
-  catch (error) {
-    res.status(500).json({error: error.message})
-  }
-}
-
-// DETAIL ITEM
-const getUser = async (req, res) => {
-  try {
-    const {id} = req.params
-    const user = await getUserController(id)
-    res.status(200).json(user);
-  } 
-  catch (error) {
-    res.status(500).json({error: error.message})
-  }
-}
-
-// CREATE ITEM
-const createUser = async (req, res) => {
-  try {
-    const newUser = await postUserController(req.body)
-    res.status(200).json(newUser);
-  } catch (error) {
-    res.status(500).json({error: error.message});
-  }
+    if (error.name === "ValidationError") {
+        res.status(400).json({ error: "Validation error in getAllUsers operation." });
+    } else if (error.code === 11000) {
+        res.status(409).json({ error: "Duplicate key error in getAllUsers operation." });
+    } else if (error.name === "CastError") {
+        res.status(400).json({ error: "Invalid ID format in getAllUsers operation." });
+    } else {
+        res.status(500).json({ error: "Internal server error while retrieving users." });
+    }
 };
 
-// UPDATE ITEM
-const updateUser = async (req, res) => {
-  try {
-    const { id } = req.params
-    const { body } = req
-    const updatedUser = await updateUserController(id, body)
-    res.status(200).json(updatedUser)
-  } catch (error) {
-    res.status(500).json({error: error.message});
-  }
+const getUserErrorHandler = (error, req, res, next) => {
+    console.error("Error in getUser:", error);
+
+    if (error.name === "NotFoundError") {
+        res.status(404).json({ error: "User not found in getUser operation." });
+    } else if (error.name === "CastError") {
+        res.status(400).json({ error: "Invalid ID format in getUser operation." });
+    } else {
+        res.status(500).json({ error: "Internal server error while retrieving user." });
+    }
 };
 
-// DELETE ITEM
-const deleteUser = async (req, res) => {
-  try {
-    const { id } = req.params
-    const deletedUser = await deleteUserController(id)
-    res.status(200).json(deletedUser)
-  } catch (error) {
-    res.status(500).json({error: error.message})
-  }
+const createUserErrorHandler = (error, req, res, next) => {
+    console.error("Error in postUserService:", error);
+
+    if (error.name === "ValidationError") {
+        res.status(400).json({ error: "Validation error in createUser operation." });
+    } else {
+        res.status(500).json({ error: "Internal server error while creating user." });
+    }
+};
+
+const updateUserErrorHandler = (error, req, res, next) => {
+    console.error("Error in updateUserService:", error);
+
+    if (error.name === "NotFoundError") {
+        res.status(404).json({ error: "User not found in updateUser operation." });
+    } else if (error.name === "ValidationError") {
+        res.status(400).json({ error: "Validation error in updateUser operation." });
+    } else {
+        res.status(500).json({ error: "Internal server error while updating user." });
+    }
+};
+
+const deleteUserErrorHandler = (error, req, res, next) => {
+    console.error("Error in deleteUserService:", error);
+
+    if (error.name === "NotFoundError") {
+        res.status(404).json({ error: "User not found in deleteUser operation." });
+    } else {
+        res.status(500).json({ error: "Internal server error while deleting user." });
+    }
 };
 
 module.exports = {
-  getAllUsers,
-  getUser,
-  createUser,
-  updateUser,
-  deleteUser
+    getAllUsersErrorHandler,
+    getUserErrorHandler,
+    createUserErrorHandler,
+    updateUserErrorHandler,
+    deleteUserErrorHandler
 };
