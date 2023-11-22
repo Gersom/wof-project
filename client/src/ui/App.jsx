@@ -12,7 +12,7 @@ import routerNames from "~common/constants/routes";
 import { Routes, Route } from "react-router-dom";
 
 // Imports Pages
-import Home from "./pages/Home";
+import Home from "./pages/home/Home";
 import NotFound from "./pages/NotFound";
 import Landing from "./pages/landing/Landing";
 
