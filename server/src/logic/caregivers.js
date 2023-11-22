@@ -30,7 +30,7 @@ const getAllCaregiversLogic = async () => {
 }
 
 const getCaregiverLogic = async (id) => {
-  const caregiver = await CaregiversModel.findOneData(id)
+  const caregiver = await CaregiversModel.findDataById(id)
   if (!caregiver) throw Error("User not found")
   return caregiver
 };
