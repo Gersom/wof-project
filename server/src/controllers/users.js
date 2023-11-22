@@ -5,7 +5,7 @@ const {
   postUserService,
   updateUserService,
   deleteUserService
-} = require("../services/internal_services/users")
+} = require("../services/internal/users")
 const catchedAsync = require("../utils/catchedAsync")
 
 // READ ITEMS
