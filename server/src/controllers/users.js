@@ -2,7 +2,7 @@ const ErrorHandler = require("../handlers/users")
 const {
   getAllUsersService,
   getUserService,
-  postUserService,
+  postUserLogic,
   updateUserService,
   deleteUserService
 } = require("../services/internal/users")
@@ -24,7 +24,7 @@ const getUser =catchedAsync( async (req, res) => {
 // CREATE ITEM
 const createUser =catchedAsync( async (req, res) => {
   
-    const newUser = await postUserService(req.body)
+    const newUser = await postUserLogic(req.body)
     res.status(200).json(newUser);
   
 },ErrorHandler.createUserErrorHandler);

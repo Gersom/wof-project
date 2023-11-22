@@ -1,14 +1,14 @@
-const { UsersModel, ProvincesModel } = require("../../models")
+const { UsersModel, ProvincesModel } = require("../../models");
 
 const getAllUsersService = async () => {
   const User = await UsersModel.findAll({
-    include:{
-      model: ProvincesModel
-    }
-  })
-  return User.map(user => {
+    include: {
+      model: ProvincesModel,
+    },
+  });
+  return User.map((user) => {
     return {
-      id : user.id,
+      id: user.id,
       dni: user.dni,
       name: user.name,
       lastName: user.lastName,
@@ -21,58 +21,58 @@ const getAllUsersService = async () => {
       role: user.role,
       province: user.province.name,
       provinceId: user.provinceId,
-    }
-  })
-}
-
-const getUserService = async (id) => {
-  const User = await UsersModel.findOneData(id)
-  if (!User) throw Error("User not found")
-  return User
+    };
+  });
 };
 
-const postUserService = async (data) => {
-  const { province, role } = data
-  const newUser = await UsersModel.create(data)
+const getUserService = async (id) => {
+  const User = await UsersModel.findOneData(id);
+  if (!User) throw Error("User not found");
+  return User;
+};
+
+const postUserLogic = async (data) => {
+  const { province, role } = data;
+  const newUser = await UsersModel.create(data);
   const provinceDB = await ProvincesModel.findOne({
     where: {
-      name: province
-    }
-  })
-  await newUser.setProvince(provinceDB)
-  if(role==="caregiver"){
+      name: province,
+    },
+  });
+  await newUser.setProvince(provinceDB);
+  if (role === "caregiver") {
     newUser.createCaregiver({
-      userId:newUser.id
-    })
+      userId: newUser.id,
+    });
   }
-  if(role==="owner"){
+  if (role === "owner") {
     newUser.createOwner({
-      userId:newUser.id
-    })
+      userId: newUser.id,
+    });
   }
-  return newUser
+  return newUser;
   // return {
   //   success: 'The user was created successfully.'
   // }
-}
+};
 
 const updateUserService = async (id, data) => {
-  await UsersModel.updateData(id, data)
+  await UsersModel.updateData(id, data);
   return {
-    success: 'User was update correctly.'
-  }
-}
+    success: "User was update correctly.",
+  };
+};
 const deleteUserService = async (id, data) => {
-  await UsersModel.removeData(id)
+  await UsersModel.removeData(id);
   return {
-    success: 'User was deleted correctly.'
-  }
-}
+    success: "User was deleted correctly.",
+  };
+};
 
 module.exports = {
   getAllUsersService,
   getUserService,
-  postUserService,
+  postUserLogic,
   updateUserService,
-  deleteUserService
+  deleteUserService,
 };
