@@ -21,6 +21,7 @@ const offersState = {
 				name: '♾️ Todas las especies',
 				value: true,
 				key: 'all',
+				default: true,
 			}
 		],
 		['Genero:']: [
