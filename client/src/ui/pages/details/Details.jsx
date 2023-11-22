@@ -1,5 +1,6 @@
 import styles from './styles.module.scss';
 import CardUser from '@src/ui/components/card-user/CardUser';
+import Carousel from '@src/ui/components/carousel/Carousel';
 const Details = () => {
 	return (
 		<div className={styles.mainContainerGrid}>
@@ -16,6 +17,7 @@ const Details = () => {
 			</div>
 			<div className={styles.containerRight}>
 				<h1>Peluche</h1>
+				<Carousel />
 			</div>
 		</div>
 	);
