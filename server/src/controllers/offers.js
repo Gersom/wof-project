@@ -1,4 +1,4 @@
-const services = require("../services/internal/offers");
+const services = require("../logic/offers");
 const catchedAsync = require("../utils/catchedAsync");
 const ErrorHandler = require("../handlers/offers");
 

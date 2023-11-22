@@ -5,7 +5,7 @@ const {
   postUserService,
   updateUserService,
   deleteUserService
-} = require("../services/internal/users")
+} = require("../logic/users")
 const catchedAsync = require("../utils/catchedAsync")
 
 // READ ITEMS

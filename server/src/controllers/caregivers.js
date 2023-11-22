@@ -5,7 +5,7 @@ const {
   postCaregiverService,
   updateCaregiverService,
   deleteCaregiverService
-} = require("../services/internal/caregivers")
+} = require("../logic/caregivers")
 const catchedAsync = require("../utils/catchedAsync")
 
 // READ ITEMS

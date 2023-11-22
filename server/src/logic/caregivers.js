@@ -1,4 +1,4 @@
-const { CaregiversModel, UsersModel } = require("../../models")
+const { CaregiversModel, UsersModel } = require("../models")
 
 const getAllCaregiversService = async () => {
   const caregivers = await CaregiversModel.findAll({

@@ -1,4 +1,4 @@
-const { RequestsModel } = require("../../models");
+const { RequestsModel } = require("../models");
 
 const getAllOffersService = async () => {
     try {

@@ -1,4 +1,4 @@
-const { OwnersModel, UsersModel } = require("../../models")
+const { OwnersModel, UsersModel } = require("../models")
 
 const getAllOwnersService = async () => {
     const owners = await OwnersModel.findAll({

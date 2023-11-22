@@ -1,4 +1,4 @@
-const { ProvincesModel } = require("../../models")
+const { ProvincesModel } = require("./../models")
 const axios = require("axios")
 const getProvincesService = async () => {
     const provinces = await ProvincesModel.findAllData();

@@ -5,7 +5,7 @@ const {
   postOwnerService,
   updateOwnerService,
   deleteOwnerService
-} = require("../services/internal/owners")
+} = require("../logic/owners")
 const catchedAsync = require("../utils/catchedAsync")
 
 // READ ITEMS
