@@ -39,22 +39,24 @@ const offersState = {
 	},
 	sortOffersOwner:[
 		{
-			name: '📌 Ubicacón',
+			name: 'Ubicación',
 			value: true,
-			key: 'location'
+			key: 'location',
+			default: true,
 		},
 		{
-			name: '⭐ Mejor puntuación',
+			name: 'Mejor puntuación',
 			value: false,
 			key: 'score'
 		},
 		{
-			name: '📅 Fecha de publicación',
+			name: 'Fecha de publicación',
 			value: false,
 			key: 'date'
 		}
 	],
 	filtersOffersCareGivers: {},
+	sortOffersCareGivers: [],
 };
 
 export default offersState;
