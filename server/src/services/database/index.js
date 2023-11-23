@@ -9,10 +9,12 @@ const insertProvinces = require("./insertProvinces")
 const insertReviews = require("./insertReviews")
 const insertSpecies = require("./insertSpecies")
 const insertUsers = require("./insertUsers")
+const insertGenders = require("./insertGenders")
 
 
 const insertData = async () => {
   await insertCountries()
+  await insertGenders()
   await setTimeout(()=>insertProvinces(), "250")
   await insertSpecies()
   await setTimeout(()=>insertBreeds(), "250")

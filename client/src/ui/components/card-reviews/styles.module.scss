@@ -1,0 +1,54 @@
+h3.title {
+    font-size: 25px;
+  }
+  .cardCont {
+    width: 300px;
+    height: 494px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #FFF;
+    margin-left: 40px;
+  }
+  hr.firstRounded {
+    border-top: 5px solid  #DDD;;
+    border-radius: 5px;
+    width: 20%;
+    margin-left: 0%;
+    margin-right: 50%;
+  }
+  .infoPerson {
+    display: flex;
+  }
+  .textInfo {
+    padding: 10px;
+  }
+  .personName {
+    color: #1e1e1e;
+    font-family: Lexend;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+  }
+  .date {
+    margin-top: -10px;
+    color: #717171;
+    font-family: Lexend;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
+  .profilePic {
+    width: 100px;
+    height: 90px;
+    border-radius: 100%;
+  }
+  hr.secondRounded {
+    border-top: 5px solid #DDD;
+    border-radius: 5px;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  

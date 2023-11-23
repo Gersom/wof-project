@@ -5,6 +5,7 @@ const BreedsModel = require("./breeds")
 const CaregiversModel = require("./caregivers")
 const OwnersModel = require("./owners")
 const PetsImagesModel = require("./pets_images")
+const GendersModel = require("./genders")
 const PetsModel = require("./pets")
 const ReviewsModel = require("./reviews")
 const SpeciesModel = require("./species")
@@ -68,7 +69,11 @@ PostsModel['findAllOffers'] = () => {
       { 
         model: PetsModel,
         attributes: [ "id", "name" ],
-        include: [{model: PetsImagesModel}, {model:SpeciesModel,  attributes: ["name", "icon"]}]
+        include: [
+          {model: PetsImagesModel}, 
+          {model:SpeciesModel,  attributes: ["name", "icon"]},
+          {model: GendersModel}, 
+        ]
       },
       { 
         model: OwnersModel,
