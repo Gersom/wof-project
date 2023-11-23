@@ -35,7 +35,11 @@ const schema = {
   endDate: {
     type: DataTypes.DATE,
     allowNull: false,
-  }
+  },
+  accepted: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
+}
 }
 
 const PostsModel = sequelize.define(name, schema, config)
@@ -54,5 +58,7 @@ PostsModel.belongsTo(CaregiversModel)
 
 // add static methods (functions) to model
 addMethods(PostsModel)
+
+
 
 module.exports = PostsModel
