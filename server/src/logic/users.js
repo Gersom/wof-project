@@ -32,21 +32,28 @@ const getUserLogic = async (id) => {
 
 const postUserLogic = async (data) => {
   const { province, role, country } = data;
-  const newUser = await UsersModel.create(data);
   const saltRounds = 10;
-  newUser.password = await bcrypt.hash(newUser.password, saltRounds);
-  const countryDB = await CountriesModel.findOne({
-    where: {
-      name: country,
-    },
-  });
-  const provinceDB = await ProvincesModel.findOne({
-    where: {
-      name: province,
-    },
-  });
-  await newUser.setCountry(countryDB);
-  await newUser.setProvince(provinceDB);
+  data.password = await bcrypt.hash(data.password, saltRounds);
+
+  const newUser = await UsersModel.create(data);
+  
+  if (country) {
+    const countryDB = await CountriesModel.findOne({
+      where: {
+        name: country,
+      },
+    });
+    await newUser.setCountry(countryDB);
+  }
+  if (province) {
+    const provinceDB = await ProvincesModel.findOne({
+      where: {
+        name: province,
+      },
+    });
+    await newUser.setProvince(provinceDB);
+  }
+  
   if (role === "caregiver") {
     newUser.createCaregiver({
       userId: newUser.id,
