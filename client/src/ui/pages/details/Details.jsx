@@ -1,7 +1,10 @@
 import styles from './styles.module.scss';
 import CardUser from '@src/ui/components/card-user/CardUser';
 import Carousel from '@src/ui/components/carousel/Carousel';
+import { useParams } from 'react-router-dom';
 const Details = () => {
+	const { id } = useParams();
+	console.log(id);
 	return (
 		<div className={styles.mainContainerGrid}>
 			<div className={styles.containerLeft}>
