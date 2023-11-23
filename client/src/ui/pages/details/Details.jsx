@@ -23,6 +23,7 @@ const Details = () => {
             cellPhone={details.owner.cellPhone}
           />
         )}
+        {!isLoading && <CardReviewPets />}
       </div>
       <div className={styles.containerRight}>
         {!isLoading && <h1>{details.pet.name}</h1>}
@@ -35,7 +36,6 @@ const Details = () => {
             notes={details.pet.notes}
           />
         )}
-        {!isLoading && <CardReviewPets />}
       </div>
     </div>
   );
