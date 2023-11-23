@@ -28,5 +28,14 @@ ProvincesModel.belongsTo(CountriesModel)
 
 // add static methods (functions) to model
 addMethods(ProvincesModel)
+ProvincesModel['findAllData'] = () => {
+  return ProvincesModel.findAll({attributes: [ "id", "name" ]})
+}
+ProvincesModel['findByCountry'] = (countryId) => {
+  return ProvincesModel.findAll({
+    attributes: [ "id", "name" ],
+    where: { countryId }
+  })
+}
 
 module.exports = ProvincesModel

@@ -1,11 +1,7 @@
 const { OwnersModel, UsersModel } = require("../models")
 
 const getAllOwnersLogic = async () => {
-    const owners = await OwnersModel.findAll({
-        include: {
-            model: UsersModel
-        }
-    })
+    const owners = await OwnersModel.findAllOwners()
     return owners.map(owner => {
         return {
             id: owner.id,

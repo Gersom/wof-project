@@ -3,9 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 35px 20px 20px 20px;
   min-height: 100%;
   background-color: var(--color-background-dark);
-  padding: 35px 20px 20px 20px;
 }
 
 .form-container {
@@ -39,7 +39,7 @@ h1 {
   color: var(--color-text-primary);
 }
 
-input {
+input, select {
   margin-bottom: 15px;
   padding: 8px;
   border: 1px solid #ccc;
@@ -81,10 +81,12 @@ button:not(:last-child) {
   width: 100%;
   max-width: 270px;
   margin-bottom: 35px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .auth_form {
-  input {
+  input, select {
     background: #dddddd;
     width: 100%;
     margin-bottom: 0;
@@ -129,6 +131,16 @@ button:not(:last-child) {
 .input_container {
   width: 100%;
   margin-bottom: 28px;
+  > span {
+    text-align: left;
+    width: 100%;
+    display: block;
+    font-size: 11px;
+    line-height: 1;
+    margin-top: 5px;
+    color: #F44336;
+  }
+
 }
 
 
@@ -156,4 +168,51 @@ p.footer_credit {
   span {
     margin: 0 5px;
   }
+}
+
+
+.auth_flex {
+  width: 575px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .input_container {
+    flex: 0 0 calc((100% - 35px) / 2);
+  }
+
+  @media screen and (max-width: 660px) {
+    flex-direction: column;
+    max-width: 270px;
+    width: 100%;
+
+    .input_container:nth-child(1) {
+      order: 3;
+    }
+
+    .input_container:nth-child(2) {
+      order: 1;
+    }
+
+    .input_container:nth-child(3) {
+      order: 4;
+    }
+
+    .input_container:nth-child(4) {
+      order: 2;
+    }
+
+    .input_container:nth-child(5) {
+      order: 5;
+    }
+
+    .input_container:nth-child(6) {
+      order: 6;
+    }  
+  }
+}
+
+.auth_btns {
+  width: 100%;
+  max-width: 270px;
 }

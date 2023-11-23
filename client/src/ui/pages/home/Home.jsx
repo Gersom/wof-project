@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <div className={styles.home}>
-        <Link to={routerNames["formRegister"]}>
+        <Link to={routerNames["register"]}>
           <button>Register</button>
         </Link>
         <Link to={routerNames["login"]}>

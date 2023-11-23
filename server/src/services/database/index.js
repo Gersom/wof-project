@@ -13,7 +13,7 @@ const insertUsers = require("./insertUsers")
 
 const insertData = async () => {
   await insertCountries()
-  await insertProvinces()
+  await setTimeout(()=>insertProvinces(), "250")
   await insertSpecies()
   await setTimeout(()=>insertBreeds(), "250")
 

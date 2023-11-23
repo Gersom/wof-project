@@ -1,12 +1,7 @@
 const { UsersModel, ProvincesModel, CountriesModel } = require("../models")
 
 const getAllUsersLogic = async () => {
-  const User = await UsersModel.findAll({
-    include: [
-      {model: CountriesModel, attributes: ["name"]},
-      {model: ProvincesModel, attributes: ["name"]},
-    ]
-  })
+  const User = await UsersModel.findAllUsers()
   return User.map(user => {
     return {
       id : user.id,
@@ -36,7 +31,7 @@ const getUserLogic = async (id) => {
 
 const postUserLogic = async (data) => {
   const { province, role, country } = data
-  const newUser = await UsersModel.create(data)
+  const newUser = await UsersModel.createUser(data)
   const countryDB = await CountriesModel.findOne({
     where: {
       name: country
