@@ -5,6 +5,7 @@ import {
 	actionSetOffersOwner,
 } from '../store/actions/offersActions';
 import { sortOffersOwner } from '../utils/helpers-redux/sortOffersOwner';
+import { filterOffersOwner } from '../utils/helpers-redux/filterOffersOwner';
 
 const useOffersOwner = () => {
 	const dispatch = useDispatch();
@@ -15,16 +16,20 @@ const useOffersOwner = () => {
 	const offersOwnerInmutable = useSelector(
 		(state) => state.offersReducer.offersOwnerInmutable
 	);
+	const filtersOffersOwner = useSelector(
+		(state) => state.offersReducer.filtersOffersOwner
+	);
 
 	useEffect(() => {
 		if (offersOwnerInmutable.length === 0) {
 			dispatch(actionGetOffersOwner());
 		}
-		dispatch(
-			actionSetOffersOwner(sortOffersOwner(offersOwner, sortsOffersOwner))
-		);
-	}, [dispatch, offersOwnerInmutable.length, sortsOffersOwner]);
-	
+		let filteredOffers = filterOffersOwner(offersOwnerInmutable, filtersOffersOwner);
+		let sortedOffers = sortOffersOwner(filteredOffers, sortsOffersOwner);
+		dispatch(actionSetOffersOwner(sortedOffers));
+
+	}, [dispatch, offersOwnerInmutable.length, sortsOffersOwner,filtersOffersOwner]);
+
 	return offersOwner;
 };
 
