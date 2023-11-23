@@ -26,6 +26,7 @@ const models = {
   ReviewsModel: require(`./${pathModel}/reviews`),
   SpeciesModel: require(`./${pathModel}/species`),
   UsersModel: require(`./${pathModel}/users`),
+  GerdersModel: require(`./${pathModel}/genders`),
 }
 
 module.exports = models

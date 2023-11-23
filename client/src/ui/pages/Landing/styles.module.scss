@@ -1,0 +1,211 @@
+.mainContainer {
+	width: 100%;
+	height: 100%;
+}
+
+.container {
+	width: 100%;
+	padding: 40px;
+	background-image: url('@images/landing/paws.svg');
+	background-size: cover;
+	height: 100%;
+	background-color: rgb(80, 76, 70);
+	margin: 0;
+}
+
+.image {
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	width: 300px;
+	z-index: 2;
+}
+.containerCollage {
+	position: absolute;
+  top: -5rem;
+}
+.collage {
+	align-self: center;
+  position: absolute;
+	width: 35rem;
+}
+.wrapper {
+	position: relative;
+	top: 300px;
+	right: 260px;
+	z-index: 8;
+	padding: 20px;
+	font-size: 50px;
+	font-family: 'Nanum-Brush';
+	max-width: 30%;
+	text-align: center;
+	line-height: 50.5px;
+	color: white;
+	background-color: rgb(80, 76, 70);
+	opacity: 0.9;
+	border-radius: 10px;
+	text-shadow: 3px 4px 3.700000047683716px rgba(0, 0, 0, 0.5);
+}
+.btn {
+	position: fixed;
+	top: 580px;
+	right: 450px;
+	z-index: 10;
+}
+
+.btnLog {
+	position: absolute;
+}
+
+.ctaButton {
+	top: 40px;
+	right: -300px;
+	width: 300px;
+	padding: 10px 30px;
+	background-color: var(--color-background-light);
+	color: var(--color-text-secondary);
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.6rem;
+	border-radius: 20px;
+	transition: background-color 0.3s;
+}
+.btnLog {
+	background-color: var(--color-background-light);
+	width: 200px;
+	position: fixed;
+	top: 60px;
+	right: 80px;
+	font-size: 1.6rem;
+	border-radius: 20px;
+	padding: 0.5rem;
+	color: var(--color-text-secondary);
+}
+
+.btnLog:hover,
+.ctaButton:hover {
+	background-color: rgb(32, 129, 255);
+	color: white;
+}
+
+.pol3 {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	box-sizing: border-box;
+	z-index: 1;
+	img {
+		width: 100%;
+	}
+}
+.pol {
+	display: flex;
+	align-items: first baseline;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	box-sizing: border-box;
+	z-index: 1;
+	img {
+		width: 100%;
+	}
+}
+.container {
+	max-width: 100%;
+	padding: 40px;
+	background-image: url('@images/landing/paws.svg');
+	background-size: cover;
+	height: 100%;
+	background-color: rgb(80, 76, 70);
+	margin: 0;
+}
+
+.image {
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	width: 300px;
+	z-index: 2;
+}
+
+.collage {
+	position: absolute;
+	top: 205px;
+	left: 180px;
+}
+.wrapper {
+	position: fixed;
+	top: 300px;
+	right: 260px;
+	z-index: 8;
+	padding: 20px;
+	font-size: 50px;
+	font-family: 'Nanum-Brush';
+	max-width: 30%;
+	text-align: center;
+	line-height: 50.5px;
+	color: white;
+	background-color: rgb(80, 76, 70);
+	opacity: 0.9;
+	border-radius: 10px;
+	text-shadow: 3px 4px 3.700000047683716px rgba(0, 0, 0, 0.5);
+}
+.btn {
+	position: fixed;
+	top: 580px;
+	right: 450px;
+	z-index: 10;
+}
+
+.btnLog {
+	position: absolute;
+}
+
+.ctaButton {
+	top: 40px;
+	right: -300px;
+	width: 300px;
+	padding: 10px 30px;
+	background-color: var(--color-background-light);
+	color: var(--color-text-secondary);
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.6rem;
+	border-radius: 20px;
+	transition: background-color 0.3s;
+	z-index: 10;
+}
+.btnLog {
+	background-color: var(--color-background-light);
+	width: 200px;
+	position: fixed;
+	top: 60px;
+	right: 80px;
+	font-size: 1.6rem;
+	border-radius: 20px;
+	padding: 0.5rem;
+	color: var(--color-text-secondary);
+	z-index: 10;
+}
+
+.btnLog:hover,
+.ctaButton:hover {
+	background-color: rgb(32, 129, 255);
+	color: white;
+}
+
+.pol3 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	box-sizing: border-box;
+	z-index: 1;
+}
+.pol {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	box-sizing: border-box;
+	z-index: 1;
+}
