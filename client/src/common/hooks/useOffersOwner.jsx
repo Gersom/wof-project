@@ -21,9 +21,8 @@ const useOffersOwner = () => {
 			dispatch(actionGetOffersOwner());
 			console.log('me activo')
 		}
-		let offersOwnerSorted = sortOffersOwner(offersOwner, sortsOffersOwner);
 		dispatch(
-			actionSetOffersOwner(offersOwnerSorted)
+			actionSetOffersOwner(sortOffersOwner(offersOwner, sortsOffersOwner))
 		);
 	}, [dispatch, offersOwnerInmutable.length, sortsOffersOwner]);
 	return offersOwner;
