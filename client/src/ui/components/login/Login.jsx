@@ -10,38 +10,51 @@ const Login = () => {
     <>
       <div className={styles.container}>
         <div className={styles["form-container"]}>
-          <img src={logo} alt="Logo" />
+          <div className={styles["logo_container"]}>
+            <img src={logo} alt="Logo" />
+            <span>.com</span>
+          </div>
           <div>
             <h1>Iniciar Sesion</h1>
-            <hr />
-            <br />
+            <div className={styles["form_auth_hr"]}></div>
           </div>
 
-          <div>
+          <div className={styles["auth_form"]}>
             <form action="">
-              <label htmlFor="email">
-                <img src={email} alt="" /> Email:
-              </label>
-              <input type="text" name="email" />
-              <br />
-              <label htmlFor="password">
-                <img src={password} alt="" /> Contraseña:
-              </label>
-              <input type="password" name="password" />
-              <br />
-              <button type="submit">Ingresar</button>
-              <Link to={routerNames["formRegister"]}>
-                <button>Registrarse</button>
+              <div className={styles["input_container"]}>
+                <label htmlFor="email">
+                  <div
+                    className={styles["auth_form_icon"]}
+                    style={{ backgroundImage: "url('" + email + "')" }}
+                  ></div>
+                  <span>Email:</span>
+                </label>
+                <input type="text" name="email" />
+              </div>
+              <div className={styles["input_container"]}>
+                <label htmlFor="password">
+                  <div
+                    className={styles["auth_form_icon"]}
+                    style={{ backgroundImage: "url('" + password + "')" }}
+                  ></div>
+                  <span>Contraseña:</span>
+                </label>
+                <input type="password" name="password" />
+              </div>
+              <button type="submit" className={styles["auth_btn"]}>
+                Ingresar
+              </button>
+              <Link to={routerNames["register"]} className={styles["auth_btn"]}>
+                Registrarse
               </Link>
             </form>
           </div>
 
-          <br />
-          <hr />
+          <div className={styles["form_auth_hr"]}></div>
         </div>
-        <div>
-          <p>By Gerson</p>
-        </div>
+        <p className={styles["footer_credit"]}>
+          <span>•</span>By Gerson<span>•</span>
+        </p>
       </div>
     </>
   );

@@ -2,12 +2,13 @@ const routerNames = {
   landing: "/",
   home: "/home",
   about: "/about",
-  formRegister: "/formRegister",
-  login: "/login",
+  register: "/registrarse",
+  login: "/iniciar-sesion",
   dashboard: "/dashboard",
   offers: "/dashboard/offers",
   profile: "/dashboard/profile",
-  details: "/dashboard/offers/details/:id",
+  details: "/dashboard/offers/details/",
+  formReview: "/dashboard/form",
 };
 
 export default routerNames;

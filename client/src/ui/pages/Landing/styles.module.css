@@ -5,6 +5,7 @@
     background-size: cover;
     height: 100vh;    
     background-color: rgb(80, 76, 70);
+    margin: 0;
   }
 
   .image {
@@ -53,20 +54,32 @@
 
   }
 
-  .ctaButton, .btnLog {
+  .ctaButton {
     top: 40px;
     right: -300px;
-    width: 200px;
+    width: 300px;
     padding: 10px 30px;
-    background-color: yellow;
-    color: #282C34;
+    background-color: var(--color-background-light);
+    color: var(--color-text-secondary);
     text-align: center;
     text-decoration: none;
     font-size: 1.6rem;
     border-radius: 20px;
-    /* text-shadow: 3px 4px 3.700000047683716px rgba(0, 0, 0, 0.50); */
     transition: background-color 0.3s;
   }
+  .btnLog{
+    background-color: var(--color-background-light);
+    width: 200px;
+    position: fixed;
+    top: 60px; 
+    right: 80px; 
+    font-size: 1.6rem;
+    border-radius: 20px;
+    padding: 0.5rem;
+    color: var(--color-text-secondary);
+  
+  }
+
   .btnLog:hover, .ctaButton:hover {
     background-color: rgb(32, 129, 255);
     color: white;

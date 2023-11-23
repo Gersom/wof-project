@@ -14,6 +14,7 @@ import Offers from "./pages/offers/Offers";
 import Details from "./pages/details/Details";
 import FormRegister from "./components/formRegister/FormRegister";
 import Login from "./components/login/Login";
+import FormReview from "./components/reviews/FormReview";
 // Imports Components
 
 function App() {
@@ -25,12 +26,13 @@ function App() {
         <Route path={routerNames["landing"]} element={<Landing />} />
         {/* Forms */}
         <Route path={routerNames["login"]} element={<Login />} />
-        <Route path={routerNames["formRegister"]} element={<FormRegister />} />
+        <Route path={routerNames["register"]} element={<FormRegister />} />
         {/* dashboard */}
         <Route path={routerNames["dashboard"]} element={<Dashboard />}>
           <Route index path={routerNames["offers"]} element={<Offers />} />
-          <Route path={routerNames["details"]} element={<Details />} />
+          <Route path={routerNames['details'] + ':id'} element={<Details />} />
           <Route path={routerNames["profile"]} element={<Landing />} />
+          <Route path={routerNames["formReview"]} element={<FormReview />} />
         </Route>
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />

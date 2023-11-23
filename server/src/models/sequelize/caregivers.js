@@ -37,4 +37,13 @@ CaregiversModel.belongsTo(UsersModel)
 // add static methods (functions) to model
 addMethods(CaregiversModel)
 
+CaregiversModel["findAllCaregivers"] = async () => {
+  const caregivers = await CaregiversModel.findAll({
+    include:{
+      model: UsersModel
+    }
+  })
+  return caregivers
+}
+
 module.exports = CaregiversModel

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import CardOffersCaregivers from '../card-offers-caregivers/CardOffersCaregivers';
 import { getOffersCareGivers } from '@src/common/utils/getOffersCareGivers';
-import CardInfo from '../card-info/CardInfo';
+import CardInfoPet from '../card-info/CardInfoPet';
 
 const OffersCareGivers = () => {
     const [offers, setOffers] = useState([]);
@@ -19,7 +19,7 @@ const OffersCareGivers = () => {
 		<div className={styles.containerMainGrid}>
 			<div className={styles.containerCardInfo}>
 				<h1>tukis</h1>
-				<CardInfo />
+				<CardInfoPet />
 			</div>
 			<div className={styles.containerOffers}>
 				{offers.slice(0,3).map((offer,index) => (
