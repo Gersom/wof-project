@@ -1,11 +1,40 @@
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import routerNames from "@src/common/constants/routes";
 import logo from "@icons/nav/logo.svg";
 import password from "@icons/password.svg";
 import email from "@icons/email.svg";
 import styles from "./styles.module.scss";
 
+import axios from "axios";
+
 const Login = () => {
+  const navigate = useNavigate();
+ 
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+
+    const emailValue = e.target.elements.email.value;
+    const passwordValue = e.target.elements.password.value;
+    
+    try {
+      const response = await axios.post("http://localhost:3001/api/users/login", {
+        email: emailValue,
+        password: passwordValue,
+      });
+
+      console.log(response.data);
+
+      if(response.data.token){
+        window.alert('Inicio de sesion completado');
+        navigate(routerNames["offers"]); 
+      }
+     
+    } catch (error) {
+      window.alert('error en correo o contraseña');
+      console.error("Error al iniciar sesión:", error.message);
+    }
+  }
+
   return (
     <>
       <div className={styles.container}>
@@ -20,7 +49,7 @@ const Login = () => {
           </div>
 
           <div className={styles["auth_form"]}>
-            <form action="">
+            <form onSubmit={handleSubmit}>
               <div className={styles["input_container"]}>
                 <label htmlFor="email">
                   <div
