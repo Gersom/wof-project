@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const CountriesModel = require(`./countries`)
+const addMethods = require("../utils/addStaticMethods")
 
 const name = 'provinces'
 const config = { 
@@ -26,17 +27,15 @@ CountriesModel.hasMany(ProvincesModel)
 ProvincesModel.belongsTo(CountriesModel)
 
 // add static methods (functions) to model
+addMethods(ProvincesModel)
 ProvincesModel['findAllData'] = () => {
-  return ProvincesModel.findAll()
+  return ProvincesModel.findAll({attributes: [ "id", "name" ]})
 }
-ProvincesModel['findOneData'] = (id) => {
-  return ProvincesModel.findByPk(id)
-}
-ProvincesModel['updateData'] = (id, body) => {
-  return ProvincesModel.update(body, { where: {id} })
-}
-ProvincesModel['removeData'] = (id) => {
-  return ProvincesModel.destroy({ where: {id} })
+ProvincesModel['findByCountry'] = (countryId) => {
+  return ProvincesModel.findAll({
+    attributes: [ "id", "name" ],
+    where: { countryId }
+  })
 }
 
 module.exports = ProvincesModel

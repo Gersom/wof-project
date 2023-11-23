@@ -1,8 +1,9 @@
 const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const CaregiversModel = require(`./caregivers`)
+const addMethods = require("../utils/addStaticMethods")
 
-const name = 'caregivers_images'
+const name = 'caregiversImages'
 const config = { 
   timestamps: false, // createAt, updateAt
   freezeTableName: true
@@ -26,17 +27,6 @@ CaregiversModel.hasMany(CaregiversImagesModel)
 CaregiversImagesModel.belongsTo(CaregiversModel)
 
 // add static methods (functions) to model
-CaregiversImagesModel['findAllData'] = () => {
-  return CaregiversImagesModel.findAll()
-}
-CaregiversImagesModel['findOneData'] = (id) => {
-  return CaregiversImagesModel.findByPk(id)
-}
-CaregiversImagesModel['updateData'] = (id, body) => {
-  return CaregiversImagesModel.update(body, { where: {id} })
-}
-CaregiversImagesModel['removeData'] = (id) => {
-  return CaregiversImagesModel.destroy({ where: {id} })
-}
+addMethods(CaregiversImagesModel)
 
 module.exports = CaregiversImagesModel

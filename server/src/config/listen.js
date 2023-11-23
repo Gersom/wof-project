@@ -1,10 +1,8 @@
-require('dotenv').config()
+const generateServerPath = require("./../utils/generateServerPath")
 
-const port = process.env.PORT || 3000
-const host = process.env.HOST || 'http://localhost'
-const url = `${host}:${port}`
+const { port, path } = generateServerPath()
 const message = 'Your server is ready'
-const allMessage = `\n${message}:\n=> ${url}\n`
+const allMessage = `\n${message}:\n=> ${path}\n`
 
 // LISTEN
 const listen = (app, cb= ()=>null) => {

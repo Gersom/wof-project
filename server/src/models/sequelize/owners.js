@@ -1,6 +1,8 @@
 const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const UsersModel = require(`./users`)
+const addMethods = require("../utils/addStaticMethods")
+
 
 const name = 'owners'
 const config = { 
@@ -22,17 +24,15 @@ UsersModel.hasOne(OwnersModel)
 OwnersModel.belongsTo(UsersModel)
 
 // add static methods (functions) to model
-OwnersModel['findAllData'] = () => {
-  return OwnersModel.findAll()
-}
-OwnersModel['findOneData'] = (id) => {
-  return OwnersModel.findByPk(id)
-}
-OwnersModel['updateData'] = (id, body) => {
-  return OwnersModel.update(body, { where: {id} })
-}
-OwnersModel['removeData'] = (id) => {
-  return OwnersModel.destroy({ where: {id} })
+addMethods(OwnersModel)
+
+OwnersModel["findAllOwners"] = async () => {
+  const owners = await OwnersModel.findAll({
+    include: {
+        model: UsersModel
+    }
+})
+return owners
 }
 
 module.exports = OwnersModel

@@ -1,41 +1,54 @@
-const { usersModel } = require("../models")
+const ErrorHandler = require("../handlers/users")
+const {
+  getAllUsersLogic,
+  getUserLogic,
+  postUserLogic,
+  updateUserLogic,
+  deleteUserLogic
+} = require("../logic/users")
+const catchedAsync = require("../utils/catchedAsync")
 
-const getAllUsersController = async () => {
-  const User = await usersModel.findAllData()
-  return User
-}
+// READ ITEMS
+const getAllUsers =catchedAsync( async (req, res) => {
+    const users = await getAllUsersLogic()
+    res.status(200).json(users)
+}, ErrorHandler.getAllUsersErrorHandler)
 
-const getUserController = async (id) => {
-  const User = await usersModel.findOneData(id)
-  if(!User) throw Error("User not found")
-  return User
-};
+// DETAIL ITEM
+const getUser =catchedAsync( async (req, res) => {
+    const {id} = req.params
+    const user = await getUserLogic(id)
+    res.status(200).json(user);
+},ErrorHandler.getUserErrorHandler)
 
-const postUserController = async (data) => {
-  const newUser = await usersModel.create(data)
-  return newUser
-  // return {
-  //   success: 'The user was created successfully.'
-  // }
-}
+// CREATE ITEM
+const createUser =catchedAsync( async (req, res) => {
+  
+    const newUser = await postUserLogic(req.body)
+    res.status(200).json(newUser);
+  
+},ErrorHandler.createUserErrorHandler);
 
-const updateUserController = async (id, data) => {
-  await usersModel.updateData(id, data)
-  return {
-    success: 'User was update correctly.'
-  }
-}
-const deleteUserController = async (id, data) => {
-  await usersModel.removeData(id)
-  return {
-    success: 'User was deleted correctly.'
-  }
-}
+// UPDATE ITEM
+const updateUser =catchedAsync( async (req, res) => {
+    const { id } = req.params
+    const { body } = req
+    const updatedUser = await updateUserLogic(id, body)
+    res.status(200).json(updatedUser)
+
+},ErrorHandler.updateUserErrorHandler);
+
+// DELETE ITEM
+const deleteUser =catchedAsync(async (req, res) => {
+    const { id } = req.params
+    const deletedUser = await deleteUserLogic(id)
+    res.status(200).json(deletedUser)
+}, ErrorHandler.deleteUserErrorHandler);
 
 module.exports = {
-  getAllUsersController,
-  getUserController,
-  postUserController,
-  updateUserController,
-  deleteUserController
+  getAllUsers,
+  getUser,
+  createUser,
+  updateUser,
+  deleteUser
 };

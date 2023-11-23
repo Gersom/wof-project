@@ -1,6 +1,12 @@
 const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
+
 const ProvincesModel = require(`./provinces`)
+const CountriesModel = require(`./countries`)
+
+const addMethods = require("../utils/addStaticMethods")
+const generateServerPath = require("./../../utils/generateServerPath")
+const { path: serverPath } = generateServerPath()
 
 const name = 'users'
 const config = { 
@@ -31,7 +37,7 @@ const schema = {
 
   profilePicture:{
     type: DataTypes.STRING,
-    allowNull: true,
+    defaultValue: `${serverPath}/pictures/profile.png`
   },
 
   name: {
@@ -66,18 +72,25 @@ const UsersModel = sequelize.define(name, schema, config)
 ProvincesModel.hasMany(UsersModel)
 UsersModel.belongsTo(ProvincesModel)
 
+CountriesModel.hasOne(UsersModel);
+UsersModel.belongsTo(CountriesModel);
+
 // add static methods (functions) to model
-UsersModel['findAllData'] = () => {
-  return UsersModel.findAll()
+addMethods(UsersModel)
+
+UsersModel["findAllUsers"] = async () => {
+  const User = await UsersModel.findAll({
+    include: [
+      {model: CountriesModel, attributes: ["name"]},
+      {model: ProvincesModel, attributes: ["name"]},
+    ]
+  })
+  return User
 }
-UsersModel['findOneData'] = (id) => {
-  return UsersModel.findByPk(id)
-}
-UsersModel['updateData'] = (id, body) => {
-  return UsersModel.update(body, { where: {id} })
-}
-UsersModel['removeData'] = (id) => {
-  return UsersModel.destroy({ where: {id} })
+
+UsersModel["createUser"] = async (data) => {
+  const newUser = await UsersModel.create(data)
+  return newUser
 }
 
 module.exports = UsersModel
