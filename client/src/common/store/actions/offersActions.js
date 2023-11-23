@@ -1,4 +1,4 @@
-import { GET_OFFERS_OWNER , FILTER_OFFERS_OWNER, SORT_OFFERS_OWNER } from '../types/offersTypes';
+import { GET_OFFERS_OWNER , FILTER_OFFERS_OWNER, SORT_OFFERS_OWNER, SET_OFFERS_OWNER } from '../types/offersTypes';
 
 import { getOffersOwner } from '@src/common/utils/helpers-redux/getOffersOwner';
 
@@ -9,6 +9,13 @@ export const actionGetOffersOwner = () => async (dispatch) => {
 		payload: offersOwner,
 	});
 };
+
+export const actionSetOffersOwner = (offersOwner) => {
+	return {
+		type: SET_OFFERS_OWNER,
+		payload: offersOwner,
+	};
+}
 
 export const actionFilterOffersOwner = (nameFilter) => {
 	return {

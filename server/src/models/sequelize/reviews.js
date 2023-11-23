@@ -63,4 +63,8 @@ ReviewsModel['findByOwner'] = (ownerId) => {
   })
 }
 
+ReviewsModel['createReview'] = async (data) => {
+  return await ReviewsModel.create(data)
+}
+
 module.exports = ReviewsModel

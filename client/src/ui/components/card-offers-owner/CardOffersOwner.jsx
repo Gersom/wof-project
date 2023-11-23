@@ -15,7 +15,7 @@ const CardOffersOwner = ({
 }) => {
 	const dateStart = new Date(startDate).toLocaleDateString('es-ES', {day : 'numeric'});
 	const dateEnd = new Date(endDate).toLocaleDateString('es-ES', { month: 'long', day: 'numeric' });
-	console.log(petId);
+	
 	return (
 		<Link to={routerNames['details'] + petId} className={styles.link}>
 		<article className={styles.article}>
