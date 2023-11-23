@@ -31,15 +31,16 @@
           "name": "Anny",
           "rating": "4.70",
           "address": "Av los juarez",
-          "profile_image": "http://url",
+          "cellPhone": "+51910999999",
+          "profilePicture": "http://url",
           "reviews": [
             {
               "comment": "Fue muy correcta al describir su mascota",
+              "date": "2023-11-20T05:00:00.000Z",
               "caregiver": {
                 "id": 1,
                 "name": "Gabriel",
-                "date": "2023-11-20T05:00:00.000Z",
-                "profile_image": "http://url",
+                "profilePicture": "http://url",
               }
             }
           ]
@@ -47,7 +48,10 @@
         "pet": {
           "id": 2,
           "name": "simba",
-          "specie": "perro",
+          "specie": {
+            "name": "dog",
+            "icon": "🐶"
+          },
           "breed": "Pastor aleman",
           "temperaments": "Mordelon",
           "manners": "Si esta de buen humor se va a hacer sus cosas a fuera",
