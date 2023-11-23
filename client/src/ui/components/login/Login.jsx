@@ -53,7 +53,7 @@ const Login = () => {
           <div className={styles["form_auth_hr"]}></div>
         </div>
         <p className={styles["footer_credit"]}>
-          <span>•</span>By Gerson<span>•</span>
+          <span>•</span>By Group 3<span>•</span>
         </p>
       </div>
     </>
