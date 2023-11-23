@@ -2,8 +2,29 @@ const { PostsModel } = require("../models");
 
 const getAllOffersLogic = async () => {
     try {
-        const offers = await PostsModel.findAllData();
-        return offers;
+        const offers = await PostsModel.findAllOffers()
+        const formattedOffers = offers.map((ele) => {
+          const offer = ele.toJSON()
+          let petImgUrl = ""
+          if(offer.pet.petsImages.length > 0) {
+            petImgUrl = offer.pet.petsImages[0].imageUrl
+          }
+          return {
+            ...offer,
+            rating: "4.70",
+            owner: {
+              id: offer.owner.id,
+              userId: offer.owner.userId,
+              name: offer.owner.user.name
+            },
+            pet: {
+              id: offer.pet.id,
+              name: offer.pet.name,
+              imageUrl: petImgUrl
+            }
+          }
+        })
+        return formattedOffers
     } catch (error) {
         console.error('Error retrieving all offers:', error.message);
         throw new Error('Could not retrieve all offers');

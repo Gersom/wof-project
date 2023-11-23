@@ -2,6 +2,7 @@ const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const OwnersModel = require("./owners")
 const PetsModel = require("./pets")
+const PetsImagesModel = require("./pets_images")
 const CaregiversModel = require("./caregivers")
 const addMethods = require("../utils/addStaticMethods")
 const UsersModel = require("./users");
@@ -49,23 +50,31 @@ PostsModel.belongsTo(OwnersModel)
 PetsModel.hasOne(PostsModel)
 PostsModel.belongsTo(PetsModel)
 
-CaregiversModel.hasOne(PostsModel, {
-  foreignKey: { allowNull: true }
-})
-
-
-
+CaregiversModel.hasOne(PostsModel)
 PostsModel.belongsTo(CaregiversModel)
 
 // add static methods (functions) to model
 addMethods(PostsModel)
 
-PostsModel['findAllData'] = () => {
-    return PostsModel.findAll(
-    {
-      include: [{ model: PetsModel },{model:OwnersModel, include:[{model: UsersModel}]}]
-    }
-  )
+PostsModel['findAllOffers'] = () => {
+  return PostsModel.findAll({
+    attributes: [ "id", "address", "startDate", "endDate" ],
+    include: [
+      { 
+        model: PetsModel,
+        attributes: [ "id", "name" ],
+        include: [{model: PetsImagesModel}]
+      },
+      { 
+        model: OwnersModel,
+        attributes: [ "id", "userId" ],
+        include: [{
+          model: UsersModel,
+          attributes: [ "id", "name" ],
+        }]
+      }
+    ]
+  })
 }
 
 PostsModel['createData']=async(data)=>{
