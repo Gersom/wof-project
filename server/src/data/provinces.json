@@ -1,74 +1,74 @@
 [
     {
-        "name": "Misiones"
+        "name": "misiones"
     },
     {
-        "name": "San Luis"
+        "name": "san luis"
     },
     {
-        "name": "San Juan"
+        "name": "san juan"
     },
     {
-        "name": "Entre Ríos"
+        "name": "entre ríos"
     },
     {
-        "name": "Santa Cruz"
+        "name": "santa cruz"
     },
     {
-        "name": "Río Negro"
+        "name": "río negro"
     },
     {
-        "name": "Chubut"
+        "name": "chubut"
     },
     {
-        "name": "Córdoba"
+        "name": "córdoba"
     },
     {
-        "name": "Mendoza"
+        "name": "mendoza"
     },
     {
-        "name": "La Rioja"
+        "name": "la rioja"
     },
     {
-        "name": "Catamarca"
+        "name": "catamarca"
     },
     {
-        "name": "La Pampa"
+        "name": "la pampa"
     },
     {
-        "name": "Santiago del Estero"
+        "name": "santiago del estero"
     },
     {
-        "name": "Corrientes"
+        "name": "corrientes"
     },
     {
-        "name": "Santa Fe"
+        "name": "santa fe"
     },
     {
-        "name": "Tucumán"
+        "name": "tucumán"
     },
     {
-        "name": "Neuquén"
+        "name": "neuquén"
     },
     {
-        "name": "Salta"
+        "name": "salta"
     },
     {
-        "name": "Chaco"
+        "name": "chaco"
     },
     {
-        "name": "Formosa"
+        "name": "formosa"
     },
     {
-        "name": "Jujuy"
+        "name": "jujuy"
     },
     {
-        "name": "Ciudad Autónoma de Buenos Aires"
+        "name": "ciudad autónoma de buenos aires"
     },
     {
-        "name": "Buenos Aires"
+        "name": "buenos aires"
     },
     {
-        "name": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+        "name": "tierra del fuego, antártida e islas del atlántico sur"
     }
 ]
