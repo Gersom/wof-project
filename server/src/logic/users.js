@@ -33,6 +33,8 @@ const getUserLogic = async (id) => {
 const postUserLogic = async (data) => {
   const { province, role, country } = data;
   const newUser = await UsersModel.create(data);
+  const saltRounds = 10;
+  newUser.password = await bcrypt.hash(newUser.password, saltRounds);
   const countryDB = await CountriesModel.findOne({
     where: {
       name: country,
