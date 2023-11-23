@@ -7,7 +7,7 @@ const routerNames = {
   dashboard: "/dashboard",
   offers: "/dashboard/offers",
   profile: "/dashboard/profile",
-  details: "/dashboard/offers/details/:id",
+  details: "/dashboard/offers/details/",
   formReview: "/dashboard/form",
 };
 

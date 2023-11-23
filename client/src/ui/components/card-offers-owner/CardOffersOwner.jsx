@@ -1,5 +1,7 @@
 import styles from './styles.module.scss';
 import starReview from '@icons/starReview.svg';
+import { Link } from 'react-router-dom';
+import routerNames from '@src/common/constants/routes';
 const CardOffersOwner = ({
 	petName,
 	petImg,
@@ -13,8 +15,9 @@ const CardOffersOwner = ({
 }) => {
 	const dateStart = new Date(startDate).toLocaleDateString('es-ES', {day : 'numeric'});
 	const dateEnd = new Date(endDate).toLocaleDateString('es-ES', { month: 'long', day: 'numeric' });
-	
+	console.log(petId);
 	return (
+		<Link to={routerNames['details'] + petId} className={styles.link}>
 		<article className={styles.article}>
 			<figure>
 				<img src={petImg} alt={petName} />
@@ -32,6 +35,7 @@ const CardOffersOwner = ({
 				</footer>
 			</section>
 		</article>
+		</Link>
 	);
 }
 
