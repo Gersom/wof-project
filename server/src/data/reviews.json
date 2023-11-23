@@ -1,0 +1,14 @@
+[
+  {
+    "comment": "Anny fue muy correcta al describir su mascota, me gusto tenerlo en mi casa, no causa problemas y avisa cuando tiene que ir al baño.",
+    "rating": "4.5",
+    "from": "caregiver",
+    "to": "owner"
+  },
+  {
+    "comment": "Ese perro es muy problematico, me saca la lengua a cada rato, me babea el mueble, cero recomendado",
+    "rating": "2.0",
+    "from": "caregiver",
+    "to": "owner"
+  }
+]

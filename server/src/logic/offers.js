@@ -1,8 +1,8 @@
-const { RequestsModel } = require("../models");
+const { PostsModel } = require("../models");
 
 const getAllOffersLogic = async () => {
     try {
-        const offers = await RequestsModel.findAll();
+        const offers = await PostsModel.findAllData();
         return offers;
     } catch (error) {
         console.error('Error retrieving all offers:', error.message);
@@ -12,7 +12,7 @@ const getAllOffersLogic = async () => {
 
 const getOfferLogic = async (offerId) => {
     try {
-        const offer = await RequestsModel.findByPk(offerId);
+        const offer = await PostsModel.findDataById(offerId);
 
         if (!offer) {
             throw new Error(`Offer with ID ${offerId} not found`);
@@ -24,7 +24,18 @@ const getOfferLogic = async (offerId) => {
     }
 }
 
+const postOfferLogic = async (data) =>{
+    try {
+       const created = PostsModel.createData(data);
+       return created;
+    } catch (error) {
+        console.error(`Error creating offer:`, error.message);
+        throw new Error(`Could not create offer`);
+    }
+}
+
 module.exports = {
     getAllOffersLogic,
-    getOfferLogic
+    getOfferLogic,
+    postOfferLogic
 };

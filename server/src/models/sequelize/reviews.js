@@ -16,7 +16,7 @@ const schema = {
     autoIncrement: true,
   },
   rating: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   comment: {

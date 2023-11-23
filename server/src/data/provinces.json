@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Misiones"
+    },
+    {
+        "name": "San Luis"
+    },
+    {
+        "name": "San Juan"
+    },
+    {
+        "name": "Entre Ríos"
+    },
+    {
+        "name": "Santa Cruz"
+    },
+    {
+        "name": "Río Negro"
+    },
+    {
+        "name": "Chubut"
+    },
+    {
+        "name": "Córdoba"
+    },
+    {
+        "name": "Mendoza"
+    },
+    {
+        "name": "La Rioja"
+    },
+    {
+        "name": "Catamarca"
+    },
+    {
+        "name": "La Pampa"
+    },
+    {
+        "name": "Santiago del Estero"
+    },
+    {
+        "name": "Corrientes"
+    },
+    {
+        "name": "Santa Fe"
+    },
+    {
+        "name": "Tucumán"
+    },
+    {
+        "name": "Neuquén"
+    },
+    {
+        "name": "Salta"
+    },
+    {
+        "name": "Chaco"
+    },
+    {
+        "name": "Formosa"
+    },
+    {
+        "name": "Jujuy"
+    },
+    {
+        "name": "Ciudad Autónoma de Buenos Aires"
+    },
+    {
+        "name": "Buenos Aires"
+    },
+    {
+        "name": "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+    }
+]

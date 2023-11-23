@@ -4,6 +4,7 @@ const PostsModel = require("./posts")
 const CaregiversModel = require("./caregivers")
 const addMethods = require("../utils/addStaticMethods")
 
+//toDo: rename Model
 const name = 'requests'
 const config = { 
   timestamps: true, // createAt, updateAt
