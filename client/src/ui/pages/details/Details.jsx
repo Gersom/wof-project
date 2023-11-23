@@ -2,7 +2,6 @@ import styles from './styles.module.scss';
 import CardUser from '@src/ui/components/card-user/CardUser';
 import Carousel from '@src/ui/components/carousel/Carousel';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import useGetDetails from '@src/common/hooks/useGetDetails';
 import CardInfoPet from '@src/ui/components/card-info/CardInfoPet';
 

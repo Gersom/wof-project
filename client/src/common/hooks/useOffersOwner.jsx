@@ -19,12 +19,12 @@ const useOffersOwner = () => {
 	useEffect(() => {
 		if (offersOwnerInmutable.length === 0) {
 			dispatch(actionGetOffersOwner());
-			console.log('me activo')
 		}
 		dispatch(
 			actionSetOffersOwner(sortOffersOwner(offersOwner, sortsOffersOwner))
 		);
 	}, [dispatch, offersOwnerInmutable.length, sortsOffersOwner]);
+	
 	return offersOwner;
 };
 
