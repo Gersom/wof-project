@@ -1,3 +1,5 @@
+//imports helpers func sorts
+
 //state
 
 const offersState = {
