@@ -2,6 +2,7 @@ const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const OwnersModel = require(`./owners`)
 const CaregiversModel = require(`./caregivers`)
+const UsersModel = require("./users")
 const addMethods = require("../utils/addStaticMethods")
 
 const name = 'reviews'
@@ -44,5 +45,22 @@ ReviewsModel.belongsTo(OwnersModel)
 
 // add static methods (functions) to model
 addMethods(ReviewsModel)
+
+ReviewsModel['findByOwner'] = (ownerId) => {
+  return ReviewsModel.findAll({
+    where: { ownerId },
+    attributes: [ 
+      "id", "comment", ["createdAt", "date"] 
+    ],
+    include: [{
+      model: CaregiversModel,
+      attributes: ["id"],
+      include: [{
+        model: UsersModel,
+        attributes: ["name", "profilePicture"]
+      }]
+    }]
+  })
+}
 
 module.exports = ReviewsModel
