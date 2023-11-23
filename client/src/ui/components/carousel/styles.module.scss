@@ -1,0 +1,32 @@
+.swiper {
+	width: 100%;
+	height: 100%;
+    margin-left: -2rem;
+    margin-right: .2rem;
+    position: relative;
+}
+
+.swiperSlides {
+	background-color: blue;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.swiperSlidesImg {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+    border-radius: 1rem;
+    
+}
+
+
+.active{
+    background-color: red;
+    border-radius: 3rem;
+}
