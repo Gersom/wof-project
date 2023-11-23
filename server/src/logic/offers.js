@@ -23,6 +23,7 @@ const getAllOffersLogic = async () => {
           name: offer.pet.name,
           species: offer.pet.species,
           imageUrl: petImgUrl,
+          gender: offer.pet.gender.name,
         }
       }
     })
