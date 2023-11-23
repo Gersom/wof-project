@@ -1,11 +1,7 @@
 const { CaregiversModel, UsersModel } = require("../models")
 
 const getAllCaregiversLogic = async () => {
-  const caregivers = await CaregiversModel.findAll({
-    include:{
-      model: UsersModel
-    }
-  })
+  const caregivers = await CaregiversModel.findAllCaregivers()
   return caregivers.map(caregiver => {
     return {
       id: caregiver.id,
