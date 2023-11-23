@@ -30,7 +30,7 @@ function App() {
         {/* dashboard */}
         <Route path={routerNames["dashboard"]} element={<Dashboard />}>
           <Route index path={routerNames["offers"]} element={<Offers />} />
-          <Route path={routerNames["details"]} element={<Details />} />
+          <Route path={routerNames['details'] + ':id'} element={<Details />} />
           <Route path={routerNames["profile"]} element={<Landing />} />
           <Route path={routerNames["formReview"]} element={<FormReview />} />
         </Route>

@@ -16,7 +16,7 @@ const getOffer = catchedAsync(async(req, res) => {
 const postOffer = catchedAsync(async(req, res)=>{
     const data = req.body;
 
-    const created = await (logic.postOfferLogic(data));
+    const created = await (logic.postServiceRequestLogic(data));
     res.status(200).json(created);
 
 }, ErrorHandler.postOfferErrorHandler) 
