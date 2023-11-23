@@ -78,4 +78,19 @@ UsersModel.belongsTo(CountriesModel);
 // add static methods (functions) to model
 addMethods(UsersModel)
 
+UsersModel["findAllUsers"] = async () => {
+  const User = await UsersModel.findAll({
+    include: [
+      {model: CountriesModel, attributes: ["name"]},
+      {model: ProvincesModel, attributes: ["name"]},
+    ]
+  })
+  return User
+}
+
+UsersModel["createUser"] = async (data) => {
+  const newUser = await UsersModel.create(data)
+  return newUser
+}
+
 module.exports = UsersModel

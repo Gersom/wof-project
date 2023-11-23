@@ -13,5 +13,13 @@ const getOffer = catchedAsync(async(req, res) => {
     res.status(200).json(offer)
 },ErrorHandler.getOfferErrorHandler)
 
+const postOffer = catchedAsync(async(req, res)=>{
+    const data = req.body;
 
-module.exports = { getAllOffers, getOffer };
+    const created = await (logic.postServiceRequestLogic(data));
+    res.status(200).json(created);
+
+}, ErrorHandler.postOfferErrorHandler) 
+
+
+module.exports = { getAllOffers, getOffer, postOffer };

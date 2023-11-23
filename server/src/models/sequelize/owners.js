@@ -26,4 +26,13 @@ OwnersModel.belongsTo(UsersModel)
 // add static methods (functions) to model
 addMethods(OwnersModel)
 
+OwnersModel["findAllOwners"] = async () => {
+  const owners = await OwnersModel.findAll({
+    include: {
+        model: UsersModel
+    }
+})
+return owners
+}
+
 module.exports = OwnersModel

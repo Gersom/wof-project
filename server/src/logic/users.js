@@ -1,11 +1,7 @@
-const { UsersModel, ProvincesModel } = require("../models")
+const { UsersModel, ProvincesModel, CountriesModel } = require("../models")
 
 const getAllUsersLogic = async () => {
-  const User = await UsersModel.findAll({
-    include:{
-      model: ProvincesModel
-    }
-  })
+  const User = await UsersModel.findAllUsers()
   return User.map(user => {
     return {
       id : user.id,
@@ -19,26 +15,34 @@ const getAllUsersLogic = async () => {
       profilePicture: user.profilePicture,
       address: user.address,
       role: user.role,
-      province: user.province?.name,
+      countryId: user.countryId,
       provinceId: user.provinceId,
+      country: user.country?.name,
+      province: user.province?.name,
     }
   })
 }
 
 const getUserLogic = async (id) => {
-  const User = await UsersModel.findOneData(id)
+  const User = await UsersModel.findDataById(id)
   if (!User) throw Error("User not found")
   return User
 };
 
 const postUserLogic = async (data) => {
-  const { province, role } = data
-  const newUser = await UsersModel.create(data)
+  const { province, role, country } = data
+  const newUser = await UsersModel.createUser(data)
+  const countryDB = await CountriesModel.findOne({
+    where: {
+      name: country
+    }
+  })
   const provinceDB = await ProvincesModel.findOne({
     where: {
       name: province
     }
   })
+  await newUser.setCountry(countryDB)
   await newUser.setProvince(provinceDB)
   if(role==="caregiver"){
     newUser.createCaregiver({
