@@ -10,7 +10,7 @@ const FormReview = () => {
     rating: 1,
     review: "",
   });
-  console.log(state);
+
   const renderStars = () => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -50,7 +50,7 @@ const FormReview = () => {
         <textarea
           onChange={handleChange}
           placeholder="Escribe tu reseña..."
-          cols="15"
+          cols="30"
           rows="10"
           name="review"
         ></textarea>
