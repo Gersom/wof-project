@@ -10,6 +10,7 @@ const Carousel = ({images}) => {
 
   return (
     <div className={`${styles.carouselComponent}`}>
+		<h3>Fotos:</h3>
       <Swiper
       className={`${styles.swiper}`}
       modules={[Pagination]}
@@ -17,6 +18,7 @@ const Carousel = ({images}) => {
       slidesPerView={3}
       pagination={{ clickable: true }}
       >
+		
         {
           images.map((ele, indx) => (
             <SwiperSlide key={'swiper' + indx}
