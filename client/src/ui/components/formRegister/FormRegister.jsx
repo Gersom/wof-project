@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.scss";
 import logo from "@icons/nav/logo.svg";
@@ -14,6 +15,21 @@ import state from "@icons/state.svg";
 const FormRegister = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch;
+  const [provinces, setProvinces] = useState([]);
+
+  useEffect(() => {
+    axios("/api/provinces")
+      .then(({ data }) => {
+        if (data) {
+          setProvinces(data);
+        } else {
+          window.alert("Error al obtener la data");
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, []);
 
   // form´s fild states
   const [dataForm, setDataForm] = useState({
@@ -46,11 +62,12 @@ const FormRegister = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { name, password, email, lastname } = dataForm;
+
+    const { name, password, email, lastname, role, provincia } = dataForm;
 
     const hasErrors = Object.values(errors).some((error) => error !== "");
 
-    if (!name || !lastname || !email || !password) {
+    if (!name || !lastname || !email || !password || !role || !provincia) {
       window.alert("Faltan Datos Obligatorios");
     } else if (hasErrors) {
       window.alert("hay errores");
@@ -188,7 +205,10 @@ const FormRegister = () => {
                     <option value="" disabled>
                       --Select
                     </option>
-                    <option value="1">1</option>
+                    {provinces?.map((name) => (
+                      <option key={provinces.id}>{name}</option>
+                    ))}
+
                     <option value="1">2</option>
                     <option value="1">3</option>
                   </select>
