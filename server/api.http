@@ -2,22 +2,26 @@ POST http://localhost:3001/api/users/login
 Content-Type: application/json
 
 {
-  "email":"anny@gmail.com",
-  "password":"123456"
+  "email": "david@gmail.com",
+    "password": "123456789",
 }
 
 ###
 
 POST http://localhost:3001/api/users/
-{
-    "email": "chris@gmail.com",
-    "password": "123456",
-    "role": "owner",
+
+Content-Type: application/json
+
+    {
+    "email": "david@gmail.com",
+    "password": "123456789",
+    "role": "caregiver",
     "profilePicture": "/pictures/anny.png",
-    "name": "Anny",
+    "name": "David",
     "lastName": "X",
     "cellPhone": "+51910999999",
     "address": "Av los juarez",
     "dni": "0070239657",
     "birthdate": "04-08-2005"
   }
+  
