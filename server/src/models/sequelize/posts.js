@@ -68,7 +68,7 @@ PostsModel['findAllOffers'] = () => {
       { 
         model: PetsModel,
         attributes: [ "id", "name" ],
-        include: [{model: PetsImagesModel}]
+        include: [{model: PetsImagesModel}, {model:SpeciesModel,  attributes: ["name", "icon"]}]
       },
       { 
         model: OwnersModel,

@@ -5,6 +5,7 @@ import {
 	GET_OFFERS_CAREGIVERS,
 	FILTER_OFFERS_OWNER,
 	SORT_OFFERS_OWNER,
+	SET_OFFERS_OWNER,
 } from '../types/offersTypes';
 import { filterOffers } from '@src/common/utils/helpers-redux/filterOffers';
 
@@ -14,11 +15,12 @@ const offersReducer = (state = offersState, { type, payload }) => {
 			return {
 				...state,
 				offersOwner: payload,
+				offersOwnerInmutable: payload,
 			};
-		case GET_OFFERS_CAREGIVERS:
+		case SET_OFFERS_OWNER:
 			return {
 				...state,
-				offersCareGivers: payload,
+				offersOwner: payload,
 			};
 		case FILTER_OFFERS_OWNER:
 			return {
@@ -36,6 +38,11 @@ const offersReducer = (state = offersState, { type, payload }) => {
 					}
 					return sort;
 				}),
+			};
+		case GET_OFFERS_CAREGIVERS:
+			return {
+				...state,
+				offersCareGivers: payload,
 			};
 		default:
 			return { ...state };

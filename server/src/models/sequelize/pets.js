@@ -32,6 +32,11 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  notes: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  
 }
 
 const PetsModel = sequelize.define(name, schema, config)

@@ -1,16 +1,31 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { actionGetOffersOwner } from '../store/actions/offersActions';
+import {
+	actionGetOffersOwner,
+	actionSetOffersOwner,
+} from '../store/actions/offersActions';
+import { sortOffersOwner } from '../utils/helpers-redux/sortOffersOwner';
 
-function useOffersOwner() {
+const useOffersOwner = () => {
 	const dispatch = useDispatch();
 	const offersOwner = useSelector((state) => state.offersReducer.offersOwner);
-	console.log(offersOwner);
-	useEffect(() => {
-		dispatch(actionGetOffersOwner());
-	}, [dispatch]);
+	const sortsOffersOwner = useSelector(
+		(state) => state.offersReducer.sortOffersOwner
+	);
+	const offersOwnerInmutable = useSelector(
+		(state) => state.offersReducer.offersOwnerInmutable
+	);
 
+	useEffect(() => {
+		if (offersOwnerInmutable.length === 0) {
+			dispatch(actionGetOffersOwner());
+			console.log('me activo')
+		}
+		dispatch(
+			actionSetOffersOwner(sortOffersOwner(offersOwner, sortsOffersOwner))
+		);
+	}, [dispatch, offersOwnerInmutable.length, sortsOffersOwner]);
 	return offersOwner;
-}
+};
 
 export default useOffersOwner;
