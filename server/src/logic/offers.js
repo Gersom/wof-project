@@ -6,6 +6,7 @@ const getAllOffersLogic = async () => {
     const formattedOffers = offers.map((ele) => {
       const offer = ele.toJSON()
       let petImgUrl = ""
+
       if (offer.pet.petsImages.length > 0) {
         petImgUrl = offer.pet.petsImages[0].imageUrl
       }
@@ -20,7 +21,8 @@ const getAllOffersLogic = async () => {
         pet: {
           id: offer.pet.id,
           name: offer.pet.name,
-          imageUrl: petImgUrl
+          species: offer.pet.species,
+          imageUrl: petImgUrl,
         }
       }
     })
