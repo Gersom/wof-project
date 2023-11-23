@@ -31,7 +31,18 @@
           "name": "Anny",
           "rating": "4.70",
           "address": "Av los juarez",
-          "profile_image": "http://url"
+          "profile_image": "http://url",
+          "reviews": [
+            {
+              "comment": "Fue muy correcta al describir su mascota",
+              "caregiver": {
+                "id": 1,
+                "name": "Gabriel",
+                "date": "2023-11-20T05:00:00.000Z",
+                "profile_image": "http://url",
+              }
+            }
+          ]
         },
         "pet": {
           "id": 2,
@@ -45,17 +56,6 @@
             "http://url", "http://url"
           ]
         },
-        "reviews": [
-          {
-            "comment": "Fue muy correcta al describir su mascota",
-            "caregiver": {
-              "id": 1,
-              "name": "Gabriel",
-              "date": "2023-11-20T05:00:00.000Z",
-              "profile_image": "http://url",
-            }
-          }
-        ]
       }
     ]
     ```
