@@ -32,7 +32,7 @@ const LandingPage = () => {
           </Link>
         </div>
       </div>
-      <div>
+      <div className={styles.containerCollage}>
         <img className={styles.collage} src={collage} alt="Collage Pets" />
       </div>
       <div className={styles.pol}>
