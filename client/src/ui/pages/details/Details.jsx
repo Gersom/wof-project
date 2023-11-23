@@ -4,6 +4,7 @@ import Carousel from "@src/ui/components/carousel/Carousel";
 import { useParams } from "react-router-dom";
 import useGetDetails from "@src/common/hooks/useGetDetails";
 import CardInfoPet from "@src/ui/components/card-info/CardInfoPet";
+import CardReviewPets from "@src/ui/components/card-reviews/CardReviewPets";
 
 const Details = () => {
   const { id } = useParams();
@@ -22,14 +23,11 @@ const Details = () => {
             cellPhone={details.owner.cellPhone}
           />
         )}
+        {!isLoading && <CardReviewPets />}
       </div>
       <div className={styles.containerRight}>
         {!isLoading && <h1>{details.pet.name}</h1>}
-        {!isLoading && (
-          <Carousel
-            images={details.pet.images}
-          />
-        )}
+        {!isLoading && <Carousel images={details.pet.images} />}
         {!isLoading && (
           <CardInfoPet
             breed={details.pet.breed}

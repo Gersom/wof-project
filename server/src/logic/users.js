@@ -36,7 +36,7 @@ const postUserLogic = async (data) => {
   data.password = await bcrypt.hash(data.password, saltRounds);
 
   const newUser = await UsersModel.create(data);
-  
+
   if (country) {
     const countryDB = await CountriesModel.findOne({
       where: {
@@ -53,7 +53,7 @@ const postUserLogic = async (data) => {
     });
     await newUser.setProvince(provinceDB);
   }
-  
+
   if (role === "caregiver") {
     newUser.createCaregiver({
       userId: newUser.id,
