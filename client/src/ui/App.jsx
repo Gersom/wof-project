@@ -25,7 +25,7 @@ function App() {
         <Route path={routerNames["landing"]} element={<Landing />} />
         {/* Forms */}
         <Route path={routerNames["login"]} element={<Login />} />
-        <Route path={routerNames["formRegister"]} element={<FormRegister />} />
+        <Route path={routerNames["register"]} element={<FormRegister />} />
         {/* dashboard */}
         <Route path={routerNames["dashboard"]} element={<Dashboard />}>
           <Route index path={routerNames["offers"]} element={<Offers />} />
