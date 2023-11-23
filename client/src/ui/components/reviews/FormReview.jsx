@@ -1,4 +1,4 @@
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
@@ -41,7 +41,7 @@ const FormReview = () => {
 
   return (
     <div className={styles.cont}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <h3>Deja tu reseña</h3>
         <div className={styles.divider}></div>
         <label>Nombre:</label>

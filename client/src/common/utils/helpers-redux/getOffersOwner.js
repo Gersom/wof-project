@@ -1,6 +1,7 @@
-import { offersOwner } from "@src/common/constants/mock-data/offersOwner";
-
+import { API_URL_OFFERS } from '@src/common/constants/api';
 
 export const getOffersOwner = async () => {
-	return offersOwner;
+	const response = await fetch(API_URL_OFFERS);
+	const data = await response.json();
+	return data;
 };
