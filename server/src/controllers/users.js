@@ -28,28 +28,31 @@ const loginUser = catchedAsync(async (req, res) => {
       email: email,
     },
   });
+  // return res.status(200).send(user)
 
   if (!user) {
     // El usuario no existe
-    return res.status(401).json({ error: "Credenciales inválidas" });
+    return res.status(401).json({ error: "No recibi informacion" });
   }
 
   // Verificar la contraseña utilizando el método de comparación de hash
-  const isPasswordValid = await user.comparePassword(password.trim());
+  const isPasswordValid = await user.comparePassword(password);
+  
   console.log("Contraseña ingresada:", password);
   console.log("Contraseña almacenada:", user.password);
-
+  
   if (!isPasswordValid) {
     // Contraseña incorrecta
     console.log("Contraseña incorrecta");
-    return res.status(401).json({ error: "Credenciales inválidas" });
+    return res.status(401).json({ error: "Contraseña incorrecta" });
   }
-
+  
   // Autenticación exitosa, generar un token JWT
   const token = jwt.sign({ userId: user.id }, "tu_secreto_secreto", {
     expiresIn: "1h",
   });
-
+  // return res.status(501).send(isPasswordValid)
+  
   res.status(200).json({ token, success: "Inicio de sesión exitoso" });
 });
 

@@ -68,12 +68,10 @@ const schema = {
 };
 
 const UsersModel = sequelize.define(name, schema, config);
-UsersModel.beforeCreate(async (user) => {
-  const saltRounds = 10;
-  user.password = await bcrypt.hash(user.password, saltRounds);
-});
+
 UsersModel.prototype.comparePassword = async function (password) {
-  return bcrypt.compare(password, this.password);
+  const pass = await bcrypt.compare(password, this.password);
+  return pass
 };
 
 // Add relationship
