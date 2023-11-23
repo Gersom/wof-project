@@ -12,7 +12,7 @@ const LandingPage = () => {
     <div>
       <div className={styles.pol3}>
         <img src={poligono3} alt="Poligono" />
-        <Link to={routerNames["home"]} className={styles.btnLog}>
+        <Link to={routerNames["login"]} className={styles.btnLog}>
           Inicia Sesión
         </Link>
       </div>
@@ -28,7 +28,7 @@ const LandingPage = () => {
           </h3>
         </div>
         <div className={styles.btn}>
-          <Link to={routerNames["home"]} className={styles.ctaButton}>
+          <Link to={routerNames["register"]} className={styles.ctaButton}>
             Regístrate
           </Link>
         </div>
