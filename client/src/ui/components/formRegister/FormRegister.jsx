@@ -225,7 +225,7 @@ const FormRegister = () => {
                 <button className={styles["auth_btn"]} type="submit">
                   Registrarse
                 </button>
-                <Link to={routerNames["inicio"]} className={styles["auth_btn"]}>
+                <Link to={routerNames["login"]} className={styles["auth_btn"]}>
                   Iniciar Sesión
                 </Link>
               </div>

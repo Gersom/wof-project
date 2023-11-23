@@ -6,10 +6,10 @@ const Home = () => {
   return (
     <>
       <div className={styles.home}>
-        <Link to={routerNames["registro"]}>
+        <Link to={routerNames["register"]}>
           <button>Register</button>
         </Link>
-        <Link to={routerNames["inicio"]}>
+        <Link to={routerNames["login"]}>
           <button>Login</button>
         </Link>
       </div>

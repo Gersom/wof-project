@@ -44,7 +44,7 @@ const Login = () => {
               <button type="submit" className={styles["auth_btn"]}>
                 Ingresar
               </button>
-              <Link to={routerNames["registro"]} className={styles["auth_btn"]}>
+              <Link to={routerNames["register"]} className={styles["auth_btn"]}>
                 Registrarse
               </Link>
             </form>
