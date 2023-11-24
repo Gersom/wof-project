@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from "./styles.module.scss";
 import CardUser from "@src/ui/components/card-user/CardUser";
 import Carousel from "@src/ui/components/carousel/Carousel";
@@ -7,11 +7,36 @@ import useGetDetails from "@src/common/hooks/useGetDetails";
 import CardInfoPet from "@src/ui/components/card-info/CardInfoPet";
 import CardReviewPets from "@src/ui/components/card-reviews/CardReviewPets";
 import CardAccept from "@src/ui/components/card-accept/cardAccept";
+import {saveToLocalStorage, getFromLocalStorage} from "@common/utils/localStorage"
 
 const Details = () => {
   const { id } = useParams();
   const { isLoading, details } = useGetDetails(id);
   const [success, setSuccess] = useState(false);
+
+  const acceptFunc = () => {
+    
+    let posts = getFromLocalStorage("posts")
+    if (posts) {
+      const includeId = posts.includes(id)
+      if (!includeId) {
+        posts.push(id)
+        saveToLocalStorage("posts",posts)
+        setSuccess(true)
+      }
+    } else {
+      saveToLocalStorage("posts",[id])
+      setSuccess(true)
+    }
+  }
+
+  useEffect( () => {
+    const posts = getFromLocalStorage("posts")
+    if (posts) {
+      const includeId = posts.includes(id)
+      if (includeId) setSuccess(true)
+    }
+	}, [id]);
 
   return (
     <div className={styles.mainContainerGrid}>
@@ -44,7 +69,7 @@ const Details = () => {
           startDate={details.startDate} 
           endDate={details.endDate}
           completedAcept={success}
-          onAccept={()=>setSuccess(true)}
+          onAccept={acceptFunc}
         />
       </div>
     </div>
