@@ -18,11 +18,12 @@ const CustomLinks = ({ to, imgSrc, label, show }) => {
   // const selected = useSelector((state) => state.navBarReducer.selected);
 	// const selectedStyle = actualRoute === label.toLowerCase() ? styles.selected : '';
   
-	return (
-		<Link to={to} className={`${styles.linkContainer} ${selectedStyle}`}>
+	return (<>
+    <Link to={to} className={`${styles.linkContainer} ${selectedStyle}`}>
 			<img src={imgSrc} alt={label} />
 			{show && <li>{label}</li>}
 		</Link>
+  </>
 	);
 };
 
