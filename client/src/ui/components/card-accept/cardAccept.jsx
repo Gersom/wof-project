@@ -4,7 +4,8 @@ const CardAccept = ({
   startDate,
   endDate,
   completedAcept,
-  onAccept= ()=>null
+  onAccept= ()=>null,
+  toggleModal
 }) => {
 
   const formatDate = (fechaString) => {
@@ -18,6 +19,10 @@ const CardAccept = ({
       return fechaFormateada
     }
     else return ''
+  }
+  const handleAccept = () => {
+    onAccept();
+    toggleModal();
   }
   return (
     <article className={styles.article}>
@@ -34,7 +39,7 @@ const CardAccept = ({
         {
           ! completedAcept ?
           <button className={styles.linkContainer}
-          onClick={onAccept}>
+          onClick={handleAccept}>
             Deseo Cuidar
           </button>
           : ''

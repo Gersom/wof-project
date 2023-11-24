@@ -7,6 +7,7 @@ import useGetDetails from '@src/common/hooks/useGetDetails';
 import CardInfoPet from '@src/ui/components/card-info/CardInfoPet';
 import CardReviewPets from '@src/ui/components/card-reviews/CardReviewPets';
 import CardAccept from '@src/ui/components/card-accept/cardAccept';
+import ModalPost from '@src/ui/components/modal-post/ModalPost';
 import {
 	saveToLocalStorage,
 	getFromLocalStorage,
@@ -16,7 +17,8 @@ const Details = () => {
 	const { id } = useParams();
 	const { isLoading, details } = useGetDetails(id);
 	const [success, setSuccess] = useState(false);
-
+	const [toggleModal, setToggleModal] = useState(false);
+	const handleToggleModal = () => setToggleModal(!toggleModal);
 	const acceptFunc = () => {
 		let posts = getFromLocalStorage('posts');
 		if (posts) {
@@ -72,7 +74,18 @@ const Details = () => {
 					endDate={details.endDate}
 					completedAcept={success}
 					onAccept={acceptFunc}
+					toggleModal={handleToggleModal}
 				/>
+				{toggleModal && (
+					<div className={styles.containerOverlay}>
+						<div className={styles.containerModal}>
+							<ModalPost
+								nameOwner={details.owner.name}
+								toggleModal={handleToggleModal}
+							/>
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	);
