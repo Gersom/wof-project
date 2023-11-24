@@ -7,12 +7,12 @@ import ModalCustom from '../modal-custom/ModalCustom';
 import { useState } from 'react';
 import useSelectorSortFilter from '@src/common/hooks/useSelectorSortFilter';
 
-const FilterSortLocationBar = () => {
+const FilterSortLocationBar = ({role}) => {
 	const [filterModal, setFilterModal] = useState(false);
 	const toggleFilterModal = () => {
 		setFilterModal((prevFilterModal) => !prevFilterModal);
 	};
-	const {filters, sorts, actionFilter, actionSort} = useSelectorSortFilter({role: 'owner'});
+	const {filters, sorts, actionFilter, actionSort} = useSelectorSortFilter({role: role});
 
 	return (
 		<nav className={styles.navContainer}>

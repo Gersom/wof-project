@@ -37,6 +37,23 @@ const offersReducer = (state = offersState, { type, payload }) => {
 				...state,
 				offersCareGivers: payload,
 			};
+		case 'FILTER_OFFERS_CAREGIVERS':
+			return {
+				...state,
+				filtersOffersCareGivers: filterOffers(state.filtersOffersCareGivers, payload),
+			};
+		case 'SORT_OFFERS_CAREGIVERS':
+			return {
+				...state,
+				sortOffersCareGivers: state.sortOffersCareGivers.map((sort) => {
+					if (sort.name === payload) {
+						sort.value = true;
+					} else {
+						sort.value = false;
+					}
+					return sort;
+				}),
+			}
 		default:
 			return { ...state };
 	}

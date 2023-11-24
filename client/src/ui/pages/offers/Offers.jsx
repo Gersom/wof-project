@@ -15,7 +15,7 @@ const Offers = () => {
 	return (
 		<div className={styles.containerGrid}>
 			<h1>Cuidadores para tu mascotas</h1>
-            <FilterSortLocationBar />
+            <FilterSortLocationBar role={role} />
 			{renderOffers()}
 		</div>
 	);
