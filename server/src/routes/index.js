@@ -19,5 +19,7 @@ router.use(`/provinces`, require(`./provinces`))
 router.use(`/caregivers`, require(`./caregivers`))
 router.use(`/owners`, require(`./owners`))
 router.use(`/offers`, require(`./offers`))
+router.use(`/reviews`, require(`./reviews`))
+
 
 module.exports = router

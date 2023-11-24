@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./styles.module.css";
-import React from "react";
+import styles from "./styles.module.scss";
 import logo from "@images/landing/logo.svg";
 import pol from "@images/landing/pol.svg";
 import poligono3 from "@images/landing/poligono3.svg";
@@ -9,7 +8,7 @@ import routerNames from "@src/common/constants/routes";
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className={styles.mainContainer}>
       <div className={styles.pol3}>
         <img src={poligono3} alt="Poligono" />
         <Link to={routerNames["login"]} className={styles.btnLog}>
@@ -33,7 +32,7 @@ const LandingPage = () => {
           </Link>
         </div>
       </div>
-      <div>
+      <div className={styles.containerCollage}>
         <img className={styles.collage} src={collage} alt="Collage Pets" />
       </div>
       <div className={styles.pol}>

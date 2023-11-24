@@ -3,6 +3,7 @@ const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const OwnersModel = require(`./owners`)
 const BreedsModel = require(`./breeds`)
 const SpeciesModel = require(`./species`)
+const GerdersModel = require(`./genders`)
 const addMethods = require("../utils/addStaticMethods")
 
 const name = 'pets'
@@ -32,6 +33,11 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  notes: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  
 }
 
 const PetsModel = sequelize.define(name, schema, config)
@@ -45,6 +51,9 @@ PetsModel.belongsTo(BreedsModel)
 
 SpeciesModel.hasMany(PetsModel)
 PetsModel.belongsTo(SpeciesModel)
+
+GerdersModel.hasMany(PetsModel)
+PetsModel.belongsTo(GerdersModel)
 
 // add static methods (functions) to model
 addMethods(PetsModel)

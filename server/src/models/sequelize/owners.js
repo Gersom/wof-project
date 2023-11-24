@@ -35,4 +35,16 @@ OwnersModel["findAllOwners"] = async () => {
 return owners
 }
 
+OwnersModel["findOwner"] = async (id) => {
+  const owner = await OwnersModel.findOne({
+    where: { id },
+    include: [
+      {
+        model: UsersModel
+      }
+    ]
+  })
+  return owner
+}
+
 module.exports = OwnersModel

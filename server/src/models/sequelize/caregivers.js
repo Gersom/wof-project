@@ -46,4 +46,16 @@ CaregiversModel["findAllCaregivers"] = async () => {
   return caregivers
 }
 
+CaregiversModel["findCaregiver"] = async (id) => {
+  const caregiver = await CaregiversModel.findOne({
+    where: { id },
+    include: [
+      {
+        model: UsersModel
+      }
+    ]
+  })
+  return caregiver
+}
+
 module.exports = CaregiversModel

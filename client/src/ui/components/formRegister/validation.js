@@ -36,10 +36,16 @@ export const validation = (dataForm, errors, setErrors) => {
   }
 
   // Validar la Contraseña
-  if (dataForm.password.length > 15) {
+  const minLength = 6;
+  const maxLength = 15;
+
+  if (
+    dataForm.password.length < minLength ||
+    dataForm.password.length > maxLength
+  ) {
     setErrors({
       ...errors,
-      password: "La contraseña debe tener maximo 15 caracteres",
+      password: `La contraseña debe tener entre ${minLength} y ${maxLength} caracteres`,
     });
   } else if (!/\d/.test(dataForm.password)) {
     setErrors({

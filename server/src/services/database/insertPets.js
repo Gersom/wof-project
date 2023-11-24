@@ -1,5 +1,5 @@
 const { 
-  PetsModel, OwnersModel, UsersModel, SpeciesModel
+  PetsModel, OwnersModel, UsersModel, SpeciesModel, GerdersModel
 } = require("../../models")
 
 let petsData = require("../../data/pets.json")
@@ -17,23 +17,29 @@ const insertPets = async () => {
     const gersomUserId = await UsersModel.findIdData("email", "gersom@gmail.com")
     const gersomOwnerId = await OwnersModel.findIdData("userId", gersomUserId)
 
+    const maleOwnerId = await GerdersModel.findIdData("name", "male")
+    // const femaleOwnerId = await GerdersModel.findIdData("name", "female")
+
     petsData[0] = {
       ...petsData[0],
       ownerId: annyOwnerId,
       speciesId: dogId,
-      breedId: 63
+      breedId: 63,
+      genderId: maleOwnerId
     }
     petsData[1] = {
       ...petsData[1],
       ownerId: annyOwnerId,
       speciesId: catId,
-      breedId: 190
+      breedId: 190,
+      genderId: maleOwnerId
     }
     petsData[2] = {
       ...petsData[2],
       ownerId: gersomOwnerId,
-      speciesId: dogId,
-      breedId: 23
+      speciesId: catId,
+      breedId: 23,
+      genderId: maleOwnerId
     }
 
     await insertRecords({

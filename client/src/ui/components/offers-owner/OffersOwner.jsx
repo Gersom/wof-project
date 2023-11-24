@@ -4,11 +4,9 @@ import useOffersOwner from '@src/common/hooks/useOffersOwner';
 
 function OffersOwner() {
 	const offers = useOffersOwner();
-	const slicedOffers = offers.slice(0, 3);
-
 	return (
 		<div className={styles.container}>
-			{slicedOffers.map((offer, index) => (
+			{offers.map((offer, index) => (
 				<CardOffersOwner
 					key={index}
 					petName={offer.pet.name}

@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.scss";
 import logo from "@icons/nav/logo.svg";
 import routerNames from "@src/common/constants/routes";
 import { validation } from "./validation";
 import { useDispatch } from "react-redux";
-import { postUser } from "../../../common/store/actions/userActions";
+import { API_URL_PROVINCES } from "@src/common/constants/api";
 
 import passwordIcon from "@icons/password.svg";
 import emailIcon from "@icons/email.svg";
 import userIcon from "@icons/nav/user.svg";
 import state from "@icons/state.svg";
-import { API_URL_PROVINCES } from "@src/common/constants/api";
+
+import axios from "axios";
 
 const FormRegister = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [provinces, setProvinces] = useState([]);
+
+  const apiUrl = "http://localhost:3001/api/users";
 
   useEffect(() => {
     axios(API_URL_PROVINCES)
@@ -68,30 +69,25 @@ const FormRegister = () => {
     navigate(-1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { name, password, email, lastname, role, provincia } = dataForm;
 
     const hasErrors = Object.values(errors).some((error) => error !== "");
 
-    if (!name || !lastname || !email || !password || !role || !provincia) {
-      window.alert("Faltan Datos Obligatorios");
-    } else if (hasErrors) {
+    if (hasErrors) {
       window.alert("Hay errores");
     } else {
-      dispatch(
-        postUser({
-          name,
-          lastname,
-          email,
-          password,
-          role,
-          provincia,
-        })
-      );
-      window.alert("Usuario creado correctamente");
-      navigate(-1);
+      try {
+        const response = await axios.post(apiUrl, dataForm);
+        console.log("Respuesta del servidor:", response.data);
+        window.alert("Usuario creado correctamente");
+        goBackHandler();
+      } catch (error) {
+        console.error("Error al realizar la solicitud POST:", error.message);
+        window.alert("Error al crear usuario");
+      }
     }
   };
 
@@ -258,7 +254,7 @@ const FormRegister = () => {
           <div className={styles["form_auth_hr"]}></div>
         </div>
         <p className={styles["footer_credit"]}>
-          <span>•</span>By Gerson<span>•</span>
+          <span>•</span>By Group 3<span>•</span>
         </p>
       </div>
     </>
@@ -266,3 +262,14 @@ const FormRegister = () => {
 };
 
 export default FormRegister;
+
+// dispatch(
+//   createUser({
+//     name,
+//     lastname,
+//     email,
+//     password,
+//     role,
+//     provincia,
+//   })
+// );

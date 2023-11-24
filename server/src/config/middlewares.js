@@ -1,5 +1,5 @@
 // const cors = require("cors")
-const express = require("express")
+const express = require("express");
 
 // MIDDLEWARES
 const middlewares = (app) => {
@@ -12,14 +12,14 @@ const middlewares = (app) => {
       "Origin, X-Requested-With, Content-Type, Accept"
     );
     res.header(
-      "Access-Control-Allow-Methods", 
+      "Access-Control-Allow-Methods",
       "GET, POST, OPTIONS, PUT, DELETE"
     );
     next();
   });
-  
-  app.use(express.json())
-  app.use('/pictures/', express.static(__dirname + './../storage'));
-}
 
-module.exports = middlewares
+  app.use(express.json());
+  app.use("/pictures/", express.static(__dirname + "./../storage"));
+};
+
+module.exports = middlewares;

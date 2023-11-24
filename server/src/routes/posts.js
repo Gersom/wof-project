@@ -1,10 +1,10 @@
 // Importa Express y los modelos necesarios
 const express = require('express');
 const router = express.Router();
-const handlers = require('../handlers/posts.js');
+//const handlers = require('../handlers/posts.js');
 const Usuario = require('../models/Usuario');
 const Mascota = require('../models/Mascota');
-const Publicacion = require('../models/');
+const Publicacion = require('../models/post.js');
 
 // Ruta para crear una nueva publicación
 router.post('/', async (req, res) => {
@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
 });
 
 // Rutas adicionales para manejar otras operaciones con publicaciones
-router.post ("/accept/:postId", async (req, res) => {
+router.post("/accept/:postId", async (req, res) => {
     try {
         const postId = req.params.postId;
         const { cuidadorId } = req.body;
@@ -57,20 +57,29 @@ router.post ("/accept/:postId", async (req, res) => {
 
         if (!publicacion) {
             return res.status(404).json({ error: "Publicación no encontrada" });
-    }
-
-
-        if (publicacion.cuidador_id !== cuidadorId) {
-            return res.status(403).json({ error: "No tienes permiso para aceptar esta publicación" });
         }
 
-    
+        if (publicacion.cuidador_id !== cuidadorId) {
+            return res.status(403).json({
+                error: "No tienes permiso para aceptar esta publicación",
+            });
+        }
 
-        res.json({ success: true, message: 'Publicación aceptada correctamente' });
+        const Accmessage = `¡Felicidades! Ahora estas cuidando de una mascota, ponte en contacto con ${Usuario.name}, ahora podrás ver su información de contacto en la misma página.`;
+
+        res.json({
+            success: true,
+            message: "Publicación aceptada correctamente",
+            notification: Accmessage,
+        });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Error al aceptar la publicación" });
+        res.status(500).json({
+            error: "Error al aceptar la publicación",
+            notification: null, 
+        });
     }
+
 })
 // Exporta las rutas
 module.exports = router; 
