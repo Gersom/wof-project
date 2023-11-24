@@ -1,0 +1,15 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
+    h1{
+        font-size: 5rem;
+        margin: 0;
+        padding: 0;
+        color: var(--color-text-secondary);
+    }
+}

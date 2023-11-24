@@ -1,0 +1,25 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
+    gap: 1.5rem;
+    h1{
+        font-size: 5rem;
+        margin: 0;
+        padding: 0;
+        color: var(--color-text-secondary);
+    }
+    .gridContainer{
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+        column-gap: 2rem;
+        align-items: center;
+        justify-items: flex-start;
+        width: 100%;
+    }
+}

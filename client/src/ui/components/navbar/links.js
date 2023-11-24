@@ -12,8 +12,8 @@ const LINKS_CAREGIVER= [
  const LINKS_OWNER = [
 	{ to: routerNames['offers'], imgSrc: '/src/ui/assets/icons/nav/arrows.svg', label: 'Ofertas' },
 	{ to: routerNames['profile'], imgSrc: '/src/ui/assets/icons/nav/star.svg', label: 'Cuidadores anteriores'}, 
-	{ to: '/mismascotas', imgSrc: '/src/ui/assets/icons/nav/star.svg', label: 'Mis mascotas'},
-	{ to: '/perfil', imgSrc: '/src/ui/assets/icons/nav/user.svg', label: 'Perfil' },
+	{ to: routerNames['myPets'], imgSrc: '/src/ui/assets/icons/nav/star.svg', label: 'Mis mascotas'},
+	{ to: routerNames['profile'], imgSrc: '/src/ui/assets/icons/nav/user.svg', label: 'Perfil' },
 ];
 
 export const obtainLinks = (role) => {
