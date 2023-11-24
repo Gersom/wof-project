@@ -9,11 +9,12 @@
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto;
-    row-gap: 2rem;
+    row-gap: 1.5rem;
     justify-content: center;
     padding: 2rem 0rem;
     align-items: flex-start;
-    justify-items: center
+    justify-items: center;
+    width: 100%;
 }
 
 .containerRight{
