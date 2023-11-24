@@ -38,9 +38,9 @@ const AcceptNotificationModal = ({ success, message, notification }) => {
     
 };
 export default AcceptNotificationModal;
-  return (
-    <div>
-      {/* Other components */}
-      <AcceptNotificationModal success={success} message={message} notification={notification} />
-    </div>
-  );
+  // return (
+  //   <div>
+  //     {/* Other components */}
+  //     <AcceptNotificationModal success={success} message={message} notification={notification} />
+  //   </div>
+  // );
