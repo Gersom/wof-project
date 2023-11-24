@@ -12,13 +12,14 @@
     row-gap: 2rem;
     justify-content: center;
     padding: 2rem 0rem;
+    align-items: flex-start;
 }
 
 .containerRight{
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto auto auto auto;
-    row-gap: 2rem;
+    grid-template-rows: min-content min-content min-content min-content;
+    row-gap: 1.5rem;
     justify-content: center;
     h1{
         color:var(--color-text-secondary);

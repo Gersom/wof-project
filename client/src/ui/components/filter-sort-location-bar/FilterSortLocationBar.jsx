@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import filter from '@icons/filterSortLocationBar/filter.svg';
-import peru from '@icons/filterSortLocationBar/peru.svg';
+import argentina from '@icons/filterSortLocationBar/argentina.svg';
 import FilterModal from '../filter-modal/FilterModal';
 import SortSelect from '../sort-select/SortSelect';
 import { useState } from 'react';
@@ -21,8 +21,8 @@ const FilterSortLocationBar = () => {
 	return (
 		<nav className={styles.navContainer}>
 			<div className={styles.locationContainer}>
-				<img src={peru} alt='peru' />
-				<h4>Perú</h4>
+				<img src={argentina} alt='peru' />
+				<h4>Argentina</h4>
 			</div>
 			<SortSelect sorts={sorts} actionSort={actionSort} />
 			<div className={styles.filterContainer} onClick={toggleFilterModal}>
