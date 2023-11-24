@@ -14,12 +14,14 @@ import passwordIcon from "@icons/password.svg";
 import emailIcon from "@icons/email.svg";
 import userIcon from "@icons/nav/user.svg";
 import state from "@icons/state.svg";
-
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
 const FormRegister = () => {
   const navigate = useNavigate();
   const [provinces, setProvinces] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
 
   const apiUrl = API_URL_CREATE_USER;
 
@@ -72,9 +74,14 @@ const FormRegister = () => {
     navigate(-1);
   };
 
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const passwordValue = e.target.elements.password.value;
     const { name, password, email, lastname, role, provincia } = dataForm;
 
     const hasErrors = Object.values(errors).some((error) => error !== "");
@@ -148,11 +155,17 @@ const FormRegister = () => {
                     <span>Contraseña:</span>
                   </label>
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     value={dataForm.password}
                     onChange={handleInputChange}
                   />
+                  <div
+                    className={styles["toggle-password-icon"]}
+                    onClick={handleTogglePasswordVisibility}
+                  >
+                    <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+                  </div>
                   <span>{errors.password}</span>
                 </div>
                 <div className={styles["input_container"]}>
