@@ -9,16 +9,6 @@
     background-color: var(--color-text-primary);
     padding: 2.5rem 10rem;
     border-radius: 1rem;
-    img{
-        position: absolute;
-        width: 1.5rem;
-        height: 1.5rem;
-        top: 0;
-        right: 0;
-        margin: 2rem;
-        z-index: 10;
-        cursor: pointer;
-    }
     h1{
         color: var(--color-text-secondary);
         font-size: 5.2rem;

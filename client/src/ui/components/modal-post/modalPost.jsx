@@ -1,10 +1,9 @@
 import styles from './styles.module.scss'
 import cross from '@icons/filterSortLocationBar/cross.svg';
 
-const ModalPost = ({message, toggleModal,nameOwner}) => {
+const ModalPost = ({message,nameOwner}) => {
   return (
     <div className={styles.container}>
-      <img src={cross} alt='cross'onClick={toggleModal}/>
         <h1>¡Felicidades!</h1>
         <h3>Ahora estas cuidando tu primera mascota</h3>
         <section>

@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import { useDispatch } from 'react-redux';
 import cross from '@icons/filterSortLocationBar/cross.svg';
 
-function FilterModal({ action, toggleFilterModal,filters}) {
+function FilterModal({ action,filters}) {
 	const dispatch = useDispatch();
 
 	const handleClick = (name) => {
@@ -51,12 +51,6 @@ function FilterModal({ action, toggleFilterModal,filters}) {
 		<div className={styles.containerMain}>
 			<h1>Filtros de busqueda</h1>
 			<div className={styles.container}>
-				<img
-					src={cross}
-					alt='cross'
-					onClick={toggleFilterModal}
-					className={styles.cross}
-				/>
 				{getFilters()}
 			</div>
 		</div>

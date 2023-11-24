@@ -8,6 +8,7 @@ import CardInfoPet from '@src/ui/components/card-info/CardInfoPet';
 import CardReviewPets from '@src/ui/components/card-reviews/CardReviewPets';
 import CardAccept from '@src/ui/components/card-accept/cardAccept';
 import ModalPost from '@src/ui/components/modal-post/ModalPost';
+import ModalCustom from '@src/ui/components/modal-custom/ModalCustom';
 import {
 	saveToLocalStorage,
 	getFromLocalStorage,
@@ -76,15 +77,14 @@ const Details = () => {
 					onAccept={acceptFunc}
 					toggleModal={handleToggleModal}
 				/>
-				{toggleModal && (
-					<div className={styles.containerOverlay}>
-						<div className={styles.containerModal}>
-							<ModalPost
-								nameOwner={details.owner.name}
-								toggleModal={handleToggleModal}
-							/>
-						</div>
-					</div>
+				{!isLoading && (
+					<ModalCustom
+						state={toggleModal}
+						toggleModal={handleToggleModal}
+						isWarning={false}
+					>
+						<ModalPost nameOwner={details.owner.name} />
+					</ModalCustom>
 				)}
 			</div>
 		</div>
