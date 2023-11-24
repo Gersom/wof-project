@@ -3,8 +3,8 @@ import { SET_USER } from "../types/userTypes";
 import { getUser } from "../../utils/helpers-redux/getUser";
 import { API_URL_CREATE_USER } from "@src/common/constants/api";
 
-export const actionGetUser = () => async (dispatch) => {
-  const user = await getUser();
+export const actionGetUser = (userId) => async (dispatch) => {
+  const user = await getUser(userId);
   return dispatch({
     type: SET_USER,
     payload: user,

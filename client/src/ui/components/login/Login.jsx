@@ -1,4 +1,5 @@
 import { Link , useNavigate} from "react-router-dom";
+import { useEffect } from 'react';
 import routerNames from "@src/common/constants/routes";
 import logo from "@icons/nav/logo.svg";
 import password from "@icons/password.svg";
@@ -7,7 +8,7 @@ import styles from "./styles.module.scss";
 
 import axios from "axios";
 
-import {saveToLocalStorage} from "@common/utils/localStorage"
+import {saveToLocalStorage, getFromLocalStorage} from "@common/utils/localStorage"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -36,6 +37,13 @@ const Login = () => {
       console.error("Error al iniciar sesión:", error.message);
     }
   }
+
+  useEffect( () => {
+    const userId = getFromLocalStorage("session")
+    if (userId) {
+      navigate(routerNames["offers"]);
+    }
+	}, [navigate]);
 
   return (
     <>
