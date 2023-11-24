@@ -5,7 +5,10 @@ import logo from "@icons/nav/logo.svg";
 import routerNames from "@src/common/constants/routes";
 import { validation } from "./validation";
 import { useDispatch } from "react-redux";
-import { API_URL_PROVINCES } from "@src/common/constants/api";
+import {
+  API_URL_CREATE_USER,
+  API_URL_PROVINCES,
+} from "@src/common/constants/api";
 
 import passwordIcon from "@icons/password.svg";
 import emailIcon from "@icons/email.svg";
@@ -18,7 +21,7 @@ const FormRegister = () => {
   const navigate = useNavigate();
   const [provinces, setProvinces] = useState([]);
 
-  const apiUrl = "http://localhost:3001/api/users";
+  const apiUrl = API_URL_CREATE_USER;
 
   useEffect(() => {
     axios(API_URL_PROVINCES)
