@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 
 const AcceptNotificationModal = ({ success, message, notification }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
