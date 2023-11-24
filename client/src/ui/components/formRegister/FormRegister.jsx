@@ -6,19 +6,21 @@ import logo from "@icons/nav/logo.svg";
 import routerNames from "@src/common/constants/routes";
 import { validation } from "./validation";
 import { useDispatch } from "react-redux";
+import { postUser } from "../../../common/store/actions/userActions";
 
 import passwordIcon from "@icons/password.svg";
 import emailIcon from "@icons/email.svg";
 import userIcon from "@icons/nav/user.svg";
 import state from "@icons/state.svg";
+import { API_URL_PROVINCES } from "@src/common/constants/api";
 
 const FormRegister = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const [provinces, setProvinces] = useState([]);
 
   useEffect(() => {
-    axios("/api/provinces")
+    axios(API_URL_PROVINCES)
       .then(({ data }) => {
         if (data) {
           setProvinces(data);
@@ -50,6 +52,12 @@ const FormRegister = () => {
     validation({ ...dataForm, [name]: value }, errors, setErrors);
   };
 
+  const handleProvinciaChange = (event) => {
+    const provincia = event.target.value;
+
+    setDataForm({ ...dataForm, provincia: provincia });
+  };
+
   const handleRoleChange = (event) => {
     const role = event.target.value;
 
@@ -70,10 +78,10 @@ const FormRegister = () => {
     if (!name || !lastname || !email || !password || !role || !provincia) {
       window.alert("Faltan Datos Obligatorios");
     } else if (hasErrors) {
-      window.alert("hay errores");
+      window.alert("Hay errores");
     } else {
       dispatch(
-        createUser({
+        postUser({
           name,
           lastname,
           email,
@@ -116,7 +124,6 @@ const FormRegister = () => {
                   />
                   <span>{errors.email}</span>
                 </div>
-
                 <div className={styles["input_container"]}>
                   <label>
                     <div
@@ -133,7 +140,6 @@ const FormRegister = () => {
                   />
                   <span>{errors.name}</span>
                 </div>
-
                 <div className={styles["input_container"]}>
                   <label>
                     <div
@@ -150,7 +156,6 @@ const FormRegister = () => {
                   />
                   <span>{errors.password}</span>
                 </div>
-
                 <div className={styles["input_container"]}>
                   <label>
                     <div
@@ -167,7 +172,6 @@ const FormRegister = () => {
                   />
                   <span>{errors.lastname}</span>
                 </div>
-
                 <div className={styles["input_container"]}>
                   <label>
                     <div
@@ -181,14 +185,15 @@ const FormRegister = () => {
                     value={dataForm.role}
                     onChange={handleRoleChange}
                   >
-                    <option value="" disabled>
-                      --Select
+                    {/* <option value="" disabled>
+                      --Seleccionar
+                    </option> */}
+                    <option value="Cuidador">Cuidador</option>
+                    <option value="Dueño" disabled>
+                      Dueño
                     </option>
-                    <option value="1">Cuidador</option>
-                    <option value="1">Dueño</option>
                   </select>
                 </div>
-
                 <div className={styles["input_container"]}>
                   <label>
                     <div
@@ -200,21 +205,19 @@ const FormRegister = () => {
                   <select
                     name="provincia"
                     value={dataForm.provincia}
-                    onChange={handleInputChange}
+                    onChange={handleProvinciaChange}
                   >
                     <option value="" disabled>
-                      --Select
+                      --Seleccionar
                     </option>
-                    {provinces?.map((name) => (
-                      <option key={provinces.id}>{name}</option>
+                    {provinces?.map((provinces) => (
+                      <option key={provinces.id} value={provinces.name}>
+                        {provinces.name}
+                      </option>
                     ))}
-
-                    <option value="1">2</option>
-                    <option value="1">3</option>
                   </select>
                   <span>{errors.provincia}</span>
                 </div>
-
                 {dataForm.role === "Dueño" && (
                   <div className={styles.formGroup}>
                     <label> Adicional Dueño: </label>
@@ -227,7 +230,8 @@ const FormRegister = () => {
                     <span></span>
                   </div>
                 )}
-                {dataForm.role === "Cuidador" && (
+
+                {/* /* {dataForm.role === "Cuidador" && (
                   <div className={styles.formGroup}>
                     <label> Adicional Cuidador: </label>
                     <input
@@ -238,7 +242,7 @@ const FormRegister = () => {
                     />
                     <span></span>
                   </div>
-                )}
+                )} */}
               </div>
 
               <div className={styles["auth_btns"]}>

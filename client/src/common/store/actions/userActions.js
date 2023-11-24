@@ -1,6 +1,7 @@
 import { SET_USER } from "../types/userTypes";
 
 import { getUser } from "../../utils/helpers-redux/getUser";
+import { API_URL_CREATE_USER } from "@src/common/constants/api";
 
 export const actionGetUser = () => async (dispatch) => {
   const user = await getUser();
@@ -14,7 +15,7 @@ export const postUser = (newUser) => {
   return async (dispatch) => {
     try {
       console.log(newUser);
-      const response = await axios.post("", newUser);
+      const response = await axios.post(API_URL_CREATE_USER, newUser);
       const data = response.data;
       dispatch({
         type: "POST_USER",

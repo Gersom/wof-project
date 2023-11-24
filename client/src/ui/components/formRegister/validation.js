@@ -36,10 +36,10 @@ export const validation = (dataForm, errors, setErrors) => {
   }
 
   // Validar la Contraseña
-  if (dataForm.password.length !== 15) {
+  if (dataForm.password.length > 15) {
     setErrors({
       ...errors,
-      password: "La contraseña debe tener exactamente 15 caracteres",
+      password: "La contraseña debe tener maximo 15 caracteres",
     });
   } else if (!/\d/.test(dataForm.password)) {
     setErrors({
