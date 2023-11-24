@@ -1,20 +1,28 @@
+.mainContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+
+
 h3.title {
-    font-size: 25px;
+    font-size: 1.6rem;
     color: #1e1e1e;
     text-align: left;
     margin-top: 1.5rem;
   }
   .cardCont {
-    width: 310px;
-    height: 494px;
-    padding: 20px;
+    width: 70%;
+    height: max-content;
+    padding: 1.3rem 2rem;
     border-radius: 10px;
     background: #FFF;
-
   }
   hr.firstRounded {
-    border-top: 3px solid  #DDD;;
-    border-radius: 5px;
+    border-top: 0.2rem solid  #DDD;;
+    border-radius: 0.2rem;
     width: 38%;
     margin-left: 0%;
     margin-right: 60%;
@@ -26,7 +34,7 @@ h3.title {
   .textInfo {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 0.8rem;
     margin-left: 1rem;
     justify-content: center;
    
@@ -34,18 +42,18 @@ h3.title {
   .paragraph{
     color: #717171;
     font-family: 'Lexend-Bold';
-    font-size: 13.2px;
+    font-size: 1.05rem;
     font-weight: 400;
-    margin-top: 16px;
-    margin-bottom: 10px;
+    margin-top: 1rem;
+    margin-bottom: 0.8rem;
     text-align: left;
   }
   .personName {
     color: #1e1e1e;
     font-family: 'Lexend-Regular';
-    font-size: 17px;
+    font-size: 1.5rem;
     font-weight: 500;
-    line-height: 20px;
+    line-height: 1.5rem;
     text-align: left;
 
 
@@ -53,24 +61,25 @@ h3.title {
   .date {
     color: #717171;
     font-family: 'Lexend-Regular';
-    font-size: 14px;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
   }
   .profilePic {
-    width: 70px;
-    height: 70px;
-    border-radius: 100%;
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    border-radius: 50%;
   }
   hr.secondRounded {
-    border-top: 3px solid #DDD;
-    border-radius: 5px;
+    border-top: 0.2rem solid #DDD;
+    border-radius: 0.2rem;
     width: 20%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 1.2rem;
-    margin-bottom: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   

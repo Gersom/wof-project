@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 const CardReviewPets = ({ comment }) => {
   return (
-    <div>
+    <div className={styles.mainContainer}>
       <div className={styles.cardCont}>
         <h3 className={styles.title}>Reseñas</h3>
         <hr className={styles.firstRounded}></hr>
