@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import routerNames from "@src/common/constants/routes";
 import styles from "./styles.module.css";
+import ModalPost from '@src/ui/components/modal-post/modalPost';
 
 const Home = () => {
   return (
     <>
       <div className={styles.home}>
+        <ModalPost />
         <Link to={routerNames["register"]}>
           <button>Register</button>
         </Link>
