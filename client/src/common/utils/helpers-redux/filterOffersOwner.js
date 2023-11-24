@@ -24,9 +24,9 @@ export const filterOffersOwner = (offers, filters) => {
         } else if (filter.name === '🐯 Gatos' && filter.value) {
           filteredOffers = filteredOffers.filter((offer) => offer.pet.species.name === 'cat');
         } else if (filter.name === '♂️ Machos' && filter.value) {
-          filteredOffers = filteredOffers.filter((offer) => offer.gender === 'male');
+          filteredOffers = filteredOffers.filter((offer) => offer.pet.gender === 'male');
         } else if (filter.name === '♀️ Hembras' && filter.value) {
-          filteredOffers = filteredOffers.filter((offer) => offer.gender === 'female');
+          filteredOffers = filteredOffers.filter((offer) => offer.pet.gender === 'female');
         }
       });
     }

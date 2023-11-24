@@ -1,18 +1,19 @@
-const { DataTypes } = require("sequelize")
-const { sequelize } = require("../../config/dbConnect/engines/postgresql")
+const { DataTypes } = require("sequelize");
+const { sequelize } = require("../../config/dbConnect/engines/postgresql");
 
-const ProvincesModel = require(`./provinces`)
-const CountriesModel = require(`./countries`)
+const ProvincesModel = require(`./provinces`);
+const CountriesModel = require(`./countries`);
 
-const addMethods = require("../utils/addStaticMethods")
-const generateServerPath = require("./../../utils/generateServerPath")
-const { path: serverPath } = generateServerPath()
+const addMethods = require("../utils/addStaticMethods");
+const generateServerPath = require("./../../utils/generateServerPath");
+const { path: serverPath } = generateServerPath();
+const bcrypt = require("bcrypt");
 
-const name = 'users'
-const config = { 
+const name = "users";
+const config = {
   timestamps: true, // createAt, updateAt
-  freezeTableName: true
-}
+  freezeTableName: true,
+};
 const schema = {
   id: {
     type: DataTypes.INTEGER,
@@ -27,7 +28,7 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  role:{
+  role: {
     allowNull: false,
     type: DataTypes.STRING,
     // 1 caregivers
@@ -35,9 +36,9 @@ const schema = {
     // 3 admin
   },
 
-  profilePicture:{
+  profilePicture: {
     type: DataTypes.STRING,
-    defaultValue: `${serverPath}/pictures/profile.png`
+    defaultValue: `${serverPath}/pictures/profile.png`,
   },
 
   name: {
@@ -48,7 +49,7 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  cellPhone:{
+  cellPhone: {
     type: DataTypes.STRING,
     allowNull: true,
   },
@@ -64,33 +65,38 @@ const schema = {
     type: DataTypes.DATE,
     allowNull: true,
   },
-}
+};
 
-const UsersModel = sequelize.define(name, schema, config)
+const UsersModel = sequelize.define(name, schema, config);
+
+UsersModel.prototype.comparePassword = async function (password) {
+  const pass = await bcrypt.compare(password, this.password);
+  return pass
+};
 
 // Add relationship
-ProvincesModel.hasMany(UsersModel)
-UsersModel.belongsTo(ProvincesModel)
+ProvincesModel.hasMany(UsersModel);
+UsersModel.belongsTo(ProvincesModel);
 
 CountriesModel.hasOne(UsersModel);
 UsersModel.belongsTo(CountriesModel);
 
 // add static methods (functions) to model
-addMethods(UsersModel)
+addMethods(UsersModel);
 
 UsersModel["findAllUsers"] = async () => {
   const User = await UsersModel.findAll({
     include: [
-      {model: CountriesModel, attributes: ["name"]},
-      {model: ProvincesModel, attributes: ["name"]},
-    ]
-  })
-  return User
-}
+      { model: CountriesModel, attributes: ["name"] },
+      { model: ProvincesModel, attributes: ["name"] },
+    ],
+  });
+  return User;
+};
 
 UsersModel["createUser"] = async (data) => {
-  const newUser = await UsersModel.create(data)
-  return newUser
-}
+  const newUser = await UsersModel.create(data);
+  return newUser;
+};
 
-module.exports = UsersModel
+module.exports = UsersModel;

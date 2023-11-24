@@ -37,7 +37,7 @@ const insertPets = async () => {
     petsData[2] = {
       ...petsData[2],
       ownerId: gersomOwnerId,
-      speciesId: dogId,
+      speciesId: catId,
       breedId: 23,
       genderId: maleOwnerId
     }

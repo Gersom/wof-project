@@ -26,7 +26,7 @@ const getAllOwnersLogic = async () => {
 }
 
 const getOwnerLogic = async (id) => {
-    const owner = await OwnersModel.findDataById(id)
+    const owner = await OwnersModel.findOwner(id)
     if (!owner) throw Error("User not found")
     return owner
 };
