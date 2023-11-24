@@ -1,9 +1,11 @@
 const { ReviewsModel, UsersModel } = require("../models");
-const { use } = require("../routes/reviews");
 
-const getAllReviewsLogic = async () => {
-  const review = await ReviewsModel.findAllData()
-  return review
+const getAllReviewsLogic = async (ownerid) => {
+  const reviews = await ReviewsModel.findAllData()
+  if(ownerid){
+    return await ReviewsModel.findByOwner(ownerid)
+  }
+  return reviews
 }
 
 const getReviewLogic = async (id) => {
