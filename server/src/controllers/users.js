@@ -53,7 +53,7 @@ const loginUser = catchedAsync(async (req, res) => {
   });
   // return res.status(501).send(isPasswordValid)
 
-  res.status(200).json({ token, success: "Inicio de sesión exitoso" });
+  res.status(200).json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
 });
 
 // DETAIL ITEM

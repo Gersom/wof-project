@@ -83,8 +83,8 @@ const FormRegister = () => {
       window.alert("Hay errores");
     } else {
       try {
-        const response = await axios.post(apiUrl, dataForm);
-        console.log("Respuesta del servidor:", response.data);
+        await axios.post(apiUrl, dataForm);
+        // console.log("Respuesta del servidor:", response.data);
         window.alert("Usuario creado correctamente");
         goBackHandler();
       } catch (error) {
