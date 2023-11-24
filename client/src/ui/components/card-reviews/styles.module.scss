@@ -2,6 +2,7 @@ h3.title {
     font-size: 25px;
     color: #1e1e1e;
     text-align: left;
+    margin-top: 1.5rem;
   }
   .cardCont {
     width: 310px;
@@ -14,33 +15,35 @@ h3.title {
   hr.firstRounded {
     border-top: 3px solid  #DDD;;
     border-radius: 5px;
-    width: 20%;
+    width: 38%;
     margin-left: 0%;
     margin-right: 60%;
   }
   .infoPerson {
     display: flex;
+    align-items: center;
   }
   .textInfo {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
+    margin-left: 1rem;
+    justify-content: center;
    
-
   }
   .paragraph{
     color: #717171;
-    font-family: 'Lexend-Medium';
-    font-size: 14px;
-    font-style: normal;
+    font-family: 'Lexend-Bold';
+    font-size: 13.2px;
     font-weight: 400;
-    line-height: 20px;  
-    margin-top: 10px;
+    margin-top: 16px;
     margin-bottom: 10px;
+    text-align: left;
   }
   .personName {
     color: #1e1e1e;
-    font-family: Lexend;
+    font-family: 'Lexend-Regular';
     font-size: 17px;
-    font-style: normal;
     font-weight: 500;
     line-height: 20px;
     text-align: left;
@@ -49,15 +52,15 @@ h3.title {
   }
   .date {
     color: #717171;
-    font-family: Lexend;
+    font-family: 'Lexend-Regular';
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
   }
   .profilePic {
-    width: 100px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     border-radius: 100%;
   }
   hr.secondRounded {
@@ -66,6 +69,8 @@ h3.title {
     width: 20%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
   }
 
   
