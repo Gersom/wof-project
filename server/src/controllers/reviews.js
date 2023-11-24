@@ -10,7 +10,8 @@ const catchedAsync = require("../utils/catchedAsync")
 
 // READ ITEMS
 const getAllReviews =catchedAsync( async (req, res) => {
-    const reviews = await getAllReviewsLogic()
+    const { ownerid } = req.query
+    const reviews = await getAllReviewsLogic(ownerid)
     res.status(200).json(reviews)
 }, ErrorHandler.getAllReviewsErrorHandler)
 
