@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 
 const CardInfoPet = ({ breed,temperaments, manners,notes,role}) => {
-    const classRole = role === 'cuidador' ? styles.caregivers : styles.owner;
+    const classRole = role === 'caregiver' ? styles.caregivers : styles.owner;
 
   return (
     <article className={`${styles.article}  ${classRole}`}>

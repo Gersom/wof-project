@@ -13,7 +13,7 @@ const FilterSortLocationBar = ({role}) => {
 		setFilterModal((prevFilterModal) => !prevFilterModal);
 	};
 	const {filters, sorts, actionFilter, actionSort} = useSelectorSortFilter({role: role});
-
+	
 	return (
 		<nav className={styles.navContainer}>
 			<div className={styles.locationContainer}>

@@ -36,11 +36,20 @@ const offersReducer = (state = offersState, { type, payload }) => {
 			return {
 				...state,
 				offersCareGivers: payload,
+				offersCareGiversInmutable: payload,
+			};
+		case 'SET_OFFERS_CAREGIVERS':
+			return {
+				...state,
+				offersCareGivers: payload,
 			};
 		case 'FILTER_OFFERS_CAREGIVERS':
 			return {
 				...state,
-				filtersOffersCareGivers: filterOffers(state.filtersOffersCareGivers, payload),
+				filtersOffersCareGivers: filterOffers(
+					state.filtersOffersCareGivers,
+					payload
+				),
 			};
 		case 'SORT_OFFERS_CAREGIVERS':
 			return {
@@ -53,7 +62,7 @@ const offersReducer = (state = offersState, { type, payload }) => {
 					}
 					return sort;
 				}),
-			}
+			};
 		default:
 			return { ...state };
 	}

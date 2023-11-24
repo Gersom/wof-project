@@ -3,10 +3,10 @@ import CardOffersOwner from '../card-offers-owner/CardOffersOwner';
 import useOffersOwner from '@src/common/hooks/useOffersOwner';
 
 function OffersOwner() {
-	const offers = useOffersOwner();
+	const { offersOwner } = useOffersOwner();
 	return (
 		<div className={styles.container}>
-			{offers.map((offer, index) => (
+			{offersOwner.map((offer, index) => (
 				<CardOffersOwner
 					key={index}
 					petName={offer.pet.name}

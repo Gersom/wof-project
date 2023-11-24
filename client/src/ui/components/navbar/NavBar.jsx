@@ -15,7 +15,7 @@ const NavBar = ({ userData }) => {
 
 	const [show, setShow] = useState(true);
 	const classShow = show ? styles.show : '';
-	const role = 'cuidador';
+	const role = 'caregiver';
 	const LINKS = obtainLinks(role);
 
 	useEffect(() => {

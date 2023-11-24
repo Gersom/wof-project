@@ -1,20 +1,12 @@
-import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import CardOffersCaregivers from '../card-offers-caregivers/CardOffersCaregivers';
-import { getOffersCareGivers } from '@src/common/utils/getOffersCareGivers';
 import CardInfoPet from '../card-info/CardInfoPet';
 import useGetDetails from '@src/common/hooks/useGetDetails';
 import CardOffersOwner from '../card-offers-owner/CardOffersOwner';
-const OffersCareGivers = () => {
-	const [offers, setOffers] = useState([]);
+import useOffersCaregivers from '@src/common/hooks/useOffersCaregivers';
 
-	useEffect(() => {
-		const getOffers = async () => {
-			const offers = await getOffersCareGivers();
-			setOffers(offers);
-		};
-		getOffers();
-	}, []);
+const OffersCareGivers = () => {
+	const { isLoadingOffers,offersCareGivers } = useOffersCaregivers();
 	const { isLoading, details } = useGetDetails(1);
 	return (
 		<div className={styles.containerMainGrid}>
@@ -39,12 +31,12 @@ const OffersCareGivers = () => {
 						manners={details.pet.manners}
 						temperaments={details.pet.temperaments}
 						notes={details.pet.notes}
-                        role={'cuidador'}
+                        role={'caregiver'}
 					/>
 				)}
 			</div>
 			<div className={styles.containerOffers}>
-				{offers.slice(0, 3).map((offer, index) => (
+				{!isLoadingOffers && offersCareGivers.map((offer, index) => (
 					<CardOffersCaregivers
 						key={index}
 						name={offer.name}

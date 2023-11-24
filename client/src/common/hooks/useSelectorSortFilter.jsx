@@ -8,20 +8,20 @@ import {
 
 const useSelectorSortFilter = ({ role }) => {
 	const filters = useSelector((state) =>
-		role === 'owner'
+		role === 'caregiver'
 			? state.offersReducer.filtersOffersOwner
 			: state.offersReducer.filtersOffersCareGivers
 	);
 	const sorts = useSelector((state) =>
-		role === 'owner'
+		role === 'caregiver'
 			? state.offersReducer.sortOffersOwner
 			: state.offersReducer.sortOffersCareGivers
 	);
 	const actionFilter =
-		role === 'owner' ? actionFilterOffersOwner : actionFilterOffersCareGivers;
+		role === 'caregiver' ? actionFilterOffersOwner : actionFilterOffersCareGivers;
 
 	const actionSort =
-		role === 'owner' ? actionSortOffersOwner : actionSortOffersCareGivers;
+		role === 'caregiver' ? actionSortOffersOwner : actionSortOffersCareGivers;
 
 	return { filters, sorts, actionFilter, actionSort };
 };

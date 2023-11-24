@@ -1,6 +1,6 @@
 
 import { getOffersOwner } from '@src/common/utils/helpers-redux/getOffersOwner';
-
+import { getOffersCareGivers } from '@src/common/utils/getOffersCareGivers';
 export const actionGetOffersOwner = () => async (dispatch) => {
 	const offersOwner = await getOffersOwner();
 	return dispatch({
@@ -33,12 +33,19 @@ export const actionSortOffersOwner = (nameSort) => {
 //**-------------Caregivers---------------**/
 
 export const actionGetOffersCareGivers = () => async (dispatch) => {
-	// const offersCareGivers = await getOffersCareGivers();
+	const offersCareGivers = await getOffersCareGivers();
 	return dispatch({
 		type: 'GET_OFFERS_CAREGIVERS',
-		payload: 'offersCareGivers',
+		payload: offersCareGivers,
 	});
 };
+
+export const actionSetOffersCareGivers = (offersCareGivers) => {
+	return {
+		type: 'SET_OFFERS_CAREGIVERS',
+		payload: offersCareGivers,
+	};
+}
 
 export const actionFilterOffersCareGivers = (nameFilter) => {
 	return {
