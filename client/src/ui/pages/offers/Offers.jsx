@@ -3,7 +3,7 @@ import FilterSortLocationBar from '@src/ui/components/filter-sort-location-bar/F
 import OffersCareGivers from '@src/ui/components/offers-care-givers/OffersCareGivers';
 import OffersOwner from '@src/ui/components/offers-owner/OffersOwner';
 const Offers = () => {
-    const role = 'owner';
+    const role = 'cuidador';
 
 	const renderOffers = () => {
 		if (role === 'cuidador') {

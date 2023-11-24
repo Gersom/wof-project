@@ -2,11 +2,14 @@
     display:grid;
     grid-template-columns: auto auto;
     justify-items: center;
+    gap: 1.5rem;
 }
 
 .containerCardInfo{
     display: grid;
     grid-template-rows: auto auto;
+    row-gap: 1.5rem;
+    justify-items: center;
 }
 
 .containerOffers{

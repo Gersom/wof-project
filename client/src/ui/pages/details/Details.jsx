@@ -68,6 +68,7 @@ const Details = () => {
 						temperaments={details.pet.temperaments}
 						manners={details.pet.manners}
 						notes={details.pet.notes}
+						role={'owner'}
 					/>
 				)}
 				<CardAccept
