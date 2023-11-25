@@ -15,11 +15,11 @@
     }
     .gridContainer{
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
         column-gap: 2rem;
         align-items: flex-start;
-        justify-items: center;
+        justify-items: flex-start;
         width: 100%;
     }
 }

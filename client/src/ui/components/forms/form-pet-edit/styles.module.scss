@@ -1,15 +1,14 @@
 $color-grey: #CCCCCC;
 
-
 .form{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 70%;
+    width: 90%;
     height: max-content;
     margin: 0;
-    padding: 0.5rem 1rem 1rem 1rem;
+    padding: 0.5rem 1.5rem 1rem 1.5rem;
     border-radius: 1rem;
     border: 0.15rem solid $color-grey;
     h2{
@@ -29,6 +28,13 @@ $color-grey: #CCCCCC;
         justify-content: flex-start;
         align-items: first baseline;
         width: 100%;
+        img{
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 0.7rem;
+            align-self: center;
+            margin-bottom: 0.4rem;
+        }
         label{
             font-family: 'Lexend-Medium';
             font-size: 1.3rem;
@@ -51,7 +57,7 @@ $color-grey: #CCCCCC;
         color: var(--color-text-grey);
         background-color: var(--color-text-primary);
         &:focus{
-            border-color:  var(--color-text-grey);
+            border-color:  var(--color-text-secondary);
         }
         margin-bottom: 0.8rem;
     }
@@ -69,7 +75,7 @@ $color-grey: #CCCCCC;
         background-color: var(--color-text-primary);
         margin-bottom: 0.8rem;
         &:focus{            
-            border-color: var(--color-text-grey);
+            border-color: var(--color-text-secondary);
         }
         option{
             font-size: 1.5rem;
@@ -98,7 +104,7 @@ $color-grey: #CCCCCC;
         color: var(--color-text-grey);
         background-color: var(--color-text-primary);
         &:focus{
-            border-color: var(--color-text-grey);
+            border-color: var(--color-text-secondary);
         }
         margin-bottom: 0.8rem;
     }
