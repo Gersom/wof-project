@@ -1,9 +1,9 @@
 import styles from './styles.module.scss';
 import filter from '@icons/filterSortLocationBar/filter.svg';
 import argentina from '@icons/filterSortLocationBar/argentina.svg';
-import ModalFilter from '../modal-filter/ModalFilter';
+import ModalFilter from '../modals/modal-filter/ModalFilter';
 import SortSelect from '../sort-select/SortSelect';
-import ModalCustom from '../modal-custom/ModalCustom';
+import ModalCustom from '../modals/modal-custom/ModalCustom';
 import { useState } from 'react';
 import useSelectorSortFilter from '@src/common/hooks/useSelectorSortFilter';
 

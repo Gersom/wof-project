@@ -1,8 +1,8 @@
 import styles from './styles.module.scss';
-import CardOffersCaregivers from '../card-offers-caregivers/CardOffersCaregivers';
-import CardInfoPet from '../card-info/CardInfoPet';
+import CardOffersCaregivers from '../../cards/card-offers-caregivers/CardOffersCaregivers';
+import CardInfoPet from '../../cards/card-info/CardInfoPet';
 import useGetDetails from '@src/common/hooks/useGetDetails';
-import CardOffersOwner from '../card-offers-owner/CardOffersOwner';
+import CardOffersOwner from '../../cards/card-pets/CardOffersOwner';
 import useOffersCaregivers from '@src/common/hooks/useOffersCaregivers';
 
 const OffersCareGivers = () => {

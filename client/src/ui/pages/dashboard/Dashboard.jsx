@@ -23,6 +23,8 @@ const Dashboard = () => {
 			navigate(routerNames['login']);
 		}
 	}, [dispatch, navigate]);
+
+	
 	return (
 		<div className={styles.containerGrid}>
 			<NavBar userData={userData} />

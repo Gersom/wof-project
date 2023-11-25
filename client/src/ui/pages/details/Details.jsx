@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
-import CardUser from '@src/ui/components/card-user/CardUser';
+import CardUser from '@src/ui/components/cards/card-user/CardUser';
 import Carousel from '@src/ui/components/carousel/Carousel';
 import { useParams } from 'react-router-dom';
 import useGetDetails from '@src/common/hooks/useGetDetails';
-import CardInfoPet from '@src/ui/components/card-info/CardInfoPet';
-import CardReviewPets from '@src/ui/components/card-reviews/CardReviewPets';
-import CardAccept from '@src/ui/components/card-accept/cardAccept';
-import ModalPost from '@src/ui/components/modal-post/ModalPost';
-import ModalCustom from '@src/ui/components/modal-custom/ModalCustom';
+import CardInfoPet from '@src/ui/components/cards/card-info/CardInfoPet';
+import CardReviewPets from '@src/ui/components/cards/card-reviews/CardReviewPets';
+import CardAccept from '@src/ui/components/cards/card-accept/cardAccept';
+import ModalPost from '@src/ui/components/modals/modal-post/ModalPost';
+import ModalCustom from '@src/ui/components/modals/modal-custom/ModalCustom';
 import {
 	saveToLocalStorage,
 	getFromLocalStorage,

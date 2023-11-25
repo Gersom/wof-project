@@ -1,5 +1,4 @@
 import styles from './styles.module.scss'
-import cross from '@icons/filterSortLocationBar/cross.svg';
 
 const ModalPost = ({message,nameOwner}) => {
   return (
