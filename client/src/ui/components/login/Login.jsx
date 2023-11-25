@@ -7,6 +7,7 @@ import email from "@icons/email.svg";
 import styles from "./styles.module.scss";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { API_URL_LOGIN } from "@src/common/constants/api";
 
 import axios from "axios";
 
@@ -21,13 +22,10 @@ const Login = () => {
     const passwordValue = e.target.elements.password.value;
 
     try {
-      const response = await axios.post(
-        "http://localhost:3001/api/users/login",
-        {
-          email: emailValue,
-          password: passwordValue,
-        }
-      );
+      const response = await axios.post(API_URL_LOGIN, {
+        email: emailValue,
+        password: passwordValue,
+      });
 
       console.log(response.data);
 
