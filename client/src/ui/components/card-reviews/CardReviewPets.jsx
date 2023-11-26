@@ -39,7 +39,6 @@ const CardReviewPets = () => {
       const monthName = reviewDate
         .toLocaleDateString("es-LA", { month: "long" })
         .replace(/^\w/, (c) => c.toUpperCase());
-      console.log(monthName);
       return reviewDate
         .toLocaleDateString("es-LA", options)
         .replace(
