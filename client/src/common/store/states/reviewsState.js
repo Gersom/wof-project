@@ -1,4 +1,4 @@
-const reviewState = {
+const reviewsState = {
   reviews: [],
 };
-export default reviewState;
+export default reviewsState;

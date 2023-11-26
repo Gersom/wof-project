@@ -1,8 +1,8 @@
 import { getReviews } from "@src/common/utils/helpers-redux/getReviews";
 
-export const actionGetReviews = (caregiverId, ownerId) => async (dispatch) => {
+export const actionGetReviews = () => async (dispatch) => {
   try {
-    const caregiversReviews = await getReviews(caregiverId, ownerId);
+    const caregiversReviews = await getReviews();
     dispatch({
       type: "GET_REVIEWS",
       payload: caregiversReviews,

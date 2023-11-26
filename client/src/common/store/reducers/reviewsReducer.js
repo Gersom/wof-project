@@ -1,6 +1,6 @@
 import reviewState from "../states/reviewsState";
 
-const reviewReducer = (state = reviewState, { type, payload }) => {
+const reviewsReducer = (state = reviewState, { type, payload }) => {
   switch (type) {
     case "GET_REVIEWS":
       return {
@@ -13,4 +13,4 @@ const reviewReducer = (state = reviewState, { type, payload }) => {
   }
 };
 
-export default reviewReducer;
+export default reviewsReducer;
