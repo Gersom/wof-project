@@ -1,10 +1,8 @@
 import plusAgree from '@icons/plusAgree.svg';
 import { useState, useRef } from 'react';
-import CropImage from './CropImage';
 
 const ButtonAgree = () => {
 	const [selectedFile, setSelectedFile] = useState(null);
-	const [imageSrc, setImageSrc] = useState(null);
 	const fileInputRef = useRef(null);
 
 	const handleUpload = () => {
@@ -15,16 +13,10 @@ const ButtonAgree = () => {
 	const handleFileChange = (event) => {
 		const file = event.target.files[0];
 		if (file) {
-			console.log('Archivo seleccionado:', file);
-			const reader = new FileReader();
-			reader.onLoad = () => {
-				setImageSrc(reader.result)
-			}
-			reader.readAsDataURL(file);
-            setSelectedFile(file);
-			//enviar al servidor --->
+			setSelectedFile(file);
 		}
 	};
+	
 	return (
 		<>
 			<button onClick={handleUpload}>
@@ -37,7 +29,6 @@ const ButtonAgree = () => {
 				ref={fileInputRef}
 				style={{ display: 'none' }}
 			/>
-			{selectedFile && <CropImage imageSrc={imageSrc} />}
 		</>
 	);
 };
