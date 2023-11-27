@@ -2,8 +2,7 @@ const { UsersModel, CountriesModel, ProvincesModel } = require("../../models/ind
 const usersData = require("../../data/users.json")
 const insertRecords = require("./insertRecords")
 
-const generateServerPath = require("./../../utils/generateServerPath")
-const { path: serverPath } = generateServerPath()
+const generateUrl = require("../../utils/generateUrl")
 
 const insertUsers = async () => {
   try {
@@ -13,7 +12,7 @@ const insertUsers = async () => {
     const usersFormated = usersData.map((ele) => {
       return {
         ...ele,
-        profilePicture: serverPath + ele.profilePicture,
+        profilePicture: generateUrl(ele.profilePicture),
         countryId: countryArId ? countryArId : '',
         provinceId: mendozaId ? mendozaId : ''
       }
