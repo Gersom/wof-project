@@ -5,7 +5,7 @@ function useGetDetails(id) {
 	const [details, setDetails] = useState(false);
 	useEffect(() => {
 		const getDetails = async () => {
-			const details = await fetch(API_URL_OFFERS + id);
+			const details = await fetch(`${API_URL_OFFERS}/${id}`);
             const detailsJson = await details.json();
 			setDetails(detailsJson);
 			setIsLoading(false);
