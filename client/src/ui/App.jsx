@@ -32,11 +32,13 @@ function App() {
         {/* dashboard */}
         <Route path={routerNames["dashboard"]} element={<Dashboard />}>
           <Route index path={routerNames["offers"]} element={<Offers />} />
-          <Route path={routerNames['details'] + ':id'} element={<Details />} />
-          <Route path={routerNames["profile"]} element={<Landing />} />
+          <Route path={routerNames["details"] + ":id"} element={<Details />} />
+          {/* <Route path={routerNames["profile"]} element={<Landing />} /> */}
           <Route path={routerNames["formReview"]} element={<FormReview />} />
           <Route path={routerNames["myPets"]} element={<MyPets />} />
+          <Route path={routerNames["myPetsCreate"]} element={<MyPetsEdit />} />
           <Route path={routerNames["myPetsEdit"] + ':idPet'} element={<MyPetsEdit />} />
+          
         </Route>
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />

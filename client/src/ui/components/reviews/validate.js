@@ -3,7 +3,7 @@ export const validate = (state, name) => {
 
   if (name === "name") {
     if (state.name === "") {
-      newErrors.name = "Por favor, ingresa tu nombre";
+      newErrors.name = "Por favor, ingresa tu nombre.";
     } else if (state.name.length > 15 || state.name.length < 3) {
       newErrors.name =
         "Tu nombre debe tener al menos 2 caracteres y no más de 15.";
@@ -15,9 +15,15 @@ export const validate = (state, name) => {
     }
   }
   if (name === "review") {
-    if (state.name.length < 30 || state.name.length > 300) {
-      newErrors.name =
-        "La reseña debe tener al menos 30 caracteres y no más de 300";
+    if (/mierda|puta|cojuda|degraciasa|infeliz|imbécil/i.test(state.review)) {
+      newErrors.review = "Evita el uso de palabras ofensivas o insultos";
+    } else if (state.review.length < 30 || state.review.length > 300) {
+      newErrors.review =
+        "La reseña debe tener al menos 30 caracteres y no más de 300.";
+    } else if (state.review === "") {
+      newErrors.review = "Por favor, escribe tu reseña.";
+    } else {
+      newErrors.review = "";
     }
   }
   return newErrors;

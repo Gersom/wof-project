@@ -1,3 +1,4 @@
+require('dotenv').config()
 const DB_ENGINE = process.env.DB_ENGINE
 let pathModel = ''
 

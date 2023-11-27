@@ -25,6 +25,7 @@
 	input,
 	textarea {
 		width: 100%;
+		color: var(--color-text-primary);
 	}
 
 	label,
@@ -63,3 +64,11 @@
 	width: 55%;
 	margin: 0.3rem auto;
 }
+.errorReview {
+	margin-bottom: 0.3rem;
+	color: lightblue;
+	font-size: 11px;
+	text-align: left;
+	display: block;
+	width: 100%;
+  }

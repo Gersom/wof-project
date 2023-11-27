@@ -16,6 +16,17 @@ const CardDisplayImages = ({ data }) => {
 				<img src='https://via.placeholder.com/150' alt='pet' />
 				<img src='https://via.placeholder.com/150' alt='pet' />
 				<img src='https://via.placeholder.com/150' alt='pet' />
+				
+				<img src='https://via.placeholder.com/150' alt='pet' />
+				<img src='https://via.placeholder.com/150' alt='pet' />
+				
+				<img src='https://via.placeholder.com/150' alt='pet' />
+				<img src='https://via.placeholder.com/150' alt='pet' />
+				
+				<img src='https://via.placeholder.com/150' alt='pet' />
+				
+				<img src='https://via.placeholder.com/150' alt='pet' />
+				<img src='https://via.placeholder.com/150' alt='pet' />
 				<ButtonAgree />
 			</div>
 		</div>
