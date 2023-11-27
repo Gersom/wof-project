@@ -6,7 +6,7 @@ import routerNames from "@src/common/constants/routes";
 import { validation } from "./validation";
 import { useDispatch } from "react-redux";
 import {
-  API_URL_CREATE_USER,
+  API_URL_REGISTER,
   API_URL_PROVINCES,
 } from "@src/common/constants/api";
 
@@ -23,7 +23,7 @@ const FormRegister = () => {
   const [provinces, setProvinces] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
 
-  const apiUrl = API_URL_CREATE_USER;
+  const apiUrl = API_URL_REGISTER;
 
   useEffect(() => {
     axios(API_URL_PROVINCES)

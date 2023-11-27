@@ -15,17 +15,16 @@ function SortSelect({ sorts, actionSort }) {
 		setActive(false);
 	};
 	return (
-		<div className={styles.mainContainer}>
+		<div className={styles.mainContainer}onClick={() => setActive(!active)}>
 			<div className={styles.container}>
 				<div className={styles.sortContainer}>
 					<div>
 						<img src={arrowsBlue} alt='arrows' />
 						<h4>Ordenar por: </h4>
-						<h5 onClick={() => setActive(!active)}>{sortActive}</h5>
+						<h5 >{sortActive}</h5>
 					</div>
 					<img
 						src={arrowDrop}
-						onClick={() => setActive(!active)}
 						className={styles.arrowDrop}
 					/>
 				</div>
