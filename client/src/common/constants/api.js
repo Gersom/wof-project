@@ -1,7 +1,8 @@
 const apiUrlEnv = import.meta.env.VITE_API_URL
-const apiUrlLocal = "http://localhost:3001/api/"
+const apiUrlLocal = "http://localhost:3001"
 
-export const API_URL = apiUrlEnv || apiUrlLocal;
+export const API = apiUrlEnv || apiUrlLocal;
+export const API_URL = API + '/api/';
 
 export const API_URL_ITEMS = API_URL + "items/";
 export const API_URL_OFFERS = API_URL + "offers/";
