@@ -12,9 +12,11 @@ import Landing from "./pages/Landing/Landing";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
 import Details from "./pages/details/Details";
-import FormRegister from "./components/formRegister/FormRegister";
+import FormRegister from "./components/forms/formRegister/FormRegister";
 import Login from "./components/login/Login";
 import FormReview from "./components/reviews/FormReview";
+import MyPets from "./pages/my-pets/MyPets";
+import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
 // Imports Components
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
           <Route path={routerNames['details'] + ':id'} element={<Details />} />
           <Route path={routerNames["profile"]} element={<Landing />} />
           <Route path={routerNames["formReview"]} element={<FormReview />} />
+          <Route path={routerNames["myPets"]} element={<MyPets />} />
+          <Route path={routerNames["myPetsEdit"] + ':idPet'} element={<MyPetsEdit />} />
         </Route>
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />

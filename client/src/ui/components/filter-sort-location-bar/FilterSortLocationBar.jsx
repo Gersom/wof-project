@@ -1,45 +1,33 @@
 import styles from './styles.module.scss';
 import filter from '@icons/filterSortLocationBar/filter.svg';
-import peru from '@icons/filterSortLocationBar/peru.svg';
-import FilterModal from '../filter-modal/FilterModal';
+import argentina from '@icons/filterSortLocationBar/argentina.svg';
+import ModalFilter from '../modals/modal-filter/ModalFilter';
 import SortSelect from '../sort-select/SortSelect';
+import ModalCustom from '../modals/modal-custom/ModalCustom';
 import { useState } from 'react';
 import useSelectorSortFilter from '@src/common/hooks/useSelectorSortFilter';
 
-const FilterSortLocationBar = () => {
+const FilterSortLocationBar = ({role}) => {
 	const [filterModal, setFilterModal] = useState(false);
 	const toggleFilterModal = () => {
 		setFilterModal((prevFilterModal) => !prevFilterModal);
 	};
-	const handleOverlayClick = (event) => {
-		if (event.target.classList.contains(styles.containerOverlay)) {
-			setFilterModal(false);
-		}
-	};
-	const {filters, sorts, actionFilter, actionSort} = useSelectorSortFilter({role: 'owner'});
-
+	const {filters, sorts, actionFilter, actionSort} = useSelectorSortFilter({role: role});
+	
 	return (
 		<nav className={styles.navContainer}>
 			<div className={styles.locationContainer}>
-				<img src={peru} alt='peru' />
-				<h4>Perú</h4>
+				<img src={argentina} alt='peru' />
+				<h4>Argentina</h4>
 			</div>
 			<SortSelect sorts={sorts} actionSort={actionSort} />
 			<div className={styles.filterContainer} onClick={toggleFilterModal}>
 				<h4>Filtros</h4>
 				<img src={filter} alt='filter' />
 			</div>
-			{filterModal && (
-				<div className={styles.containerOverlay} onClick={handleOverlayClick}>
-					<div className={styles.containerModal}>
-						<FilterModal
-							filters={filters}
-							action={actionFilter}
-							toggleFilterModal={toggleFilterModal}
-						/>
-					</div>
-				</div>
-			)}
+			<ModalCustom state={filterModal} toggleModal={toggleFilterModal} isWarning={true}>
+				<ModalFilter filters={filters} action={actionFilter} />
+			</ModalCustom>
 		</nav>
 	);
 };

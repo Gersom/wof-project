@@ -7,11 +7,9 @@ export const sortOffersOwner = (offers, sorts) => {
 			const dateB = new Date(b.startDate);
 			return dateA - dateB;
 		});
-	} else if (sorts.some((sort) => sort.name === 'Puntuación' && sort.value)) {
+	} else if (sorts.some((sort) => sort.name === 'Mejor puntuación' && sort.value)) {
 		return [...offers].sort((a, b) => {
-			const scoreA = parseFloat(a.rating);
-			const scoreB = parseFloat(b.rating);
-			return scoreB - scoreA;
+			return b.rating - a.rating;
 		});
 	}
 

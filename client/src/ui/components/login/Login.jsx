@@ -11,6 +11,11 @@ import { API_URL_LOGIN } from "@src/common/constants/api";
 
 import axios from "axios";
 
+import {
+  saveToLocalStorage,
+  getFromLocalStorage,
+} from "@common/utils/localStorage";
+
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -27,7 +32,10 @@ const Login = () => {
         password: passwordValue,
       });
 
-      console.log(response.data);
+      saveToLocalStorage("session", {
+        userId: response.data.userId,
+        token: response.data.token,
+      });
 
       if (response.data.token) {
         window.alert("Inicio de sesion completado");

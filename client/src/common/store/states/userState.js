@@ -1,6 +1,10 @@
 // State
 const userState = {
-    user: null,
+    user: {
+      name:"Usuario",
+      profilePicture: "#",
+      email: "...@gmail.com"
+    },
   }
   
   export default userState
