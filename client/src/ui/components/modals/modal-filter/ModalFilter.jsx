@@ -4,7 +4,7 @@ import cross from '@icons/filterSortLocationBar/cross.svg';
 
 function FilterModal({ action,filters}) {
 	const dispatch = useDispatch();
-
+	
 	const handleClick = (name) => {
 		dispatch(action(name));
 	};
