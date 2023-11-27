@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	actionGetOffersOwner,
@@ -9,6 +9,7 @@ import { filterOffersOwner } from '../utils/helpers-redux/filterOffersOwner';
 
 const useOffersOwner = () => {
 	const dispatch = useDispatch();
+	const [isLoadingOffers, setIsLoadingOffers] = useState(true);
 	const offersOwner = useSelector((state) => state.offersReducer.offersOwner);
 	const sortsOffersOwner = useSelector(
 		(state) => state.offersReducer.sortOffersOwner
@@ -21,16 +22,25 @@ const useOffersOwner = () => {
 	);
 
 	useEffect(() => {
+		setIsLoadingOffers(true);
 		if (offersOwnerInmutable.length === 0) {
 			dispatch(actionGetOffersOwner());
 		}
-		let filteredOffers = filterOffersOwner(offersOwnerInmutable, filtersOffersOwner);
+		let filteredOffers = filterOffersOwner(
+			offersOwnerInmutable,
+			filtersOffersOwner
+		);
 		let sortedOffers = sortOffersOwner(filteredOffers, sortsOffersOwner);
 		dispatch(actionSetOffersOwner(sortedOffers));
+		setIsLoadingOffers(false);
+	}, [
+		dispatch,
+		offersOwnerInmutable.length,
+		sortsOffersOwner,
+		filtersOffersOwner,
+	]);
 
-	}, [dispatch, offersOwnerInmutable.length, sortsOffersOwner,filtersOffersOwner]);
-
-	return offersOwner;
+	return { isLoadingOffers, offersOwner };
 };
 
 export default useOffersOwner;

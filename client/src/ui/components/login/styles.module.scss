@@ -18,6 +18,22 @@
   max-width: 270px;
 }
 
+.input_container {
+  position: relative;
+}
+
+input[type="password"] {
+  padding-right: 30px; /* Ajusta según sea necesario */
+}
+
+.toggle-password-icon {
+  position: absolute;
+  top: 75%;
+  right: 11px; /* Ajusta según sea necesario */
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -61,7 +77,6 @@ button:not(:last-child) {
   margin-right: 10px;
 }
 
-
 .logo_container {
   justify-content: center;
   display: flex;
@@ -72,7 +87,6 @@ button:not(:last-child) {
     margin-bottom: 1px;
     display: block;
   }
-
 }
 
 .form_auth_hr {
@@ -90,7 +104,7 @@ button:not(:last-child) {
     margin-bottom: 0;
     height: 32px;
   }
-  
+
   label {
     width: 100%;
     display: flex;
@@ -130,8 +144,6 @@ button:not(:last-child) {
   width: 100%;
   margin-bottom: 28px;
 }
-
-
 
 .auth_btn {
   width: 100%;

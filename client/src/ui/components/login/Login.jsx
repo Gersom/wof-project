@@ -1,39 +1,57 @@
-import { Link , useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import routerNames from "@src/common/constants/routes";
 import logo from "@icons/nav/logo.svg";
 import password from "@icons/password.svg";
 import email from "@icons/email.svg";
 import styles from "./styles.module.scss";
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import axios from "axios";
 
+import {
+  saveToLocalStorage,
+  getFromLocalStorage,
+} from "@common/utils/localStorage";
+
 const Login = () => {
   const navigate = useNavigate();
- 
-  const handleSubmit = async (e)=>{
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const emailValue = e.target.elements.email.value;
     const passwordValue = e.target.elements.password.value;
-    
+
     try {
-      const response = await axios.post("http://localhost:3001/api/users/login", {
-        email: emailValue,
-        password: passwordValue,
+      const response = await axios.post(
+        "http://localhost:3001/api/users/login",
+        {
+          email: emailValue,
+          password: passwordValue,
+        }
+      );
+
+      saveToLocalStorage("session", {
+        userId: response.data.userId,
+        token: response.data.token,
       });
 
-      console.log(response.data);
-
-      if(response.data.token){
-        window.alert('Inicio de sesion completado');
-        navigate(routerNames["offers"]); 
+      if (response.data.token) {
+        window.alert("Inicio de sesion completado");
+        navigate(routerNames["offers"]);
       }
-     
     } catch (error) {
-      window.alert('error en correo o contraseña');
+      window.alert("error en correo o contraseña");
       console.error("Error al iniciar sesión:", error.message);
     }
-  }
+  };
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <>
@@ -68,7 +86,16 @@ const Login = () => {
                   ></div>
                   <span>Contraseña:</span>
                 </label>
-                <input type="password" name="password" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                />
+                <div
+                  className={styles["toggle-password-icon"]}
+                  onClick={handleTogglePasswordVisibility}
+                >
+                  <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+                </div>
               </div>
               <button type="submit" className={styles["auth_btn"]}>
                 Ingresar

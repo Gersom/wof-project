@@ -2,26 +2,46 @@
     display: grid;
     grid-template-columns: auto auto;
     column-gap: 2rem;
-    padding: 1rem;
+    padding: 1rem 3rem;
 }
 
 .containerLeft{
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto;
-    row-gap: 2rem;
+    row-gap: 1.5rem;
     justify-content: center;
     padding: 2rem 0rem;
+    align-items: flex-start;
+    justify-items: center;
+    width: 100%;
 }
 
 .containerRight{
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto auto auto auto;
-    row-gap: 2rem;
+    grid-template-rows: min-content min-content min-content min-content;
+    row-gap: 1.5rem;
     justify-content: center;
     h1{
         color:var(--color-text-secondary);
         font-size: 6rem;
     }
+}
+
+.containerOverlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100; 
+}
+
+.containerModal{
+    position: absolute;
+    top: 50%; /* Ajusta verticalmente */
+    left: 50%; /* Ajusta horizontalmente */
+    transform: translate(-50%, -50%);
 }

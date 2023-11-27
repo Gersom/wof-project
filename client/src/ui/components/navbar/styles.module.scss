@@ -7,7 +7,7 @@
 	padding: 0px 1rem;
 	width: max-content;
 }
-.containerSticky{
+.containerSticky {
 	position: sticky;
 	position: -webkit-sticky;
 	top: 0px;
@@ -103,6 +103,9 @@
 	justify-content: center;
 	width: 100%;
 	margin: 0.5rem 0px;
+	border: none;
+	font-family: 'Lexend-Medium';
+	font-size: 1.3rem;
 }
 .selected {
 	background-color: var(--color-blue-light);

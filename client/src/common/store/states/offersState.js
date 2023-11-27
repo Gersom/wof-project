@@ -12,34 +12,34 @@ const offersState = {
 			{
 				name: '🐶 Perros',
 				value: false,
-				key: 'dog'
+				key: 'dog',
 			},
 			{
 				name: '🐯 Gatos',
 				value: false,
-				key: 'cat'
+				key: 'cat',
 			},
 			{
 				name: '♾️ Todas las especies',
 				value: true,
 				key: 'all',
 				default: true,
-			}
+			},
 		],
 		['Genero:']: [
 			{
 				name: '♂️ Machos',
 				value: false,
-				key : 'male'
+				key: 'male',
 			},
 			{
 				name: '♀️ Hembras',
 				value: false,
-				key : 'female'
+				key: 'female',
 			},
 		],
 	},
-	sortOffersOwner:[
+	sortOffersOwner: [
 		{
 			name: 'Ubicación',
 			value: true,
@@ -49,16 +49,51 @@ const offersState = {
 		{
 			name: 'Mejor puntuación',
 			value: false,
-			key: 'score'
+			key: 'score',
 		},
 		{
 			name: 'Fecha de publicación',
 			value: false,
-			key: 'date'
-		}
+			key: 'date',
+		},
 	],
-	filtersOffersCareGivers: {},
-	sortOffersCareGivers: [],
+	filtersOffersCareGivers: {
+		['Genero:']: [
+			{
+				name: '♂️ Machos',
+				value: false,
+				key: 'male',
+			},
+			{
+				name: '♀️ Hembras',
+				value: false,
+				key: 'female',
+			},
+		],
+	},
+	sortOffersCareGivers: [
+		{
+			name: 'Ubicación',
+			value: true,
+			key: 'location',
+			default: true,
+		},
+		{
+			name: 'Mejor puntuación',
+			value: false,
+			key: 'score',
+		},
+		{
+			name: 'Fecha de publicación',
+			value: false,
+			key: 'date',
+		},
+		{
+			name: 'Precio',
+			value: false,
+			key: 'price',
+		},
+	],
 };
 
 export default offersState;

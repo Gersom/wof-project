@@ -11,6 +11,8 @@ const routerNames = {
   details: "/app/offers/details/",
   formReview: "/app/form",
   profile: "/app/profile",
+  myPets: "/app/my-pets",
+  myPetsEdit: "/app/my-pets/",
 };
 
 export default routerNames;

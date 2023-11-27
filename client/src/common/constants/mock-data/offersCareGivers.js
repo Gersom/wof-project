@@ -4,7 +4,7 @@ export const offers = [
     name: "Guayin",
     experiencie: "Profesional",
     address: "Calle dueña del corason 23A",
-    price: "$20 por dia",
+    price: "$20",
     rating: 4.5
   },
   {
