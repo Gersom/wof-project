@@ -1,35 +1,12 @@
 import styles from './styles.module.scss';
-import { useState,useEffect } from 'react';
 import user from '@icons/user.svg';
 import mix from '@icons/mix.svg';
 
-const FormPetEdit = ({ formRef, onSubmit, data }) => {
-	const [form, setForm] = useState({
-		name: '',
-		species: '',
-		breed: '',
-		gender: '',
-		temperaments: '',
-		manners: '',
-		notes: '',
-	});
-	useEffect(() => {
-		
-		if (data) {
-			setForm((prevForm) => ({
-				...prevForm,
-				...data, 
-			}));
-		}
-	}, [data]);
-
-	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setForm({ ...form, [name]: value });
-	};
+const FormPetEdit = ({ form, handleChange,errors}) => {
+	
 
 	return (
-		<form ref={formRef} onSubmit={onSubmit} className={styles.form}>
+		<form className={styles.form}>
 			<h2>Datos de la mascota</h2>
 
 			<div>
@@ -41,6 +18,8 @@ const FormPetEdit = ({ formRef, onSubmit, data }) => {
 				name='name'
 				value={form.name}
 				onChange={handleChange}
+				autoComplete='off'
+				placeholder='¿Como se llama tu mascota?'
 			/>
 
 			<div>
@@ -57,7 +36,7 @@ const FormPetEdit = ({ formRef, onSubmit, data }) => {
 				<label>Raza :</label>
 			</div>
 			<select name='breed' value={form.breed} onChange={handleChange}>
-				<option value='pastor Aleman'>pastor Aleman</option>
+				<option value='Mestizo'>Mestizo</option>
 				<option value='rotate'>rotate</option>
 			</select>
 
@@ -79,6 +58,8 @@ const FormPetEdit = ({ formRef, onSubmit, data }) => {
 				name='temperaments'
 				value={form.temperaments}
 				onChange={handleChange}
+				autoComplete='off'
+				placeholder='¿Juega mucho?, ¿Se enoja mucho?'
 			/>
 
 			<div>
@@ -90,13 +71,21 @@ const FormPetEdit = ({ formRef, onSubmit, data }) => {
 				name='manners'
 				value={form.manners}
 				onChange={handleChange}
+				autoComplete='off'
+				placeholder='¿Cómo se comporta?'
 			/>
 
 			<div>
 				<img src={user} alt='user' />
 				<label>Notas :</label>
 			</div>
-			<textarea name='notes' value={form.notes} onChange={handleChange} />
+			<textarea
+				name='notes'
+				value={form.notes}
+				onChange={handleChange}
+				autoComplete='off'
+				placeholder='¿Hay algo que el cuidador necesite saber?, por ejemplo alergias o cuidados especiales.'
+			/>
 		</form>
 	);
 };
