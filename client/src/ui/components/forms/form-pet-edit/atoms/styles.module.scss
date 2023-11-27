@@ -25,3 +25,41 @@
 		transition: all 0.2s ease-in-out;
 	}
 }
+
+.buttonAgree{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 22rem;
+	height: 30rem;
+	gap: 1rem;
+	background-color: transparent;
+	button {
+		width: 100%;
+		margin: 0;
+		padding: 0.7rem 0rem;
+		border-radius: 1rem;
+		border: 0.15rem dashed var(--color-blue-light);
+		background-color: transparent;
+		color: var(--color-blue-light);
+		font-family: 'Lexend-Medium';
+		font-size: 1.5rem;
+		cursor: pointer;
+		img {
+			width: 4.5rem;
+			height: 4.5rem;
+			transition: all 0.2s ease-in-out;
+		}
+		&:hover {
+			background-color: var(--color-text-primary);
+			color: var(--color-blue-light);
+			border: 0.15rem solid var(--color-blue-light);
+			scale: 1.05;
+			img{
+				scale: 1.1;
+			}
+		}
+		transition: all 0.2s ease-in-out;
+	}
+}

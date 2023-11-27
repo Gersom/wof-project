@@ -11,7 +11,9 @@ const routerNames = {
   details: "/app/offers/details/",
   formReview: "/app/form",
   profile: "/app/profile",
+
   myPets: "/app/my-pets",
+  myPetsCreate: "/app/my-pets/create",
   myPetsEdit: "/app/my-pets/",
 };
 
