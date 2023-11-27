@@ -55,16 +55,18 @@ const FormReview = () => {
         <div className={styles.divider}></div>
         <label>Nombre:</label>
         <input onChange={handleChange} type="text" name="name" />
-        <p className="error">{errors.name}</p>
+        <span className={styles.errorReview}>{errors.name}</span>
         <h4>Puntuación: {renderStars()}</h4>
-        <textarea
-          onChange={handleChange}
-          placeholder="Escribe tu reseña..."
-          cols="30"
-          rows="10"
-          name="review"
-        ></textarea>
-        <p className="error">{errors.review}</p>
+        <div>
+          <textarea
+            onChange={handleChange}
+            placeholder="Escribe tu reseña..."
+            cols="30"
+            rows="10"
+            name="review"
+          ></textarea>
+          <span className={styles.errorReview}>{errors.review}</span>
+        </div>
         <div className={styles.btnCont}>
           <button className={styles.btnCancel}>Cancelar</button>
           <div className={styles.separator}></div>
