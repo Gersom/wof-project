@@ -5,7 +5,6 @@
 	height: 30rem;
 	border-radius: 0.5rem;
 	background-color: var(--color-text-primary);
-
 }
 .figure {
     display: flex;
@@ -29,7 +28,7 @@
     }
 }
 
-.sectionInfo {
+.sectionOffer {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -174,4 +173,36 @@
 
 .imageEditable{
 	filter: blur(1px);
+}
+
+/* info */
+
+
+.articleInfo{
+	display: flex;
+	flex-direction: column;
+	width: 18rem;
+	height: 22rem;
+	border-radius: 0.5rem;
+	background-color: var(--color-text-primary);
+}
+.sectionInfo{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: flex-start;
+	justify-items: flex-start;
+	padding: 0.5rem 0.8rem;
+	h5{
+		color: var(--color-text-dark);
+		font-size: 1rem;
+		margin: 0;
+		padding: 0;
+	}
+	h4{
+		color: var(--color-text-grey);
+		font-size: 1rem;
+		margin: 0;
+		padding: 0;
+	}
 }

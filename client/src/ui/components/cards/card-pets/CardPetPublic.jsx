@@ -6,21 +6,24 @@ import SectionDefault from './atoms/SectionDefault';
 
 const CardPetPublic = ({
 	data = {
-		pet: { imageUrl: 'https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg', name: '' },
+		pet: {
+			imageUrl:
+				'https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg',
+			name: '',
+		},
 		owner: { name: '' },
 		address: '',
 		startDate: '',
 		endDate: '',
 		rating: 0,
-        estado:'',
+		estado: '',
 	},
 }) => {
-
 	return (
 		<>
 			<article className={styles.article}>
 				<PetImage data={data} isEditable={true} />
-                <SectionDefault data={data} />
+				<SectionDefault data={data} />
 			</article>
 		</>
 	);
