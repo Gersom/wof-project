@@ -36,6 +36,7 @@ function App() {
           <Route path={routerNames["profile"]} element={<Landing />} />
           <Route path={routerNames["formReview"]} element={<FormReview />} />
           <Route path={routerNames["myPets"]} element={<MyPets />} />
+          <Route path={routerNames["myPetsCreate"]} element={<MyPetsEdit />} />
           <Route path={routerNames["myPetsEdit"] + ':idPet'} element={<MyPetsEdit />} />
         </Route>
         {/* Not Found 404 */}
