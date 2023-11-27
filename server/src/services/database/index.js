@@ -24,10 +24,10 @@ const insertData = async () => {
   await setTimeout(()=>insertOwners(), "2500")
   await setTimeout(()=>insertCaregivers(), "3000")
 
-  await setTimeout(()=>insertPets(), "3500")
-  await setTimeout(()=>insertPetsImages(), "4000")
-  await setTimeout(()=>insertPosts(), "4500")
-  await setTimeout(()=>insertReviews(), "5000")
+  await setTimeout(()=>insertPets(), "3000")
+  await setTimeout(()=>insertPosts(), "4000")
+  await setTimeout(()=>insertReviews(), "4500")
+  await setTimeout(()=>insertPetsImages(), "5000")
 }
 
 module.exports = insertData
