@@ -1,4 +1,5 @@
 import styles from '../styles.module.scss';
+import editWhite from '@icons/editWhite.svg';
 
 const PetImage = ({
 	data = {
@@ -10,9 +11,18 @@ const PetImage = ({
 	return (
 		<>
 			<figure className={styles.figure}>
-				<img src={data.pet.imageUrl} alt={data.pet.name} className={styleImage}/>
+				<img
+					src={data.pet.imageUrl}
+					alt={data.pet.name}
+					className={styleImage}
+				/>
 				<figcaption>{data.pet.name}</figcaption>
-				{isEditable && <button className={styles.buttonEdit}>Editar</button>}
+				{isEditable && (
+					<button className={styles.buttonEditAbsolute}>
+						<img src={editWhite} alt='editWhite' />
+						Editar
+					</button>
+				)}
 			</figure>
 		</>
 	);

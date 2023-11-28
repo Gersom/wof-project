@@ -24,12 +24,10 @@
         margin-bottom: 1.5rem;
     }
     div{
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: flex-start;
-        gap: 1rem;
-        width: 80%;
-        height: 100%;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-row: auto;
+        width: 85%;
+        gap: 2rem;
     }
 }
