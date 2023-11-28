@@ -16,7 +16,7 @@ const PetImage = ({
 					alt={data.pet.name}
 					className={styleImage}
 				/>
-				<figcaption>{data.pet.name}</figcaption>
+				<figcaption>{data.pet.name || data.name}</figcaption>
 				{isEditable && (
 					<button className={styles.buttonEditAbsolute}>
 						<img src={editWhite} alt='editWhite' />

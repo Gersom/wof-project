@@ -8,15 +8,12 @@ const myPetsSlice = createSlice({
 	name: 'formPetEditSlice',
 	initialState,
 	reducers: {
-		updateFormPetEdit(state, action) {
-			state.formPetEdit = {
-				...state.formPetEdit,
-				[action.payload.name]: action.payload.value,
-			};
-		},
+		getMyPets: (state, action) => {
+			state.myPets = action.payload;
+		}
 	},
 });
 
-export const { updateFormPetEdit } = myPetsSlice.actions;
+export const { getMyPets } = myPetsSlice.actions;
 
 export default myPetsSlice.reducer;
