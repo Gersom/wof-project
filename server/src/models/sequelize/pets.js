@@ -95,9 +95,13 @@ PetsModel["findAllPets"] = async (ownerId) => {
       pet: {
         id: pet.id,
         name: pet.name,
+        temperaments: pet.temperaments,
+        manners: pet.manners,
+        notes: pet.notes,
         species: pet.species,
         imageUrl:petImgUrl,
         gender: pet.gender.name,
+
       },
       owner: {
         id: pet.owner.id,
