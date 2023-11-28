@@ -7,6 +7,7 @@ const GerdersModel = require(`./genders`)
 const addMethods = require("../utils/addStaticMethods")
 const UsersModel = require("./users")
 const PetsImagesModel = require("./pets_images")
+// const PostsModel = require("./posts")
 
 const name = 'pets'
 const config = { 
@@ -64,17 +65,35 @@ PetsModel["createPet"] = async (data) => {
   return await PetsModel.create(data)
 }
 
-PetsModel["findAllPets"] = async () => {
+PetsModel["findAllPets"] = async (ownerId) => {
+  const PostsModel = require("./posts")
+  if(ownerId){
+    const pets = await PetsModel.findAll({
+      where:{ownerId},
+      attributes:["id","name","temperaments","manners","notes"],
+      include: [
+        {model: OwnersModel, attributes:["id"], include:[{model: UsersModel, attributes:["name","lastName"]}]},
+        {model: BreedsModel, attributes:["name"]},
+        {model: SpeciesModel, attributes:["name"]},
+        {model: GerdersModel, attributes:["name"]},
+        {model: PostsModel},
+      ]
+    })
+    return pets
+  }
   const pets = await PetsModel.findAll({
+    where:{ownerId},
     attributes:["id","name","temperaments","manners","notes"],
     include: [
       {model: OwnersModel, attributes:["id"], include:[{model: UsersModel, attributes:["name","lastName"]}]},
       {model: BreedsModel, attributes:["name"]},
       {model: SpeciesModel, attributes:["name"]},
       {model: GerdersModel, attributes:["name"]},
+      {model: PostsModel},
     ]
   })
   return pets
+
 }
 
 PetsModel["findPet"] = async (id) => {
@@ -87,7 +106,9 @@ PetsModel["findPet"] = async (id) => {
       {model: GerdersModel, attributes:["name"]},
     ]
   })
-  return pet
+  const PetImages = await pet.getPetsImages()
+  const data = {...pet.toJSON(),imageUrl:PetImages}
+  return data
 }
 
 PetsModel["createPet"] = async (data) => {
