@@ -2,9 +2,7 @@ import styles from './styles.module.scss';
 import user from '@icons/user.svg';
 import mix from '@icons/mix.svg';
 
-const FormPetEdit = ({ form, handleChange,errors}) => {
-	
-
+const FormPetEdit = ({ form, handleChange, errors }) => {
 	return (
 		<form className={styles.form}>
 			<h2>Datos de la mascota</h2>
@@ -27,8 +25,8 @@ const FormPetEdit = ({ form, handleChange,errors}) => {
 				<label>Especie :</label>
 			</div>
 			<select name='species' value={form.species} onChange={handleChange}>
-				<option value='🐶 Perro'>🐶 Perro</option>
-				<option value='🐯 Gato'>🐯 Gato</option>
+				<option value='dog'>🐶 Perro</option>
+				<option value='cat'>🐯 Gato</option>
 			</select>
 
 			<div>
@@ -42,11 +40,11 @@ const FormPetEdit = ({ form, handleChange,errors}) => {
 
 			<div>
 				<img src={mix} alt='pet' />
-				<label>Sexo :</label>
+				<label>Género :</label>
 			</div>
 			<select name='gender' value={form.gender} onChange={handleChange}>
-				<option value='macho'>♂️ Macho</option>
-				<option value='hembra'>♀️ Hembra</option>
+				<option value='male'>♂️ Macho</option>
+				<option value='female'>♀️ Hembra</option>
 			</select>
 
 			<div>

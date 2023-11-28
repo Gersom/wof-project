@@ -30,13 +30,12 @@ const CardPetPublic = ({
 				<PetImage data={data} isEditable={true} />
 				<SectionDefault data={data} toggleModal={() => setModal(true)} />
 			</article>
-
 			<ModalCustom
 				isWarning={false}
 				state={modal}
 				toggleModal={() => setModal(!modal)}
 			>
-				<ModalPublicPet />
+				<ModalPublicPet data={data}/>
 			</ModalCustom>
 		</>
 	);
