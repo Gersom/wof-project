@@ -10,7 +10,7 @@ const PetsImagesModel = require("./pets_images")
 // const PostsModel = require("./posts")
 
 const name = 'pets'
-const config = { 
+const config = {
   timestamps: false, // createAt, updateAt
   freezeTableName: true
 }
@@ -40,7 +40,7 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  
+
 }
 
 const PetsModel = sequelize.define(name, schema, config)
@@ -67,44 +67,84 @@ PetsModel["createPet"] = async (data) => {
 
 PetsModel["findAllPets"] = async (ownerId) => {
   const PostsModel = require("./posts")
-    const petImages = require("./pets_images")
-    const pets = await PetsModel.findAll({
-      where:ownerId?{ownerId}:{},
-      attributes:["id","name","temperaments","manners","notes"],
-      include: [
-        {model: OwnersModel, attributes:["id"], include:[{model: UsersModel, attributes:["name","lastName"]}]},
-        {model: BreedsModel, attributes:["name"]},
-        {model: SpeciesModel, attributes:["name"]},
-        {model: GerdersModel, attributes:["name"]},
-        {model: PostsModel},
-        {model: petImages}
-      ]
-    })
-    return pets
+  const petImages = require("./pets_images")
+  const pets = await PetsModel.findAll({
+    where: ownerId ? { ownerId } : {},
+    attributes: ["id", "name", "temperaments", "manners", "notes"],
+    include: [
+      { model: OwnersModel, include: [{ model: UsersModel, attributes: ["name", "lastName"] }] },
+      { model: BreedsModel, attributes: ["name"] },
+      { model: SpeciesModel, attributes: ["name", "icon"] },
+      { model: GerdersModel, attributes: ["name"] },
+      { model: PostsModel, attributes: ["id", "startDate", "endDate", "address"] },
+      { model: petImages, attributes: ["imageUrl"] }
+    ]
+  })
+
+  return pets.map(pet => {
+    let petImgUrl = ""
+
+    if (pet?.petsImages?.length > 0) {
+      petImgUrl = pet?.petsImages[0]?.imageUrl
+    }
+    return {
+
+      address: pet.post?.address,
+      startDate: pet.post?.startDate,
+      endDate: pet.post?.endDate,
+      pet: {
+        id: pet.id,
+        name: pet.name,
+        species: pet.species,
+        imageUrl:petImgUrl,
+        gender: pet.gender.name,
+      },
+      owner: {
+        id: pet.owner.id,
+        userId: pet.owner.userId,
+        name: pet.owner.user.name
+      }
 
 
+
+    }
+  })
+
+  // return pets.map(pet => {
+  //   return {
+  //     ...pet.toJSON(),
+  //     breed: pet.breed.name,
+  //     gender: pet.gender.name,
+  //     owner:{
+  //       id:pet.owner.id,
+  //       userId:pet.owner.userId,
+  //       name:pet.owner.user.name,
+  //     },
+
+  //   }
+  // })
 }
 
 PetsModel["findPet"] = async (id) => {
-  const pet = await PetsModel.findByPk(id,{
-    attributes:["id","name","temperaments","manners","notes"],
-    include:[
-      {model: OwnersModel, attributes:["id"], include:[{model: UsersModel, attributes:["name","lastName"]}]},
-      {model: BreedsModel, attributes:["name"]},
-      {model: SpeciesModel, attributes:["name"]},
-      {model: GerdersModel, attributes:["name"]},
+  const pet = await PetsModel.findByPk(id, {
+    attributes: ["id", "name", "temperaments", "manners", "notes"],
+    include: [
+      { model: OwnersModel, attributes: ["id"], include: [{ model: UsersModel, attributes: ["name", "lastName"] }] },
+      { model: BreedsModel, attributes: ["name"] },
+      { model: SpeciesModel, attributes: ["name"] },
+      { model: GerdersModel, attributes: ["name"] },
     ]
   })
   const PetImages = await pet.getPetsImages()
-  const data = {...pet.toJSON(),imageUrl:PetImages}
+  const data = { ...pet.toJSON(), imageUrl: PetImages }
   return data
 }
 
 PetsModel["createPet"] = async (data) => {
   const { imageUrl } = data
   const newPet = await PetsModel.create(data)
-  if(imageUrl){
-    newPet.createPetsImage({imageUrl})
+  if (imageUrl) {
+    newPet.createPetsImage({ imageUrl })
   }
   return newPet
 }
