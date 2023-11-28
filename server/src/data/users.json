@@ -1,7 +1,7 @@
 [
   {
     "email": "anny@gmail.com",
-    "password": "123456",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
     "role": "owner",
     "profilePicture": "/pictures/anny.png",
     "name": "Anny",
@@ -13,7 +13,7 @@
   },
   {
     "email": "gersom@gmail.com",
-    "password": "123456",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
     "role": "owner",
     "profilePicture": "/pictures/gersom.png",
     "name": "Gersom",
@@ -25,7 +25,7 @@
   },
   {
     "email": "jhonatan@gmail.com",
-    "password": "123456",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
     "role": "caregiver",
     "profilePicture": "https://cdn.pixabay.com/photo/2016/09/14/19/53/person-1670247_1280.jpg",
     "name": "Jhonatan",
@@ -37,7 +37,7 @@
   },
   {
     "email": "gaby@gmail.com",
-    "password": "123456",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
     "role": "caregiver",
     "profilePicture": "https://images.unsplash.com/photo-1671973833358-5a817b220e95?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyfHx8ZW58MHx8fHx8&w=1000&q=80",
     "name": "Gaby",

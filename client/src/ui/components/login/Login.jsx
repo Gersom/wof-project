@@ -7,6 +7,7 @@ import email from "@icons/email.svg";
 import styles from "./styles.module.scss";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { API_URL_LOGIN } from "@src/common/constants/api";
 
 import axios from "axios";
 
