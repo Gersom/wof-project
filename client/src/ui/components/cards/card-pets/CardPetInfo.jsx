@@ -9,7 +9,7 @@ const CardPetInfo = ({
 				'https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg',
 			name: 'Tukis',
 			breed: 'Mestizo',
-			manners: 'Es tranquilo',
+			manners: 'Es tranquilo a veces le dar por ladrar a las 3am pero es tranquilo en general',
 		},
 	},
 }) => {
