@@ -5,6 +5,8 @@ const BreedsModel = require(`./breeds`)
 const SpeciesModel = require(`./species`)
 const GerdersModel = require(`./genders`)
 const addMethods = require("../utils/addStaticMethods")
+const UsersModel = require("./users")
+const PetsImagesModel = require("./pets_images")
 
 const name = 'pets'
 const config = { 
@@ -57,5 +59,44 @@ PetsModel.belongsTo(GerdersModel)
 
 // add static methods (functions) to model
 addMethods(PetsModel)
+
+PetsModel["createPet"] = async (data) => {
+  return await PetsModel.create(data)
+}
+
+PetsModel["findAllPets"] = async () => {
+  const pets = await PetsModel.findAll({
+    attributes:["id","name","temperaments","manners","notes"],
+    include: [
+      {model: OwnersModel, attributes:["id"], include:[{model: UsersModel, attributes:["name","lastName"]}]},
+      {model: BreedsModel, attributes:["name"]},
+      {model: SpeciesModel, attributes:["name"]},
+      {model: GerdersModel, attributes:["name"]},
+    ]
+  })
+  return pets
+}
+
+PetsModel["findPet"] = async (id) => {
+  const pet = await PetsModel.findByPk(id,{
+    attributes:["id","name","temperaments","manners","notes"],
+    include:[
+      {model: OwnersModel, attributes:["id"], include:[{model: UsersModel, attributes:["name","lastName"]}]},
+      {model: BreedsModel, attributes:["name"]},
+      {model: SpeciesModel, attributes:["name"]},
+      {model: GerdersModel, attributes:["name"]},
+    ]
+  })
+  return pet
+}
+
+PetsModel["createPet"] = async (data) => {
+  const { imageUrl } = data
+  const newPet = await PetsModel.create(data)
+  if(imageUrl){
+    newPet.createPetsImage({imageUrl})
+  }
+  return newPet
+}
 
 module.exports = PetsModel

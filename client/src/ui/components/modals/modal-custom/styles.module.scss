@@ -13,6 +13,8 @@
     top: 50%; /* Ajusta verticalmente */
     left: 50%; /* Ajusta horizontalmente */
     transform: translate(-50%, -50%);
+    width: max-content;
+    height: max-content;
 }
 
 .cross{
