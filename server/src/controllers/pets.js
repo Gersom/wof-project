@@ -10,7 +10,8 @@ const catchedAsync = require("../utils/catchedAsync")
 
 // READ ITEMS
 const getAllPets =catchedAsync( async (req, res) => {
-    const pets = await getAllPetsLogic()
+    const { ownerId } = req.query
+    const pets = await getAllPetsLogic(ownerId)
     res.status(200).json(pets)
 }, ErrorHandler.getAllPetsErrorHandler)
 

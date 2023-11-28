@@ -1,7 +1,7 @@
 const { PetsModel } = require("../models")
 
-const getAllPetsLogic = async () => {
-    const pets = await PetsModel.findAllPets()
+const getAllPetsLogic = async (ownerId) => {
+    const pets = await PetsModel.findAllPets(ownerId)
     return pets
 }
 
