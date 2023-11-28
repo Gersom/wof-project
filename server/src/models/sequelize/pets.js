@@ -67,9 +67,9 @@ PetsModel["createPet"] = async (data) => {
 
 PetsModel["findAllPets"] = async (ownerId) => {
   const PostsModel = require("./posts")
-  if(ownerId){
+    const petImages = require("./pets_images")
     const pets = await PetsModel.findAll({
-      where:{ownerId},
+      where:ownerId?{ownerId}:{},
       attributes:["id","name","temperaments","manners","notes"],
       include: [
         {model: OwnersModel, attributes:["id"], include:[{model: UsersModel, attributes:["name","lastName"]}]},
@@ -77,22 +77,11 @@ PetsModel["findAllPets"] = async (ownerId) => {
         {model: SpeciesModel, attributes:["name"]},
         {model: GerdersModel, attributes:["name"]},
         {model: PostsModel},
+        {model: petImages}
       ]
     })
     return pets
-  }
-  const pets = await PetsModel.findAll({
-    where:{ownerId},
-    attributes:["id","name","temperaments","manners","notes"],
-    include: [
-      {model: OwnersModel, attributes:["id"], include:[{model: UsersModel, attributes:["name","lastName"]}]},
-      {model: BreedsModel, attributes:["name"]},
-      {model: SpeciesModel, attributes:["name"]},
-      {model: GerdersModel, attributes:["name"]},
-      {model: PostsModel},
-    ]
-  })
-  return pets
+
 
 }
 
