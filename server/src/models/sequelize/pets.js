@@ -77,12 +77,13 @@ PetsModel["findAllPets"] = async (ownerId) => {
         {model: SpeciesModel, attributes:["name"]},
         {model: GerdersModel, attributes:["name"]},
         {model: PostsModel},
+        {model: PetsImagesModel},
       ]
     })
     return pets
   }
   const pets = await PetsModel.findAll({
-    where:{ownerId},
+    // where:{ownerId},
     attributes:["id","name","temperaments","manners","notes"],
     include: [
       {model: OwnersModel, attributes:["id"], include:[{model: UsersModel, attributes:["name","lastName"]}]},
