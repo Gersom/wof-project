@@ -7,6 +7,7 @@
 	--color-background-dark: #282c34; /* fondo oscuro  */
 	--color-background-light: #f3f4f8; /* fondo claro  */
 	--color-blue-light: #52c1e4; /* utilizado en varios puntos */
+	--color-blue-primary: #646cff;
 	--color-button-green: #52cd8b; /* utilizado en botones */
 	--color-yellow: #ffd232; /* utilizado para destacar cosas */
 }
