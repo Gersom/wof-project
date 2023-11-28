@@ -52,15 +52,24 @@ $color-grey: #cccccc;
 			font-size: 1.1rem;
 			width: 100%;
 			margin: 0;
+			padding: 0.4rem 0.8rem;
 			&:focus {
 				outline: none;
 				border: 0.15rem solid $color-grey;
 			}
 		}
 		input[type='date']::-webkit-calendar-picker-indicator {
-			display: none;
+			width: 1.5rem;
+			height: 1.5rem;
+			padding: 0;
+			margin: 0;
+			content: url('@icons/dateGrey.svg');
 		}
-		input::after {
+		.iconStart {
+			position: absolute;
+			top: 20%;
+			right: 0;
+			margin: 0rem 1rem;
 			content: url('@icons/dateGrey.svg');
 		}
 		button {
@@ -74,8 +83,9 @@ $color-grey: #cccccc;
 			border: 0.15rem solid transparent;
 			border-radius: 0.5rem;
 			width: 100%;
+			height: max-content;
 			margin: 0;
-			padding: 0.5rem 0;
+			padding: 0.6rem 0;
 			font-size: 1.2rem;
 			font-family: 'Lexend-Regular';
 			cursor: pointer;
