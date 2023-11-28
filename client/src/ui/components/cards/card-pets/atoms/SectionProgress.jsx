@@ -3,7 +3,7 @@ import starReview from '@icons/starReview.svg';
 import { Link } from 'react-router-dom';
 import FooterDates from './FooterDates';
 
-const PetProgress= ({data = {
+const SectionProgress = ({data = {
     owner : {
         name: '',
         id: 0,
@@ -27,4 +27,4 @@ const PetProgress= ({data = {
 	);
 };
 
-export default PetProgress;
+export default SectionProgress;

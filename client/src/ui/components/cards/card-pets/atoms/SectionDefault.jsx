@@ -1,7 +1,7 @@
 import styles from '../styles.module.scss';
 import FooterDates from './FooterDates';
 
-const PetDefault = ({data}) => {
+const SectionDefault = ({data}) => {
 	return (
 		<section className={styles.sectionPublic}>
 			<h3>En busca de un cuidador:</h3>
@@ -13,4 +13,4 @@ const PetDefault = ({data}) => {
 	);
 };
 
-export default PetDefault;
+export default SectionDefault;
