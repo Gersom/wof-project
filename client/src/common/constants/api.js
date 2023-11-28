@@ -5,3 +5,4 @@ export const API_URL_PROVINCES = API_URL + "provinces/";
 export const API_URL_CREATE_USER = API_URL + "users/";
 export const API_URL_LOGIN = API_URL + "login/";
 export const API_URL_USER = API_URL + "users/";
+export const API_URL_REGISTER = API_URL + "users/";
