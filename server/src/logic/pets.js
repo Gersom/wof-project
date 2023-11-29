@@ -9,6 +9,7 @@ const getAllPetsLogic = async (ownerId) => {
       petImgUrl = pet?.petsImages[0]?.imageUrl
     }
     return {
+      id: pet.post.id,
       address: pet.post?.address,
       startDate: pet.post?.startDate,
       endDate: pet.post?.endDate,
