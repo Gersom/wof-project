@@ -8,19 +8,24 @@ import { useSelector } from 'react-redux';
 import validation from '@src/ui/components/forms/form-pet-edit/validation';
 import { API_URL_MY_PETS } from '@src/common/constants/api';
 
+
 const MyPetsEdit = () => {
 	const { idPet } = useParams();
 	const pets = useSelector((state) => state.myPetsReducer.myPets);
+	const ownerId  = useSelector((state) => state.userReducer.user.id);
 	const [images, setImages] = useState([]);
+
 	const [form, setForm] = useState({
 		name: '',
-		species: '🐶 Perro',
-		breed: 'Mestizo',
-		gender: 'Macho',
+		species: 1,
+		breed: 1,
+		gender: 1,
 		temperaments: '',
 		manners: '',
 		notes: '',
+		ownerId: ownerId,
 	});
+
 	const [error, setError] = useState(null);
  
 	useEffect(() => {
@@ -34,9 +39,9 @@ const MyPetsEdit = () => {
 				const data = await response.json();
 				setForm({
 					name: data.name,
-					species: data.species.name,
-					breed: data.breed.name,
-					gender: data.breed.name,
+					species: data.species.id,
+					breed: data.breed.id,
+					gender: data.gender.id,
 					temperaments: data.temperaments,
 					manners: data.manners,
 					notes: data.notes,
@@ -53,14 +58,31 @@ const MyPetsEdit = () => {
 		setForm({ ...form, [name]: value });
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e,) => {
+		const options = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(form),
+		}
 		e.preventDefault();
 		if (Object.values(error).some((error) => error !== ''))
 			return console.log(error);
 		else {
-			console.log(form);
+			if (idPet) {
+				options.method = 'PUT';
+				const response = await fetch(`${API_URL_MY_PETS}/${idPet}`, options);
+				const data = await response.json();
+				console.log(data);
+			}
+			else {
+				const response = await fetch(API_URL_MY_PETS, options);
+				const data = await response.json();
+				console.log(data);
+			}
 		}
-	};
+	}
 
 	return (
 		<div className={styles.mainContainer}>
