@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import routerNames from "@src/common/constants/routes";
-import wofImage from "../../assets/images/landing/wof.svg";
+import wofImage from "@images/landing/wof.svg";
 import rectangle from "@images/landing/rectangle.svg";
 
 import { useAuth0 } from "@auth0/auth0-react";

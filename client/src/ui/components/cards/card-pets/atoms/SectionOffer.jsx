@@ -10,6 +10,7 @@ const SectionOffer = ({
 		rating: 0,
 	},
 }) => {
+	
 	const dateStart = new Date(data.startDate).toLocaleDateString('es-ES', {
 		day: 'numeric',
 	});
@@ -17,7 +18,7 @@ const SectionOffer = ({
 		month: 'long',
 		day: 'numeric',
 	});
-	
+
 	return (
 		<>
 			<section className={styles.sectionOffer}>
@@ -30,7 +31,7 @@ const SectionOffer = ({
 				</div>
 				<footer>
 					<img src={starReview} alt='star' />
-					<h5>{data.rating ||data.owner.rating} </h5>
+					<h5>{data.rating ||data.pet.rating} </h5>
 				</footer>
 			</section>
 		</>
