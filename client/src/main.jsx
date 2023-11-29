@@ -14,7 +14,7 @@ import store from '@common/store/store.js'
 import '@styles/main.js';
 
 //envs
-import { AUTH_DOMAIN, CLIENT_ID } from './config/envs.js';
+import { AUTH_DOMAIN, CLIENT_ID, LOADING } from './config/envs.js';
 import { useContext } from 'react';
 
 // Init Project
@@ -26,7 +26,7 @@ ReactDOM.createRoot(
       domain={AUTH_DOMAIN}
       clientId={CLIENT_ID}
       authorizationParams={{
-        redirect_uri: "http://localhost:5173/iniciar-sesion"||window.location.origin
+        redirect_uri: LOADING
       }}>
       <Provider store={store}>
         <BrowserRouter>
