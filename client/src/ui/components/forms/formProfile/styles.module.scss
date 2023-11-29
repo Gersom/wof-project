@@ -53,7 +53,10 @@
 .imgProfile {
   width: 7rem;
   height: 7rem;
-  margin-top: -10px;
+  margin-top: -5px;
+  border-radius: 50%;
+  border: 2px solid white;
+  object-fit: cover;
 }
 
 .profile_input input,
@@ -78,7 +81,7 @@ label.profile_input_image {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .profile_input_image_preview {
@@ -87,7 +90,6 @@ label.profile_input_image {
   background: #ddd;
   border-radius: 90px;
   margin-right: 20px;
-  border: 2px solid #fff;
 }
 
 .profile_input_image_btn {

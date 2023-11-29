@@ -1,25 +1,4 @@
-require("dotenv").config();
-
-const { MAIL_PASSWORD } = process.env;
-
-const nodeMailer = require("nodemailer");
-
-const deleteUserMail = async (email, name, lastName) => {
-  let transporter = nodeMailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: "wofbot.noreplay@gmail.com",
-      pass: `${MAIL_PASSWORD}`,
-    },
-  });
-  let info = await transporter.sendMail({
-    from: '"soporte" <wofbot.noreplay@gmail.com>',
-    to: email,
-    subject: "¡No te Vayas!",
-    html: `
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html
   lang="es"
   xmlns="https://www.w3.org/1999/xhtml"
@@ -213,9 +192,3 @@ const deleteUserMail = async (email, name, lastName) => {
     </table>
   </body>
 </html>
-
-    `,
-  });
-};
-
-module.exports = deleteUserMail;

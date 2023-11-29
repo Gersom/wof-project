@@ -126,7 +126,7 @@ const FormProfile = () => {
                   </option>
                   {countries?.map((countries) => (
                     <option key={countries.id} value={countries.name}>
-                      <span>{countries.icon_url}</span> {countries.name}
+                      <img src={countries.iconUrl} alt="" /> {countries.name}
                     </option>
                   ))}
                 </select>
@@ -186,7 +186,7 @@ const FormProfile = () => {
                 ></div>
                 <span>Nro de Celular :</span>
               </div>
-              <input value={userData?.cell_phone} />
+              <input value={userData?.cellPhone} />
             </div>
             <div className={styles["profile_input"]}>
               <div className={styles["profile_label"]}>
@@ -206,7 +206,7 @@ const FormProfile = () => {
                 ></div>
                 <span>Fecha de Nacimiento :</span>
               </div>
-              <input value={userData?.birthdate} />
+              <input type="date" value={userData?.birthdate} />
             </div>
             <div className={styles["profile_input"]}>
               <div className={styles["profile_label"]}>
