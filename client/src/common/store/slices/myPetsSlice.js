@@ -10,7 +10,7 @@ const myPetsSlice = createSlice({
 	reducers: {
 		getMyPets: (state, action) => {
 			state.myPets = action.payload;
-		}
+		},
 	},
 });
 
