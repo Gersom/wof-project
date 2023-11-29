@@ -3,14 +3,18 @@ export const convertDates = (startDate, endDate) => {
         'ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'
       ];
       const dateStart = new Date(startDate);
-      const dia = dateStart.getDate();
-      const mesAbreviado = meses[dateStart.getMonth()];
-      const año = dateStart.getFullYear();
+      const dayStart = dateStart.getDate();
+      const mothStart = meses[dateStart.getMonth()];
+      const yearStart = dateStart.getFullYear();
       
-      const fechaFormateada = `${dia} de ${mesAbreviado} ${año}`;
+      const dateFormatedStart = `${dayStart} de ${mothStart} ${yearStart}`;
       
         const dateEnd = new Date(endDate);
         const dayEnd = dateEnd.getDate();
         const monthEnd = meses[dateEnd.getMonth()];
         const yearEnd = dateEnd.getFullYear();
+
+        const dateFormatedEnd = `${dayEnd} de ${monthEnd} ${yearEnd}`;
+
+        return {dateStart : dateFormatedStart, dateEnd : dateFormatedEnd}
 }

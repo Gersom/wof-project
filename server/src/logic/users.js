@@ -25,7 +25,7 @@ const getAllUsersLogic = async () => {
 };
 
 const getUserLogic = async (id) => {
-  const User = await UsersModel.findDataById(id);
+  const User = await UsersModel.findUserById(id);
   if (!User) throw Error("User not found");
   return User;
 };

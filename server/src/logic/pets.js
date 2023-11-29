@@ -9,27 +9,27 @@ const getAllPetsLogic = async (ownerId) => {
       petImgUrl = pet?.petsImages[0]?.imageUrl
     }
     return {
-      id: pet.post.id,
+      id: pet?.post?.id,
       address: pet.post?.address,
       startDate: pet.post?.startDate,
       endDate: pet.post?.endDate,
       pet: {
-        id: pet.id,
-        name: pet.name,
-        temperaments: pet.temperaments,
-        manners: pet.manners,
-        notes: pet.notes,
+        id: pet?.id,
+        name: pet?.name,
+        temperaments: pet?.temperaments,
+        manners: pet?.manners,
+        notes: pet?.notes,
 
         imageUrl:petImgUrl,
-        species: pet.species,
-        breed: pet.breed,
-        gender: pet.gender,
+        species: pet?.species,
+        breed: pet?.breed,
+        gender: pet?.gender,
 
       },
       owner: {
-        id: pet.owner.id,
-        userId: pet.owner.userId,
-        name: pet.owner.user.name
+        id: pet?.owner?.id,
+        userId: pet?.owner?.userId,
+        name: pet?.owner?.user?.name
       }
     }
   })
