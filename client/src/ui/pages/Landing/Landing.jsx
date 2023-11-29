@@ -4,7 +4,27 @@ import routerNames from "@src/common/constants/routes";
 import wofImage from "@images/landing/wof.svg";
 import rectangle from "@images/landing/rectangle.svg";
 
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+
 const LandingPage = () => {
+  
+  const {isLoading, isAuthenticated:isAuth0enticated} = useAuth0();
+
+
+  useEffect(()=>{
+    if(isLoading){
+      console.log("LOADING AUTH0 INFO", isLoading);
+    }
+    else if(!isLoading && isAuth0enticated){
+      console.log("LOGIN FINISH VERIFICATION AUTH0 RETURNS", isAuth0enticated);
+    }
+    else if(!isLoading && !isAuth0enticated){
+      console.log("LOGIN FINISH VERIFICATION AUTH0 RETURNS", isAuth0enticated);
+    }
+  },[isLoading, isAuth0enticated])
+
+
   return (
     <div className={styles.mainContainer}>
       <div>
@@ -16,7 +36,7 @@ const LandingPage = () => {
         </Link>
         <Link to={routerNames["login"]} className={styles.loginBtn}>
           Inicia Sesión
-        </Link>
+        </Link> 
       </div>
       <div className={styles.container}>
         <h1 className={styles.title}>Elige tu cuidador de mascotas perfecto</h1>

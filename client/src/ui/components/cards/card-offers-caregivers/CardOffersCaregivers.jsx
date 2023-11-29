@@ -1,5 +1,7 @@
 import styles from './styles.module.scss';
 import starReview from '@icons/starReview.svg';
+import { useNavigate } from 'react-router-dom';
+import routerNames from '@src/common/constants/routes';
 
 const CardOffersCaregivers = ({
 	rango,
@@ -9,8 +11,10 @@ const CardOffersCaregivers = ({
 		address: '',
 		price: '',
 		rating: 0,
+		caregiverId: 1,
 	},
 }) => {
+	const navigate = useNavigate();
 	return (
 		<section className={styles.section}>
 			<header className={styles.header}>
@@ -34,7 +38,7 @@ const CardOffersCaregivers = ({
 			</header>
 			<div className={styles.containerButtons}>
 				<button className={styles.buttonAccept}>Aceptar</button>
-				<button className={styles.buttonDetail}>Detalles</button>
+				<button className={styles.buttonDetail} onClick={() => navigate(routerNames['detailsOwners'] + data.caregiverId)}>Detalles</button>
 			</div>
 		</section>
 	);

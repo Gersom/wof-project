@@ -10,9 +10,10 @@ const getAllPetsLogic = async (ownerId) => {
     }
     return {
       id: pet?.post?.id,
-      address: pet.post?.address,
-      startDate: pet.post?.startDate,
-      endDate: pet.post?.endDate,
+      status: pet?.post?.status,
+      address: pet?.post?.address,
+      startDate: pet?.post?.startDate,
+      endDate: pet?.post?.endDate,
       pet: {
         id: pet?.id,
         name: pet?.name,

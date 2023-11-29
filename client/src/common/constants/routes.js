@@ -3,6 +3,8 @@ const routerNames = {
   home: "/home",
   about: "/about",
 
+  loading: "/verificando",
+
   register: "/registrarse",
   login: "/iniciar-sesion",
 
