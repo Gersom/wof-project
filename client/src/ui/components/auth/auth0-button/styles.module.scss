@@ -1,0 +1,28 @@
+.auth_button {
+	margin-top: 4px;
+	background-color: var(--color-background-dark);
+	color: var(--color-text-primary);
+	height: 100%;
+	width: 100%;
+	border: solid 1px white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.auth_btn {
+	width: 100%;
+	font-size: 14px;
+	color: #fff;
+	font-family: "Lexend-Medium";
+	height: 32px;
+	border: 1px solid #dddddd;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.auth_btn:hover {
+	background: rgb(221 221 221 / 10%);
+	color: #fff;
+}
