@@ -4,7 +4,7 @@ import mix from '@icons/mix.svg';
 import useGetBreeds from '@src/common/hooks/useGetBreeds';
 const FormPetEdit = ({ form, handleChange, errors }) => {
 
-	const { breeds, isLoading } = useGetBreeds(form.species);
+	const { breeds, isLoading } = useGetBreeds(form.speciesId);
 
 	return (
 		<form className={styles.form}>
@@ -27,7 +27,7 @@ const FormPetEdit = ({ form, handleChange, errors }) => {
 				<img src={mix} alt='pet' />
 				<label>Especie :</label>
 			</div>
-			<select name='species' value={form.species} onChange={handleChange}>
+			<select name='speciesId' value={form.speciesId} onChange={handleChange}>
 				<option value='1' id='1'>🐶 Perro</option>
 				<option value='2' id='2'>🐯 Gato</option>
 			</select>
@@ -36,7 +36,7 @@ const FormPetEdit = ({ form, handleChange, errors }) => {
 				<img src={mix} alt='pet' />
 				<label>Raza :</label>
 			</div>
-			<select name='breed' value={form.breed} onChange={handleChange}>
+			<select name='breedId' value={form.breedId} onChange={handleChange}>
 				{!isLoading && breeds.map((breed) => (
 					<option key={breed.id} value={breed.id}>
 						{breed.name}
@@ -48,7 +48,7 @@ const FormPetEdit = ({ form, handleChange, errors }) => {
 				<img src={mix} alt='pet' />
 				<label>Género :</label>
 			</div>
-			<select name='gender' value={form.gender} onChange={handleChange}>
+			<select name='genderId' value={form.genderId} onChange={handleChange}>
 				<option value='1'>♂️ Macho</option>
 				<option value='2'>♀️ Hembra</option>
 			</select>
