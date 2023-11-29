@@ -32,7 +32,6 @@ function App() {
         <Route path={routerNames["register"]} element={<FormRegister />} />
         {/* dashboard */}
         <Route path={routerNames["dashboard"]} element={<ProtectedRoute/>} children={{path:routerNames["dashboard"], element: <Dashboard/>}}>
-          <Route path={routerNames["dashboard"]} element={<Dashboard />}/>
           <Route index path={routerNames["offersCaregivers"]} element={<Offers />} />
           <Route path={routerNames["detailsCaregivers"] + ":id"} element={<Details />} />
           {/* <Route path={routerNames["profile"]} element={<Landing />} /> */}
