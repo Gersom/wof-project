@@ -17,6 +17,7 @@ import Login from "./components/login/Login";
 import FormReview from "./components/reviews/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
 import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
+import DetailsCaregivers from "./pages/details/DetailsCaregivers";
 // Imports Components
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
           />
           <Route
             path={routerNames["detailsOwners"] + ":id"}
-            element={<Details />}
+            element={<DetailsCaregivers />}
           />
 
           <Route path={routerNames["formReview"]} element={<FormReview />} />
