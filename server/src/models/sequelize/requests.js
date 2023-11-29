@@ -69,7 +69,25 @@ RequestsModel['createData'] = async (data) => {
 
   return newRequest;
 }
-
+RequestsModel['findRequestsByPost'] = async (postId) => {
+  const UsersModel = require("./users")
+  return await RequestsModel.findAll({
+    where: { postId },
+    attributes: [ "id", "price"],
+    include: [
+      { 
+        model: CaregiversModel,
+        attributes: ["id"],
+        include: [
+          {
+            model: UsersModel, 
+            attributes: ["id", "name", "address", "profilePicture"]
+          },
+        ]
+      }
+    ]
+  })
+}
 
 
 module.exports = RequestsModel

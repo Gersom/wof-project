@@ -35,7 +35,7 @@ const CardPetPublic = ({
 				state={modal}
 				toggleModal={() => setModal(!modal)}
 			>
-				<ModalPublicPet data={data}/>
+				<ModalPublicPet data={data} />
 			</ModalCustom>
 		</>
 	);

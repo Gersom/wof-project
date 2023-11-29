@@ -39,20 +39,20 @@ addMethods(CaregiversModel)
 
 CaregiversModel["findAllCaregivers"] = async () => {
   const caregivers = await CaregiversModel.findAll({
-    include:{
-      model: UsersModel
-    }
+    include:[
+      {model: UsersModel},
+    ]
   })
   return caregivers
 }
 
 CaregiversModel["findCaregiver"] = async (id) => {
+  const CaregiversImagesModel = require("./caregivers_images")
   const caregiver = await CaregiversModel.findOne({
     where: { id },
     include: [
-      {
-        model: UsersModel
-      }
+      {model: UsersModel},
+      {model: CaregiversImagesModel, attributes:["imageUrl"]}
     ]
   })
   return caregiver
