@@ -17,5 +17,5 @@ export const API_URL_TRANSACTIONS = API_URL + "/transactions";
 
 export const API_URL_MY_PETS = API_URL + "/pets";
 export const API_URL_SPECIES = API_URL + "/species";
-export const API_URL_BREEDS = API_URL + "/breeds?specie=";
+export const API_URL_BREEDS = API_URL + "/breeds?speciesId=";
 

@@ -17,7 +17,6 @@ const useGetBreeds = (specieId) => {
     }, [specieId])
 
 
-
   return { breeds, isLoading}
 }
 
