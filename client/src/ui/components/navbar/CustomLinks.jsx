@@ -8,7 +8,7 @@ const CustomLinks = ({ to, imgSrc, label, show }) => {
 	const actualRoute = location.pathname;
 
 	const delNumberSlash = (inputString) => {
-		const match = inputString.match(/\/(\d+)$/);
+		const match = inputString?.match(/\/(\d+)$/);
 		if (match) return inputString.slice(0, -match[1].length);
 		else return inputString;
 	};
