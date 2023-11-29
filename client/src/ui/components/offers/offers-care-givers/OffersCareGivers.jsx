@@ -2,36 +2,33 @@ import styles from './styles.module.scss';
 import CardOffersCaregivers from '../../cards/card-offers-caregivers/CardOffersCaregivers';
 import CardInfoPet from '../../cards/card-info/CardInfoPet';
 import useGetDetails from '@src/common/hooks/useGetDetails';
+import useGetPetId from '@src/common/hooks/useGetPetId';
 import CardOffersOwner from '../../cards/card-pets/CardOffersOwner';
 import useOffersCaregivers from '@src/common/hooks/useOffersCaregivers';
+import { useParams } from 'react-router-dom';
 
 const OffersCareGivers = () => {
+	const { id } = useParams();
 	const { isLoadingOffers,offersCareGivers } = useOffersCaregivers();
-	const { isLoading, details } = useGetDetails(1);
+	const { isLoading, details } = useGetPetId(id);
+	
 	return (
 		<div className={styles.containerMainGrid}>
 			<div className={styles.containerCardInfo}>
 				{!isLoading && (
 					<CardOffersOwner
-						address={details.owner.address}
-						petName={details.pet.name}
-                        startDate={details.startDate}
-						endDate={details.endDate}
-                        ownerName={details.owner.name}
-                        petId={details.pet.id}
-                        ownerId={details.owner.id}
-                        petImg={details.pet.images[0]}
-                        reviewRating={details.owner.rating}
-                    
+						data={details}
 					/>
 				)}
 				{!isLoading && (
 					<CardInfoPet
-						breed={details.pet.breed}
+						breed={details.pet.breed.name}
 						manners={details.pet.manners}
 						temperaments={details.pet.temperaments}
 						notes={details.pet.notes}
                         role={'caregiver'}
+						startDate={details.startDate}
+						endDate={details.endDate}
 					/>
 				)}
 			</div>

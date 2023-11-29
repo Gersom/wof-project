@@ -11,7 +11,7 @@ const PetImage = ({
 }) => {
 	const navigate = useNavigate();
 	const styleImage = isEditable ? styles.imageEditable : '';
-	
+	console.log()
 	const handleNavigate = () => {
 		navigate(routerNames['myPetsEdit'] + data.pet.id);
 	}
@@ -19,7 +19,7 @@ const PetImage = ({
 		<>
 			<figure className={styles.figure}>
 				<img
-					src={data.pet.imageUrl}
+					src={data.pet.imageUrl || data.pet.images[0]}
 					alt={data.pet.name}
 					className={styleImage}
 				/>
