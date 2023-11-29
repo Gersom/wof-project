@@ -47,7 +47,7 @@ const schema = {
   },
   status: {
     type: DataTypes.STRING,
-    defaultValue: "created",
+    defaultValue: "published",
   },
 }
 

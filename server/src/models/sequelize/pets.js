@@ -74,7 +74,7 @@ PetsModel["findAllPets"] = async (ownerId) => {
       { model: BreedsModel, attributes: ["id","name"] },
       { model: SpeciesModel, attributes: ["id","name", "icon"] },
       { model: GerdersModel, attributes: ["id","name"] },
-      { model: PostsModel, attributes: ["id", "startDate", "endDate", "address"] },
+      { model: PostsModel, attributes: ["id", "status", "startDate", "endDate", "address"] },
       { model: petImages, attributes: ["imageUrl"] }
     ]
   })
