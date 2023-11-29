@@ -1,26 +1,19 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./styles.module.scss";
-import FormProfileLocation from "../formProfileLocation/FormProfileLocation";
 import { useSelector } from "react-redux";
 import { API_URL_PROVINCES, API_URL_COUNTRYS } from "@src/common/constants/api";
+import phoneIcon from "@icons/phoneIcon.svg";
+import pictureIcon from "@icons/pictureIcon.svg";
+import email from "@icons/email.svg";
+import flag from "@icons/flagIcon.svg";
+import world from "@icons/worldIcon.svg";
+import password from "@icons/password.svg";
+import birthdate from "@icons/birthdateIcon.svg";
+import idIcon from "@icons/idIcon.svg";
+import user from "@icons/user.svg";
 
-import { faEye } from "@fortawesome/free-regular-svg-icons";
-import {
-  faUser,
-  faEnvelope,
-  faLock,
-  faEarthAmericas,
-  faCity,
-  faPhone,
-  faIdCard,
-  faCalendar,
-  faImage,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import dateIcon from "@icons/nav/user.svg";
-
-const formProfile = () => {
+const FormProfile = () => {
   const userData = useSelector((state) => state.userReducer.user);
   const [provinces, setProvinces] = useState([]);
   const [countries, setCountries] = useState([]);
@@ -74,9 +67,10 @@ const formProfile = () => {
               <h2>Datos de usuario</h2>
               <div className={styles["profile_input"]}>
                 <div className={styles["profile_label"]}>
-                  <div className={styles["profile_input_icon"]}>
-                    <FontAwesomeIcon icon={faEnvelope} />
-                  </div>
+                  <div
+                    className={styles["profile_input_icon"]}
+                    style={{ backgroundImage: "url('" + email + "')" }}
+                  ></div>
                   <span>Email :</span>
                 </div>
                 <input
@@ -88,9 +82,10 @@ const formProfile = () => {
               </div>
               <div className={styles["profile_input"]}>
                 <div className={styles["profile_label"]}>
-                  <div className={styles["profile_input_icon"]}>
-                    <FontAwesomeIcon icon={faLock} />
-                  </div>
+                  <div
+                    className={styles["profile_input_icon"]}
+                    style={{ backgroundImage: "url('" + password + "')" }}
+                  ></div>
                   <span>Contraseña :</span>
                 </div>
                 <input
@@ -105,19 +100,20 @@ const formProfile = () => {
               <h2>Localicacion</h2>
               <div className={styles["profile_input"]}>
                 <div className={styles["profile_label"]}>
-                  <div className={styles["profile_input_icon"]}>
-                    <FontAwesomeIcon icon={faLock} />
-                  </div>
+                  <div
+                    className={styles["profile_input_icon"]}
+                    style={{ backgroundImage: "url('" + email + "')" }}
+                  ></div>
                   <span>Direccion :</span>
                 </div>
                 <input />
               </div>
               <div className={styles["profile_input"]}>
                 <div className={styles["profile_label"]}>
-                  <div className={styles["profile_input_icon"]}>
-                    {" "}
-                    <FontAwesomeIcon icon={faEarthAmericas} />
-                  </div>
+                  <div
+                    className={styles["profile_input_icon"]}
+                    style={{ backgroundImage: "url('" + world + "')" }}
+                  ></div>
                   <span>Pais :</span>
                 </div>
                 <select
@@ -137,10 +133,10 @@ const formProfile = () => {
               </div>
               <div className={styles["profile_input"]}>
                 <div className={styles["profile_label"]}>
-                  <div className={styles["profile_input_icon"]}>
-                    {" "}
-                    <FontAwesomeIcon icon={faCity} />
-                  </div>
+                  <div
+                    className={styles["profile_input_icon"]}
+                    style={{ backgroundImage: "url('" + flag + "')" }}
+                  ></div>
                   <span>Provincia :</span>
                 </div>
                 <select
@@ -164,57 +160,60 @@ const formProfile = () => {
             <h2>Datos personales</h2>
             <div className={styles["profile_input"]}>
               <div className={styles["profile_label"]}>
-                <div className={styles["profile_input_icon"]}>
-                  {" "}
-                  <FontAwesomeIcon icon={faUser} />
-                </div>
+                <div
+                  className={styles["profile_input_icon"]}
+                  style={{ backgroundImage: "url('" + user + "')" }}
+                ></div>
                 <span>Nombres :</span>
               </div>
               <input value={userData?.name} />
             </div>
             <div className={styles["profile_input"]}>
               <div className={styles["profile_label"]}>
-                <div className={styles["profile_input_icon"]}>
-                  <FontAwesomeIcon icon={faUser} />
-                </div>
+                <div
+                  className={styles["profile_input_icon"]}
+                  style={{ backgroundImage: "url('" + user + "')" }}
+                ></div>
                 <span>Apellidos :</span>
               </div>
               <input value={userData?.lastName} />
             </div>
             <div className={styles["profile_input"]}>
               <div className={styles["profile_label"]}>
-                <div className={styles["profile_input_icon"]}>
-                  {" "}
-                  <FontAwesomeIcon icon={faPhone} />
-                </div>
+                <div
+                  className={styles["profile_input_icon"]}
+                  style={{ backgroundImage: "url('" + phoneIcon + "')" }}
+                ></div>
                 <span>Nro de Celular :</span>
               </div>
               <input value={userData?.cell_phone} />
             </div>
             <div className={styles["profile_input"]}>
               <div className={styles["profile_label"]}>
-                <div className={styles["profile_input_icon"]}>
-                  {" "}
-                  <FontAwesomeIcon icon={faIdCard} />
-                </div>
+                <div
+                  className={styles["profile_input_icon"]}
+                  style={{ backgroundImage: "url('" + idIcon + "')" }}
+                ></div>
                 <span>DNI :</span>
               </div>
               <input value={userData?.dni} />
             </div>
             <div className={styles["profile_input"]}>
               <div className={styles["profile_label"]}>
-                <div className={styles["profile_input_icon"]}>
-                  <FontAwesomeIcon icon={faCalendar} />
-                </div>
+                <div
+                  className={styles["profile_input_icon"]}
+                  style={{ backgroundImage: "url('" + birthdate + "')" }}
+                ></div>
                 <span>Fecha de Nacimiento :</span>
               </div>
               <input value={userData?.birthdate} />
             </div>
             <div className={styles["profile_input"]}>
               <div className={styles["profile_label"]}>
-                <div className={styles["profile_input_icon"]}>
-                  <FontAwesomeIcon icon={faImage} />
-                </div>
+                <div
+                  className={styles["profile_input_icon"]}
+                  style={{ backgroundImage: "url('" + pictureIcon + "')" }}
+                ></div>
                 <span>Foto de perfil :</span>
               </div>
               <input
@@ -251,4 +250,4 @@ const formProfile = () => {
   );
 };
 
-export default formProfile;
+export default FormProfile;

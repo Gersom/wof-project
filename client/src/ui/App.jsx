@@ -17,7 +17,7 @@ import Login from "./components/login/Login";
 import FormReview from "./components/reviews/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
 import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
-import FormProfile from "./components/forms/formProfile/formProfile";
+import FormProfile from "./components/forms/formProfile/FormProfile";
 // Imports Components
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
             path={routerNames["detailsCaregivers"] + ":id"}
             element={<Details />}
           />
-          {/* <Route path={routerNames["profile"]} element={<Landing />} /> */}
+          <Route path={routerNames["profile"]} element={<FormProfile />} />
           <Route
             path={routerNames["offersOwners"] + ":id"}
             element={<Offers />}
