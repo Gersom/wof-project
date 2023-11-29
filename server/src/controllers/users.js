@@ -35,25 +35,29 @@ const loginUser = catchedAsync(async (req, res) => {
     return res.status(401).json({ error: "No recibi informacion" });
   }
 
-  // Verificar la contraseña utilizando el método de comparación de hash
-  const isPasswordValid = await user.comparePassword(password);
+  if (user.password && !user.authInfo) {
+    const isPasswordValid = await user.comparePassword(password);
 
-  console.log("Contraseña ingresada:", password);
-  console.log("Contraseña almacenada:", user.password);
+    console.log("Contraseña ingresada:", password);
+    console.log("Contraseña almacenada:", user.password);
 
-  if (!isPasswordValid) {
-    // Contraseña incorrecta
-    console.log("Contraseña incorrecta");
-    return res.status(401).json({ error: "Contraseña incorrecta" });
+    if (!isPasswordValid) {
+      console.log("Contraseña incorrecta");
+      return res.status(401).json({ error: "Contraseña incorrecta" });
+    }
+
+
+    const token = jwt.sign({ userId: user.id }, "tu_secreto_secreto", {
+      expiresIn: "24h",
+    });
+
+    res.status(200).json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
+    return
   }
+  else if(user.email && user.authInfo){
 
-  // Autenticación exitosa, generar un token JWT
-  const token = jwt.sign({ userId: user.id }, "tu_secreto_secreto", {
-    expiresIn: "24h",
-  });
-  // return res.status(501).send(isPasswordValid)
-
-  res.status(200).json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
+    res.status(200).json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
+  }
 });
 
 // DETAIL ITEM
