@@ -134,9 +134,9 @@ PetsModel["findPet"] = async (id) => {
     attributes: ["id", "name", "temperaments", "manners", "notes"],
     include: [
       { model: OwnersModel, attributes: ["id"], include: [{ model: UsersModel, attributes: ["name", "lastName"] }] },
-      { model: BreedsModel, attributes: ["name"] },
-      { model: SpeciesModel, attributes: ["name"] },
-      { model: GerdersModel, attributes: ["name"] },
+      { model: BreedsModel, attributes: ["id"] },
+      { model: SpeciesModel, attributes: ["id"] },
+      { model: GerdersModel, attributes: ["id"] },
     ]
   })
   const PetImages = await pet.getPetsImages()
