@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 const Offers = () => {
 	const role = useSelector((state) => state.userReducer.user.role);
-	const {id } = useParams();
-	console.log(id)
+	const { id } = useParams();
+
 	const renderOffers = () => {
 		if (role === 'caregiver') {
 			return <OffersOwner />;
