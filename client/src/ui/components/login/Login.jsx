@@ -42,7 +42,7 @@ const Login = () => {
 
       if (response.data.token) {
         window.alert("Inicio de sesion completado");
-        navigate(routerNames["offers"]);
+        navigate(routerNames["dashboard"]);
       }
     } catch (error) {
       window.alert("error en correo o contraseña");
