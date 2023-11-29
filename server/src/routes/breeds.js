@@ -9,9 +9,9 @@ router.get("/", async (req, res) => {
   const breeds = await BreedsModel.findAllBySpecies(specieId)
   // const breeds = await BreedsModel.findAllData()
   if (breeds) {
-    res.status('200').json(breeds)
+    res.status(200).json(breeds)
   }
-  else res.status('200').json({error: "breeds not found"})
+  else res.status(200).json({error: "breeds not found"})
  
 });
 module.exports = router

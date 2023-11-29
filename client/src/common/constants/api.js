@@ -14,3 +14,5 @@ export const API_URL_LOGIN = API_URL_USER + "/login";
 export const API_URL_REGISTER = API_URL_USER;
 
 export const API_URL_MY_PETS = API_URL + "/pets";
+
+export const API_URL_TRANSACTIONS = API_URL + "/transactions";
