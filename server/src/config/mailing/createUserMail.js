@@ -62,7 +62,7 @@ const createUserMail = async (email, name, lastName) => {
         <td align="center" style=" max-width: 135px">
           <img
             style="width: 100%"
-            src="https://wof-server.up.railway.app/storage/mailing/wellcome.png"
+            src="https://wof-server.up.railway.app/pictures/mailing/wellcome.png"
             alt="img"
           />
         </td>
@@ -129,7 +129,7 @@ const createUserMail = async (email, name, lastName) => {
           sytle
           style="
             padding: 16px;
-            background-image: url(https://wof-server.up.railway.app/storage/mailing/footer.jpg);
+            background-image: url(https://wof-server.up.railway.app/pictures/mailing/footer.jpg);
             background-size: 94% 88%;
             background-repeat: no-repeat;
             background-position: center;

@@ -20,6 +20,7 @@ import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
 import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
 import VerifyingLogin from "./components/verifying-login/VerifyingLogin";
 import DetailsCaregivers from "./pages/details/DetailsCaregivers";
+import FormProfile from "./components/forms/formProfile/formProfile";
 // Imports Components
 
 function App() {
