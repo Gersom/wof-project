@@ -6,14 +6,34 @@ import poligono3 from "@images/landing/poligono3.svg";
 import collage from "@images/landing/collage.svg";
 import routerNames from "@src/common/constants/routes";
 
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+
 const LandingPage = () => {
+  
+  const {isLoading, isAuthenticated:isAuth0enticated} = useAuth0();
+
+
+  useEffect(()=>{
+    if(isLoading){
+      console.log("LOADING AUTH0 INFO", isLoading);
+    }
+    else if(!isLoading && isAuth0enticated){
+      console.log("LOGIN FINISH VERIFICATION AUTH0 RETURNS", isAuth0enticated);
+    }
+    else if(!isLoading && !isAuth0enticated){
+      console.log("LOGIN FINISH VERIFICATION AUTH0 RETURNS", isAuth0enticated);
+    }
+  },[isLoading, isAuth0enticated])
+
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.pol3}>
         <img src={poligono3} alt="Poligono" />
         <Link to={routerNames["login"]} className={styles.btnLog}>
           Inicia Sesión
-        </Link>
+        </Link> 
       </div>
       <div className={styles.container}>
         <div className={styles.header}>
