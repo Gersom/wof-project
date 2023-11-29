@@ -17,6 +17,7 @@ import Login from "./components/login/Login";
 import FormReview from "./components/reviews/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
 import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
+
 // Imports Components
 
 function App() {
@@ -37,9 +38,12 @@ function App() {
           <Route path={routerNames["formReview"]} element={<FormReview />} />
           <Route path={routerNames["myPets"]} element={<MyPets />} />
           <Route path={routerNames["myPetsCreate"]} element={<MyPetsEdit />} />
-          <Route path={routerNames["myPetsEdit"] + ':idPet'} element={<MyPetsEdit />} />
-          
+          <Route
+            path={routerNames["myPetsEdit"] + ":idPet"}
+            element={<MyPetsEdit />}
+          />
         </Route>
+
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />
       </Routes>
