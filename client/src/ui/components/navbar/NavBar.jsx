@@ -6,30 +6,55 @@ import logo from '@icons/nav/logo.svg';
 import burgerClose from '@icons/nav/burgerClose.svg';
 import burgerOpen from '@icons/nav/burgerOpen.svg';
 import handshake from '@icons/nav/handshake.svg';
-import { useNavigate } from "react-router-dom";
-import routerNames from "@src/common/constants/routes";
-import {saveToLocalStorage} from "@common/utils/localStorage"
+import { useNavigate } from 'react-router-dom';
+import routerNames from '@src/common/constants/routes';
+import { saveToLocalStorage } from '@common/utils/localStorage';
 
 const NavBar = ({ userData }) => {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const [show, setShow] = useState(true);
+	const [links, setLinks] = useState([]);
 	const classShow = show ? styles.show : '';
-	const role = 'owner';
-	const LINKS = obtainLinks(role);
 
 	useEffect(() => {
 		setShow(window.innerWidth > 768);
 	}, []);
 
+	useEffect(() => {
+		setLinks(obtainLinks(userData.role));
+	}, [userData.role]);
+
 	const handleShow = () => {
 		setShow(!show);
 	};
 
-  const closeSession = () => {
-    saveToLocalStorage( "session","")
-    navigate(routerNames["login"]);
-  }
+	const handleRoleRender = () => {
+		if (userData.role === 'owner') {
+			return (
+				<>
+					<span>
+						<span>🐶</span> Dueño
+					</span>
+				</>
+			);
+		} else if (userData.role === 'caregiver') {
+			return (
+				<>
+					<span>
+						<span>🤝</span> Cuidador
+					</span>
+				</>
+			);
+		} else {
+			return <>Indefinido</>;
+		}
+	};
+
+	const closeSession = () => {
+		saveToLocalStorage('session', '');
+		navigate(routerNames['login']);
+	};
 
 	return (
 		<aside className={`${styles.aside} ${classShow}`}>
@@ -63,14 +88,13 @@ const NavBar = ({ userData }) => {
 						<h5>{userData.name}</h5>
 						{show && <span>{userData.email}</span>}
 						<div className={styles.containerHandshake}>
-							<img src={handshake} />
-							<span>Cuidador</span>
+							{handleRoleRender()}
 						</div>
 					</div>
 				</div>
 				<nav className={styles.nav}>
 					<ul className={styles.ul}>
-						{LINKS.map((link, index) => (
+						{links.map((link, index) => (
 							<CustomLinks
 								key={index}
 								to={link.to}
@@ -79,11 +103,16 @@ const NavBar = ({ userData }) => {
 								show={show}
 							/>
 						))}
-            <button className={`${styles.linkContainer}`}
-            onClick={closeSession}>
-              <img src='/src/ui/assets/icons/nav/padlock.svg' alt="Cerrar sesión" />
-              {show && <li>Cerrar sesión</li>}
-            </button>
+						<button
+							className={`${styles.linkContainer}`}
+							onClick={closeSession}
+						>
+							<img
+								src='/src/ui/assets/icons/nav/padlock.svg'
+								alt='Cerrar sesión'
+							/>
+							{show && <li>Cerrar sesión</li>}
+						</button>
 					</ul>
 				</nav>
 			</div>
