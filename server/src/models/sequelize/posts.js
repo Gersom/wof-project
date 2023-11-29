@@ -45,10 +45,10 @@ const schema = {
     type: DataTypes.DATE,
     allowNull: false,
   },
-  accepted: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false
-}
+  status: {
+    type: DataTypes.STRING,
+    defaultValue: "created",
+  },
 }
 
 const PostsModel = sequelize.define(name, schema, config)
@@ -68,7 +68,7 @@ addMethods(PostsModel)
 
 PostsModel['findAllOffers'] = () => {
   return PostsModel.findAll({
-    attributes: [ "id", "address", "startDate", "endDate" ],
+    attributes: [ "id", "status", "address", "startDate", "endDate" ],
     include: [
       { 
         model: PetsModel,

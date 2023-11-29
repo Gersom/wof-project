@@ -11,8 +11,8 @@ const ModalPublicPet = ({ data }) => {
 				formulario para seguir
 			</h3>
 			<div>
-				<CardPetInfo  />
-				<DatePublicSelect />
+				<CardPetInfo  data={data}/>
+				<DatePublicSelect  data={data}/>
 			</div>
 		</div>
 	);

@@ -28,5 +28,10 @@ BreedsModel.belongsTo(SpeciesModel)
 
 // add static methods (functions) to model
 addMethods(BreedsModel)
+BreedsModel['findAllBySpecies'] = (speciesId) => {
+  return BreedsModel.findAll({
+    where: {speciesId}
+  })
+}
 
 module.exports = BreedsModel
