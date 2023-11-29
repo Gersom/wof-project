@@ -24,7 +24,6 @@ const useOffersCaregivers = () => {
 	useEffect(() => {
         setIsLoadingOffers(true);
 		if (offersCareGiversInmutable.length === 0) {
-            console.log('----> me ejecuto interor')
 			dispatch(actionGetOffersCareGivers());
 		}
 		// let filteredOffers = filterOffersCareGivers(

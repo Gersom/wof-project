@@ -51,6 +51,9 @@
 	span {
 		color: var(--color-text-muted);
 		font-size: 0.9rem;
+		span{
+			color: var(--color-text-primary);
+		}
 	}
 }
 
