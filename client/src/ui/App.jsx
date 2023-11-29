@@ -8,7 +8,7 @@ import { Routes, Route } from "react-router-dom";
 // Imports Pages
 import Home from "./pages/home/Home";
 import NotFound from "./pages/NotFound";
-import Landing from "./pages/Landing/Landing";
+import Landing from "./pages/landing/Landing";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
 import Details from "./pages/details/Details";
@@ -31,17 +31,33 @@ function App() {
         <Route path={routerNames["register"]} element={<FormRegister />} />
         {/* dashboard */}
         <Route path={routerNames["dashboard"]} element={<Dashboard />}>
-          <Route index path={routerNames["offersCaregivers"]} element={<Offers />} />
-          <Route path={routerNames["detailsCaregivers"] + ":id"} element={<Details />} />
+          <Route
+            index
+            path={routerNames["offersCaregivers"]}
+            element={<Offers />}
+          />
+          <Route
+            path={routerNames["detailsCaregivers"] + ":id"}
+            element={<Details />}
+          />
           {/* <Route path={routerNames["profile"]} element={<Landing />} /> */}
-          <Route path={routerNames["offersOwners"] + ":id"} element={<Offers />} />
-          <Route path={routerNames["detailsOwners"] + ":id"} element={<Details />} />
+          <Route
+            path={routerNames["offersOwners"] + ":id"}
+            element={<Offers />}
+          />
+          <Route
+            path={routerNames["detailsOwners"] + ":id"}
+            element={<Details />}
+          />
 
           <Route path={routerNames["formReview"]} element={<FormReview />} />
 
           <Route path={routerNames["myPets"]} element={<MyPets />} />
           <Route path={routerNames["myPetsCreate"]} element={<MyPetsEdit />} />
-          <Route path={routerNames["myPetsEdit"] + ':idPet'} element={<MyPetsEdit />} />
+          <Route
+            path={routerNames["myPetsEdit"] + ":idPet"}
+            element={<MyPetsEdit />}
+          />
         </Route>
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />
