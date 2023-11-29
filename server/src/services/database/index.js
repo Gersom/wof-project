@@ -10,6 +10,7 @@ const insertReviews = require("./insertReviews")
 const insertSpecies = require("./insertSpecies")
 const insertUsers = require("./insertUsers")
 const insertGenders = require("./insertGenders")
+const insertRequests = require("./insertRequests")
 
 
 const insertData = async () => {
@@ -28,6 +29,7 @@ const insertData = async () => {
   await setTimeout(()=>insertPosts(), "4000")
   await setTimeout(()=>insertReviews(), "4500")
   await setTimeout(()=>insertPetsImages(), "5000")
+  await setTimeout(()=>insertRequests(), "5500")
 }
 
 module.exports = insertData

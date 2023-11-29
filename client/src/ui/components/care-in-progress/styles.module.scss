@@ -1,0 +1,107 @@
+.mainCont{
+    display: flex;
+    flex-wrap: wrap;
+    color: black;
+    width: 956px;
+    height: 280px;
+    border-radius: 10px;
+    background: #FFF;
+}
+.firstCont{
+    display: flex;
+    flex-direction: row;
+}
+.imagenCat{
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    margin: 2rem;
+}
+
+.secondCont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 670px;
+}
+.care{
+    color: #1E1E1E;
+    width: 25%;
+    font-family: 'Lexend-Bold';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+}
+.separator {
+    border-bottom: 3px solid #DDD; 
+  }
+.timeText{
+    color: #717171;
+    text-align: center;
+    font-family: 'Lexend-Regular';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0.2rem auto;    
+    width: 70%;
+}
+.sep{
+    text-align: center;
+    width: 30%;
+    opacity: 0.3;
+    margin: 1rem auto;
+
+
+}
+//Buttons
+
+.buttonsCont{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 30%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.4rem;
+
+    
+}
+
+.supportBtn{
+    width: 233px;
+    height: 46px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 10px;
+    background:  #52C1E4;
+    color: #FFF;
+    font-family: 'Lexend-Regular';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px; /* 125% */
+    text-align: center;
+}
+.finishBtn{
+    width: 233px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: none;
+    background: #717171;
+    color: #FFF;
+    text-align: center;
+    font-family: 'Lexend-Regular';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px; /* 125% */
+
+}
