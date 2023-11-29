@@ -1,4 +1,4 @@
-const { CaregiversModel, UsersModel } = require("../models")
+const { CaregiversModel, UsersModel, CaregiversImagesModel } = require("../models")
 
 const getAllCaregiversLogic = async () => {
   const caregivers = await CaregiversModel.findAllCaregivers()
@@ -46,6 +46,16 @@ const postCaregiverLogic = async (data) => {
 }
 
 const updateCaregiverLogic = async (id, data) => {
+  const { images } = data
+  if(images){
+    const imgs = images.map(img => {
+      return {
+        imageUrl:img,
+        caregiverId:id
+      }
+    })
+    CaregiversImagesModel.createMany(imgs)
+  }
   await CaregiversModel.updateData(id, data)
   return {
     success: 'User was update correctly.'
