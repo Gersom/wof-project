@@ -1,14 +1,10 @@
-const {SpeciesModel} = require("../models/index")
+const express = require("express")
+const router = express.Router()
+const controllers = require("../controllers/species")
 
-const express = require("express");
-const router = express.Router();
+// route => /species/...
 
-router.get("/", async (req, res) => {
-  const species = await SpeciesModel.findAllData()
-  if (species) {
-    res.status(200).json(species)
-  }
-  else res.status(200).json({error: "species not found"})
- 
-});
+router.get("/", controllers.getSpecies)
+
 module.exports = router
+
