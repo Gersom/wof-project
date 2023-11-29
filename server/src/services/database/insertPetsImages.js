@@ -5,8 +5,7 @@ const {
 let petsImagesData = require("../../data/pets-images.json")
 const insertRecords = require("./insertRecords")
 
-const generateServerPath = require("./../../utils/generateServerPath")
-const { path: serverPath } = generateServerPath()
+const generateUrl = require("./../../utils/generateUrl")
 
 const insertPets = async () => {
   try {
@@ -16,7 +15,7 @@ const insertPets = async () => {
 
     
     petsImagesData = petsImagesData.map((ele) => {
-      return { imageUrl: serverPath + ele.imageUrl}
+      return { imageUrl: generateUrl(ele.imageUrl)}
     })
 
     petsImagesData[0].petId = pelucheId

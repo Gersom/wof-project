@@ -15,19 +15,19 @@ const insertGenders = require("./insertGenders")
 const insertData = async () => {
   await insertCountries()
   await insertGenders()
-  await setTimeout(()=>insertProvinces(), "250")
   await insertSpecies()
-  await setTimeout(()=>insertBreeds(), "250")
 
-  await setTimeout(()=>insertUsers(), "500")
-  await setTimeout(()=>insertOwners(), "750")
-  await setTimeout(()=>insertCaregivers(), "850")
+  await setTimeout(()=>insertProvinces(), "500")
+  await setTimeout(()=>insertBreeds(), "1000")
 
-  await setTimeout(()=>insertPets(), "1000")
-  await setTimeout(()=>insertPetsImages(), "1250")
-  await setTimeout(()=>insertPosts(), "1500")
+  await setTimeout(()=>insertUsers(), "1500")
+  await setTimeout(()=>insertOwners(), "2500")
+  await setTimeout(()=>insertCaregivers(), "3000")
 
-  await setTimeout(()=>insertReviews(), "2000")
+  await setTimeout(()=>insertPets(), "3000")
+  await setTimeout(()=>insertPosts(), "4000")
+  await setTimeout(()=>insertReviews(), "4500")
+  await setTimeout(()=>insertPetsImages(), "5000")
 }
 
 module.exports = insertData

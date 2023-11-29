@@ -5,8 +5,7 @@ const ProvincesModel = require(`./provinces`);
 const CountriesModel = require(`./countries`);
 
 const addMethods = require("../utils/addStaticMethods");
-const generateServerPath = require("./../../utils/generateServerPath");
-const { path: serverPath } = generateServerPath();
+const generateUrl = require("./../../utils/generateUrl");
 const bcrypt = require("bcrypt");
 
 const name = "users";
@@ -38,7 +37,7 @@ const schema = {
 
   profilePicture: {
     type: DataTypes.STRING,
-    defaultValue: `${serverPath}/pictures/profile.png`,
+    defaultValue: generateUrl('/pictures/profile.png'),
   },
 
   name: {

@@ -1,35 +1,13 @@
 import styles from './styles.module.scss';
-import { useState,useEffect } from 'react';
 import user from '@icons/user.svg';
 import mix from '@icons/mix.svg';
+import useGetBreeds from '@src/common/hooks/useGetBreeds';
+const FormPetEdit = ({ form, handleChange, errors }) => {
 
-const FormPetEdit = ({ formRef, onSubmit, data }) => {
-	const [form, setForm] = useState({
-		name: '',
-		species: '',
-		breed: '',
-		gender: '',
-		temperaments: '',
-		manners: '',
-		notes: '',
-	});
-	useEffect(() => {
-		
-		if (data) {
-			setForm((prevForm) => ({
-				...prevForm,
-				...data, 
-			}));
-		}
-	}, [data]);
-
-	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setForm({ ...form, [name]: value });
-	};
+	const { breeds, isLoading } = useGetBreeds(form.speciesId);
 
 	return (
-		<form ref={formRef} onSubmit={onSubmit} className={styles.form}>
+		<form className={styles.form}>
 			<h2>Datos de la mascota</h2>
 
 			<div>
@@ -41,33 +19,38 @@ const FormPetEdit = ({ formRef, onSubmit, data }) => {
 				name='name'
 				value={form.name}
 				onChange={handleChange}
+				autoComplete='off'
+				placeholder='¿Como se llama tu mascota?'
 			/>
 
 			<div>
 				<img src={mix} alt='pet' />
 				<label>Especie :</label>
 			</div>
-			<select name='species' value={form.species} onChange={handleChange}>
-				<option value='🐶 Perro'>🐶 Perro</option>
-				<option value='🐯 Gato'>🐯 Gato</option>
+			<select name='speciesId' value={form.speciesId} onChange={handleChange}>
+				<option value='1' id='1'>🐶 Perro</option>
+				<option value='2' id='2'>🐯 Gato</option>
 			</select>
 
 			<div>
 				<img src={mix} alt='pet' />
 				<label>Raza :</label>
 			</div>
-			<select name='breed' value={form.breed} onChange={handleChange}>
-				<option value='pastor Aleman'>pastor Aleman</option>
-				<option value='rotate'>rotate</option>
+			<select name='breedId' value={form.breedId} onChange={handleChange}>
+				{!isLoading && breeds.map((breed) => (
+					<option key={breed.id} value={breed.id}>
+						{breed.name}
+					</option>
+				))}
 			</select>
 
 			<div>
 				<img src={mix} alt='pet' />
-				<label>Sexo :</label>
+				<label>Género :</label>
 			</div>
-			<select name='gender' value={form.gender} onChange={handleChange}>
-				<option value='macho'>♂️ Macho</option>
-				<option value='hembra'>♀️ Hembra</option>
+			<select name='genderId' value={form.genderId} onChange={handleChange}>
+				<option value='1'>♂️ Macho</option>
+				<option value='2'>♀️ Hembra</option>
 			</select>
 
 			<div>
@@ -79,6 +62,8 @@ const FormPetEdit = ({ formRef, onSubmit, data }) => {
 				name='temperaments'
 				value={form.temperaments}
 				onChange={handleChange}
+				autoComplete='off'
+				placeholder='¿Juega mucho?, ¿Se enoja mucho?'
 			/>
 
 			<div>
@@ -90,13 +75,21 @@ const FormPetEdit = ({ formRef, onSubmit, data }) => {
 				name='manners'
 				value={form.manners}
 				onChange={handleChange}
+				autoComplete='off'
+				placeholder='¿Cómo se comporta?'
 			/>
 
 			<div>
 				<img src={user} alt='user' />
 				<label>Notas :</label>
 			</div>
-			<textarea name='notes' value={form.notes} onChange={handleChange} />
+			<textarea
+				name='notes'
+				value={form.notes}
+				onChange={handleChange}
+				autoComplete='off'
+				placeholder='¿Hay algo que el cuidador necesite saber?, por ejemplo alergias o cuidados especiales.'
+			/>
 		</form>
 	);
 };

@@ -5,9 +5,10 @@ const BreedsModel = require(`./breeds`)
 const SpeciesModel = require(`./species`)
 const GerdersModel = require(`./genders`)
 const addMethods = require("../utils/addStaticMethods")
+const UsersModel = require("./users")
 
 const name = 'pets'
-const config = { 
+const config = {
   timestamps: false, // createAt, updateAt
   freezeTableName: true
 }
@@ -37,7 +38,7 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  
+
 }
 
 const PetsModel = sequelize.define(name, schema, config)
@@ -57,5 +58,50 @@ PetsModel.belongsTo(GerdersModel)
 
 // add static methods (functions) to model
 addMethods(PetsModel)
+
+PetsModel["createPet"] = async (data) => {
+  return await PetsModel.create(data)
+}
+
+PetsModel["findAllPets"] = async (ownerId) => {
+  const PostsModel = require("./posts")
+  const petImages = require("./pets_images")
+  return await PetsModel.findAll({
+    where: ownerId ? { ownerId } : {},
+    attributes: ["id", "name", "temperaments", "manners", "notes"],
+    include: [
+      { model: OwnersModel, include: [{ model: UsersModel, attributes: ["name", "lastName"] }] },
+      { model: BreedsModel, attributes: ["id","name"] },
+      { model: SpeciesModel, attributes: ["id","name", "icon"] },
+      { model: GerdersModel, attributes: ["id","name"] },
+      { model: PostsModel, attributes: ["id", "startDate", "endDate", "address"] },
+      { model: petImages, attributes: ["imageUrl"] }
+    ]
+  })
+}
+
+PetsModel["findPet"] = async (id) => {
+  const pet = await PetsModel.findByPk(id, {
+    attributes: ["id", "name", "temperaments", "manners", "notes"],
+    include: [
+      { model: OwnersModel, attributes: ["id"], include: [{ model: UsersModel, attributes: ["name", "lastName"] }] },
+      { model: BreedsModel, attributes: ["id"] },
+      { model: SpeciesModel, attributes: ["id"] },
+      { model: GerdersModel, attributes: ["id"] },
+    ]
+  })
+  const PetImages = await pet.getPetsImages()
+  const data = { ...pet.toJSON(), imageUrl: PetImages }
+  return data
+}
+
+PetsModel["createPet"] = async (data) => {
+  const { imageUrl } = data
+  const newPet = await PetsModel.create(data)
+  if (imageUrl) {
+    newPet.createPetsImage({ imageUrl })
+  }
+  return newPet
+}
 
 module.exports = PetsModel

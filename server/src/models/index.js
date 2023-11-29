@@ -1,3 +1,4 @@
+require('dotenv').config()
 const DB_ENGINE = process.env.DB_ENGINE
 let pathModel = ''
 
@@ -25,6 +26,7 @@ const models = {
   RequestsModel: require(`./${pathModel}/requests`),
   ReviewsModel: require(`./${pathModel}/reviews`),
   SpeciesModel: require(`./${pathModel}/species`),
+  TransactionsModel: require(`./${pathModel}/transactions`),
   UsersModel: require(`./${pathModel}/users`),
   GerdersModel: require(`./${pathModel}/genders`),
 }

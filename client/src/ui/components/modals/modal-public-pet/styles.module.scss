@@ -1,0 +1,33 @@
+.modalContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0rem;
+    width: 100%;
+    height: 100%;
+    background-color: #f3f4f8;
+    padding: 4rem 3rem;
+    border-radius: 1rem;
+    h1{
+        color: var(--color-text-secondary);
+        font-size: 4rem;
+        padding: 0;
+        margin: 0;
+    }
+    h3{
+        color: var(--color-text-dark);
+        font-size: 1.1rem;
+        margin-bottom: 0rem;
+        width: 70%;
+        font-family: 'Lexend-SemiBold';
+        margin-bottom: 1.5rem;
+    }
+    div{
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-row: auto;
+        width: 85%;
+        gap: 2rem;
+    }
+}

@@ -1,6 +1,6 @@
 import styles from './styles.module.scss'
 
-const ModalPost = ({message,nameOwner}) => {
+const ModalPost = ({ message ,nameOwner }) => {
   return (
     <div className={styles.container}>
         <h1>¡Felicidades!</h1>

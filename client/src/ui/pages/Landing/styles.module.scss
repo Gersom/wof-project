@@ -1,211 +1,138 @@
 .mainContainer {
 	width: 100%;
 	height: 100%;
-}
-
-.container {
-	width: 100%;
-	padding: 3rem;
-	background-image: url('@images/landing/paws.svg');
+	background-image: url('@images/landing/back.svg');
+	background-repeat: no-repeat;
 	background-size: cover;
-	height: 100%;
-	background-color: rgb(80, 76, 70);
-	margin: 0;
+	background-position: bottom center;
 }
 
-.image {
-	position: relative;
+.imageRec{
 	display: flex;
-	justify-content: flex-start;
-	width: 300px;
-	z-index: 2;
-}
-.containerCollage {
+	width: 22rem;
 	position: absolute;
-  top: -5rem;
-}
-.collage {
-	align-self: center;
-  position: absolute;
-	width: 35rem;
-}
-.wrapper {
-	position: relative;
-	top: 300px;
-	right: 260px;
-	z-index: 8;
-	padding: 20px;
-	font-size: 50px;
-	font-family: 'Nanum-Brush';
-	max-width: 30%;
-	text-align: center;
-	line-height: 50.5px;
-	color: white;
-	background-color: rgb(80, 76, 70);
-	opacity: 0.9;
-	border-radius: 10px;
-	text-shadow: 3px 4px 3.700000047683716px rgba(0, 0, 0, 0.5);
-}
-.btn {
-	position: fixed;
-	top: 580px;
-	right: 450px;
-	z-index: 10;
-}
-
-.btnLog {
-	position: absolute;
-}
-
-.ctaButton {
-	top: 40px;
-	right: -300px;
-	width: 300px;
-	padding: 10px 30px;
-	background-color: var(--color-background-light);
-	color: var(--color-text-secondary);
-	text-align: center;
-	text-decoration: none;
-	font-size: 1.6rem;
-	border-radius: 20px;
-	transition: background-color 0.3s;
-}
-.btnLog {
-	background-color: var(--color-background-light);
-	width: 200px;
-	position: fixed;
-	top: 60px;
-	right: 80px;
-	font-size: 1.6rem;
-	border-radius: 20px;
-	padding: 0.5rem;
-	color: var(--color-text-secondary);
-}
-
-.btnLog:hover,
-.ctaButton:hover {
-	background-color: rgb(32, 129, 255);
-	color: white;
-}
-
-.pol3 {
-	width: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	box-sizing: border-box;
 	z-index: 1;
-	img {
-		width: 100%;
+}
+.cont{
+	display: flex;
+	justify-content: flex-end;
+	margin-right: 5rem;
+	gap: 3rem;
+}
+.loginBtn {	
+	border-bottom: 0.2rem solid #FFF;
+	color: #FFF;
+	text-shadow: 5px 4px 4.5px rgba(0, 0, 0, 0.50);
+	font-size: 1.5rem;
+	font-style: normal;
+	font-weight: 500;
+	padding-bottom: 8px;
+	padding-top: 2rem;
+	&:hover{
+		color: var(--color-background-light);
+		}
+	}
+.contactBtn{
+	border-bottom: 0.2rem solid #FFF;
+	color: #FFF;
+	text-shadow: 5px 4px 4.5px rgba(0, 0, 0, 0.50);
+	font-size: 1.5rem;
+	font-style: normal;
+	font-weight: 500;
+	padding-bottom: 11px;
+	padding-top: 2rem;
+
+	&:hover{
+		color: var(--color-background-light);
 	}
 }
-.pol {
+
+.container{
 	display: flex;
-	align-items: first baseline;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	box-sizing: border-box;
-	z-index: 1;
-	img {
-		width: 100%;
-	}
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 2rem;
+	margin: 0 auto;
+	height: 90%;
 }
-.container {
-	max-width: 100%;
-	padding: 40px;
-	background-image: url('@images/landing/paws.svg');
-	background-size: cover;
-	height: 100%;
-	background-color: rgb(80, 76, 70);
-	margin: 0;
-}
-
-.image {
-	position: relative;
-	display: flex;
-	justify-content: flex-start;
-	width: 300px;
-	z-index: 2;
-}
-
-.collage {
-	position: absolute;
-	top: 205px;
-	left: 180px;
-}
-.wrapper {
-	position: fixed;
-	top: 300px;
-	right: 260px;
-	z-index: 8;
-	padding: 20px;
-	font-size: 50px;
-	font-family: 'Nanum-Brush';
-	max-width: 30%;
+.title{
+	display: flex;	
 	text-align: center;
-	line-height: 50.5px;
-	color: white;
-	background-color: rgb(80, 76, 70);
-	opacity: 0.9;
-	border-radius: 10px;
-	text-shadow: 3px 4px 3.700000047683716px rgba(0, 0, 0, 0.5);
-}
-.btn {
-	position: fixed;
-	top: 580px;
-	right: 450px;
-	z-index: 10;
+	padding-bottom: 3rem;
+	justify-content: center;
+	width: 30rem;
+	align-items: center;
 }
 
-.btnLog {
-	position: absolute;
+.logoWof {
+		max-width: 100%;
+		height: auto;
+		animation: moveAnimation 2s ease-in-out infinite alternate;
 }
 
-.ctaButton {
-	top: 40px;
-	right: -300px;
-	width: 300px;
-	padding: 10px 30px;
-	background-color: var(--color-background-light);
-	color: var(--color-text-secondary);
-	text-align: center;
-	text-decoration: none;
-	font-size: 1.6rem;
-	border-radius: 20px;
-	transition: background-color 0.3s;
-	z-index: 10;
+@keyframes moveAnimation {
+    to {
+        transform: translateX(15px);
+    }
 }
-.btnLog {
-	background-color: var(--color-background-light);
-	width: 200px;
-	position: fixed;
-	top: 60px;
-	right: 80px;
-	font-size: 1.6rem;
-	border-radius: 20px;
+.secTitle{
+	padding-top: 3rem;
+}
+
+.registerBtn{
+	background-color: var(--color-blue-light);
+	border-radius: 0.625rem;
+	border: none;
+	width: 21.875rem;
 	padding: 0.5rem;
-	color: var(--color-text-secondary);
-	z-index: 10;
+	transition: background-position 0.3s ease-in-out;
+    background-image: linear-gradient(to right, var(--color-blue-light) 50%, rgb(26, 26, 187) 50%);
+    background-size: 200% 100%; 
+
+}
+.registerBtn:hover{
+	cursor: pointer;
+	background-position: -100% 0;
+}
+.btn{
+	padding-top: 2rem;
+	
+}
+.registerBtn .textButton  {
+    text-decoration: none;
+    color: inherit;
+	font-family: 'Lexend-Medium';
+	font-size: 2.1rem;
+
 }
 
-.btnLog:hover,
-.ctaButton:hover {
-	background-color: rgb(32, 129, 255);
-	color: white;
+
+@media screen and (max-width: 1568px) {
+	.logoWof {
+	  max-width: 50%;
+	}
+	.imageRec{
+		display: none;
+	}
+  }
+  @media screen and (max-width: 600px) {
+	.cont{
+		display: flex;
+	}
+	.title{
+		display: flex;	
+		text-align: center;
+		padding-bottom: 3rem;
+		justify-content: center;
+		width: 30rem;
+		align-items: center;
+		font-size: 40px;
+	}
+	.secTitle{
+		padding-top: 3rem;
+		font-size: 40px;
+	}
+	
 }
 
-.pol3 {
-	position: absolute;
-	top: 0;
-	left: 0;
-	box-sizing: border-box;
-	z-index: 1;
-}
-.pol {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	box-sizing: border-box;
-	z-index: 1;
-}

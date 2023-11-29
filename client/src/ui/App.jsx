@@ -33,11 +33,16 @@ function App() {
         {/* dashboard */}
         <Route path={routerNames["dashboard"]} element={<ProtectedRoute/>} children={{path:routerNames["dashboard"], element: <Dashboard/>}}>
           <Route path={routerNames["dashboard"]} element={<Dashboard />}/>
-          <Route index path={routerNames["offers"]} element={<Offers />} />
-          <Route path={routerNames['details'] + ':id'} element={<Details />} />
-          <Route path={routerNames["profile"]} element={<Landing />} />
+          <Route index path={routerNames["offersCaregivers"]} element={<Offers />} />
+          <Route path={routerNames["detailsCaregivers"] + ":id"} element={<Details />} />
+          {/* <Route path={routerNames["profile"]} element={<Landing />} /> */}
+          <Route path={routerNames["offersOwners"] + ":id"} element={<Offers />} />
+          <Route path={routerNames["detailsOwners"] + ":id"} element={<Details />} />
+
           <Route path={routerNames["formReview"]} element={<FormReview />} />
+
           <Route path={routerNames["myPets"]} element={<MyPets />} />
+          <Route path={routerNames["myPetsCreate"]} element={<MyPetsEdit />} />
           <Route path={routerNames["myPetsEdit"] + ':idPet'} element={<MyPetsEdit />} />
         </Route>
         {/* Not Found 404 */}

@@ -7,11 +7,18 @@ const routerNames = {
   login: "/iniciar-sesion",
 
   dashboard: "/app",
-  offers: "/app/offers",
-  details: "/app/offers/details/",
+
+  offersCaregivers: "/app/caregivers/offers",
+  detailsCaregivers: "/app/caregivers/offers/details/",
+
+  offersOwners: "/app/owners/offers/",
+  detailsOwners: "/app/owners/offers/details/", 
+
   formReview: "/app/form",
   profile: "/app/profile",
+
   myPets: "/app/my-pets",
+  myPetsCreate: "/app/my-pets/create",
   myPetsEdit: "/app/my-pets/",
 };
 

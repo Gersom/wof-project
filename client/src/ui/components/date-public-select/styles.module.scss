@@ -1,0 +1,103 @@
+$color-grey: #cccccc;
+
+.datesContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	width: fit-content;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	gap: 1rem;
+	h2 {
+		color: var(--color-text-grey);
+		font-size: 1.3rem;
+		padding: 0;
+		margin: 0;
+		font-family: 'Lexend-Regular';
+	}
+	div {
+		width: 100%;
+		height: min-content;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		border: 0.15rem solid $color-grey;
+		border-radius: 0.5rem;
+		padding: 0.5rem 1rem 1rem 1rem;
+		h4 {
+			font-size: 1.1rem;
+			font-family: 'Lexend-SemiBold';
+			color: $color-grey;
+		}
+		label {
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
+			gap: 0.5rem;
+			color: var(--color-text-dark);
+			margin: 0;
+			padding: 0;
+			font-size: 1.2rem;
+			font-family: 'Lexend-Medium';
+		}
+		input {
+			background-color: var(--color-text-primary);
+			color: var(--color-text-grey);
+			border: 0.15rem solid transparent;
+			font-size: 1.1rem;
+			width: 100%;
+			margin: 0;
+			padding: 0.4rem 0.8rem;
+			&:focus {
+				outline: none;
+				border: 0.15rem solid $color-grey;
+			}
+		}
+		input[type='date']::-webkit-calendar-picker-indicator {
+			width: 1.5rem;
+			height: 1.5rem;
+			padding: 0;
+			margin: 0;
+			content: url('@icons/dateGrey.svg');
+		}
+		.iconStart {
+			position: absolute;
+			top: 20%;
+			right: 0;
+			margin: 0rem 1rem;
+			content: url('@icons/dateGrey.svg');
+		}
+		button {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 0.5rem;
+			background-color: var(--color-blue-light);
+			color: var(--color-text-primary);
+			border: 0.15rem solid transparent;
+			border-radius: 0.5rem;
+			width: 100%;
+			height: max-content;
+			margin: 0;
+			padding: 0.6rem 0;
+			font-size: 1.2rem;
+			font-family: 'Lexend-Regular';
+			cursor: pointer;
+			transition: all 0.2s ease-in-out;
+			&:hover {
+				background-color: var(--color-text-primary);
+				color: var(--color-blue-light);
+				border: 0.15rem solid var(--color-blue-light);
+				img {
+					content: url('@icons/eyeBlue.svg');
+				}
+			}
+		}
+	}
+}

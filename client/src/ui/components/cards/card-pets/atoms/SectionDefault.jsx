@@ -1,16 +1,20 @@
 import styles from '../styles.module.scss';
 import FooterDates from './FooterDates';
+import eyeBlue from '@icons/eyeBlue.svg';
 
-const PetDefault = ({data}) => {
+const SectionDefault = ({ data, toggleModal }) => {
 	return (
 		<section className={styles.sectionPublic}>
 			<h3>En busca de un cuidador:</h3>
 			<div className={styles.containerInfo}>
-				<button>Publicar</button>
+				<button className={styles.buttonDefault} onClick={toggleModal}>
+					<img src={eyeBlue} alt='eyeBlue' />
+					Publicar
+				</button>
 			</div>
 			<FooterDates data={data} />
 		</section>
 	);
 };
 
-export default PetDefault;
+export default SectionDefault;

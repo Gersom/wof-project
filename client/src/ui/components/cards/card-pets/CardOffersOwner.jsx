@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
 import routerNames from '@src/common/constants/routes';
 import PetImage from './atoms/PetImage';
-import SectionInfo from './atoms/SectionInfo';
+import SectionOffer from './atoms/SectionOffer';
 
 const CardOffersOwner = ({
 	data = {
@@ -15,10 +15,10 @@ const CardOffersOwner = ({
 	},
 }) => {
 	return (
-		<Link to={routerNames['details'] + data.pet.id} className={styles.link}>
+		<Link to={routerNames['detailsCaregivers'] + data.pet.id} className={styles.link}>
 			<article className={styles.article}>
 				<PetImage data={data} />
-				<SectionInfo data={data}/>
+				<SectionOffer data={data}/>
 			</article>
 		</Link>
 	);

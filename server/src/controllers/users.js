@@ -10,6 +10,8 @@ const UsersModel = require("../models/sequelize/users.js");
 const catchedAsync = require("../utils/catchedAsync");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const createUserMail = require("../config/mailing/createUserMail.js");
+const deleteUserMail = require("../config/mailing/deleteUserMail.js");
 
 // READ ITEMS
 const getAllUsers = catchedAsync(async (req, res) => {
@@ -56,6 +58,9 @@ const loginUser = catchedAsync(async (req, res) => {
   }
   else if(user.email && user.authInfo){
 
+  res
+    .status(200)
+    .json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
     res.status(200).json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
   }
 });
@@ -70,6 +75,8 @@ const getUser = catchedAsync(async (req, res) => {
 // CREATE ITEM
 const createUser = catchedAsync(async (req, res) => {
   const newUser = await postUserLogic(req.body);
+  const { email, name, lastName } = req.body;
+  createUserMail(email, name, lastName);
   res.status(200).json(newUser);
 }, ErrorHandler.createUserErrorHandler);
 
@@ -85,6 +92,8 @@ const updateUser = catchedAsync(async (req, res) => {
 const deleteUser = catchedAsync(async (req, res) => {
   const { id } = req.params;
   const deletedUser = await deleteUserLogic(id);
+  const { email, name, lastName } = req.body;
+  deleteUserMail(email, name, lastName);
   res.status(200).json(deletedUser);
 }, ErrorHandler.deleteUserErrorHandler);
 

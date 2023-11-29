@@ -6,7 +6,7 @@ import routerNames from "@src/common/constants/routes";
 import { validation } from "./validation";
 import { useDispatch } from "react-redux";
 import {
-  API_URL_CREATE_USER,
+  API_URL_REGISTER,
   API_URL_PROVINCES,
 } from "@src/common/constants/api";
 
@@ -23,7 +23,7 @@ const FormRegister = () => {
   const [provinces, setProvinces] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
 
-  const apiUrl = API_URL_CREATE_USER;
+  const apiUrl = API_URL_REGISTER;
 
   useEffect(() => {
     axios(API_URL_PROVINCES)
@@ -42,7 +42,7 @@ const FormRegister = () => {
   // form´s fild states
   const [dataForm, setDataForm] = useState({
     name: "",
-    lastname: "",
+    lastName: "",
     email: "",
     password: "",
     provincia: "",
@@ -54,7 +54,7 @@ const FormRegister = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    setDataForm({ ...dataForm, [name]: value });
+    setDataForm((prevDataForm) => ({ ...prevDataForm, [name]: value }));
     validation({ ...dataForm, [name]: value }, errors, setErrors);
   };
 
@@ -82,7 +82,7 @@ const FormRegister = () => {
     e.preventDefault();
 
     const passwordValue = e.target.elements.password.value;
-    const { name, password, email, lastname, role, provincia } = dataForm;
+    const { name, password, email, lastName, role, provincia } = dataForm;
 
     const hasErrors = Object.values(errors).some((error) => error !== "");
 
@@ -178,11 +178,11 @@ const FormRegister = () => {
                   </label>
                   <input
                     type="text"
-                    name="lastname"
-                    value={dataForm.lastname}
+                    name="lastName"
+                    value={dataForm.lastName}
                     onChange={handleInputChange}
                   />
-                  <span>{errors.lastname}</span>
+                  <span>{errors.lastName}</span>
                 </div>
                 <div className={styles["input_container"]}>
                   <label>
@@ -200,8 +200,8 @@ const FormRegister = () => {
                     {/* <option value="" disabled>
                       --Seleccionar
                     </option> */}
-                    <option value="Cuidador">Cuidador</option>
-                    <option value="Dueño" disabled>
+                    <option value="caregivers">Cuidador</option>
+                    <option value="owner" disabled>
                       Dueño
                     </option>
                   </select>

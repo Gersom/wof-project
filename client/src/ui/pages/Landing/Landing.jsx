@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
-import logo from "@images/landing/logo.svg";
-import pol from "@images/landing/pol.svg";
-import poligono3 from "@images/landing/poligono3.svg";
-import collage from "@images/landing/collage.svg";
 import routerNames from "@src/common/constants/routes";
+import wofImage from "../../assets/images/landing/wof.svg";
+import rectangle from "@images/landing/rectangle.svg";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
@@ -29,34 +27,33 @@ const LandingPage = () => {
 
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.pol3}>
-        <img src={poligono3} alt="Poligono" />
-        <Link to={routerNames["login"]} className={styles.btnLog}>
+      <div>
+        <img className={styles.imageRec} src={rectangle} alt="Rectangle" />
+      </div>
+      <div className={styles.cont}>
+        <Link to={routerNames["contact"]} className={styles.contactBtn}>
+          Contáctanos
+        </Link>
+        <Link to={routerNames["login"]} className={styles.loginBtn}>
           Inicia Sesión
         </Link> 
       </div>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <img className={styles.image} src={logo} alt="Logo" />
+        <h1 className={styles.title}>Elige tu cuidador de mascotas perfecto</h1>
+        <img src={wofImage} alt="Logo" className={styles.logoWof} />
+        <div>
+          <h1 className={styles.secTitle}>
+            O trabaja como cuidador profesional
+          </h1>
+
+          <div className={styles.btn}>
+            <button className={styles.registerBtn}>
+              <Link to={routerNames["register"]} className={styles.textButton}>
+                Regístrate
+              </Link>
+            </button>
+          </div>
         </div>
-      </div>
-      <div>
-        <div className={styles.wrapper}>
-          <h3>
-            ¡Encuentra al instante el cuidador ideal para tu amigo peludo!
-          </h3>
-        </div>
-        <div className={styles.btn}>
-          <Link to={routerNames["register"]} className={styles.ctaButton}>
-            Regístrate
-          </Link>
-        </div>
-      </div>
-      <div className={styles.containerCollage}>
-        <img className={styles.collage} src={collage} alt="Collage Pets" />
-      </div>
-      <div className={styles.pol}>
-        <img src={pol} alt="Poligono" />
       </div>
     </div>
   );
