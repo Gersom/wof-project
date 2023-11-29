@@ -200,8 +200,8 @@ const FormRegister = () => {
                     {/* <option value="" disabled>
                       --Seleccionar
                     </option> */}
-                    <option value="Cuidador">Cuidador</option>
-                    <option value="Dueño" disabled>
+                    <option value="caregivers">Cuidador</option>
+                    <option value="owner" disabled>
                       Dueño
                     </option>
                   </select>
