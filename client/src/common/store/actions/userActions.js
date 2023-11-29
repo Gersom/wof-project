@@ -13,7 +13,6 @@ export const actionGetUser = (userId) => async (dispatch) => {
 export const postUser = (newUser) => {
 	return async (dispatch) => {
 		try {
-			console.log(newUser);
 			const response = await axios.post(API_URL_REGISTER, newUser);
 			const data = response.data;
 			dispatch({

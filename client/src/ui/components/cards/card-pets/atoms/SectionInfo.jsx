@@ -3,7 +3,9 @@ import styles from '../styles.module.scss';
 const SectionInfo = ({
 	data = {
 		pet: {
-			breed: '',
+			breed: {
+				name: '',
+			},
 			manners: '',
 		},
 	},
@@ -11,7 +13,7 @@ const SectionInfo = ({
 	return (
 		<section className={styles.sectionInfo}>
 			<h5>Informacion :</h5>
-			<h4>{data.pet.breed}</h4>
+			<h4>{data.pet.breed.name}</h4>
 			<h4>{data.pet.manners}</h4>
 		</section>
 	);
