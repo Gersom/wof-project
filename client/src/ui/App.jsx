@@ -35,10 +35,14 @@ function App() {
         <Route path={routerNames["register"]} element={<FormRegister />} />
         <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
         {/* dashboard */}
-        <Route
+        {/* <Route
           path={routerNames["dashboard"]}
           element={<ProtectedRoute />}
           children={{ path: routerNames["dashboard"], element: <Dashboard /> }}
+        > */}
+        <Route
+          path={routerNames["dashboard"]}
+          element={<Dashboard />}
         >
           <Route
             index
