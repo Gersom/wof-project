@@ -34,6 +34,11 @@ const MyHome = () => {
 		setForm({ ...form, [name]: value });
 	};
 
+    const handleDeleteImage = (image) => {
+        const newImages = form.images.filter((img) => img !== image);
+        setForm({ ...form, images: newImages });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(caregiverId) {
@@ -63,6 +68,7 @@ const MyHome = () => {
 					setImage={(image) =>
 						setForm({ ...form, images: [...form.images, image] })
 					}
+                    handleDeleteImage={handleDeleteImage}
 				/>
 			</div>
                 <button onClick={handleSubmit}>Guardar cambios</button>

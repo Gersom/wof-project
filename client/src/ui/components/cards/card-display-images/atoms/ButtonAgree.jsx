@@ -20,7 +20,7 @@ const ButtonAgree = ({ setImage}) => {
 
 	return (
 		<>
-			<button onClick={handleUpload}>
+			<button onClick={handleUpload} >
 				<img src={plusAgree} alt='plusAgree' />
 				Agregar
 			</button>

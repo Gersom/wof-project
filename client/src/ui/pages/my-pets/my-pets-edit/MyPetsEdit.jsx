@@ -58,6 +58,10 @@ const MyPetsEdit = () => {
 		setForm({ ...form, [name]: value });
 	};
 
+	const handleDeleteImage = (image) => {
+		const newImages = form.imageUrl.filter((img) => img !== image);
+		setForm({ ...form, imageUrl: newImages });
+	}
 	const handleSubmit = async (e) => {
 		const options = {
 			method: 'POST',
@@ -96,6 +100,7 @@ const MyPetsEdit = () => {
 					setImage={(imagesUrl) =>
 						setForm({ ...form, imageUrl: [...form.imageUrl, imagesUrl] })
 					}
+					handleDeleteImage={handleDeleteImage}
 				/>
 			</div>
 			<ButtonsSave onSubmit={handleSubmit} />
