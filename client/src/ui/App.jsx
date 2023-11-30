@@ -17,7 +17,6 @@ import Login from "./components/login/Login";
 import FormReview from "./components/reviews/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
 import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
-
 // Imports Components
 
 function App() {
@@ -30,7 +29,13 @@ function App() {
         {/* Forms */}
         <Route path={routerNames["login"]} element={<Login />} />
         <Route path={routerNames["register"]} element={<FormRegister />} />
+        <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
         {/* dashboard */}
+        {/* <Route
+          path={routerNames["dashboard"]}
+          element={<ProtectedRoute />}
+          children={{ path: routerNames["dashboard"], element: <Dashboard /> }}
+        > */}
         <Route path={routerNames["dashboard"]} element={<Dashboard />}>
           <Route
             index
@@ -41,14 +46,14 @@ function App() {
             path={routerNames["detailsCaregivers"] + ":id"}
             element={<Details />}
           />
-          {/* <Route path={routerNames["profile"]} element={<Landing />} /> */}
+          <Route path={routerNames["profile"]} element={<FormProfile />} />
           <Route
             path={routerNames["offersOwners"] + ":id"}
             element={<Offers />}
           />
           <Route
             path={routerNames["detailsOwners"] + ":id"}
-            element={<Details />}
+            element={<DetailsCaregivers />}
           />
 
           <Route path={routerNames["formReview"]} element={<FormReview />} />

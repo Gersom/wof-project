@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import CardPetInfo from '../../cards/card-pets/CardPetInfo';
 import DatePublicSelect from '../../date-public-select/DatePublicSelect';
 
-const ModalPublicPet = ({ data }) => {
+const ModalPublicPet = ({ data, toggleModal }) => {
 	return (
 		<div className={styles.modalContainer}>
 			<h1>Anuncia a tu mascota</h1>
@@ -12,7 +12,7 @@ const ModalPublicPet = ({ data }) => {
 			</h3>
 			<div>
 				<CardPetInfo  data={data}/>
-				<DatePublicSelect  data={data}/>
+				<DatePublicSelect  data={data} toggleModal={toggleModal}/>
 			</div>
 		</div>
 	);

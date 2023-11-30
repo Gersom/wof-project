@@ -16,5 +16,47 @@
     "temperaments": "Dormilon",
     "manners": "Solito se va a hacer sus necesidades a fuera",
     "notes": "No molesta, solo duerme, pero si llora para que le des de comer"
+  },
+  {
+    "name": "peluchin",
+    "temperaments": "jugueton",
+    "manners": "juega solo",
+    "notes": "No molesta, solo duerme, pero si llora para que le des de comer"
+  },
+  {
+    "name": "princesa",
+    "temperaments": "Dormilona",
+    "manners": "Solito se va a hacer sus necesidades a fuera",
+    "notes": "No molesta, solo duerme, pero si llora para que le des de comer"
+  },
+  {
+    "name": "rambo",
+    "temperaments": "correlon",
+    "manners": "Solito se va a hacer sus necesidades a fuera",
+    "notes": "No molesta, solo duerme, pero si llora para que le des de comer"
+  },
+  {
+    "name": "zoro",
+    "temperaments": "jugueton",
+    "manners": "Solito se va a hacer sus necesidades a fuera",
+    "notes": "No molesta, solo duerme, pero si llora para que le des de comer"
+  },
+  {
+    "name": "zimba",
+    "temperaments": "Dormilon",
+    "manners": "Solito se va a hacer sus necesidades a fuera",
+    "notes": "No molesta, solo duerme, pero si llora para que le des de comer"
+  },
+  {
+    "name": "principe",
+    "temperaments": "Dormilon",
+    "manners": "Solito se va a hacer sus necesidades a fuera",
+    "notes": "No molesta, solo duerme, pero si llora para que le des de comer"
+  },
+  {
+    "name": "nacho",
+    "temperaments": "Dormilon",
+    "manners": "Solito se va a hacer sus necesidades a fuera",
+    "notes": "No molesta, solo duerme, pero si llora para que le des de comer"
   }
 ]
