@@ -116,8 +116,8 @@ const NotFound = () => {
       </h1>
       <h3 className={styles.texto}>
         ¡Te hemos perdido!
-        <h3 className={styles.texto2}> ¿Pero, donde te has metido?</h3>{" "}
-        <h3 className={styles.texto3}> Vuelve con nosotros.</h3>
+        <h3 className={styles.texto2}> ¿Donde te has metido?</h3>{" "}
+        <h3 className={styles.texto3}> ¡Vuelve con nosotros!</h3>
       </h3>
       <div>
         <NavLink className={styles.link} to={routerNames["landing"]}>
@@ -129,4 +129,3 @@ const NotFound = () => {
 };
 
 export default NotFound;
-///pages/notFound/NotFound

@@ -6,7 +6,6 @@ import rectangle from "@images/landing/rectangle.svg";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
-import CareInProgress from "@src/ui/components/care-in-progress/CareInProgress";
 
 const LandingPage = () => {
   const { isLoading, isAuthenticated: isAuth0enticated } = useAuth0();
@@ -24,7 +23,6 @@ const LandingPage = () => {
   return (
     <div className={styles.mainContainer}>
       <div>
-        <CareInProgress />
         <img className={styles.imageRec} src={rectangle} alt="Rectangle" />
       </div>
       <div className={styles.cont}>
