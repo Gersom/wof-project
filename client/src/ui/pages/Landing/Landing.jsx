@@ -22,9 +22,6 @@ const LandingPage = () => {
   return (
     <div className={styles.mainContainer}>
       <div>
-        <ModalCustom state={true}>
-          <ModalAcceptPayed></ModalAcceptPayed>
-        </ModalCustom>
         <img className={styles.imageRec} src={rectangle} alt="Rectangle" />
       </div>
       <div className={styles.cont}>
