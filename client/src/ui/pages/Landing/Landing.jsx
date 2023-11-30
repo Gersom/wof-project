@@ -11,8 +11,8 @@ const LandingPage = () => {
 
   useEffect(() => {
     // if(getFromLocalStorage()){
-      const { userId , token} = getFromLocalStorage("session");
-      if(userId && token){
+      const sessionLS = getFromLocalStorage("session");
+      if(sessionLS?.userId && sessionLS?.token){
         navigate(routerNames["loading"]);
       }
     // }

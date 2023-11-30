@@ -1,4 +1,5 @@
-import React, { useContext, createContext, useState, useEffect } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
+import { getFromLocalStorage } from "@common/utils/localStorage"
 
 const AuthContext = createContext({
   isAuthenticated: false,
@@ -32,10 +33,10 @@ function AuthProvider({ children }) {
   
   function getToken(){
     
-    const {token} = localStorage?.getItem("session");
-    if(token){
-        setAccessToken(token);
-      	return token;
+    const sessionLS = getFromLocalStorage("session");
+    if(sessionLS?.token){
+      setAccessToken(sessionLS?.token);
+      return sessionLS?.token;
     }
     setAccessToken(null);
     return null;
@@ -52,4 +53,5 @@ function AuthProvider({ children }) {
 
 export { AuthProvider };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);

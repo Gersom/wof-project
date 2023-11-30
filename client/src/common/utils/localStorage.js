@@ -6,7 +6,8 @@ export const saveToLocalStorage = (key, value) => {
 
 export const getFromLocalStorage = (key) => {
   const storedValue = localStorage.getItem(key);
-  return JSON.parse(storedValue);
+  if(storedValue) return JSON.parse(storedValue);
+  return {}
 }
 
 export default ''
