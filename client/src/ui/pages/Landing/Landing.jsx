@@ -10,10 +10,12 @@ const LandingPage = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const { userId , token} = getFromLocalStorage("session");
-    if(userId && token){
-      navigate(routerNames["loading"]);
-    }
+    // if(getFromLocalStorage()){
+      const { userId , token} = getFromLocalStorage("session");
+      if(userId && token){
+        navigate(routerNames["loading"]);
+      }
+    // }
   }, []);
 
   return (

@@ -22,7 +22,7 @@ const schema = {
   },
   status: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
+    defaultValue: false,
     },
   action: {
     type: DataTypes.STRING,

@@ -2,7 +2,7 @@
 import routerNames from "@common/constants/routes";
 
 // Imports Router
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 // Imports Pages
 import Home from "./pages/home/Home";
@@ -22,10 +22,40 @@ import DetailsCaregivers from "./pages/details/DetailsCaregivers";
 import { useAuth } from "@src/context/auth-provider/authProvider";
 import { Navigate } from "react-router-dom";
 import MyHome from "./pages/my-home/MyHome";
+import { useEffect } from "react";
+import { saveToLocalStorage, getFromLocalStorage } from "@src/common/utils/localStorage";
+
 // import ModalCustom from "@components/modals/modal-custom/ModalCustom";
 
 function App() {
   const auth = useAuth();
+  const location = useLocation();
+  
+  function storeCurrentRouteInSession() {
+    const {token, userId} = getFromLocalStorage("session");
+    let currentRoute;
+
+    if(currentRoute !== "/verificando" || currentRoute !== "/iniciar-sesion"){
+      currentRoute = location.pathname;
+    }
+   
+    console.log(currentRoute);
+    if(token && userId){
+      const updatedSorage = {
+        token: token,
+        userId: userId,
+        history: currentRoute,
+      }
+
+      saveToLocalStorage('session',updatedSorage);
+    }
+    console.log(`Ruta actual almacenada en sessionStorage: ${currentRoute}`);
+  }
+
+  useEffect(()=>{
+    storeCurrentRouteInSession();
+  },[])
+
   return (
     <div className="App">
       <Routes>
