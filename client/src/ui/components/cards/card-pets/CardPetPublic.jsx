@@ -24,11 +24,22 @@ const CardPetPublic = ({
 }) => {
 	const [modal, setModal] = useState(false);
 	
+	const handleRenderSection = () => {
+		switch (data.status) {
+			case 'progress':
+				return <SectionProgress data={data} />;
+			case 'published':
+				return <SectionPublished data={data} toggleModal={() => setModal(true)}/>;
+			default:
+				return <SectionDefault data={data} toggleModal={() => setModal(true)}/>;
+		}
+	}
+
 	return (
 		<>
 			<article className={styles.article}>
 				<PetImage data={data} isEditable={true} />
-				<SectionPublished data={data} toggleModal={() => setModal(true)} />
+				{handleRenderSection()}
 			</article>
 			<ModalCustom
 				isWarning={false}
