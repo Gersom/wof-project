@@ -8,7 +8,8 @@ const PaypalView = ({
     postId:0, userId:0, caregiverId: 0,
     description: "WOF.COM - Servicio de cuidado de mascota",
     price: 100
-  }
+  },
+  onPaid= ()=>null
 }) => {
 
   const generateOrder = (data, actions) => {
@@ -58,6 +59,7 @@ const PaypalView = ({
       userId: dataPost.userId,
       caregiverId: dataPost.caregiverId,
     })
+    onPaid()
   }
 
   const cancelHandler = () => {
