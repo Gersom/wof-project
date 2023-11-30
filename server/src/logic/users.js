@@ -90,11 +90,19 @@ const postNewRoleLogic = async (userId, body) => {
   const User = await UsersModel.updateData(userId, {role});
 
   if (role === "caregiver") {
-    const responseCreate = await CaregiversModel.create({userId});
-    return {caregiverId: responseCreate?.id};
+    const exist = await CaregiversModel.dataExistByUser(userId)
+    if (!exist) {
+      const responseCreate = await CaregiversModel.create({userId});
+      return {caregiverId: responseCreate?.id};
+    }
+    return User
   } else if (role === "owner") {
-    const responseCreate = await OwnersModel.create({userId});
-    return {ownerId: responseCreate?.id};
+    const exist = await OwnersModel.dataExistByUser(userId)
+    if (!exist) {
+      const responseCreate = await OwnersModel.create({userId});
+      return {caregiverId: responseCreate?.id};
+    }
+    return User
   }
 };
 
