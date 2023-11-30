@@ -36,11 +36,15 @@ return owners
 }
 
 OwnersModel["findOwner"] = async (id) => {
+  const PetsModel = require("./pets")
   const owner = await OwnersModel.findOne({
     where: { id },
     include: [
       {
         model: UsersModel
+      },
+      {
+        model: PetsModel, attributes:["id","name"]
       }
     ]
   })

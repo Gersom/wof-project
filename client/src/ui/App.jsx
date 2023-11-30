@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router-dom";
 
 // Imports Pages
 import Home from "./pages/home/Home";
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/notFound/NotFound";
 import Landing from "./pages/landing/Landing";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
@@ -17,10 +17,6 @@ import Login from "./components/login/Login";
 import FormReview from "./components/reviews/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
 import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
-import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
-import VerifyingLogin from "./components/verifying-login/VerifyingLogin";
-import DetailsCaregivers from "./pages/details/DetailsCaregivers";
-import FormProfile from "./components/forms/formProfile/formProfile";
 // Imports Components
 
 function App() {
@@ -40,10 +36,7 @@ function App() {
           element={<ProtectedRoute />}
           children={{ path: routerNames["dashboard"], element: <Dashboard /> }}
         > */}
-        <Route
-          path={routerNames["dashboard"]}
-          element={<Dashboard />}
-        >
+        <Route path={routerNames["dashboard"]} element={<Dashboard />}>
           <Route
             index
             path={routerNames["offersCaregivers"]}
@@ -72,6 +65,7 @@ function App() {
             element={<MyPetsEdit />}
           />
         </Route>
+
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />
       </Routes>
