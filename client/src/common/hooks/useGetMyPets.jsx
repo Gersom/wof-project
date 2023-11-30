@@ -5,8 +5,9 @@ import { useState, useEffect } from 'react';
 const useGetMyPets = (ownerId) => {
 	const dispatch = useDispatch();
 	const pets = useSelector((state) => state.myPetsReducer.myPets);
+	const updatePetsTriger = useSelector((state) => state.myPetsReducer.updatePetsTriger);
 	const [isLoading, setIsLoading] = useState(false);
-
+	
 	useEffect(() => {
 		setIsLoading(true);
 		const get = async () => {
@@ -15,7 +16,7 @@ const useGetMyPets = (ownerId) => {
 		};
 		get();
         setIsLoading(false);
-	}, [dispatch, ownerId]);
+	}, [dispatch, ownerId, updatePetsTriger]);
 
 	return { pets, isLoading };
 };
