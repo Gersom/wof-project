@@ -5,22 +5,22 @@ const getAllCaregiversLogic = async () => {
   return caregivers.map(caregiver => {
     return {
       id: caregiver.id,
-            userId: caregiver.userId,
-            user: {
-                id: caregiver.user.id,
-                dni: caregiver.user.dni,
-                name: caregiver.user.name,
-                lastName: caregiver.user.lastName,
-                birthdate: caregiver.user.birthdate,
-                email: caregiver.user.email,
-                password: caregiver.user.password,
-                cellPhone: caregiver.user.cellPhone,
-                profilePicture: caregiver.user.profilePicture,
-                address: caregiver.user.address,
-                role: caregiver.user.role,
-                province: caregiver.user.province?.name,
-                provinceId: caregiver.user.provinceId,
-            }
+      userId: caregiver?.userId,
+      user: {
+          id: caregiver?.user?.id,
+          dni: caregiver?.user?.dni,
+          name: caregiver?.user?.name,
+          lastName: caregiver?.user?.lastName,
+          birthdate: caregiver?.user?.birthdate,
+          email: caregiver?.user?.email,
+          password: caregiver?.user?.password,
+          cellPhone: caregiver?.user?.cellPhone,
+          profilePicture: caregiver?.user?.profilePicture,
+          address: caregiver?.user?.address,
+          role: caregiver?.user?.role,
+          province: caregiver?.user?.province?.name,
+          provinceId: caregiver?.user?.provinceId,
+      }
     }
   })
 }

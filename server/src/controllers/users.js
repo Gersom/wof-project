@@ -5,6 +5,7 @@ const {
   postUserLogic,
   updateUserLogic,
   deleteUserLogic,
+  postNewRoleLogic,
 } = require("../logic/users");
 const UsersModel = require("../models/sequelize/users.js");
 const catchedAsync = require("../utils/catchedAsync");
@@ -97,6 +98,13 @@ const deleteUser = catchedAsync(async (req, res) => {
   res.status(200).json(deletedUser);
 }, ErrorHandler.deleteUserErrorHandler);
 
+// DELETE ITEM
+const newRole = catchedAsync(async (req, res) => {
+  const { id } = req.params;
+  const newRole = await postNewRoleLogic(id, req.body);
+  res.status(200).json(newRole);
+}, ErrorHandler.postNewRoleErrorHandler);
+
 module.exports = {
   getAllUsers,
   getUser,
@@ -104,4 +112,5 @@ module.exports = {
   updateUser,
   deleteUser,
   loginUser,
+  newRole,
 };

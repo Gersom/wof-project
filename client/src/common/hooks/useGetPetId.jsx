@@ -8,7 +8,7 @@ const useGetPetId = (idPet) => {
 
 	useEffect(() => {
 		if (pets.length > 0) {
-			const pet = pets.find((pet) => pet.pet.id == idPet);
+			const pet = pets.find((pet) => pet.id == idPet);
 			setDetails(pet);
 		} else {
 			setDetails(null);
