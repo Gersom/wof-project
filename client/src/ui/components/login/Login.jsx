@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import routerNames from "@src/common/constants/routes";
 import logo from "@icons/nav/logo.svg";
 import password from "@icons/password.svg";
@@ -7,18 +7,24 @@ import email from "@icons/email.svg";
 import styles from "./styles.module.scss";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { API_URL_LOGIN } from "@src/common/constants/api";
+
 
 import axios from "axios";
+
+import Auth0Btutton from "../auth/auth0-button/Auth0Button";
 
 import {
   saveToLocalStorage,
   getFromLocalStorage,
 } from "@common/utils/localStorage";
+import { useAuth } from "@src/context/auth-provider/authProvider";
+
 
 const Login = () => {
+
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const { isAuthenticated, setAuthenticated } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +48,9 @@ const Login = () => {
 
       if (response.data.token) {
         window.alert("Inicio de sesion completado");
-        navigate(routerNames["offers"]);
+        
+        navigate(routerNames["loading"]);
+        setAuthenticated(true);
       }
     } catch (error) {
       window.alert("error en correo o contraseña");
@@ -98,13 +106,27 @@ const Login = () => {
                   <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
                 </div>
               </div>
+              <div className={styles["pasword-recovery-container"]}>
+                <Link to={routerNames["register"]}>
+                  Olvidaste la contraseña?
+                </Link>
+              </div>
+
               <button type="submit" className={styles["auth_btn"]}>
                 Ingresar
               </button>
-              <Link to={routerNames["register"]} className={styles["auth_btn"]}>
-                Registrarse
-              </Link>
+              <div className={styles["register-container"]}>
+                <label>
+                  No tienes cuenta?&nbsp;
+                </label>
+                <Link to={routerNames["register"]}>
+                  Registrarse
+                </Link>
+              </div>
+
+              <div className={styles["form_auth_hr"]}></div>
             </form>
+            <Auth0Btutton type={"service"} />
           </div>
 
           <div className={styles["form_auth_hr"]}></div>

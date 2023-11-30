@@ -5,6 +5,7 @@ const {
   postUserLogic,
   updateUserLogic,
   deleteUserLogic,
+  postNewRoleLogic,
 } = require("../logic/users");
 const UsersModel = require("../models/sequelize/users.js");
 const catchedAsync = require("../utils/catchedAsync");
@@ -37,27 +38,32 @@ const loginUser = catchedAsync(async (req, res) => {
     return res.status(401).json({ error: "No recibi informacion" });
   }
 
-  // Verificar la contraseña utilizando el método de comparación de hash
-  const isPasswordValid = await user.comparePassword(password);
+  if (user.password && !user.authInfo) {
+    const isPasswordValid = await user.comparePassword(password);
 
-  console.log("Contraseña ingresada:", password);
-  console.log("Contraseña almacenada:", user.password);
+    console.log("Contraseña ingresada:", password);
+    console.log("Contraseña almacenada:", user.password);
 
-  if (!isPasswordValid) {
-    // Contraseña incorrecta
-    console.log("Contraseña incorrecta");
-    return res.status(401).json({ error: "Contraseña incorrecta" });
+    if (!isPasswordValid) {
+      console.log("Contraseña incorrecta");
+      return res.status(401).json({ error: "Contraseña incorrecta" });
+    }
+
+
+    const token = jwt.sign({ userId: user.id }, "tu_secreto_secreto", {
+      expiresIn: "24h",
+    });
+
+    res.status(200).json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
+    return
   }
-
-  // Autenticación exitosa, generar un token JWT
-  const token = jwt.sign({ userId: user.id }, "tu_secreto_secreto", {
-    expiresIn: "24h",
-  });
-  // return res.status(501).send(isPasswordValid)
+  else if(user.email && user.authInfo){
 
   res
     .status(200)
     .json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
+    res.status(200).json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
+  }
 });
 
 // DETAIL ITEM
@@ -92,6 +98,13 @@ const deleteUser = catchedAsync(async (req, res) => {
   res.status(200).json(deletedUser);
 }, ErrorHandler.deleteUserErrorHandler);
 
+// DELETE ITEM
+const newRole = catchedAsync(async (req, res) => {
+  const { id } = req.params;
+  const newRole = await postNewRoleLogic(id, req.body);
+  res.status(200).json(newRole);
+}, ErrorHandler.postNewRoleErrorHandler);
+
 module.exports = {
   getAllUsers,
   getUser,
@@ -99,4 +112,5 @@ module.exports = {
   updateUser,
   deleteUser,
   loginUser,
+  newRole,
 };

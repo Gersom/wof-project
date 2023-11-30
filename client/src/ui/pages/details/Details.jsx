@@ -64,10 +64,7 @@ const Details = () => {
 				{!isLoading && <Carousel images={details.pet.images} />}
 				{!isLoading && (
 					<CardInfoPet
-						breed={details.pet.breed}
-						temperaments={details.pet.temperaments}
-						manners={details.pet.manners}
-						notes={details.pet.notes}
+						data={details}
 						role={'owner'}
 					/>
 				)}

@@ -29,4 +29,8 @@ PetsImagesModel.belongsTo(PetsModel)
 // add static methods (functions) to model
 addMethods(PetsImagesModel)
 
+PetsImagesModel['removeDataByPet'] = (petId) => {
+  return PetsImagesModel.destroy({ where: {petId} })
+}
+
 module.exports = PetsImagesModel

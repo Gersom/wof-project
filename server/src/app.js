@@ -8,7 +8,6 @@ const app = express();
 
 // MIDDLEWARES
 middlewares(app);
-
 // ROUTES
 // http://localhost/api/
 app.use("/api", require("./routes"));

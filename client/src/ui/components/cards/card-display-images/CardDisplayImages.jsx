@@ -2,9 +2,7 @@ import styles from './styles.module.scss';
 import imageIcon from '@icons/imageIcon.svg';
 import ButtonAgree from './atoms/ButtonAgree';
 
-const CardDisplayImages = ({ data }) => {
-
-	
+const CardDisplayImages = ({ data = [''], setImage }) => {
 	return (
 		<div className={styles.mainContainer}>
 			<h4>Fotos de la masconta</h4>
@@ -13,21 +11,10 @@ const CardDisplayImages = ({ data }) => {
 				<h3>Fotos :</h3>
 			</header>
 			<div>
-				<img src='https://via.placeholder.com/150' alt='pet' />
-				<img src='https://via.placeholder.com/150' alt='pet' />
-				<img src='https://via.placeholder.com/150' alt='pet' />
-				
-				<img src='https://via.placeholder.com/150' alt='pet' />
-				<img src='https://via.placeholder.com/150' alt='pet' />
-				
-				<img src='https://via.placeholder.com/150' alt='pet' />
-				<img src='https://via.placeholder.com/150' alt='pet' />
-				
-				<img src='https://via.placeholder.com/150' alt='pet' />
-				
-				<img src='https://via.placeholder.com/150' alt='pet' />
-				<img src='https://via.placeholder.com/150' alt='pet' />
-				<ButtonAgree />
+				{data.map((image, index) => (
+					<img src={image} alt='pet' key={index} />
+				))}
+				<ButtonAgree setImage={setImage} />
 			</div>
 		</div>
 	);

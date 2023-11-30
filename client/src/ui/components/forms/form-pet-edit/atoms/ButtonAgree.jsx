@@ -10,7 +10,7 @@ const ButtonAgree = () => {
 		<div className={styles.buttonAgree}>
 			<button
 				onClick={() => navigate(routerNames['myPetsCreate'])}
-        className={styles.buttonAgree}
+				className={styles.buttonAgree}
 			>
 				<img src={plusAgree} alt='Agregar' />
 				Agregar

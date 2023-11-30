@@ -46,5 +46,89 @@
     "address": "Calle Buena esperanza",
     "dni": "0070239657",
     "birthdate": "01-01-2000"
+  },
+  {
+    "email": "abcde@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "caregiver",
+    "profilePicture": "https://misanimales.com/wp-content/uploads/2018/09/cuidador-para-tu-perro.jpg",
+    "name": "Daniela",
+    "lastName": "Vargas",
+    "cellPhone": "+51910999999",
+    "address": "Calle Buena esperanza",
+    "dni": "00836541",
+    "birthdate": "01-01-2000"
+  },
+  {
+    "email": "alonso1234@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "caregiver",
+    "profilePicture": "https://blog.dogbuddy.com//wp-content/uploads/2015/07/caracteristicas-de-un-buen-cuidador-chica-paseando-a-varios-perros.jpg",
+    "name": "Alonso",
+    "lastName": "Cavani",
+    "cellPhone": "+51996548676",
+    "address": "Calle tello",
+    "dni": "60759863",
+    "birthdate": "09-02-2002"
+  },
+  {
+    "email": "sofia1234@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "caregiver",
+    "profilePicture": "https://blog.dogbuddy.com//wp-content/uploads/2015/07/caracteristicas-de-un-buen-cuidador-chica-paseando-a-varios-perros.jpg",
+    "name": "Sofia",
+    "lastName": "Maldonado",
+    "cellPhone": "+51996548676",
+    "address": "avenida ugarte",
+    "dni": "60492722",
+    "birthdate": "02-05-2001"
+  },
+  {
+    "email": "claudia1234@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "caregiver",
+    "profilePicture": "https://blog.dogbuddy.com//wp-content/uploads/2015/07/caracteristicas-de-un-buen-cuidador-chica-paseando-a-varios-perros.jpg",
+    "name": "Claudia",
+    "lastName": "Mendonza",
+    "cellPhone": "+51996548676",
+    "address": "Calle cordoba",
+    "dni": "93583065",
+    "birthdate": "01-07-2003"
+  },
+  {
+    "email": "manuel1234@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "owner",
+    "profilePicture": "https://i.pinimg.com/736x/ae/ec/c2/aeecc22a67dac7987a80ac0724658493.jpg",
+    "name": "Manuel",
+    "lastName": "Mendonza",
+    "cellPhone": "+51996548676",
+    "address": "Calle cordoba",
+    "dni": "93583065",
+    "birthdate": "01-07-2003"
+  },
+  {
+    "email": "jorge1234@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "owner",
+    "profilePicture": "https://wl-genial.cf.tsp.li/resize/728x/jpg/439/d0d/f78961548185fd5b5b5677fd81.jpg",
+    "name": "Jorge",
+    "lastName": "Vega",
+    "cellPhone": "+51996548676",
+    "address": "Calle cordoba",
+    "dni": "93583065",
+    "birthdate": "01-07-2003"
+  },
+  {
+    "email": "carlos1234@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "caregiver",
+    "profilePicture": "https://pbs.twimg.com/profile_images/1092644979737088000/8EXQ5IEl_400x400.jpg",
+    "name": "Carlos",
+    "lastName": "Alvarado",
+    "cellPhone": "+51996548676",
+    "address": "Calle cordoba",
+    "dni": "93583065",
+    "birthdate": "01-07-2003"
   }
 ]

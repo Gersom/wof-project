@@ -1,8 +1,11 @@
 import styles from './styles.module.scss';
 import PetImage from './atoms/PetImage';
+import ModalCustom from '@src/ui/components/modals/modal-custom/ModalCustom';
+import ModalPublicPet from '@src/ui/components/modals/modal-public-pet/ModalPublicPet';
 import SectionProgress from './atoms/SectionProgress';
 import SectionPublished from './atoms/SectionPublished';
 import SectionDefault from './atoms/SectionDefault';
+import { useState } from 'react';
 
 const CardPetPublic = ({
 	data = {
@@ -19,12 +22,32 @@ const CardPetPublic = ({
 		estado: '',
 	},
 }) => {
+	const [modal, setModal] = useState(false);
+	
+	const handleRenderSection = () => {
+		switch (data.status) {
+			case 'progress':
+				return <SectionProgress data={data} />;
+			case 'published':
+				return <SectionPublished data={data} toggleModal={() => setModal(true)}/>;
+			default:
+				return <SectionDefault data={data} toggleModal={() => setModal(true)}/>;
+		}
+	}
+
 	return (
 		<>
 			<article className={styles.article}>
 				<PetImage data={data} isEditable={true} />
-				<SectionDefault data={data} />
+				{handleRenderSection()}
 			</article>
+			<ModalCustom
+				isWarning={false}
+				state={modal}
+				toggleModal={() => setModal(!modal)}
+			>
+				<ModalPublicPet data={data} toggleModal={() => setModal(!modal)}/>
+			</ModalCustom>
 		</>
 	);
 };

@@ -11,15 +11,15 @@ const validation = (form) => {
 	}
 	if (form.temperaments.length < 5) {
 		errors.temperaments = 'Debe escribir al menos 1 caracteristica';
-	} else if (form.temperaments.length > 40) {
-		errors.temperaments = 'Debe escribir menos de 40 caracteres';
+	} else if (form.temperaments.length > 60) {
+		errors.temperaments = 'Debe escribir menos de 60 caracteres';
 	} else {
 		errors.temperaments = '';
 	}
 	if (form.manners.length < 5) {
 		errors.manners = 'Debe escribir al menos 1 caracteristica';
-	} else if (form.manners.length > 40) {
-        errors.manners = 'Debe escribir menos de 40 caracteres';
+	} else if (form.manners.length > 80) {
+        errors.manners = 'Debe escribir menos de 80 caracteres';
 	} else {
 		errors.manners = '';
 	}

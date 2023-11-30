@@ -56,10 +56,21 @@ const deleteUserErrorHandler = (error, req, res, next) => {
     }
 };
 
+const postNewRoleErrorHandler = (error, req, res, next) => {
+  console.error("Error in postNewRoleErrorHandler:", error);
+
+  if (error.name === "NotFoundError") {
+      res.status(404).json({ error: "User not found in deleteUser operation." });
+  } else {
+      res.status(500).json({ error: "Internal server error while deleting user." });
+  }
+};
+
 module.exports = {
     getAllUsersErrorHandler,
     getUserErrorHandler,
     createUserErrorHandler,
     updateUserErrorHandler,
-    deleteUserErrorHandler
+    deleteUserErrorHandler,
+    postNewRoleErrorHandler
 };

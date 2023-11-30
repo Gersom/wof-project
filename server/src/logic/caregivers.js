@@ -1,26 +1,26 @@
-const { CaregiversModel, UsersModel } = require("../models")
+const { CaregiversModel, UsersModel, CaregiversImagesModel } = require("../models")
 
 const getAllCaregiversLogic = async () => {
   const caregivers = await CaregiversModel.findAllCaregivers()
   return caregivers.map(caregiver => {
     return {
       id: caregiver.id,
-            userId: caregiver.userId,
-            user: {
-                id: caregiver.user.id,
-                dni: caregiver.user.dni,
-                name: caregiver.user.name,
-                lastName: caregiver.user.lastName,
-                birthdate: caregiver.user.birthdate,
-                email: caregiver.user.email,
-                password: caregiver.user.password,
-                cellPhone: caregiver.user.cellPhone,
-                profilePicture: caregiver.user.profilePicture,
-                address: caregiver.user.address,
-                role: caregiver.user.role,
-                province: caregiver.user.province?.name,
-                provinceId: caregiver.user.provinceId,
-            }
+      userId: caregiver?.userId,
+      user: {
+          id: caregiver?.user?.id,
+          dni: caregiver?.user?.dni,
+          name: caregiver?.user?.name,
+          lastName: caregiver?.user?.lastName,
+          birthdate: caregiver?.user?.birthdate,
+          email: caregiver?.user?.email,
+          password: caregiver?.user?.password,
+          cellPhone: caregiver?.user?.cellPhone,
+          profilePicture: caregiver?.user?.profilePicture,
+          address: caregiver?.user?.address,
+          role: caregiver?.user?.role,
+          province: caregiver?.user?.province?.name,
+          provinceId: caregiver?.user?.provinceId,
+      }
     }
   })
 }
@@ -46,6 +46,16 @@ const postCaregiverLogic = async (data) => {
 }
 
 const updateCaregiverLogic = async (id, data) => {
+  const { images } = data
+  if(images){
+    const imgs = images.map(img => {
+      return {
+        imageUrl:img,
+        caregiverId:id
+      }
+    })
+    CaregiversImagesModel.createMany(imgs)
+  }
   await CaregiversModel.updateData(id, data)
   return {
     success: 'User was update correctly.'

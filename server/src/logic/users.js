@@ -1,4 +1,6 @@
-const { UsersModel, ProvincesModel, CountriesModel } = require("../models");
+const { 
+  UsersModel, ProvincesModel, CountriesModel, CaregiversModel, OwnersModel
+} = require("../models");
 const bcrypt = require("bcrypt");
 
 const getAllUsersLogic = async () => {
@@ -25,7 +27,7 @@ const getAllUsersLogic = async () => {
 };
 
 const getUserLogic = async (id) => {
-  const User = await UsersModel.findDataById(id);
+  const User = await UsersModel.findUserById(id);
   if (!User) throw Error("User not found");
   return User;
 };
@@ -35,7 +37,7 @@ const postUserLogic = async (data) => {
   const saltRounds = 10;
   data.password = await bcrypt.hash(data.password, saltRounds);
 
-  const newUser = await UsersModel.create(data);
+  const newUser = await UsersModel.createUser(data);
 
   if (country) {
     const countryDB = await CountriesModel.findOne({
@@ -83,10 +85,24 @@ const deleteUserLogic = async (id, data) => {
   };
 };
 
+const postNewRoleLogic = async (userId, body) => {
+  const role = body.role
+  const User = await UsersModel.updateData(userId, {role});
+
+  if (role === "caregiver") {
+    const responseCreate = await CaregiversModel.create({userId});
+    return {caregiverId: responseCreate?.id};
+  } else if (role === "owner") {
+    const responseCreate = await OwnersModel.create({userId});
+    return {ownerId: responseCreate?.id};
+  }
+};
+
 module.exports = {
   getAllUsersLogic,
   getUserLogic,
   postUserLogic,
   updateUserLogic,
   deleteUserLogic,
+  postNewRoleLogic,
 };

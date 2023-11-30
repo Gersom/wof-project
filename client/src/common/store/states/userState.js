@@ -3,7 +3,7 @@ const userState = {
     user: {
       name:"Usuario",
       profilePicture: "#",
-      email: "...@gmail.com"
+      email: "...@gmail.com",
     },
   }
   

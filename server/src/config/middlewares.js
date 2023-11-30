@@ -1,9 +1,11 @@
 // const cors = require("cors")
 const express = require("express");
+const morgan = require("morgan");
 
 // MIDDLEWARES
 const middlewares = (app) => {
   // app.use(cors())
+  app.use(morgan("dev"));
   app.use((_, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", "true");

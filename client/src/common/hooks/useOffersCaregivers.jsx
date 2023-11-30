@@ -5,9 +5,9 @@ import {
 	actionSetOffersCareGivers,
 } from '../store/actions/offersActions';
 import { sortOffersCaregivers } from '../utils/helpers-redux/sortOffersCaregivers';
-const useOffersCaregivers = () => {
+const useOffersCaregivers = (id) => {
 	const dispatch = useDispatch();
-    const [isLoadingOffers, setIsLoadingOffers] = useState(true);
+	const [isLoadingOffers, setIsLoadingOffers] = useState(true);
 	const offersCareGiversInmutable = useSelector(
 		(state) => state.offersReducer.offersCareGiversInmutable
 	);
@@ -20,31 +20,35 @@ const useOffersCaregivers = () => {
 	const sortsOffersCareGivers = useSelector(
 		(state) => state.offersReducer.sortOffersCareGivers
 	);
-    
+
 	useEffect(() => {
-        setIsLoadingOffers(true);
-		if (offersCareGiversInmutable.length === 0) {
-            console.log('----> me ejecuto interor')
-			dispatch(actionGetOffersCareGivers());
+		setIsLoadingOffers(true);
+		if (id) {
+			if (offersCareGiversInmutable.length === 0) {
+				dispatch(actionGetOffersCareGivers(id));
+			}
+			// let filteredOffers = filterOffersCareGivers(
+			// 	offersCareGiversInmutable,
+			// 	filtersOffersCareGivers
+			// );
+			if (offersCareGiversInmutable.length > 0) {
+				let sortedOffers = sortOffersCaregivers(
+					offersCareGivers,
+					sortsOffersCareGivers
+				);
+				dispatch(actionSetOffersCareGivers(sortedOffers));
+			}
+			setIsLoadingOffers(false);
 		}
-		// let filteredOffers = filterOffersCareGivers(
-		// 	offersCareGiversInmutable,
-		// 	filtersOffersCareGivers
-		// );
-		let sortedOffers = sortOffersCaregivers(
-			offersCareGivers,
-			sortsOffersCareGivers
-		);
-        dispatch(actionSetOffersCareGivers(sortedOffers));
-        setIsLoadingOffers(false);
 	}, [
 		dispatch,
 		offersCareGiversInmutable.length,
 		filtersOffersCareGivers,
 		sortsOffersCareGivers,
+		id,
 	]);
 
-	return { isLoadingOffers,offersCareGivers };
+	return { isLoadingOffers, offersCareGivers };
 };
 
 export default useOffersCaregivers;
