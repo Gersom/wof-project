@@ -46,5 +46,53 @@
     "address": "Calle Buena esperanza",
     "dni": "0070239657",
     "birthdate": "01-01-2000"
+  },
+  {
+    "email": "abcde@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "caregiver",
+    "profilePicture": "https://misanimales.com/wp-content/uploads/2018/09/cuidador-para-tu-perro.jpg",
+    "name": "Daniela",
+    "lastName": "Vargas",
+    "cellPhone": "+51910999999",
+    "address": "Calle Buena esperanza",
+    "dni": "00836541",
+    "birthdate": "01-01-2000"
+  },
+  {
+    "email": "alonso1234@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "caregiver",
+    "profilePicture": "https://blog.dogbuddy.com//wp-content/uploads/2015/07/caracteristicas-de-un-buen-cuidador-chica-paseando-a-varios-perros.jpg",
+    "name": "Alonso",
+    "lastName": "Cavani",
+    "cellPhone": "+51996548676",
+    "address": "Calle tello",
+    "dni": "60759863",
+    "birthdate": "09-02-2002"
+  },
+  {
+    "email": "sofia1234@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "caregiver",
+    "profilePicture": "https://blog.dogbuddy.com//wp-content/uploads/2015/07/caracteristicas-de-un-buen-cuidador-chica-paseando-a-varios-perros.jpg",
+    "name": "Sofia",
+    "lastName": "Maldonado",
+    "cellPhone": "+51996548676",
+    "address": "avenida ugarte",
+    "dni": "60492722",
+    "birthdate": "02-05-2001"
+  },
+  {
+    "email": "claudia1234@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "caregiver",
+    "profilePicture": "https://blog.dogbuddy.com//wp-content/uploads/2015/07/caracteristicas-de-un-buen-cuidador-chica-paseando-a-varios-perros.jpg",
+    "name": "Claudia",
+    "lastName": "Mendonza",
+    "cellPhone": "+51996548676",
+    "address": "Calle cordoba",
+    "dni": "93583065",
+    "birthdate": "01-07-2003"
   }
 ]
