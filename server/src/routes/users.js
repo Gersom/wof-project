@@ -16,4 +16,6 @@ router.delete("/:id", controllers.deleteUser);
 
 router.post("/login", controllers.loginUser);
 
+router.post("/:id/new-role", controllers.newRole);
+
 module.exports = router;
