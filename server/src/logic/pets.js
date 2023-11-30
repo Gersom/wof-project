@@ -45,6 +45,14 @@ const getPetLogic = async (id) => {
 
 const postPetLogic = async (data) => {
     const newPet = await PetsModel.createPet(data)
+    const images = data.imageUrl
+    if (images) {
+      const imagesFormated = images.map((img) => ({
+        petId: newPet.id, imageUrl: img
+      }))
+      await PetsImagesModel.createMany(imagesFormated)
+    }
+
     return newPet
     //   return {
     //     success: 'The user was created successfully.'
