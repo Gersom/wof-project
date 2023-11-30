@@ -1,6 +1,5 @@
 import routerNames from '@common/constants/routes';
 
-var active = false;
 
 export const LINKS = [
 	{ to: routerNames['alerts'], imgSrc: '/src/ui/assets/icons/nav/alerts.svg', label: 'Mis notificaciones' },
