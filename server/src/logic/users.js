@@ -1,4 +1,6 @@
-const { UsersModel, ProvincesModel, CountriesModel } = require("../models");
+const { 
+  UsersModel, ProvincesModel, CountriesModel, CaregiversModel, OwnersModel
+} = require("../models");
 const bcrypt = require("bcrypt");
 
 const getAllUsersLogic = async () => {
@@ -83,10 +85,24 @@ const deleteUserLogic = async (id, data) => {
   };
 };
 
+const postNewRoleLogic = async (userId, body) => {
+  const role = body.role
+  const User = await UsersModel.updateData(userId, {role});
+
+  if (role === "caregiver") {
+    const responseCreate = await CaregiversModel.create({userId});
+    return {caregiverId: responseCreate?.id};
+  } else if (role === "owner") {
+    const responseCreate = await OwnersModel.create({userId});
+    return {ownerId: responseCreate?.id};
+  }
+};
+
 module.exports = {
   getAllUsersLogic,
   getUserLogic,
   postUserLogic,
   updateUserLogic,
   deleteUserLogic,
+  postNewRoleLogic,
 };

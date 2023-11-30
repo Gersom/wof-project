@@ -17,13 +17,15 @@ import Login from "./components/login/Login";
 import FormReview from "./components/reviews/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
 import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
-// Imports Components
+import VerifyingLogin from "./components/verifying-login/VerifyingLogin";
+import FormProfile from "./components/forms/formProfile/formProfile";
+import DetailsCaregivers from "./pages/details/DetailsCaregivers";
+// import ModalCustom from "@components/modals/modal-custom/ModalCustom";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        {/* Home */}
         <Route path={routerNames["home"]} element={<Home />} />
         <Route path={routerNames["landing"]} element={<Landing />} />
         {/* Forms */}
