@@ -1,9 +1,10 @@
 import styles from "./styles.module.scss";
 import { useTimer } from "react-timer-hook";
 
-const Timer = () => {
-  const { days, hours, seconds, minutes, start, pause, reset } = useTimer({
-    expiryTimestamp: Date.now() + 180 * 60 * 1000,
+const Timer = ({ onExpire, expiryTimestamp }) => {
+  const { days, hours, seconds, minutes } = useTimer({
+    expiryTimestamp: expiryTimestamp,
+    onExpire: onExpire,
   });
 
   return (
