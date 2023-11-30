@@ -1,6 +1,7 @@
 import styles from './styles.module.scss';
 import imageIcon from '@icons/imageIcon.svg';
 import ButtonAgree from './atoms/ButtonAgree';
+import Cloudinary from '../../cloudinary/Cloudinary';
 
 const CardDisplayImages = ({
 	data = [
@@ -11,6 +12,7 @@ const CardDisplayImages = ({
 		},
 	],
 }) => {
+	
 	return (
 		<div className={styles.mainContainer}>
 			<h4>Fotos de la masconta</h4>
