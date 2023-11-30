@@ -1,9 +1,8 @@
 import plusAgree from '@icons/plusAgree.svg';
-import { useState, useRef } from 'react';
+import {  useRef } from 'react';
+import handleImageUpload from '@src/ui/components/cloudinary/imageUpload';
 
-const ButtonAgree = () => {
-	const [selectedFile, setSelectedFile] = useState(null);
-	const [preview, setPreview] = useState(null);
+const ButtonAgree = ({ setImage}) => {
 	const fileInputRef = useRef(null);
 
 	const handleUpload = () => {
@@ -11,19 +10,14 @@ const ButtonAgree = () => {
 			fileInputRef.current.click();
 		}
 	};
-	const handleFileChange = (event) => {
+	const handleFileChange = async (event) => {
 		const file = event.target.files[0];
 		if (file) {
-			setSelectedFile(file);
-			const reader = new FileReader();
-			reader.onloadend = () => {
-				setPreview(reader.result);
-			};
-			reader.readAsDataURL(file);
+			const imageUrl = await handleImageUpload(file);
+			setImage(imageUrl);
 		}
 	};
-	console.log(selectedFile);
-	console.log(preview);
+
 	return (
 		<>
 			<button onClick={handleUpload}>

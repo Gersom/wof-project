@@ -1,18 +1,8 @@
 import styles from './styles.module.scss';
 import imageIcon from '@icons/imageIcon.svg';
 import ButtonAgree from './atoms/ButtonAgree';
-import Cloudinary from '../../cloudinary/Cloudinary';
 
-const CardDisplayImages = ({
-	data = [
-		{
-			id: 0,
-			imageUrl: '',
-			petId: 0,
-		},
-	],
-}) => {
-	
+const CardDisplayImages = ({ data = [''], setImage }) => {
 	return (
 		<div className={styles.mainContainer}>
 			<h4>Fotos de la masconta</h4>
@@ -21,10 +11,10 @@ const CardDisplayImages = ({
 				<h3>Fotos :</h3>
 			</header>
 			<div>
-				{data.map((image) => (
-					<img src={image.imageUrl} alt='pet' key={image.id} />
+				{data.map((image, index) => (
+					<img src={image} alt='pet' key={index} />
 				))}
-				<ButtonAgree />
+				<ButtonAgree setImage={setImage} />
 			</div>
 		</div>
 	);
