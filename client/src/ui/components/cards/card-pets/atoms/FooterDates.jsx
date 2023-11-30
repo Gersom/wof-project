@@ -7,10 +7,10 @@ const FooterDates = ({
 		endDate: '',
 	},
 }) => {
-	const {dateStart, dateEnd} = convertDates(data.startDate, data.endDate);
-
+	
 	const renderDates = () => {
-		if (dateStart && dateEnd) {
+		if (data.startDate && data.endDate) {
+			const {dateStart, dateEnd} = convertDates(data.startDate, data.endDate);
 			return (
 				<>
 					<div>

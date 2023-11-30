@@ -10,8 +10,8 @@ const DatePublicSelect = ({
 		endDate: '',
 	},
 }) => {
-	const [startDate, setStartDate] = useState(data.startDate.split('T')[0]);
-	const [endDate, setEndDate] = useState(data.endDate.split('T')[0]);
+	const [startDate, setStartDate] = useState(data.startDate?.split('T')[0]);
+	const [endDate, setEndDate] = useState(data.endDate?.split('T')[0]);
 	
 	const handleChange = (e) => {
 		const { name, value } = e.target;

@@ -23,12 +23,12 @@ const CardPetPublic = ({
 	},
 }) => {
 	const [modal, setModal] = useState(false);
-
+	
 	return (
 		<>
 			<article className={styles.article}>
 				<PetImage data={data} isEditable={true} />
-				<SectionDefault data={data} toggleModal={() => setModal(true)} />
+				<SectionPublished data={data} toggleModal={() => setModal(true)} />
 			</article>
 			<ModalCustom
 				isWarning={false}
