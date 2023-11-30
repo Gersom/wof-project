@@ -89,13 +89,28 @@
     line-height: 20px; /* 125% */
     text-align: center;
 }
+.startBtn{
+    width: 233px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: none;
+    background: var(--color-blue-light);
+    color: #FFF;
+    text-align: center;
+    font-family: 'Lexend-Regular';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
 .finishBtn{
     width: 233px;
     height: 46px;
     flex-shrink: 0;
     border-radius: 10px;
     border: none;
-    background: #717171;
+    background: var(--color-blue-light);
     color: #FFF;
     text-align: center;
     font-family: 'Lexend-Regular';
@@ -107,5 +122,6 @@
 }
 .disabledBtn{
     cursor: not-allowed;
-    opacity: 0.5;
+    background: gray;
+    opacity: 0.4;
 }
