@@ -66,6 +66,9 @@ PetsModel["createPet"] = async (data) => {
 PetsModel["findAllPets"] = async (ownerId) => {
   const PostsModel = require("./posts")
   const petImages = require("./pets_images")
+  const CaregiversModel = require("./caregivers")
+  const UsersModel = require("./users")
+
   return await PetsModel.findAll({
     where: ownerId ? { ownerId } : {},
     attributes: ["id", "name", "temperaments", "manners", "notes"],
@@ -74,7 +77,16 @@ PetsModel["findAllPets"] = async (ownerId) => {
       { model: BreedsModel, attributes: ["id","name"] },
       { model: SpeciesModel, attributes: ["id","name", "icon"] },
       { model: GerdersModel, attributes: ["id","name"] },
-      { model: PostsModel, attributes: ["id", "status", "startDate", "endDate", "address"] },
+      { 
+        model: PostsModel, 
+        attributes: ["id", "status", "startDate", "endDate", "address"],
+        include: [{ 
+          model: CaregiversModel, 
+          include: [{ 
+            model: UsersModel, 
+          }]
+        }]
+      },
       { model: petImages, attributes: ["imageUrl"] }
     ]
   })
