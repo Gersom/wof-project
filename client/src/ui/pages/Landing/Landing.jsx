@@ -24,7 +24,6 @@ const LandingPage = () => {
   return (
     <div className={styles.mainContainer}>
       <div>
-        <CareInProgress />
         <img className={styles.imageRec} src={rectangle} alt="Rectangle" />
       </div>
       <div className={styles.cont}>
