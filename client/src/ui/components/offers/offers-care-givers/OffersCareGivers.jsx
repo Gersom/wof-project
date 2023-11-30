@@ -12,6 +12,7 @@ const OffersCareGivers = () => {
 	const { isLoadingOffers, offersCareGivers } = useOffersCaregivers(
 		details?.id || null
 	);
+	
 	return (
 		<div className={styles.containerMainGrid}>
 			<div className={styles.containerCardInfo}>
