@@ -20,9 +20,12 @@ import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
 import VerifyingLogin from "./components/verifying-login/VerifyingLogin";
 import FormProfile from "./components/forms/formProfile/formProfile";
 import DetailsCaregivers from "./pages/details/DetailsCaregivers";
+import { useAuth } from "@src/context/auth-provider/authProvider";
+import { Navigate } from "react-router-dom";
 // import ModalCustom from "@components/modals/modal-custom/ModalCustom";
 
 function App() {
+  const auth = useAuth();
   return (
     <div className="App">
       <Routes>
@@ -33,12 +36,7 @@ function App() {
         <Route path={routerNames["register"]} element={<FormRegister />} />
         <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
         {/* dashboard */}
-        {/* <Route
-          path={routerNames["dashboard"]}
-          element={<ProtectedRoute />}
-          children={{ path: routerNames["dashboard"], element: <Dashboard /> }}
-        > */}
-        <Route path={routerNames["dashboard"]} element={<Dashboard />}>
+        <Route path={routerNames["dashboard"]} element={auth.isAuthenticated? <Dashboard/>:<Navigate to={routerNames["login"]}/>}>
           <Route
             index
             path={routerNames["offersCaregivers"]}
