@@ -29,10 +29,10 @@ function AuthProvider({ children }) {
     }
   }
 
-  useEffect(() => {checkAuth() }, []);
-
+  
   function getToken(){
-    const {token} = localStorage.getItem("session");
+    
+    const {token} = localStorage?.getItem("session");
     if(token){
         setAccessToken(token);
       	return token;
@@ -41,6 +41,7 @@ function AuthProvider({ children }) {
     return null;
   }
 
+  useEffect(() => {checkAuth() }, []);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setAuthenticated }}>

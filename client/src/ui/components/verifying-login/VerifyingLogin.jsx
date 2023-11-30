@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAuth} from "@src/context/auth-provider/authProvider";
+import { useAuth } from "@src/context/auth-provider/authProvider";
 import { useAuth0 } from "@auth0/auth0-react";
 import { API_URL_REGISTER, API_URL_USER } from "@src/common/constants/api";
 import {
@@ -87,24 +87,40 @@ const VerifyingLogin = () => {
   };
 
   const manageRedirection = async () => {
-    const { userId } = getFromLocalStorage("session");
+    const { userId, history } = getFromLocalStorage("session");
+    const allLocal = getFromLocalStorage("session");
 
     const { data } = await axios.get(API_URL_USER + "/" + userId);
     console.log("DATA USER ID", data);
 
     switch (data.role) {
       case "caregiver":
+        // console.log(allLocal);
+        setAuthenticated(true);
+        if (history) {
+          // console.log("INTERNAL  HISTORY",history);
+          navigate(history);
+          return;
+        }
         navigate(routerNames["offersCaregivers"]);
-        setAuthenticated(true);
-        break;
+
+        return;
       case "owner":
+        setAuthenticated(true);
+        if (history) {
+          navigate(history);
+          return;
+        }
         navigate(routerNames["myPets"]);
-        setAuthenticated(true);
-        break;
+        return;
       default:
-        navigate(routerNames["profile"]);
         setAuthenticated(true);
-        break;
+        if (history) {
+          navigate(history);
+          return;
+        }
+        navigate(routerNames["profile"]);
+        return;
     }
   };
 

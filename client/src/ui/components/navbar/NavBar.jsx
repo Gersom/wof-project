@@ -8,8 +8,10 @@ import burgerOpen from '@icons/nav/burgerOpen.svg';
 import { saveToLocalStorage } from '@common/utils/localStorage';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 const NavBar = ({ userData }) => {
+	const location = useLocation();
 	const {logout} = useAuth0();
 
 	const [show, setShow] = useState(true);
@@ -23,8 +25,8 @@ const NavBar = ({ userData }) => {
 	}, []);
 
 	useEffect(() => {
-		setLinks(obtainLinks(userData.role, idPost || 1));
-	}, [userData.role]);
+		setLinks(obtainLinks(userData.role, idPost || 1, location.pathname));
+	}, [userData.role, location.pathname]);
 
 	const handleShow = () => {
 		setShow(!show);
