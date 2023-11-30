@@ -94,5 +94,41 @@
     "address": "Calle cordoba",
     "dni": "93583065",
     "birthdate": "01-07-2003"
+  },
+  {
+    "email": "manuel1234@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "owner",
+    "profilePicture": "https://i.pinimg.com/736x/ae/ec/c2/aeecc22a67dac7987a80ac0724658493.jpg",
+    "name": "Manuel",
+    "lastName": "Mendonza",
+    "cellPhone": "+51996548676",
+    "address": "Calle cordoba",
+    "dni": "93583065",
+    "birthdate": "01-07-2003"
+  },
+  {
+    "email": "jorge1234@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "owner",
+    "profilePicture": "https://wl-genial.cf.tsp.li/resize/728x/jpg/439/d0d/f78961548185fd5b5b5677fd81.jpg",
+    "name": "Jorge",
+    "lastName": "Vega",
+    "cellPhone": "+51996548676",
+    "address": "Calle cordoba",
+    "dni": "93583065",
+    "birthdate": "01-07-2003"
+  },
+  {
+    "email": "carlos1234@gmail.com",
+    "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
+    "role": "caregiver",
+    "profilePicture": "https://pbs.twimg.com/profile_images/1092644979737088000/8EXQ5IEl_400x400.jpg",
+    "name": "Carlos",
+    "lastName": "Alvarado",
+    "cellPhone": "+51996548676",
+    "address": "Calle cordoba",
+    "dni": "93583065",
+    "birthdate": "01-07-2003"
   }
 ]
