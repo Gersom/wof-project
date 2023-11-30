@@ -9,9 +9,11 @@ import handshake from '@icons/nav/handshake.svg';
 import { useNavigate } from 'react-router-dom';
 import routerNames from '@src/common/constants/routes';
 import { saveToLocalStorage } from '@common/utils/localStorage';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const NavBar = ({ userData }) => {
 	const navigate = useNavigate();
+	const {logout} = useAuth0();
 
 	const [show, setShow] = useState(true);
 	const [links, setLinks] = useState([]);
@@ -53,7 +55,8 @@ const NavBar = ({ userData }) => {
 
 	const closeSession = () => {
 		saveToLocalStorage('session', '');
-		navigate(routerNames['login']);
+		logout({logoutParams: { returnTo: window.location.origin }});
+		// navigate(routerNames['login']);
 	};
 
 	return (

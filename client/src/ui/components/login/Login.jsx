@@ -24,7 +24,15 @@ const Login = () => {
 
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const { isAuthenticated, setAuthenticated } = useAuth();
+  const {setAuthenticated } = useAuth();
+
+  useEffect(() => {
+    const { userId , token} = getFromLocalStorage("session");
+    if(userId && token){
+      navigate(routerNames["loading"]);
+    }
+  }, []);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
