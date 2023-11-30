@@ -60,6 +60,7 @@
 .sliderImg {
   display: block;
   width: 100%;
-  height: auto;
+  height: 12rem;
+  object-fit: cover;
   border-radius: 0.8rem;
 }
