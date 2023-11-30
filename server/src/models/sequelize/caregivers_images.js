@@ -29,4 +29,9 @@ CaregiversImagesModel.belongsTo(CaregiversModel)
 // add static methods (functions) to model
 addMethods(CaregiversImagesModel)
 
+CaregiversImagesModel['removeDataByCaregiver'] = (caregiverId) => {
+  return CaregiversImagesModel.destroy({ where: {caregiverId} })
+}
+
+
 module.exports = CaregiversImagesModel
