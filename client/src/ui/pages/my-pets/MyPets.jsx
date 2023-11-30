@@ -6,7 +6,8 @@ import useGetMyPets from '@src/common/hooks/useGetMyPets';
 
 const MyPets = () => {
 	const userName = useSelector((state) => state.userReducer.user.name);
-	const { pets, isLoading } = useGetMyPets();
+	const ownerId = useSelector((state) => state.userReducer.user.owner.id);
+	const { pets, isLoading } = useGetMyPets(ownerId);
 	const isPets = pets.length > 0;
 
 

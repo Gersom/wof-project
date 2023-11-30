@@ -9,31 +9,36 @@ import { useParams } from 'react-router-dom';
 const OffersCareGivers = () => {
 	const { id } = useParams();
 	const { isLoading, details } = useGetPetId(id);
-	const { isLoadingOffers,offersCareGivers } =  useOffersCaregivers(details?.id || null);
-	
+	const { isLoadingOffers, offersCareGivers } = useOffersCaregivers(
+		details?.id || null
+	);
 	return (
 		<div className={styles.containerMainGrid}>
 			<div className={styles.containerCardInfo}>
-				{!isLoading && (
-					<PetImage
-						data={details}
-					/>
-				)}
-				{!isLoading && (
-					<CardInfoPet
-						data={details}
-                        role={'caregiver'}
-					/>
+				{details ? (
+					!isLoading && (
+						<>
+							<PetImage data={details} />
+							<CardInfoPet data={details} role={'caregiver'} />{' '}
+						</>
+					)
+				) : (
+					<h1>Parece que no se ha encontrado la mascota</h1>
 				)}
 			</div>
 			<div className={styles.containerOffers}>
-				{!isLoadingOffers && offersCareGivers.map((offer) => (
-					<CardOffersCaregivers
-						data={offer}
-						key={offer.id}
-						rango={'intermedio'}
-					/>
-				))}
+				{offersCareGivers.length === 0 ? (
+					<h1>Aun no has recibido ofertas</h1>
+				) : (
+					!isLoadingOffers &&
+					offersCareGivers.map((offer) => (
+						<CardOffersCaregivers
+							data={offer}
+							key={offer.id}
+							rango={'intermedio'}
+						/>
+					))
+				)}
 			</div>
 		</div>
 	);
