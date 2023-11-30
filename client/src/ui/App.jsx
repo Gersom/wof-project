@@ -20,6 +20,7 @@ import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
 import VerifyingLogin from "./components/verifying-login/VerifyingLogin";
 import FormProfile from "./components/forms/formProfile/formProfile";
 import DetailsCaregivers from "./pages/details/DetailsCaregivers";
+import MyHome from "./pages/my-home/MyHome";
 // import ModalCustom from "@components/modals/modal-custom/ModalCustom";
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
             path={routerNames["myPetsEdit"] + ":idPet"}
             element={<MyPetsEdit />}
           />
+          <Route path={routerNames["myHome"]} element={<MyHome />} />
         </Route>
 
         {/* Not Found 404 */}
