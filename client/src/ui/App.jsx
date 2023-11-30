@@ -22,6 +22,7 @@ import FormProfile from "./components/forms/formProfile/formProfile";
 import DetailsCaregivers from "./pages/details/DetailsCaregivers";
 import { useAuth } from "@src/context/auth-provider/authProvider";
 import { Navigate } from "react-router-dom";
+import MyHome from "./pages/my-home/MyHome";
 // import ModalCustom from "@components/modals/modal-custom/ModalCustom";
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
             path={routerNames["myPetsEdit"] + ":idPet"}
             element={<MyPetsEdit />}
           />
+          <Route path={routerNames["myHome"]} element={<MyHome />} />
         </Route>
 
         {/* Not Found 404 */}

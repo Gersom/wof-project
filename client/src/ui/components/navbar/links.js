@@ -7,6 +7,7 @@ export const LINKS = [
 const LINKS_CAREGIVER= [
 	{ to: routerNames['offersCaregivers'], imgSrc: '/src/ui/assets/icons/nav/arrows.svg', label: 'Ofertas' },
 	{ to: routerNames['detailsCaregivers'] + 1, imgSrc: '/src/ui/assets/icons/nav/star.svg', label: 'Detalle de la Oferta' },
+	{to: routerNames['myHome'], imgSrc: '/src/ui/assets/icons/nav/star.svg', label: 'Mi hogar'},
 	{ to: routerNames['profile'], imgSrc: '/src/ui/assets/icons/nav/user.svg', label: 'Perfil' },
 ];
  const LINKS_OWNER = [

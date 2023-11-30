@@ -4,7 +4,6 @@ import routerNames from "@src/common/constants/routes";
 import wofImage from "@images/landing/wof.svg";
 import rectangle from "@images/landing/rectangle.svg";
 import {getFromLocalStorage} from "@common/utils/localStorage";
-
 import { useEffect } from "react";
 
 const LandingPage = () => {
