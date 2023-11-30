@@ -24,13 +24,15 @@ const Login = () => {
 
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const {setAuthenticated } = useAuth();
+  const { setAuthenticated } = useAuth();
 
   useEffect(() => {
-    const { userId , token} = getFromLocalStorage("session");
-    if(userId && token){
-      navigate(routerNames["loading"]);
-    }
+    // if (getFromLocalStorage()) {
+      const { userId, token } = getFromLocalStorage("session");
+      if (userId && token) {
+        navigate(routerNames["loading"]);
+      }
+    //}
   }, []);
 
 
@@ -56,7 +58,7 @@ const Login = () => {
 
       if (response.data.token) {
         window.alert("Inicio de sesion completado");
-        
+
         navigate(routerNames["loading"]);
         setAuthenticated(true);
       }
