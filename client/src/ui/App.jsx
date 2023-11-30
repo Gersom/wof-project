@@ -7,7 +7,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 // Imports Pages
 import Home from "./pages/home/Home";
 import NotFound from "./pages/notFound/NotFound";
-import Landing from "./pages/landing/Landing";
+import Landing from "./pages/Landing/Landing";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
 import Details from "./pages/details/Details";
