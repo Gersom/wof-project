@@ -15,7 +15,6 @@ const MyPetsEdit = () => {
 	const { idPet } = useParams();
 	const pets = useSelector((state) => state?.myPetsReducer?.myPets);
 	const ownerId = useSelector((state) => state?.userReducer?.user?.owner?.id);
-	const [images, setImages] = useState([]);
 	const [form, setForm] = useState({
 		name: '',
 		speciesId: 1,
@@ -49,7 +48,6 @@ const MyPetsEdit = () => {
 					notes: data.notes,
 					imageUrl: data.imageUrl.map((image) => image.imageUrl),
 				});
-				setImages(data.imageUrl);
 			};
 			getPet();
 		}
