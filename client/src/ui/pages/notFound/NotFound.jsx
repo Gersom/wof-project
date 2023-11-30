@@ -37,7 +37,9 @@ const NotFound = () => {
         </svg>
         4
       </h1>
-      <p className={styles.texto}></p>
+      <p className={styles.texto}>
+        ¡Te hemos perdido! ¿Pero, donde te has metido? Vuelve con nosotros.
+      </p>
       <div>
         <NavLink className={styles.link} to={routerNames["landing"]}>
           <button className={styles.boton}>Regresar</button>
