@@ -96,11 +96,12 @@ PetsModel["findPet"] = async (id) => {
 }
 
 PetsModel["createPet"] = async (data) => {
-  const { imageUrl } = data
+  // const { imageUrl } = data
   const newPet = await PetsModel.create(data)
-  if (imageUrl) {
-    newPet.createPetsImage({ imageUrl })
-  }
+  // if (imageUrl) {
+
+  //   newPet.createPetsImage({ imageUrl })
+  // }
   return newPet
 }
 
