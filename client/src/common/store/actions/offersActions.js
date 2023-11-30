@@ -32,8 +32,8 @@ export const actionSortOffersOwner = (nameSort) => {
 
 //**-------------Caregivers---------------**/
 
-export const actionGetOffersCareGivers = () => async (dispatch) => {
-	const offersCareGivers = await getOffersCareGivers();
+export const actionGetOffersCareGivers = (id) => async (dispatch) => {
+	const offersCareGivers = await getOffersCareGivers(id);
 	return dispatch({
 		type: 'GET_OFFERS_CAREGIVERS',
 		payload: offersCareGivers,

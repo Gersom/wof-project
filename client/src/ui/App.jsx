@@ -17,6 +17,10 @@ import Login from "./components/login/Login";
 import FormReview from "./components/reviews/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
 import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
+import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
+import VerifyingLogin from "./components/verifying-login/VerifyingLogin";
+import DetailsCaregivers from "./pages/details/DetailsCaregivers";
+import FormProfile from "./components/forms/formProfile/formProfile";
 // Imports Components
 
 function App() {
@@ -29,8 +33,17 @@ function App() {
         {/* Forms */}
         <Route path={routerNames["login"]} element={<Login />} />
         <Route path={routerNames["register"]} element={<FormRegister />} />
+        <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
         {/* dashboard */}
-        <Route path={routerNames["dashboard"]} element={<Dashboard />}>
+        {/* <Route
+          path={routerNames["dashboard"]}
+          element={<ProtectedRoute />}
+          children={{ path: routerNames["dashboard"], element: <Dashboard /> }}
+        > */}
+        <Route
+          path={routerNames["dashboard"]}
+          element={<Dashboard />}
+        >
           <Route
             index
             path={routerNames["offersCaregivers"]}
@@ -40,14 +53,14 @@ function App() {
             path={routerNames["detailsCaregivers"] + ":id"}
             element={<Details />}
           />
-          {/* <Route path={routerNames["profile"]} element={<Landing />} /> */}
+          <Route path={routerNames["profile"]} element={<FormProfile />} />
           <Route
             path={routerNames["offersOwners"] + ":id"}
             element={<Offers />}
           />
           <Route
             path={routerNames["detailsOwners"] + ":id"}
-            element={<Details />}
+            element={<DetailsCaregivers />}
           />
 
           <Route path={routerNames["formReview"]} element={<FormReview />} />

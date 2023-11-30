@@ -97,5 +97,26 @@ UsersModel["createUser"] = async (data) => {
   const newUser = await UsersModel.create(data);
   return newUser;
 };
+UsersModel["createUser"] = async (data) => {
+  const newUser = await UsersModel.create(data);
+  return newUser;
+};
+UsersModel["findUserById"] = async (userId) => {
+  const OwnersModel = require(`./owners`);
+  const CaregiversModel = require(`./caregivers`);
+
+  const newUser = await UsersModel.findByPk(userId, {
+    include: [
+      { 
+        model: CaregiversModel,
+      },
+      { 
+        model: OwnersModel
+      }
+    ]
+  })
+  return newUser;
+};
+
 
 module.exports = UsersModel;

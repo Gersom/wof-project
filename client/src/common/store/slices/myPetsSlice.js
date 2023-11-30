@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	myPets: [],
+	updatePetsTriger: false,
 };
 
 const myPetsSlice = createSlice({
@@ -11,9 +12,12 @@ const myPetsSlice = createSlice({
 		getMyPets: (state, action) => {
 			state.myPets = action.payload;
 		},
+		updatePetsTriger: (state) => {
+			state.updatePetsTriger = !state.updatePetsTriger;
+		}
 	},
 });
 
-export const { getMyPets } = myPetsSlice.actions;
+export const { getMyPets, updatePetsTriger } = myPetsSlice.actions;
 
 export default myPetsSlice.reducer;

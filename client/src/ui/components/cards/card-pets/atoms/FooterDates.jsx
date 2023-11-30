@@ -1,4 +1,5 @@
 import styles from '../styles.module.scss';
+import { convertDates } from '@src/common/utils/converDates';
 
 const FooterDates = ({
 	data = {
@@ -6,19 +7,19 @@ const FooterDates = ({
 		endDate: '',
 	},
 }) => {
-    const startDate = '20 de nov 2023';
-    const endDate = '22 de nov 2023';
+	
 	const renderDates = () => {
-		if (startDate && endDate) {
+		if (data.startDate && data.endDate) {
+			const {dateStart, dateEnd} = convertDates(data.startDate, data.endDate);
 			return (
 				<>
 					<div>
 						<h4>Desde: </h4>
-						<h4>{startDate}</h4>
+						<h4>{dateStart}</h4>
 					</div>
 					<div>
 						<h4>Hasta: </h4>
-						<h4>{endDate}</h4>
+						<h4>{dateEnd}</h4>
 					</div>
 				</>
 			);
