@@ -3,7 +3,6 @@ import styles from "./styles.module.scss";
 import routerNames from "@src/common/constants/routes";
 import wofImage from "@images/landing/wof.svg";
 import rectangle from "@images/landing/rectangle.svg";
-
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 
@@ -23,6 +22,9 @@ const LandingPage = () => {
   return (
     <div className={styles.mainContainer}>
       <div>
+        <ModalCustom state={true}>
+          <ModalAcceptPayed></ModalAcceptPayed>
+        </ModalCustom>
         <img className={styles.imageRec} src={rectangle} alt="Rectangle" />
       </div>
       <div className={styles.cont}>
