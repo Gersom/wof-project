@@ -1,4 +1,5 @@
 const { PetsModel } = require("../models")
+const { PetsImagesModel } = require("../models")
 
 const getAllPetsLogic = async (ownerId) => {
   const pets = await PetsModel.findAllPets(ownerId)
@@ -50,11 +51,19 @@ const postPetLogic = async (data) => {
     //   }
 }
 
-const updatePetLogic = async (id, data) => {
-    await PetsModel.updateData(id, data)
-    return {
-        success: 'Pet was update correctly.'
-    }
+const updatePetLogic = async (petId, data) => {
+  await PetsImagesModel.removeDataByPet(petId)
+  await PetsModel.updateData(petId, data)
+  const images = data.imageUrl
+  if (images) {
+    const imagesFormated = images.map((img) => ({
+      petId, imageUrl: img
+    }))
+    await PetsImagesModel.createMany(imagesFormated)
+  }
+  return {
+      success: 'Pet was update correctly.'
+  }
 }
 const deletePetLogic = async (id) => {
     await PetsModel.removeData(id)
