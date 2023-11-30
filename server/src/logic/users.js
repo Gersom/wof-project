@@ -37,7 +37,7 @@ const postUserLogic = async (data) => {
   const saltRounds = 10;
   data.password = await bcrypt.hash(data.password, saltRounds);
 
-  const newUser = await UsersModel.create(data);
+  const newUser = await UsersModel.createUser(data);
 
   if (country) {
     const countryDB = await CountriesModel.findOne({
@@ -90,11 +90,19 @@ const postNewRoleLogic = async (userId, body) => {
   const User = await UsersModel.updateData(userId, {role});
 
   if (role === "caregiver") {
-    const responseCreate = await CaregiversModel.create({userId});
-    return {caregiverId: responseCreate?.id};
+    const exist = await CaregiversModel.dataExistByUser(userId)
+    if (!exist) {
+      const responseCreate = await CaregiversModel.create({userId});
+      return {caregiverId: responseCreate?.id};
+    }
+    return User
   } else if (role === "owner") {
-    const responseCreate = await OwnersModel.create({userId});
-    return {ownerId: responseCreate?.id};
+    const exist = await OwnersModel.dataExistByUser(userId)
+    if (!exist) {
+      const responseCreate = await OwnersModel.create({userId});
+      return {caregiverId: responseCreate?.id};
+    }
+    return User
   }
 };
 
