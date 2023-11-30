@@ -37,7 +37,7 @@ const postUserLogic = async (data) => {
   const saltRounds = 10;
   data.password = await bcrypt.hash(data.password, saltRounds);
 
-  const newUser = await UsersModel.create(data);
+  const newUser = await UsersModel.createUser(data);
 
   if (country) {
     const countryDB = await CountriesModel.findOne({
