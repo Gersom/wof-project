@@ -5,26 +5,25 @@ import { obtainLinks } from './links';
 import logo from '@icons/nav/logo.svg';
 import burgerClose from '@icons/nav/burgerClose.svg';
 import burgerOpen from '@icons/nav/burgerOpen.svg';
-import handshake from '@icons/nav/handshake.svg';
-import { useNavigate } from 'react-router-dom';
-import routerNames from '@src/common/constants/routes';
 import { saveToLocalStorage } from '@common/utils/localStorage';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useSelector } from 'react-redux';
 
 const NavBar = ({ userData }) => {
-	const navigate = useNavigate();
 	const {logout} = useAuth0();
 
 	const [show, setShow] = useState(true);
 	const [links, setLinks] = useState([]);
 	const classShow = show ? styles.show : '';
 
+	const idPost = useSelector((state) => state?.myPetsReducer?.myPets[0]?.id)
+
 	useEffect(() => {
 		setShow(window.innerWidth > 768);
 	}, []);
 
 	useEffect(() => {
-		setLinks(obtainLinks(userData.role));
+		setLinks(obtainLinks(userData.role, idPost || 1));
 	}, [userData.role]);
 
 	const handleShow = () => {
