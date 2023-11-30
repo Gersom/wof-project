@@ -11,8 +11,8 @@ import { API_URL_MY_PETS , API_URL_MY_PETS_OWNER_ID } from '@src/common/constant
 
 const MyPetsEdit = () => {
 	const { idPet } = useParams();
-	const pets = useSelector((state) => state.myPetsReducer.myPets);
-	const ownerId = useSelector((state) => state.userReducer.user.owner.id);
+	const pets = useSelector((state) => state?.myPetsReducer?.myPets);
+	const ownerId = useSelector((state) => state?.userReducer?.user?.owner?.id);
 	const [images, setImages] = useState([]);
 	const [form, setForm] = useState({
 		name: '',
@@ -22,7 +22,7 @@ const MyPetsEdit = () => {
 		temperaments: '',
 		manners: '',
 		notes: '',
-		ownerId: pets[0].owner.id,
+		ownerId: pets[0]?.owner?.id,
 	});
 
 	const [error, setError] = useState(null);
