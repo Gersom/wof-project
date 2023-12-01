@@ -1,7 +1,7 @@
 .containerOne {
     display: grid;
-    grid-template-rows: 1fr; // Tres filas, dos automáticas y una fracción
-    gap: 2rem; // Espacio entre las filas
+    grid-template-rows: 1fr;
+    gap: 2rem; 
     background-color: brown;
     width: 50%;
     height: 60vh;
