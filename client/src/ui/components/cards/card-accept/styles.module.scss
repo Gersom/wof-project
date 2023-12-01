@@ -58,4 +58,21 @@
   height: 48px;
   right: 10%;
 }
+
+.cancelButton {
+	border-radius: 0.6rem;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin: 0.5rem 0px;
+  background-color: #cd5252;
+  width: 170px;
+
+  position: absolute;
+  top: 70px;
+  height: 48px;
+  right: 10%;
+}
   

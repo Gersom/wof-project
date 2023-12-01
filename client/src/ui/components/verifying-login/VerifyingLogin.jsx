@@ -99,17 +99,16 @@ const VerifyingLogin = () => {
       case "caregiver":
         // console.log(allLocal);
         setAuthenticated(true);
-        if (storage?.history && storage?.history !== "/" && storage?.history !== "/verificando") {
-          // console.log("INTERNAL  HISTORY",history);
+        if (storage?.history && storage?.history !== "/verificando") {
+          console.log("INTERNAL  HISTORY", history);
           navigate(storage.history);
           return;
         }
         navigate(routerNames["offersCaregivers"]);
-
         return;
       case "owner":
         setAuthenticated(true);
-        if (storage?.history && storage?.history !== "/" && storage?.history !== "/verificando") {
+        if (storage?.history && storage?.history !== "/verificando") {
           navigate(storage.history);
           return;
         }
@@ -118,16 +117,16 @@ const VerifyingLogin = () => {
       default:
         setAuthenticated(true);
         if (storage?.history) {
-          navigate(history);
+          navigate(storage.history);
           return;
         }
         navigate(routerNames["profile"]);
         return;
-    }
+    }    
   };
 
   useEffect(() => {
-    console.log("LOGIN COMPONENT IS AUTH0", isAuth0enticated, user);
+    //console.log("LOGIN COMPONENT IS AUTH0", isAuth0enticated, user);
     if (isAuth0enticated) {
       integrateLogin();
     }
@@ -137,9 +136,9 @@ const VerifyingLogin = () => {
   //   console.log('LOCAL AUTH STATE', isAuthenticated);
   //   manageRedirection();
   // }, [isAuthenticated])
-  
+
   useEffect(() => {
-    if(isAuthenticated){
+    if(isAuthenticated) {
       manageRedirection();
     }
   }, [isAuthenticated]);
