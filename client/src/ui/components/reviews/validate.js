@@ -18,8 +18,7 @@ export const validate = (state, name) => {
     if (/mierda|puta|cojuda|degraciasa|infeliz|imbécil/i.test(state.review)) {
       newErrors.review = "Evita el uso de palabras ofensivas o insultos";
     } else if (state.review.length < 30 || state.review.length > 300) {
-      newErrors.review =
-        "La reseña debe tener al menos 30 caracteres y no más de 300.";
+      newErrors.review = "La reseña debe tener entre 30 y 300 caracteres.";
     } else if (state.review === "") {
       newErrors.review = "Por favor, escribe tu reseña.";
     } else {

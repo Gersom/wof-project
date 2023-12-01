@@ -1,0 +1,41 @@
+.containerOne {
+    display: grid;
+    grid-template-rows: 1fr; // Tres filas, dos automáticas y una fracción
+    gap: 2rem; // Espacio entre las filas
+    background-color: brown;
+    width: 50%;
+    height: 60vh;
+    border-radius: 50px;
+    background: var(--Light-background, #F3F4F8);
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .subContOne{
+    display: flex;
+    flex-direction: column;
+  }
+  .subContTwo {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+  }
+  .reviewTtile{
+    font-size: 20px;
+    color: black;  
+  }
+  .reviewSub{
+    font-size: 25px;
+    color: black;
+  }
+  
+  .subContTwo {
+    gap: 1rem; 
+  }
+  
+  .cardUser,
+  .formReview {
+    flex: 1; 
+  }
+  
+  
