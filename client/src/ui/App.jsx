@@ -27,12 +27,18 @@ import { saveToLocalStorage, getFromLocalStorage } from "@src/common/utils/local
 
 // import ModalCustom from "@components/modals/modal-custom/ModalCustom";
 
+//import useAlert 
+import useAlert from "@src/common/hooks/use-alert/useAlert";
+
 function App() {
+
+  useAlert();
+  
   const auth = useAuth();
   const location = useLocation();
   
   function storeCurrentRouteInSession() {
-    const {token, userId} = getFromLocalStorage("session");
+    const sorage = getFromLocalStorage("session");
     let currentRoute;
 
     if(currentRoute !== "/verificando" || currentRoute !== "/iniciar-sesion"){
@@ -40,7 +46,7 @@ function App() {
     }
    
     console.log(currentRoute);
-    if(token && userId){
+    if(sorage?.token && sorage?.userId){
       const updatedSorage = {
         token: token,
         userId: userId,
@@ -57,7 +63,7 @@ function App() {
   },[])
 
   return (
-    <div className="App">
+    <div className="App" id="App">
       <Routes>
         <Route path={routerNames["home"]} element={<Home />} />
         <Route path={routerNames["landing"]} element={<Landing />} />

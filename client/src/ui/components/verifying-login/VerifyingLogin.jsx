@@ -16,7 +16,7 @@ import logo from "@icons/nav/logo.svg";
 const VerifyingLogin = () => {
   const apiUrl = API_URL_REGISTER;
   const navigate = useNavigate();
-  const { isAuthenticated: isAuth0enticated, user, getAccessTokenSilently } = useAuth0();
+  const { isAuthenticated: isAuth0enticated, user, getAccessTokenSilently, isLoading } = useAuth0();
   const { isAuthenticated, setAuthenticated } = useAuth();
 
   const handleSilentLogin = async () => {
@@ -128,7 +128,7 @@ const VerifyingLogin = () => {
     if (isAuth0enticated) {
       integrateLogin();
     }
-  }, [isAuth0enticated]);
+  }, [isLoading]);
 
   useEffect(() => {
     console.log('LOCAL AUTH STATE', isAuthenticated);
