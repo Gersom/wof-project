@@ -3,11 +3,18 @@
         opacity: 0;
         transform: translateY(100%);
     }
-    100% {
+    25% {
         opacity: 1;
         transform: translateY(0);
     }
-    
+    75% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
 }
 
 
@@ -26,27 +33,27 @@
     justify-content: end;
     align-items: end;
     section{
-        animation: enterAnimation 0.5s ease-in-out;
-        width: 100%;
-        background-color: red;
-        border: 1px solid black;
-        margin: -1.5rem 0rem;
+        animation: enterAnimation 2.1s ease-in-out;
+        
+        width: 20rem;
+        border: 1px solid rgba(0, 0, 0, 0.907);
+        margin: -3.5rem 0rem 0rem 0rem;
         border-radius: 1rem;
         padding: 1rem;
-
     }
+    
     &:hover section{
         transition: all 0.3s ease-in-out;
-        margin: 0.5rem 0rem;
+        margin: 1rem 0rem 0rem 0rem;
     }
     .alertError{
-        background-color: red;
+        background-color: rgb(215, 76, 76)
         
     }
     .alertSuccess{
-        background-color: green;
+        background-color: rgba(67, 159, 67, 0.975);
     }
     .alertInfo{
-        background-color: blue;
+        background-color: rgb(72, 72, 183);
     }
 }

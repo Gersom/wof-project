@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     alert: {
-        message: 'alerta',
+        message: false,
         type: '', // success, error, warning,
         trigger: false,
-        id: 0,
+        id: 100,
     }
 };
 

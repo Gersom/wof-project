@@ -29,45 +29,54 @@ const useAlert = () => {
 	useEffect(() => {
 		const app = document.getElementById('App');
 		const alertContainer = document.getElementById('alertContainer');
+		if (alert.message) {
+			if (app && alertContainer && alert.message) {
+				const alertElement = createAlert(alert.message, alert.type, alert.id);
 
-		if (app && alertContainer) {
-			const alertElement = createAlert(alert.message, alert.type, alert.id);
+				if (alertContainer.childElementCount > 2) {
+					alertContainer.removeChild(alertContainer.firstChild);
+				}
+				alertContainer.appendChild(alertElement);
+				alertContainer.classList.add(styles.alertContainer);
 
-			if(alertContainer.childElementCount > 3) {
-				alertContainer.removeChild(alertContainer.firstChild);
+				
+					setTimeout(() => {
+						let alertElement = document.getElementById(alert.id);
+						if(alertElement){
+							alertElement.remove();
+						}
+					}, 2000);
+				
+					setTimeout(() => {
+						if (!alertContainer.hasChildNodes()) {
+							alertContainer.remove();
+						}
+					}, 3000);
+				
+
+			} else if (app) {
+				const alertContainer = document.createElement('div');
+				alertContainer.id = 'alertContainer';
+
+				const alertElement = createAlert(alert.message, alert.type, alert.id);
+
+				alertContainer.appendChild(alertElement);
+				alertContainer.classList.add(styles.alertContainer);
+				app.appendChild(alertContainer);
+
+				
+					setTimeout(() => {
+						let alertElement = document.getElementById(alert.id);
+						if(alertElement){
+							alertElement.remove();
+						}
+					}, 2000);
+				
+					if (!alertContainer.hasChildNodes()) {
+						alertContainer.remove();
+					}
+				
 			}
-			alertContainer.appendChild(alertElement);
-			alertContainer.classList.add(styles.alertContainer);
-
-			setTimeout(() => {
-				let alertElement = document.getElementById(alert.id);
-				alertElement.remove();
-			}, 2000);
-			setTimeout(() => {
-				if (!alertContainer.hasChildNodes()) {
-					alertContainer.remove();
-				}
-			}, 3000);
-		} else if (app) {
-			const alertContainer = document.createElement('div');
-			alertContainer.id = 'alertContainer';
-
-			const alertElement = createAlert(alert.message, alert.type, alert.id);
-
-			alertContainer.appendChild(alertElement);
-			alertContainer.classList.add(styles.alertContainer);
-			app.appendChild(alertContainer);
-
-			setTimeout(() => {
-				let alertElement = document.getElementById(alert.id);
-				alertElement.remove();
-			}, 2000);
-
-			setTimeout(() => {
-				if (!alertContainer.hasChildNodes()) {
-					alertContainer.remove();
-				}
-			}, 3000);
 		}
 	}, [alert.trigger]);
 
