@@ -19,6 +19,7 @@ const VerifyingLogin = () => {
   const { isAuthenticated: isAuth0enticated, user, getAccessTokenSilently, isLoading } = useAuth0();
   const { isAuthenticated, setAuthenticated } = useAuth();
 
+
   const handleSilentLogin = async () => {
     try {
       const accessToken = await getAccessTokenSilently();
@@ -92,13 +93,15 @@ const VerifyingLogin = () => {
     const { data } = await axios.get(API_URL_USER + "/" + storage?.userId);
     console.log("DATA USER ID", data);
 
+    console.log(data.role)
+    console.log(storage?.history)
     switch (data.role) {
       case "caregiver":
         // console.log(allLocal);
         setAuthenticated(true);
-        if (storage?.history) {
+        if (storage?.history && storage?.history !== "/" && storage?.history !== "/verificando") {
           // console.log("INTERNAL  HISTORY",history);
-          navigate(history);
+          navigate(storage.history);
           return;
         }
         navigate(routerNames["offersCaregivers"]);
@@ -106,8 +109,8 @@ const VerifyingLogin = () => {
         return;
       case "owner":
         setAuthenticated(true);
-        if (storage?.history) {
-          navigate(history);
+        if (storage?.history && storage?.history !== "/" && storage?.history !== "/verificando") {
+          navigate(storage.history);
           return;
         }
         navigate(routerNames["myPets"]);
@@ -133,7 +136,13 @@ const VerifyingLogin = () => {
   // useEffect(() => {
   //   console.log('LOCAL AUTH STATE', isAuthenticated);
   //   manageRedirection();
-  // }, [isAuthenticated]);
+  // }, [isAuthenticated])
+  
+  useEffect(() => {
+    if(isAuthenticated){
+      manageRedirection();
+    }
+  }, [isAuthenticated]);
 
   return (
     <div className={styles.container}>
