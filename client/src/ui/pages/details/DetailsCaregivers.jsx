@@ -18,6 +18,8 @@ const DetailsCaregivers = () => {
 		// Aquí puedes manejar la lógica de envío del formulario si es necesario
 	};
 
+	console.log(details)
+
 	return (
 		<div className={styles.mainContainerGrid}>
 			<div className={styles.containerLeft}>
