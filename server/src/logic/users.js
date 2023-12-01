@@ -37,7 +37,7 @@ const postUserLogic = async (data) => {
   const saltRounds = 10;
   data.password = await bcrypt.hash(data.password, saltRounds);
 
-  const newUser = await UsersModel.create(data);
+  const newUser = await UsersModel.createUser(data);
 
   if (country) {
     const countryDB = await CountriesModel.findOne({
@@ -73,6 +73,8 @@ const postUserLogic = async (data) => {
 };
 
 const updateUserLogic = async (id, data) => {
+  if(data.password) throw Error("cannot change password")
+  if(data.email) throw Error("cannot change email")
   await UsersModel.updateData(id, data);
   return {
     success: "User was update correctly.",
@@ -90,11 +92,19 @@ const postNewRoleLogic = async (userId, body) => {
   const User = await UsersModel.updateData(userId, {role});
 
   if (role === "caregiver") {
-    const responseCreate = await CaregiversModel.create({userId});
-    return {caregiverId: responseCreate?.id};
+    const exist = await CaregiversModel.dataExistByUser(userId)
+    if (!exist) {
+      const responseCreate = await CaregiversModel.create({userId});
+      return {caregiverId: responseCreate?.id};
+    }
+    return User
   } else if (role === "owner") {
-    const responseCreate = await OwnersModel.create({userId});
-    return {ownerId: responseCreate?.id};
+    const exist = await OwnersModel.dataExistByUser(userId)
+    if (!exist) {
+      const responseCreate = await OwnersModel.create({userId});
+      return {caregiverId: responseCreate?.id};
+    }
+    return User
   }
 };
 

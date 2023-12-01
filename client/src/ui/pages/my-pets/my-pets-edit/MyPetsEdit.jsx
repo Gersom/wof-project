@@ -6,14 +6,20 @@ import ButtonsSave from '@src/ui/components/forms/form-pet-edit/atoms/ButtonsSav
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import validation from '@src/ui/components/forms/form-pet-edit/validation';
-import { API_URL_MY_PETS , API_URL_MY_PETS_OWNER_ID } from '@src/common/constants/api';
+import {
+	API_URL_MY_PETS,
+	API_URL_MY_PETS_OWNER_ID,
+} from '@src/common/constants/api';
+import { setAlert } from '@src/common/store/slices/alertSlice';
+import { useDispatch } from 'react-redux';
+
 
 
 const MyPetsEdit = () => {
+	const dispatch = useDispatch();
 	const { idPet } = useParams();
 	const pets = useSelector((state) => state?.myPetsReducer?.myPets);
 	const ownerId = useSelector((state) => state?.userReducer?.user?.owner?.id);
-	const [images, setImages] = useState([]);
 	const [form, setForm] = useState({
 		name: '',
 		speciesId: 1,
@@ -23,13 +29,14 @@ const MyPetsEdit = () => {
 		manners: '',
 		notes: '',
 		ownerId: pets[0]?.owner?.id,
+		imageUrl: [],
 	});
 
 	const [error, setError] = useState(null);
- 
+
 	useEffect(() => {
 		setError(validation(form));
-	},[form])
+	}, [form]);
 
 	useEffect(() => {
 		if (idPet) {
@@ -44,9 +51,8 @@ const MyPetsEdit = () => {
 					temperaments: data.temperaments,
 					manners: data.manners,
 					notes: data.notes,
+					imageUrl: data.imageUrl.map((image) => image.imageUrl),
 				});
-				setImages(data.imageUrl);
-				
 			};
 			getPet();
 		}
@@ -57,38 +63,49 @@ const MyPetsEdit = () => {
 		setForm({ ...form, [name]: value });
 	};
 
-	const handleSubmit = async (e,) => {
+	const handleDeleteImage = (image) => {
+		const newImages = form.imageUrl.filter((img) => img !== image);
+		setForm({ ...form, imageUrl: newImages });
+		dispatch(setAlert({message: 'Imagen eliminada', type:'success'}))
+	}
+	const handleSubmit = async (e) => {
 		const options = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(form),
-		}
+		};
 		e.preventDefault();
 		if (Object.values(error).some((error) => error !== ''))
-			return console.log(error);
+			return dispatch(setAlert({message: 'Completa los campos', type:'error'}));
 		else {
 			if (idPet) {
 				options.method = 'PUT';
-				const response = await fetch(`${API_URL_MY_PETS}/${idPet}`, options);
-				const data = await response.json();
-				console.log(data);
-			}
-			else {
-				const response = await fetch(API_URL_MY_PETS_OWNER_ID + ownerId, options);
-				const data = await response.json();
-				console.log(data);
+				await fetch(`${API_URL_MY_PETS}/${idPet}`, options);
+				dispatch(setAlert({message: `${form.name} ha sido editado`, type:'success'}))
+			} else {
+				await fetch(
+					API_URL_MY_PETS_OWNER_ID + ownerId,
+					options
+				);
+				dispatch(setAlert({message: `${form.name} ha sido creado`, type:'success'}))
 			}
 		}
-	}
+	};
 
 	return (
 		<div className={styles.mainContainer}>
 			<h1>Mi mascota: Peluche</h1>
 			<div className={styles.gridContainer}>
 				<FormPetEdit form={form} handleChange={handleChange} errors={error} />
-				<CardDisplayImages data={images} />
+				<CardDisplayImages
+					data={form.imageUrl}
+					setImage={(imagesUrl) =>
+						setForm({ ...form, imageUrl: [...form.imageUrl, imagesUrl] })
+					}
+					handleDeleteImage={handleDeleteImage}
+				/>
 			</div>
 			<ButtonsSave onSubmit={handleSubmit} />
 		</div>

@@ -7,12 +7,10 @@ const {
   deleteUserLogic,
   postNewRoleLogic,
 } = require("../logic/users");
-const UsersModel = require("../models/sequelize/users.js");
 const catchedAsync = require("../utils/catchedAsync");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const createUserMail = require("../config/mailing/createUserMail.js");
 const deleteUserMail = require("../config/mailing/deleteUserMail.js");
+const { loginUserLogic } = require("../logic/sing-in.js");
 
 // READ ITEMS
 const getAllUsers = catchedAsync(async (req, res) => {
@@ -21,50 +19,16 @@ const getAllUsers = catchedAsync(async (req, res) => {
 }, ErrorHandler.getAllUsersErrorHandler);
 
 //LOGIN
-
 const loginUser = catchedAsync(async (req, res) => {
   const { email, password } = req.body;
 
-  // Buscar al usuario por correo electrónico
-  const user = await UsersModel.findOne({
-    where: {
-      email: email,
-    },
-  });
-  // return res.status(200).send(user)
+  const loginResult = await loginUserLogic(email, password);
 
-  if (!user) {
-    // El usuario no existe
-    return res.status(401).json({ error: "No recibi informacion" });
+  if (loginResult.error) {
+    return res.status(401).json({ error: loginResult.error });
   }
 
-  if (user.password && !user.authInfo) {
-    const isPasswordValid = await user.comparePassword(password);
-
-    console.log("Contraseña ingresada:", password);
-    console.log("Contraseña almacenada:", user.password);
-
-    if (!isPasswordValid) {
-      console.log("Contraseña incorrecta");
-      return res.status(401).json({ error: "Contraseña incorrecta" });
-    }
-
-    const token = jwt.sign({ userId: user.id }, "tu_secreto_secreto", {
-      expiresIn: "24h",
-    });
-
-    res
-      .status(200)
-      .json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
-    return;
-  } else if (user.email && user.authInfo) {
-    res
-      .status(200)
-      .json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
-    res
-      .status(200)
-      .json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
-  }
+  res.status(200).json(loginResult);
 });
 
 // DETAIL ITEM

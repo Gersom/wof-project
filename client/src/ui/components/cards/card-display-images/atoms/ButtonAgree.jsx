@@ -1,8 +1,8 @@
 import plusAgree from '@icons/plusAgree.svg';
-import { useState, useRef } from 'react';
+import {  useRef } from 'react';
+import handleImageUpload from '@src/ui/components/cloudinary/imageUpload';
 
-const ButtonAgree = () => {
-	const [selectedFile, setSelectedFile] = useState(null);
+const ButtonAgree = ({ setImage}) => {
 	const fileInputRef = useRef(null);
 
 	const handleUpload = () => {
@@ -10,16 +10,17 @@ const ButtonAgree = () => {
 			fileInputRef.current.click();
 		}
 	};
-	const handleFileChange = (event) => {
+	const handleFileChange = async (event) => {
 		const file = event.target.files[0];
 		if (file) {
-			setSelectedFile(file);
+			const imageUrl = await handleImageUpload(file);
+			setImage(imageUrl);
 		}
 	};
-	
+
 	return (
 		<>
-			<button onClick={handleUpload}>
+			<button onClick={handleUpload} >
 				<img src={plusAgree} alt='plusAgree' />
 				Agregar
 			</button>

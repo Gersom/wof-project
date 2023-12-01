@@ -1,35 +1,32 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.scss";
 import routerNames from "@src/common/constants/routes";
 import wofImage from "@images/landing/wof.svg";
 import rectangle from "@images/landing/rectangle.svg";
-
-import { useAuth0 } from "@auth0/auth0-react";
+import { getFromLocalStorage } from "@common/utils/localStorage";
 import { useEffect } from "react";
-import CareInProgress from "@src/ui/components/care-in-progress/CareInProgress";
+import {API} from "@common/constants/api"
 
 const LandingPage = () => {
-  const { isLoading, isAuthenticated: isAuth0enticated } = useAuth0();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoading) {
-      console.log("LOADING AUTH0 INFO", isLoading);
-    } else if (!isLoading && isAuth0enticated) {
-      console.log("LOGIN FINISH VERIFICATION AUTH0 RETURNS", isAuth0enticated);
-    } else if (!isLoading && !isAuth0enticated) {
-      console.log("LOGIN FINISH VERIFICATION AUTH0 RETURNS", isAuth0enticated);
+    // if(getFromLocalStorage()){
+    const sessionLS = getFromLocalStorage("session");
+    if (sessionLS?.userId && sessionLS?.token) {
+      navigate(routerNames["loading"]);
     }
-  }, [isLoading, isAuth0enticated]);
+    // }
+  }, []);
 
   return (
     <div className={styles.mainContainer}>
       <div>
-        <CareInProgress />
         <img className={styles.imageRec} src={rectangle} alt="Rectangle" />
       </div>
       <div className={styles.cont}>
         <Link to={routerNames["contact"]} className={styles.contactBtn}>
-          Contáctanos
+          Contáctanos {API}
         </Link>
         <Link to={routerNames["login"]} className={styles.loginBtn}>
           Inicia Sesión

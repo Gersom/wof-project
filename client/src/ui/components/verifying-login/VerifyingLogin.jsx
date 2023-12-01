@@ -1,50 +1,37 @@
-import { useAuth } from "@src/context/auth-provider/authProvider";
-import styles from "./styles.module.scss";
-import logo from "@icons/nav/logo.svg";
-import { useAuth0 } from "@auth0/auth0-react";
-
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
-import { API_URL_REGISTER, API_URL_USER } from "@src/common/constants/api";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@src/context/auth-provider/authProvider";
+import { useAuth0 } from "@auth0/auth0-react";
+import { API_URL_LOGIN, API_URL_REGISTER, API_URL_USER } from "@src/common/constants/api";
 import {
   saveToLocalStorage,
   getFromLocalStorage,
 } from "@common/utils/localStorage";
 import routerNames from "@src/common/constants/routes";
-import { useNavigate } from "react-router-dom";
+import styles from "./styles.module.scss";
+import logo from "@icons/nav/logo.svg";
+
 
 const VerifyingLogin = () => {
-  const auth = useAuth();
   const apiUrl = API_URL_REGISTER;
   const navigate = useNavigate();
-
-
-  const { isAuthenticated: isAuth0enticated, user, getAccessTokenSilently } = useAuth0();
+  const { isAuthenticated: isAuth0enticated, user, getAccessTokenSilently, isLoading } = useAuth0();
   const { isAuthenticated, setAuthenticated } = useAuth();
 
   const handleSilentLogin = async () => {
     try {
       const accessToken = await getAccessTokenSilently();
-
       return accessToken;
     } catch (error) {
       console.error("Error al obtener el token de acceso:", error);
     }
   };
 
-  const redirectUser = (condition, destination) => {
-    useEffect(() => {
-      if (condition) {
-        navigate(destination);
-      }
-    }, [condition]);
-  };
-
-
   const getAuthToken = async () => {
     const token = await handleSilentLogin();
     return token;
-  }
+  };
 
   const handleAuth0LoginWhitRegister = async () => {
     const token = await handleSilentLogin();
@@ -58,8 +45,8 @@ const VerifyingLogin = () => {
       password: `${token}`,
       profilePicture: user.picture,
       role: "null",
-    }
-    console.log(userData)
+    };
+
     try {
       await axios.post(apiUrl, userData);
       window.alert("Usuario creado correctamente");
@@ -67,14 +54,13 @@ const VerifyingLogin = () => {
       console.error("Error al realizar la solicitud POST:", error.message);
       window.alert("Error al crear usuario");
     }
-  }
-
+  };
 
   const handleAuth0LoginLogin = async () => {
     try {
       const token = await getAuthToken();
       const response = await axios.post(
-        "http://localhost:3001/api/users/login",
+        API_URL_LOGIN,
         {
           email: user.email,
           password: token,
@@ -85,60 +71,70 @@ const VerifyingLogin = () => {
         userId: response.data.userId,
         token: response.data.token,
       });
-
+      manageRedirection()
       if (response.data.token) {
-        window.alert("Inicio de sesion completado");
+        console.warn("Inicio de sesion completado");
       }
     } catch (error) {
-      window.alert("error en correo o contraseña");
+      console.warn("error en correo o contraseña");
       console.error("Error al iniciar sesión:", error.message);
     }
-  }
+  };
 
   const integrateLogin = async () => {
     await handleAuth0LoginWhitRegister();
     await handleAuth0LoginLogin();
-  }
+  };
 
-  const manageRedirection=async()=>{
-    const {userId} = getFromLocalStorage("session");
-  
-    const {data} = await axios.get(
-      API_URL_USER+"/"+userId,
-    );
+  const manageRedirection = async () => {
+    const storage = await getFromLocalStorage("session");
+
+    const { data } = await axios.get(API_URL_USER + "/" + storage?.userId);
     console.log("DATA USER ID", data);
+
     switch (data.role) {
       case "caregiver":
+        // console.log(allLocal);
+        setAuthenticated(true);
+        if (storage?.history) {
+          // console.log("INTERNAL  HISTORY",history);
+          navigate(history);
+          return;
+        }
         navigate(routerNames["offersCaregivers"]);
-        break;
+
+        return;
       case "owner":
+        setAuthenticated(true);
+        if (storage?.history) {
+          navigate(history);
+          return;
+        }
         navigate(routerNames["myPets"]);
-        break;
-      
+        return;
       default:
+        setAuthenticated(true);
+        if (storage?.history) {
+          navigate(history);
+          return;
+        }
         navigate(routerNames["profile"]);
-        break;
+        return;
     }
-  }
+  };
 
   useEffect(() => {
     console.log("LOGIN COMPONENT IS AUTH0", isAuth0enticated, user);
     if (isAuth0enticated) {
-
       integrateLogin();
     }
+  }, [isLoading]);
 
-  }, [isAuth0enticated])
+  // useEffect(() => {
+  //   console.log('LOCAL AUTH STATE', isAuthenticated);
+  //   manageRedirection();
+  // }, [isAuthenticated]);
 
-  
-  useEffect(() => {
-    console.log('LOCAL AUTH STATE',isAuthenticated);
-    manageRedirection();
-  }, [isAuthenticated]);
-
-
-
-  //#region Loading_Screen  
   return (
     <div className={styles.container}>
       <div className={styles["form-container"]}>
@@ -151,10 +147,10 @@ const VerifyingLogin = () => {
           <div className={styles["form_auth_hr"]}></div>
         </div>
         <div className={styles["auth_form"]}>
-          <form >
+          <form>
             <div className={styles["input_container"]}>
               <label htmlFor="email">
-                <span>Espere un momento, estamos verificando su inicio de sessión, no nos tomará mucho tiempo, gracias por confiar en nosotros 💖</span>
+                <span>Espere un momento, estamos verificando su inicio de sesión, no nos tomará mucho tiempo, gracias por confiar en nosotros 💖</span>
               </label>
             </div>
           </form>
@@ -162,7 +158,6 @@ const VerifyingLogin = () => {
       </div>
     </div>
   );
-  //#endregion
 };
 
 export default VerifyingLogin;

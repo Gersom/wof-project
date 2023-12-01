@@ -20,6 +20,9 @@ import idIcon from "@icons/idIcon.svg";
 import eye from "@icons/eye.svg";
 import closeEye from "@icons/closeEye.svg";
 import user from "@icons/user.svg";
+
+import ModalCustom from "@components/modals/modal-custom/ModalCustom";
+import ModalRole from "@components/modals/modal-role/ModalRole";
 import ModalChangePassword from "../../modals/modal-changePassword/ModalChangePassword";
 import cross from "@icons/filterSortLocationBar/cross.svg";
 
@@ -430,6 +433,10 @@ const FormProfile = () => {
           </div>
         </div>
       </div>
+
+      <ModalCustom state={false} closeButton={false}>
+        <ModalRole></ModalRole>
+      </ModalCustom>
 
       {toggleModal && (
         <div className={styles.containerOverlay}>

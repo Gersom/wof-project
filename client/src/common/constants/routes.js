@@ -22,6 +22,8 @@ const routerNames = {
   myPets: "/app/my-pets",
   myPetsCreate: "/app/my-pets/create",
   myPetsEdit: "/app/my-pets/",
+
+  myHome : "/app/my-home",
 };
 
 export default routerNames;

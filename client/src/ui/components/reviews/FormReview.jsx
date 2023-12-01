@@ -3,17 +3,17 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
 import { validate } from "./validate";
+import comment from "@icons/comment.svg";
+import axios from "axios";
+import { API_URL_REVIEWS } from "@src/common/constants/api";
 
 const FormReview = () => {
-  const [rating, setRating] = useState(0);
   const [state, setState] = useState({
-    name: "",
     rating: 1,
     review: "",
   });
-
+  console.log(state);
   const [errors, setErrors] = useState({
-    name: "",
     review: "",
   });
 
@@ -23,19 +23,27 @@ const FormReview = () => {
       stars.push(
         <FaStar
           key={i}
-          onClick={() => setRating(i)}
-          style={{ color: i <= rating ? "gold" : "gray", cursor: "pointer" }}
+          onClick={() => {
+            setState((prevData) => ({
+              ...prevData,
+              rating: i,
+            }));
+          }}
+          style={{
+            color: i <= state.rating ? "gold" : "gray",
+            cursor: "pointer",
+          }}
         />
       );
     }
     return stars;
   };
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
 
-    setState((emptyState) => ({
-      ...emptyState,
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setState((prevData) => ({
+      ...prevData,
       [name]: value,
     }));
 
@@ -43,35 +51,50 @@ const FormReview = () => {
     setErrors({ ...errors, ...newErrors });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    //ruta ¿postReview(state)?;
+    try {
+      const response = await axios.post(API_URL_REVIEWS, state);
+
+      if (response.status === 200) {
+        alert("¡Reseña enviada correctamente!");
+      } else {
+        alert("Hubo un problema al enviar la reseña.");
+      }
+    } catch (error) {
+      console.error("Error al enviar la reseña:", error);
+      alert(
+        "Hubo un error al enviar la reseña. Por favor, inténtelo de nuevo."
+      );
+    }
   };
 
   return (
     <div className={styles.cont}>
       <form onSubmit={handleSubmit}>
-        <h3>Deja tu reseña</h3>
+        <h3>Reseña</h3>
         <div className={styles.divider}></div>
-        <label>Nombre:</label>
-        <input onChange={handleChange} type="text" name="name" />
         <span className={styles.errorReview}>{errors.name}</span>
-        <h4>Puntuación: {renderStars()}</h4>
+        <h4>Puntuación: </h4>
+        <span className={styles.stars}>{renderStars()}</span>
         <div>
+          <h4>
+            <img src={comment} className={styles.comment} />
+            Comentario:
+          </h4>
           <textarea
             onChange={handleChange}
             placeholder="Escribe tu reseña..."
-            cols="30"
-            rows="10"
+            cols="45"
+            rows="5"
             name="review"
+            value={state.review}
           ></textarea>
           <span className={styles.errorReview}>{errors.review}</span>
         </div>
         <div className={styles.btnCont}>
-          <button className={styles.btnCancel}>Cancelar</button>
-          <div className={styles.separator}></div>
           <button className={styles.btnSubmit} type="submit">
-            Publicar
+            Guardar Reseña
           </button>
         </div>
       </form>
