@@ -12,7 +12,6 @@ export const API_URL_REVIEWS = API_URL + "/reviews";
 export const API_URL_SERVICES = API_URL + "/service-requests?post=";
 export const API_URL_CREATE_POST = API_URL + "/posts/";
 
-
 export const API_URL_USER = API_URL + "/users";
 export const API_URL_LOGIN = API_URL_USER + "/login";
 export const API_URL_REGISTER = API_URL_USER;

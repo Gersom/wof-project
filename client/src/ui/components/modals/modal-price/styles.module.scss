@@ -1,6 +1,7 @@
 .container{
     display: flex;
     flex-direction: column;
+    // max-width: 1000px;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
@@ -9,6 +10,7 @@
     background-color: var(--color-text-primary);
     padding: 2.5rem 10rem;
     border-radius: 1rem;
+    justify-items: center;
     h1{
         color: var(--color-text-secondary);
         font-size: 5.2rem;
@@ -20,23 +22,99 @@
         margin-bottom: 1rem;
         font-family: 'Lexend-SemiBold';
     }
-    section{
-        width: max-content;
-        margin: 0;
-        padding: 0;
+
+    .containerChildren{
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        width: 100%;
+        grid-template-rows: 1fr;
+        column-gap: 1rem;
+        align-items: flex-start;
+        justify-content: center;
+        justify-items: center;
+        
+    }
+
+    .containerOffer{
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: start;
         justify-content: center;
-        border: 0.2rem dashed var(--color-blue-light);
-        padding: 1.5rem 2rem;
+        
         h4{
             color: var(--color-text-grey);
             font-size: 1.2rem;
+            width: 70%
         }
+    }
+
+    .ofertas{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid;
+        border-color: aqua;
+        width: 70%;
+        padding: 1rem;
+
+        .img{
+            width: 1.5rem;
+            height: 1rem;
+            margin-right: 1rem;
+        }
+
+        h6{
+            text-align: left;
+        }
+        
+        
+        .priceInput {
+            width: 100%;
+            position: relative;
+          
+            span {
+              position: absolute;
+              align-self: first baseline;
+              justify-self: first baseline;
+              top: 12%;
+              margin-left: 1rem;
+            }
+          
+            input {
+              width: 100%;
+              background-color: white;
+              padding: 0.75rem 2rem;
+            }
+          } // Corregido aquí, se eliminó un corchete adicional
+          
+          .botonOferta {
+            padding: 15px 30px;
+            border: 0;
+            border-radius: 100px;
+            background-color: #2ba8fb;
+            color: #ffffff;
+            font-weight: bold;
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+          }
+          
+          .botonOferta:hover {
+            background-color: #6fc5ff;
+            box-shadow: 0 0 20px #6fc5ff50;
+            transform: scale(1.1);
+          }
+          
+          .botonOferta:active {
+            background-color: #3d94cf;
+            transition: all 0.25s;
+            -webkit-transition: all 0.25s;
+            box-shadow: none;
+            transform: scale(0.98);
+          }
+          
+
         h2{
             color: var(--color-blue-light);
             font-size: 2.3rem;
         }
     }
-}
+ }
