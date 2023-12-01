@@ -5,6 +5,7 @@ import logo from "@icons/nav/logo.svg";
 import routerNames from "@src/common/constants/routes";
 import { validation } from "./validation";
 import { useDispatch } from "react-redux";
+import { setAlert } from "@src/common/store/slices/alertSlice";
 import {
   API_URL_REGISTER,
   API_URL_PROVINCES,
@@ -19,6 +20,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
 const FormRegister = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [provinces, setProvinces] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
@@ -92,11 +94,12 @@ const FormRegister = () => {
       try {
         await axios.post(apiUrl, dataForm);
         // console.log("Respuesta del servidor:", response.data);
-        window.alert("Usuario creado correctamente");
+
+        dispatch(setAlert({ message: "Usuario creado correctamente", type: "success" }))
         goBackHandler();
       } catch (error) {
         console.error("Error al realizar la solicitud POST:", error.message);
-        window.alert("Error al crear usuario");
+        dispatch(setAlert({ message: "Error al crear el usuario", type: "error" }))
       }
     }
   };

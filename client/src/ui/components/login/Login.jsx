@@ -19,9 +19,11 @@ import {
 } from "@common/utils/localStorage";
 import { useAuth } from "@src/context/auth-provider/authProvider";
 
+import { useDispatch } from "react-redux";
+import { setAlert } from "@src/common/store/slices/alertSlice";
 
 const Login = () => {
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const { setAuthenticated } = useAuth();
@@ -57,14 +59,13 @@ const Login = () => {
       });
 
       if (response.data.token) {
-        window.alert("Inicio de sesion completado");
-
+        dispatch(setAlert({ message: "Inicio de sesion completado", type: "success" }));
         navigate(routerNames["loading"]);
         setAuthenticated(true);
       }
     } catch (error) {
-      window.alert("error en correo o contraseña");
-      console.error("Error al iniciar sesión:", error.message);
+      dispatch(setAlert({ message: "Error al iniciar sesión", type: "error" }));
+      
     }
   };
 

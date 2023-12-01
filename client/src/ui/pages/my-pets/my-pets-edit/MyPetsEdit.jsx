@@ -12,14 +12,16 @@ import {
 } from '@src/common/constants/api';
 import { setAlert } from '@src/common/store/slices/alertSlice';
 import { useDispatch } from 'react-redux';
-
-
+import { useNavigate } from 'react-router-dom';
+import routerNames from '@src/common/constants/routes';
 
 const MyPetsEdit = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const { idPet } = useParams();
 	const pets = useSelector((state) => state?.myPetsReducer?.myPets);
 	const ownerId = useSelector((state) => state?.userReducer?.user?.owner?.id);
+
 	const [form, setForm] = useState({
 		name: '',
 		speciesId: 1,
@@ -66,8 +68,14 @@ const MyPetsEdit = () => {
 	const handleDeleteImage = (image) => {
 		const newImages = form.imageUrl.filter((img) => img !== image);
 		setForm({ ...form, imageUrl: newImages });
-		dispatch(setAlert({message: 'Imagen eliminada', type:'success'}))
-	}
+		dispatch(setAlert({ message: 'Imagen eliminada', type: 'success' }));
+	};
+
+	const handleSetImage = (image) => {
+		setForm({ ...form, imageUrl: [...form.imageUrl, image] });
+		dispatch(setAlert({ message: 'Imagen agregada', type: 'success' }));
+	};
+
 	const handleSubmit = async (e) => {
 		const options = {
 			method: 'POST',
@@ -76,21 +84,28 @@ const MyPetsEdit = () => {
 			},
 			body: JSON.stringify(form),
 		};
+		
 		e.preventDefault();
+
 		if (Object.values(error).some((error) => error !== ''))
-			return dispatch(setAlert({message: 'Completa los campos', type:'error'}));
+			return dispatch(
+				setAlert({ message: 'Completa los campos', type: 'error' })
+			);
+
 		else {
 			if (idPet) {
 				options.method = 'PUT';
 				await fetch(`${API_URL_MY_PETS}/${idPet}`, options);
-				dispatch(setAlert({message: `${form.name} ha sido editado`, type:'success'}))
-			} else {
-				await fetch(
-					API_URL_MY_PETS_OWNER_ID + ownerId,
-					options
+				dispatch(
+					setAlert({ message: `${form.name} ha sido editado`, type: 'success' })
 				);
-				dispatch(setAlert({message: `${form.name} ha sido creado`, type:'success'}))
+			} else {
+				await fetch(API_URL_MY_PETS_OWNER_ID + ownerId, options);
+				dispatch(
+					setAlert({ message: `${form.name} ha sido creado`, type: 'success' })
+				);
 			}
+			navigate(routerNames['myPets']);
 		}
 	};
 
@@ -101,9 +116,7 @@ const MyPetsEdit = () => {
 				<FormPetEdit form={form} handleChange={handleChange} errors={error} />
 				<CardDisplayImages
 					data={form.imageUrl}
-					setImage={(imagesUrl) =>
-						setForm({ ...form, imageUrl: [...form.imageUrl, imagesUrl] })
-					}
+					setImage={handleSetImage}
 					handleDeleteImage={handleDeleteImage}
 				/>
 			</div>
