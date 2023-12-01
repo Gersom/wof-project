@@ -63,7 +63,7 @@ function App() {
 
   const tokenExist = async () => {
     const sessionLS = await getFromLocalStorage("session");
-    console.log(sessionLS);
+    
     if (sessionLS?.token) return true;
     return false;
   };
