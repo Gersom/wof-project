@@ -20,12 +20,13 @@ import idIcon from "@icons/idIcon.svg";
 import eye from "@icons/eye.svg";
 import closeEye from "@icons/closeEye.svg";
 import user from "@icons/user.svg";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import ModalCustom from "@components/modals/modal-custom/ModalCustom";
 import ModalRole from "@components/modals/modal-role/ModalRole";
 import ModalChangePassword from "../../modals/modal-changePassword/ModalChangePassword";
 import cross from "@icons/filterSortLocationBar/cross.svg";
-import { actionGetUser } from "@common/store/actions/userActions"
+import { setAlert } from "@src/common/store/slices/alertSlice";
+import { actionGetUser } from "@common/store/actions/userActions";
 
 const FormProfile = () => {
   const apiUrl = API_URL_UPDATE_USER;
@@ -73,12 +74,16 @@ const FormProfile = () => {
   }, [userData]);
 
   useEffect(() => {
-    if (userData.role === null || userData.role === "null" || userData.role === undefined) {
-      setModalRole(true)
+    if (
+      userData.role === null ||
+      userData.role === "null" ||
+      userData.role === undefined
+    ) {
+      setModalRole(true);
     }
 
-    if(userData.role === "caregiver" || userData.role === "owner") {
-      setModalRole(false)
+    if (userData.role === "caregiver" || userData.role === "owner") {
+      setModalRole(false);
     }
   }, [userData]);
 
@@ -116,12 +121,19 @@ const FormProfile = () => {
     const hasErrors = Object.values(errors).some((error) => error !== "");
 
     if (hasErrors) {
-      window.alert("Hay errores");
+      return dispatch(
+        setAlert({ message: "Completa los campos", type: "error" })
+      );
     } else {
       try {
         await axios.put(`${apiUrl}/${userData?.id}`, dataForm);
         // console.log("Respuesta del servidor:", response.data);
-        window.alert("¡Información de usuario actualizada!");
+        dispatch(
+          setAlert({
+            message: `${dataForm.name} ha sido editado`,
+            type: "success",
+          })
+        );
       } catch (error) {
         console.error("Error al realizar la solicitud PUT:", error.message);
       }
@@ -182,10 +194,10 @@ const FormProfile = () => {
     }));
   };
 
-  const createRoleCompleted = () => { 
+  const createRoleCompleted = () => {
     dispatch(actionGetUser(userData.id));
-    setModalRole(false)
-  }
+    setModalRole(false);
+  };
 
   return (
     <>
@@ -221,7 +233,7 @@ const FormProfile = () => {
                     <span>Contraseña :</span>
                   </div>
                   <input
-                    type={contrasenaPasswordShow ? "text" : "password"}
+                    type="password"
                     name="password"
                     value={dataForm.password}
                     onChange={handleInputChange}
@@ -453,7 +465,7 @@ const FormProfile = () => {
       </div>
 
       <ModalCustom state={modalRole} closeButton={false}>
-        <ModalRole successCreateRole={createRoleCompleted} ></ModalRole>
+        <ModalRole successCreateRole={createRoleCompleted}></ModalRole>
       </ModalCustom>
 
       {toggleModal && (

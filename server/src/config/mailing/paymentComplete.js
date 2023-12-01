@@ -4,7 +4,15 @@ const { MAIL_PASSWORD } = process.env;
 
 const nodeMailer = require("nodemailer");
 
-const deleteUserMail = async (email, name, lastName) => {
+const deleteUserMail = async (
+  transactionId,
+  date,
+  currencyCode,
+  amount,
+  name,
+  lastName,
+  email
+) => {
   let transporter = nodeMailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -72,8 +80,12 @@ const deleteUserMail = async (email, name, lastName) => {
           align="center"
           style="padding: 15px; font-size: 45px; color: #cbcbd0"
         >
-        <h1>${name}</h1>
-          Tu cuenta se ha eliminado con &eacute;xito.  
+        <h1>Nombre:${name}${lastName}</h1> 
+        <p>$Email:{email}</p>
+        <p>Numero de trasaccion:${transactionId}</p>
+        <p>Cargo realizado:${currencyCode}${amount}</p>
+        <p>Fecha:${date}</p>
+          ¡Gracias por aquirir nuestro servicio! 
         </td>
       </tr>
       <tr>

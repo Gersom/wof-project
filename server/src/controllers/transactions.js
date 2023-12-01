@@ -21,7 +21,17 @@ const getAllTransactions = catchedAsync(async (req, res) => {
 // CREATE ITEM
 const createTransaction = catchedAsync(async (req, res) => {
   const newTransaction = await postTransactionLogic(req.body);
-  paymentComplete();
+  const [transactionId, date, currencyCode, amount, name, lastName, email] =
+    req.body;
+  paymentComplete(
+    transactionId,
+    date,
+    currencyCode,
+    amount,
+    name,
+    lastName,
+    email
+  );
   res.status(200).json(newTransaction);
 }, ErrorHandler.createTransactionErrorHandler);
 
