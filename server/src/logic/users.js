@@ -73,9 +73,10 @@ const postUserLogic = async (data) => {
 };
 
 const updateUserLogic = async (id, data) => {
-  if(data.password) throw Error("cannot change password")
-  if(data.email) throw Error("cannot change email")
-  await UsersModel.updateData(id, data);
+  // if(data.password) throw Error("cannot change password")
+  // if(data.email) throw Error("cannot change email")
+  const { email, password, ...newData } = data;
+  await UsersModel.updateData(id, newData);
   return {
     success: "User was update correctly.",
   };

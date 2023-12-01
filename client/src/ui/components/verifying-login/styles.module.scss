@@ -169,3 +169,24 @@ p.footer_credit {
     margin: 0 5px;
   }
 }
+
+.buttonBlue {
+  color: #fff;
+  background: #53c1e4;
+  width: 100%;
+  max-width: 250px;
+  font-size: 14px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-top: 2rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: 0.3s ease all;
+  &:hover {
+    background: transparent;
+    border-color: #52c1e4;
+  }
+}

@@ -23,8 +23,9 @@ const ModalChangePassword = ({
   const [repeatContrasenaPasswordShow, setRepeatContrasenaPasswordShow] =
     useState(false);
   const [dataForm, setDataForm] = useState({
-    password: userData?.password,
-    repeatPassword: userData?.password,
+    newPassword: userData?.newPassword,
+    newPasswordRepeat: userData?.newPasswordRepeat,
+    userId: userData?.id,
   });
 
   const handleInputChange = (e) => {
@@ -47,8 +48,10 @@ const ModalChangePassword = ({
       window.alert("Hay errores");
     } else {
       try {
-        await axios.put(`${apiUrl}/${userData?.id}`, {
-          password: dataForm.password,
+        await axios.put(`${apiUrl}/change-password/`, {
+          newPassword: dataForm.newPassword,
+          newPasswordRepeat: dataForm.newPasswordRepeat,
+          userId: dataForm.id,
         });
         // console.log("Respuesta del servidor:", response.data);
         window.alert("¡Contraseña actualizada!");

@@ -20,19 +20,23 @@ import idIcon from "@icons/idIcon.svg";
 import eye from "@icons/eye.svg";
 import closeEye from "@icons/closeEye.svg";
 import user from "@icons/user.svg";
-
+import { useDispatch } from "react-redux";
 import ModalCustom from "@components/modals/modal-custom/ModalCustom";
 import ModalRole from "@components/modals/modal-role/ModalRole";
 import ModalChangePassword from "../../modals/modal-changePassword/ModalChangePassword";
 import cross from "@icons/filterSortLocationBar/cross.svg";
+import { setAlert } from "@src/common/store/slices/alertSlice";
+import { actionGetUser } from "@common/store/actions/userActions";
 
 const FormProfile = () => {
   const apiUrl = API_URL_UPDATE_USER;
+  const dispatch = useDispatch();
   const userData = useSelector((state) => state.userReducer.user);
   const [provinces, setProvinces] = useState([]);
   const [countries, setCountries] = useState([]);
   const [errors, setErrors] = useState({}); //  errors state
   const [showPassword, setShowPassword] = useState(false);
+  const [modalRole, setModalRole] = useState(false);
   const [toggleModal, setToggleModal] = useState(false);
   const handleToggleModal = () => setToggleModal(!toggleModal);
   const [dniPasswordShow, setDniPasswordShow] = useState(false);
@@ -70,6 +74,20 @@ const FormProfile = () => {
   }, [userData]);
 
   useEffect(() => {
+    if (
+      userData.role === null ||
+      userData.role === "null" ||
+      userData.role === undefined
+    ) {
+      setModalRole(true);
+    }
+
+    if (userData.role === "caregiver" || userData.role === "owner") {
+      setModalRole(false);
+    }
+  }, [userData]);
+
+  useEffect(() => {
     axios(API_URL_PROVINCES)
       .then(({ data }) => {
         if (data) {
@@ -103,12 +121,19 @@ const FormProfile = () => {
     const hasErrors = Object.values(errors).some((error) => error !== "");
 
     if (hasErrors) {
-      window.alert("Hay errores");
+      return dispatch(
+        setAlert({ message: "Completa los campos", type: "error" })
+      );
     } else {
       try {
         await axios.put(`${apiUrl}/${userData?.id}`, dataForm);
         // console.log("Respuesta del servidor:", response.data);
-        window.alert("¡Información de usuario actualizada!");
+        dispatch(
+          setAlert({
+            message: `${dataForm.name} ha sido editado`,
+            type: "success",
+          })
+        );
       } catch (error) {
         console.error("Error al realizar la solicitud PUT:", error.message);
       }
@@ -169,11 +194,16 @@ const FormProfile = () => {
     }));
   };
 
+  const createRoleCompleted = () => {
+    dispatch(actionGetUser(userData.id));
+    setModalRole(false);
+  };
+
   return (
     <>
       <div className={`${styles["container"]}`}>
         <div className={styles["profile_wrapper"]}>
-          <h1>Mi Perfil</h1>
+          <h1>Mi Perfil {String(!userData.role)}</h1>
           <div className={styles["profile_cards_container"]}>
             <div className={styles["profile_cards_wrapper"]}>
               <div className={styles["profile_card"]}>
@@ -203,7 +233,7 @@ const FormProfile = () => {
                     <span>Contraseña :</span>
                   </div>
                   <input
-                    type={contrasenaPasswordShow ? "text" : "password"}
+                    type="password"
                     name="password"
                     value={dataForm.password}
                     onChange={handleInputChange}
@@ -434,8 +464,8 @@ const FormProfile = () => {
         </div>
       </div>
 
-      <ModalCustom state={false} closeButton={false}>
-        <ModalRole></ModalRole>
+      <ModalCustom state={modalRole} closeButton={false}>
+        <ModalRole successCreateRole={createRoleCompleted}></ModalRole>
       </ModalCustom>
 
       {toggleModal && (

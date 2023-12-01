@@ -5,7 +5,9 @@ const CardAccept = ({
   endDate,
   completedAcept,
   onAccept = () => null,
-  toggleModal
+  toggleModal,
+  onCancel = () => null,
+  toggleCancelModal
 }) => {
 
   const formatDate = (fechaString) => {
@@ -23,6 +25,11 @@ const CardAccept = ({
   const handleAccept = () => {
     onAccept();
     toggleModal();
+  }
+
+  const handleCancel = () => {
+    onCancel();
+    toggleCancelModal();
   }
   return (
     <article className={styles.article}>
@@ -44,7 +51,7 @@ const CardAccept = ({
           </button>
           :
           <button className={styles.cancelButton}
-            onClick={handleAccept}>
+            onClick={handleCancel}>
             Cancelar oferta
           </button>
       }
