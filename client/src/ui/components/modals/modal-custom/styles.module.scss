@@ -29,3 +29,15 @@
   padding: 2.5rem 10rem;
   border-radius: 1rem;
 }
+
+.cross{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 2rem;
+  font-size: 2rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+}

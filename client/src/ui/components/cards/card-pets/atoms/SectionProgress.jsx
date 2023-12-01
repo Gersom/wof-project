@@ -12,6 +12,7 @@ const SectionProgress = ({data = {
     endDate : '',
     rating : 0,
 }}) => {
+	console.log(data);
 	return (
 		<section className={styles.sectionPublic}>
 			<h3>Actualmente esta al cuidado de: </h3>

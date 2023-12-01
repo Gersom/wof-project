@@ -5,11 +5,11 @@ import useGetPetId from '@src/common/hooks/useGetPetId';
 import PetImage from '../../cards/card-pets/atoms/PetImage';
 import useOffersCaregivers from '@src/common/hooks/useOffersCaregivers';
 import { useParams } from 'react-router-dom';
-import ModalCustom from "@components/modals/modal-custom/ModalCustom";
-import ModalPayment from "@components/modals/modal-payment/ModalPayment"
+import ModalCustom from '@components/modals/modal-custom/ModalCustom';
+import ModalPayment from '@components/modals/modal-payment/ModalPayment';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updatePetsTriger } from "@common/store/slices/myPetsSlice"
+import { updatePetsTriger } from '@common/store/slices/myPetsSlice';
 
 const OffersCareGivers = () => {
 	const dispatch = useDispatch();
@@ -19,39 +19,39 @@ const OffersCareGivers = () => {
 		details?.id || null
 	);
 
-  const [modalState, setModalState] = useState(false);
-  const [offerData, setOfferData] = useState({
-    "id": 0,
-    "price": "1.00",
-    "caregiverId": 0,
-    "userId": 0,
-    "name": "..",
-    "address": "...",
-    "profilePicture": "...",
-    "rating": "..."
-  });
+	const [modalState, setModalState] = useState(false);
+	const [offerData, setOfferData] = useState({
+		id: 0,
+		price: '1.00',
+		caregiverId: 0,
+		userId: 0,
+		name: '..',
+		address: '...',
+		profilePicture: '...',
+		rating: '...',
+	});
 
-  const successPaid = () => {
-    setModalState(false)
-    setOfferData({
-      "id": 0,
-      "price": "1.00",
-      "caregiverId": 0,
-      "userId": 0,
-      "name": "..",
-      "address": "...",
-      "profilePicture": "...",
-      "rating": "..."
-    })
+	const successPaid = () => {
+		setModalState(false);
+		setOfferData({
+			id: 0,
+			price: '1.00',
+			caregiverId: 0,
+			userId: 0,
+			name: '..',
+			address: '...',
+			profilePicture: '...',
+			rating: '...',
+		});
 
-    dispatch(updatePetsTriger())
-  }
+		dispatch(updatePetsTriger());
+	};
 
-  const onClicAccep = (data) => {
-    setOfferData(data)
-    setModalState(true)
-  }
-	
+	const onClicAccep = (data) => {
+		setOfferData(data);
+		setModalState(true);
+	};
+
 	return (
 		<div className={styles.containerMainGrid}>
 			<div className={styles.containerCardInfo}>
@@ -76,17 +76,15 @@ const OffersCareGivers = () => {
 							data={offer}
 							key={offer.id}
 							rango={'intermedio'}
-              setData={onClicAccep}
+							setData={onClicAccep}
 						/>
 					))
 				)}
 			</div>
 
-    <ModalCustom state={modalState}>
-      <ModalPayment 
-      successPaid={successPaid}
-      data={offerData} />
-    </ModalCustom>
+			<ModalCustom state={modalState} toggleModal={() => setModalState(false)}>
+				<ModalPayment successPaid={successPaid} data={offerData} />
+			</ModalCustom>
 		</div>
 	);
 };
