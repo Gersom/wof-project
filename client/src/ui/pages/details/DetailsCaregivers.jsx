@@ -28,7 +28,7 @@ const DetailsCaregivers = () => {
 						name={details.user.name}
 						role={details.user.role}
 						address={details.user.address}
-						rating={details.user.rating}
+						rating={details.rating}
 						imgSrc={details.user.profilePicture}
 					/>
 				)}
