@@ -27,7 +27,13 @@ import { saveToLocalStorage, getFromLocalStorage } from "@src/common/utils/local
 
 // import ModalCustom from "@components/modals/modal-custom/ModalCustom";
 
+//import useAlert 
+import useAlert from "@src/common/hooks/use-alert/useAlert";
+
 function App() {
+
+  useAlert();
+  
   const auth = useAuth();
   const location = useLocation();
   
@@ -57,7 +63,7 @@ function App() {
   },[])
 
   return (
-    <div className="App">
+    <div className="App" id="App">
       <Routes>
         <Route path={routerNames["home"]} element={<Home />} />
         <Route path={routerNames["landing"]} element={<Landing />} />
