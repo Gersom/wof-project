@@ -28,7 +28,11 @@ const getAllCaregiversLogic = async () => {
 const getCaregiverLogic = async (id) => {
   const caregiver = await CaregiversModel.findCaregiver(id)
   if (!caregiver) throw Error("User not found")
-  return caregiver
+  const caregiverAddRating = {
+    ...caregiver,
+    rating: String((Math.random() * (5 - 3) + 3).toFixed(2)),
+  }
+  return caregiverAddRating
 };
 
 const postCaregiverLogic = async (data) => {
