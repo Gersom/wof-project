@@ -87,17 +87,16 @@ const VerifyingLogin = () => {
   };
 
   const manageRedirection = async () => {
-    const { userId, history } = getFromLocalStorage("session");
-    const allLocal = getFromLocalStorage("session");
+    const storage = getFromLocalStorage("session");
 
-    const { data } = await axios.get(API_URL_USER + "/" + userId);
+    const { data } = await axios.get(API_URL_USER + "/" + storage?.userId);
     console.log("DATA USER ID", data);
 
     switch (data.role) {
       case "caregiver":
         // console.log(allLocal);
         setAuthenticated(true);
-        if (history) {
+        if (storage?.history) {
           // console.log("INTERNAL  HISTORY",history);
           navigate(history);
           return;
@@ -107,7 +106,7 @@ const VerifyingLogin = () => {
         return;
       case "owner":
         setAuthenticated(true);
-        if (history) {
+        if (storage?.history) {
           navigate(history);
           return;
         }
@@ -115,7 +114,7 @@ const VerifyingLogin = () => {
         return;
       default:
         setAuthenticated(true);
-        if (history) {
+        if (storage?.history) {
           navigate(history);
           return;
         }
