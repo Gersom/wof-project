@@ -17,19 +17,24 @@ const Details = () => {
   const [success, setSuccess] = useState(false);
   const [statusModal, setStatusModal] = useState(false);
   const [payedInfoModal, setPayedInfoModal] = useState(false);
+  const [cancelModal, setCancelModal] = useState(false);
 
   console.log(details);
-  
 
-  const manageModal = ()=>{
+
+  const manageModal = () => {
     setStatusModal(false)
-    if(statusModal){
+    if (statusModal) {
       setPayedInfoModal(true);
     }
   }
 
   const acceptFunc = () => {
     setStatusModal(true);
+  };
+
+  const cancelFunc = () => {
+    setCancelModal(true);
   };
 
   return (
@@ -58,6 +63,8 @@ const Details = () => {
           completedAcept={success}
           onAccept={acceptFunc}
           toggleModal={() => setStatusModal(true)}
+          onCancel={cancelFunc}
+          toggleCancelModal={() => setCancelModal(false)}
         />
         {!isLoading && (
           <>
@@ -74,12 +81,19 @@ const Details = () => {
 
             </ModalCustom>
             <ModalCustom
-             state={payedInfoModal}
-             toggleModal={() => {setPayedInfoModal(false); setSuccess(true);}}
-              
+              state={payedInfoModal}
+              toggleModal={() => { setPayedInfoModal(false); setSuccess(true); }}
+
             >
               <ModalSendOffer />
             </ModalCustom>
+            {/* <ModalCustom
+              state={cancelModal}
+              toggleModal={() => {setPayedInfoModal(false); setSuccess(true);}}
+
+            >
+              <ModalSendOffer />
+            </ModalCustom> */}
 
           </>
         )}
