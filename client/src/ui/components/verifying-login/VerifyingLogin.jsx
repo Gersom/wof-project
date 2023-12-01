@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@src/context/auth-provider/authProvider";
 import { useAuth0 } from "@auth0/auth0-react";
-import { API_URL_REGISTER, API_URL_USER } from "@src/common/constants/api";
+import { API_URL_LOGIN, API_URL_REGISTER, API_URL_USER } from "@src/common/constants/api";
 import {
   saveToLocalStorage,
   getFromLocalStorage,
@@ -60,7 +60,7 @@ const VerifyingLogin = () => {
     try {
       const token = await getAuthToken();
       const response = await axios.post(
-        "http://localhost:3001/api/users/login",
+        API_URL_LOGIN,
         {
           email: user.email,
           password: token,
