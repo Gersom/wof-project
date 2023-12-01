@@ -30,15 +30,16 @@ const MyPetsEdit = () => {
 		temperaments: '',
 		manners: '',
 		notes: '',
-		ownerId: pets[0]?.owner?.id,
+		ownerId: ownerId,
 		imageUrl: [],
 	});
 
-	const [error, setError] = useState(null);
-
-	useEffect(() => {
-		setError(validation(form));
-	}, [form]);
+	const [error, setError] = useState({
+		name: '',
+		temperaments: '',
+		manners: '',
+		notes: '',
+	});
 
 	useEffect(() => {
 		if (idPet) {
@@ -63,6 +64,8 @@ const MyPetsEdit = () => {
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setForm({ ...form, [name]: value });
+		const updateError = validation(name, value, error);
+		setError({ ...error, ...updateError });
 	};
 
 	const handleDeleteImage = (image) => {
@@ -84,30 +87,40 @@ const MyPetsEdit = () => {
 			},
 			body: JSON.stringify(form),
 		};
-		
 		e.preventDefault();
 
-		if (Object.values(error).some((error) => error !== ''))
-			return dispatch(
-				setAlert({ message: 'Completa los campos', type: 'error' })
-			);
+		const updatedErrors = {};
 
-		else {
-			if (idPet) {
-				options.method = 'PUT';
-				await fetch(`${API_URL_MY_PETS}/${idPet}`, options);
-				dispatch(
-					setAlert({ message: `${form.name} ha sido editado`, type: 'success' })
-				);
-			} else {
-				await fetch(API_URL_MY_PETS_OWNER_ID + ownerId, options);
-				dispatch(
-					setAlert({ message: `${form.name} ha sido creado`, type: 'success' })
-				);
+		const isFormChanged = Object.keys(form).some((key) => form[key] !== '');
+		const isFormEmpty = Object.keys(form).some((key) => form[key] === '');
+
+		if (isFormChanged) {
+			for (const key in form) {
+				if (error[key] === undefined) continue;
+				const updateError = validation(key, form[key], error);
+				updatedErrors[key] = updateError[key];
+				if (error[key] !== '') {
+					setTimeout(() => {
+						dispatch(setAlert({ message: `${error[key]}`, type: 'error' }));
+					}, 1);
+				}
 			}
-			navigate(routerNames['myPets']);
+			setError(updatedErrors);
+			if (isFormEmpty) return;
 		}
-	};
+
+		if (Object.values(error).some((error) => error !== '')) return;
+
+		const url = idPet ? `${API_URL_MY_PETS}/${idPet}` : API_URL_MY_PETS;
+		options.method = idPet ? 'PUT' : 'POST';
+
+		await fetch(url, options);
+
+		const successMessage = idPet ? `${form.name} ha sido editado` : `${form.name} ha sido creado`;
+		dispatch(setAlert({ message: successMessage, type: 'success' }));
+
+		navigate(routerNames['myPets']);
+	}
 
 	return (
 		<div className={styles.mainContainer}>
