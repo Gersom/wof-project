@@ -71,7 +71,7 @@ const VerifyingLogin = () => {
         userId: response.data.userId,
         token: response.data.token,
       });
-
+      manageRedirection()
       if (response.data.token) {
         console.warn("Inicio de sesion completado");
       }
@@ -130,10 +130,10 @@ const VerifyingLogin = () => {
     }
   }, [isLoading]);
 
-  useEffect(() => {
-    console.log('LOCAL AUTH STATE', isAuthenticated);
-    manageRedirection();
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   console.log('LOCAL AUTH STATE', isAuthenticated);
+  //   manageRedirection();
+  // }, [isAuthenticated]);
 
   return (
     <div className={styles.container}>
