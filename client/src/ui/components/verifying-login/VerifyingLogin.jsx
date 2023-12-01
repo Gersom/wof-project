@@ -87,7 +87,7 @@ const VerifyingLogin = () => {
   };
 
   const manageRedirection = async () => {
-    const storage = getFromLocalStorage("session");
+    const storage = await getFromLocalStorage("session");
 
     const { data } = await axios.get(API_URL_USER + "/" + storage?.userId);
     console.log("DATA USER ID", data);

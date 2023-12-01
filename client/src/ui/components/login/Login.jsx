@@ -28,8 +28,8 @@ const Login = () => {
 
   useEffect(() => {
     // if (getFromLocalStorage()) {
-      const { userId, token } = getFromLocalStorage("session");
-      if (userId && token) {
+      const storage = getFromLocalStorage("session");
+      if (storage?.userId && storage?.token) {
         navigate(routerNames["loading"]);
       }
     //}
