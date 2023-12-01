@@ -25,8 +25,18 @@
     grid-template-rows: min-content min-content min-content min-content;
     row-gap: 1.5rem;
     justify-content: center;
+    justify-items: center;
     h1{
         color:var(--color-text-secondary);
         font-size: 5rem;
     }
+}
+
+.check{
+ display: flex;
+ gap: 0.5rem;
+
+ input{
+    margin-top: 7px;
+ }
 }
