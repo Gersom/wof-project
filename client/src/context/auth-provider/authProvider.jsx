@@ -15,7 +15,7 @@ function AuthProvider({ children }) {
   };
 
  
-  async function checkAuth(){
+   function checkAuth(){
     if(accessToken){
       setAuthenticated(true)
     }else{
@@ -42,7 +42,7 @@ function AuthProvider({ children }) {
     return null;
   }
 
-  useEffect(() => {checkAuth() }, []);
+  useEffect(() => {checkAuth() }, [accessToken]);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setAuthenticated }}>

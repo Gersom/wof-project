@@ -4,6 +4,6 @@ import { useAuth } from "@src/context/auth-provider/authProvider";
 
 export default function ProtectedRoute(){
     const auth = useAuth();
-
+    
     return auth.isAuthenticated? <Outlet/>:<Navigate to={routerNames["login"]}/>
 }

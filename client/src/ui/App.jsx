@@ -83,6 +83,7 @@ function App() {
         <Route path={routerNames["register"]} element={<FormRegister />} />
         <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
         {/* dashboard */}
+        <Route path={'/'} element={<ProtectedRoute />} >
         <Route
           path={routerNames["dashboard"]}
           element={
@@ -121,6 +122,7 @@ function App() {
             element={<MyPetsEdit />}
           />
           <Route path={routerNames["myHome"]} element={<MyHome />} />
+        </Route>
         </Route>
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />
