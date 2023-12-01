@@ -5,6 +5,7 @@ import wofImage from "@images/landing/wof.svg";
 import rectangle from "@images/landing/rectangle.svg";
 import { getFromLocalStorage } from "@common/utils/localStorage";
 import { useEffect } from "react";
+import {API} from "@common/constants/api"
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const LandingPage = () => {
       </div>
       <div className={styles.cont}>
         <Link to={routerNames["contact"]} className={styles.contactBtn}>
-          Contáctanos
+          Contáctanos {API}
         </Link>
         <Link to={routerNames["login"]} className={styles.loginBtn}>
           Inicia Sesión
