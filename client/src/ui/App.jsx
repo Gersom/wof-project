@@ -38,7 +38,7 @@ function App() {
   const location = useLocation();
   
   function storeCurrentRouteInSession() {
-    const sorage = getFromLocalStorage("session");
+    const storage = getFromLocalStorage("session");
     let currentRoute;
 
     if(currentRoute !== "/verificando" || currentRoute !== "/iniciar-sesion"){
@@ -46,14 +46,14 @@ function App() {
     }
    
     console.log(currentRoute);
-    if(sorage?.token && sorage?.userId){
-      const updatedSorage = {
-        token: token,
-        userId: userId,
+    if(storage?.token && storage?.userId){
+      const updatedstorage = {
+        token: storage?.token,
+        userId: storage?.userId,
         history: currentRoute,
       }
 
-      saveToLocalStorage('session',updatedSorage);
+      saveToLocalStorage('session',updatedstorage);
     }
     console.log(`Ruta actual almacenada en sessionStorage: ${currentRoute}`);
   }
