@@ -49,20 +49,21 @@ const loginUser = catchedAsync(async (req, res) => {
       return res.status(401).json({ error: "Contraseña incorrecta" });
     }
 
-
     const token = jwt.sign({ userId: user.id }, "tu_secreto_secreto", {
       expiresIn: "24h",
     });
 
-    res.status(200).json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
-    return
-  }
-  else if(user.email && user.authInfo){
-
-  res
-    .status(200)
-    .json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
-    res.status(200).json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
+    res
+      .status(200)
+      .json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
+    return;
+  } else if (user.email && user.authInfo) {
+    res
+      .status(200)
+      .json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
+    res
+      .status(200)
+      .json({ token, userId: user.id, success: "Inicio de sesión exitoso" });
   }
 });
 

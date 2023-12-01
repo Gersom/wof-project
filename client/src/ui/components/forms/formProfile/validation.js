@@ -124,4 +124,19 @@ export const validation = (dataForm, errors, setErrors) => {
   } else {
     setErrors((prevErrors) => ({ ...prevErrors, cellPhone: "" }));
   }
+
+  // Validar numero de Documento
+  if (!/^\d+$/.test(dataForm.dni)) {
+    setErrors({
+      ...errors,
+      dni: "Solo se permiten números en este campo",
+    });
+  } else if (value.length !== 8) {
+    setErrors({
+      ...errors,
+      dni: "El número de documento debe tener 8 dígitos",
+    });
+  } else {
+    setErrors((prevErrors) => ({ ...prevErrors, dni: "" }));
+  }
 };

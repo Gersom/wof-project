@@ -179,11 +179,18 @@ const createUserMail = async (email, name, lastName) => {
             sytle
             style="background: transparent; padding-top: 10px; "
           >
-
-                <a href="https://wof-project.vercel.app/">
-                  <button>
-                    Wof.com
-                </button>
+                
+                <a style="
+                  text-decoration: none!important;
+                  color: rgb(255, 255, 255)!important;
+                  font-weight: bold!important;
+                  background: rgb(101, 101, 180)!important;
+                  padding: 5px 48px!important;
+                  border-radius: 32px!important;
+                  font-family: -apple-system, BlinkMacSystemFont,  segoe ui, roboto, oxygen, ubuntu, cantarell, open sans, helvetica neue, sans-serif; "
+                  href="https://wof-project.vercel.app/">WoF.com
+                </a>
+              
                 <style>button {
                   padding: 20px 40px;
                   border: 0;
