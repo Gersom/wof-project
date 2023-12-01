@@ -31,8 +31,8 @@ const ModalPayment = ({
       
 			<div className={styles.PaypalDiv}>
         <Paypal 
-        onPaid={successPaid}
-        dataPost={{
+          onPaid={successPaid}
+          dataPost={{
           postId: params.id, 
           userId: userData.id, 
           caregiverId: data.caregiverId,
