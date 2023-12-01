@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 import axios from "axios";
-
+import { API_URL_USER } from "@common/constants/api"
 import Auth0Btutton from "../auth/auth0-button/Auth0Button";
 
 import {
@@ -44,7 +44,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/users/login",
+        API_URL_USER + "/login",
         {
           email: emailValue,
           password: passwordValue,
