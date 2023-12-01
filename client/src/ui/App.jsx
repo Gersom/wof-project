@@ -23,9 +23,13 @@ import DetailsCaregivers from "./pages/details/DetailsCaregivers";
 import MyHome from "./pages/my-home/MyHome";
 // import ModalCustom from "@components/modals/modal-custom/ModalCustom";
 
+//import useAlert 
+import useAlert from "@src/common/hooks/use-alert/useAlert";
+
 function App() {
+  useAlert();
   return (
-    <div className="App">
+    <div className="App" id="App">
       <Routes>
         <Route path={routerNames["home"]} element={<Home />} />
         <Route path={routerNames["landing"]} element={<Landing />} />
