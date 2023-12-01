@@ -26,7 +26,7 @@ const CardPetPublic = ({
 	
 	const handleRenderSection = () => {
 		switch (data.status) {
-			case 'progress':
+			case 'paid':
 				return <SectionProgress data={data} />;
 			case 'published':
 				return <SectionPublished data={data} toggleModal={() => setModal(true)}/>;

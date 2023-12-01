@@ -50,5 +50,11 @@ OwnersModel["findOwner"] = async (id) => {
   })
   return owner
 }
+OwnersModel['dataExistByUser'] = async (userId) => {
+  const amountData = await OwnersModel.count({
+    where: { userId }
+  })
+  return amountData > 0
+}
 
 module.exports = OwnersModel

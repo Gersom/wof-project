@@ -48,6 +48,7 @@ const postCaregiverLogic = async (data) => {
 const updateCaregiverLogic = async (id, data) => {
   const { images } = data
   if(images){
+    await CaregiversImagesModel.removeDataByCaregiver(id)
     const imgs = images.map(img => {
       return {
         imageUrl:img,

@@ -57,5 +57,11 @@ CaregiversModel["findCaregiver"] = async (id) => {
   })
   return caregiver
 }
+CaregiversModel['dataExistByUser'] = async (userId) => {
+  const amountData = await CaregiversModel.count({
+    where: { userId }
+  })
+  return amountData > 0
+}
 
 module.exports = CaregiversModel

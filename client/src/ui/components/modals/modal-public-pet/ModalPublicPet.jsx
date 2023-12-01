@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import CardPetInfo from '../../cards/card-pets/CardPetInfo';
-import DatePublicSelect from '../../date-public-select/DatePublicSelect';
+import DatePublicSelect from '@components/date-public-select/DatePublicSelect';
 
 const ModalPublicPet = ({ data, toggleModal }) => {
 	return (

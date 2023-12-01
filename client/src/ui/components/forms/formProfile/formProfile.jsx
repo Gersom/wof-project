@@ -13,6 +13,9 @@ import birthdate from "@icons/birthdateIcon.svg";
 import idIcon from "@icons/idIcon.svg";
 import user from "@icons/user.svg";
 
+import ModalCustom from "@components/modals/modal-custom/ModalCustom";
+import ModalRole from "@components/modals/modal-role/ModalRole";
+
 const FormProfile = () => {
   const userData = useSelector((state) => state.userReducer.user);
   const [provinces, setProvinces] = useState([]);
@@ -246,6 +249,10 @@ const FormProfile = () => {
           <div className={styles["profile_btn"]}>Guardar cambios</div>
         </div>
       </div>
+
+      <ModalCustom state={false} closeButton={false}>
+        <ModalRole></ModalRole>
+      </ModalCustom>
     </div>
   );
 };

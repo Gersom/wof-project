@@ -29,6 +29,7 @@ const models = {
   TransactionsModel: require(`./${pathModel}/transactions`),
   UsersModel: require(`./${pathModel}/users`),
   GerdersModel: require(`./${pathModel}/genders`),
+  NotificationsModel: require(`./${pathModel}/notifications`)
 }
 
 module.exports = models
