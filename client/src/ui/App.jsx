@@ -58,6 +58,13 @@ function App() {
     console.log(`Ruta actual almacenada en sessionStorage: ${currentRoute}`);
   }
 
+  const tokenExist = async () => {
+    const sessionLS = await getFromLocalStorage("session")
+    console.log(sessionLS)
+    if (sessionLS?.token) return true
+    return false
+  }
+
   useEffect(()=>{
     storeCurrentRouteInSession();
   },[])
@@ -72,7 +79,7 @@ function App() {
         <Route path={routerNames["register"]} element={<FormRegister />} />
         <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
         {/* dashboard */}
-        <Route path={routerNames["dashboard"]} element={auth.isAuthenticated? <Dashboard/>:<Navigate to={routerNames["login"]}/>}>
+        <Route path={routerNames["dashboard"]} element={tokenExist() ? <Dashboard/>:<Navigate to={routerNames["login"]}/>}>
           <Route
             index
             path={routerNames["offersCaregivers"]}
