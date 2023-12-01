@@ -75,7 +75,7 @@ const Details = () => {
             </ModalCustom>
             <ModalCustom
              state={payedInfoModal}
-             toggleModal={() => setPayedInfoModal(false)}
+             toggleModal={() => {setPayedInfoModal(false); setSuccess(true);}}
               
             >
               <ModalSendOffer />
