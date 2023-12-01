@@ -17,7 +17,7 @@ const deleteUserMail = async (email, name, lastName) => {
   let info = await transporter.sendMail({
     from: '"soporte" <wofbot.noreplay@gmail.com>',
     to: email,
-    subject: "¡No te Vayas!",
+    subject: "¡Pago Realizado con Exito!",
     html: `
     <!DOCTYPE html>
 <html

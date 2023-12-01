@@ -1,25 +1,4 @@
-require("dotenv").config();
-
-const { MAIL_PASSWORD } = process.env;
-
-const nodeMailer = require("nodemailer");
-
-const deleteUserMail = async (email, name, lastName) => {
-  let transporter = nodeMailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: "wofbot.noreplay@gmail.com",
-      pass: `${MAIL_PASSWORD}`,
-    },
-  });
-  let info = await transporter.sendMail({
-    from: '"soporte" <wofbot.noreplay@gmail.com>',
-    to: email,
-    subject: "¡No te Vayas!",
-    html: `
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html
   lang="es"
   xmlns="https://www.w3.org/1999/xhtml"
@@ -31,7 +10,7 @@ const deleteUserMail = async (email, name, lastName) => {
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="x-apple-disable-message-reformatting" />
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
-    <title>¡No Te Vayas!</title>
+    <title>¡Recupera tu Contraseña!</title>
     <style>
       table,
       td,
@@ -73,7 +52,20 @@ const deleteUserMail = async (email, name, lastName) => {
           style="padding: 15px; font-size: 45px; color: #cbcbd0"
         >
         <h1>${name}</h1>
-          Tu cuenta se ha eliminado con &eacute;xito.  
+        ¿Olvidaste tu Contraseña? Puedes recuperarla aqui.
+        <br>
+        <br>
+        <a style="
+        text-decoration: none!important;
+        color: rgb(255, 255, 255)!important;
+        font-weight: bold!important;
+        background: rgb(83, 191, 225)!important;
+        margin-top: 3rem!important;
+        padding: 5px 48px!important;
+        border-radius: 32px!important;
+        font-family: -apple-system, BlinkMacSystemFont,  segoe ui, roboto, oxygen, ubuntu, cantarell, open sans, helvetica neue, sans-serif; "
+        href="https://wof-project.vercel.app/">Recuperar
+      </a>
         </td>
       </tr>
       <tr>
@@ -113,7 +105,7 @@ const deleteUserMail = async (email, name, lastName) => {
       
       <tr>
         <td align="center" style="padding: 30px 64px; color: rgb(248, 248, 248)">
-          <h3>Esperemos verte pronto de vuelta :c</h3>
+          <h3>Esperemos verte pronto... :c</h3>
           <span>
             *Si no reconoces esta acci&oacute;n, por favor hacer caso omiso de
             la misma. <br />
@@ -183,7 +175,7 @@ const deleteUserMail = async (email, name, lastName) => {
                 text-decoration: none!important;
                 color: rgb(255, 255, 255)!important;
                 font-weight: bold!important;
-                background: rgb(101, 101, 180)!important;
+                background: rgb(83, 191, 225)!important;
                 padding: 5px 48px!important;
                 border-radius: 32px!important;
                 font-family: -apple-system, BlinkMacSystemFont,  segoe ui, roboto, oxygen, ubuntu, cantarell, open sans, helvetica neue, sans-serif; "
@@ -220,9 +212,3 @@ const deleteUserMail = async (email, name, lastName) => {
     </table>
   </body>
 </html>
-
-    `,
-  });
-};
-
-module.exports = deleteUserMail;

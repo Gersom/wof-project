@@ -16,62 +16,66 @@ import Login from "./components/login/Login";
 import FormReview from "./components/reviews/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
 import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
+import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
 import VerifyingLogin from "./components/verifying-login/VerifyingLogin";
-import FormProfile from "./components/forms/formProfile/formProfile";
 import DetailsCaregivers from "./pages/details/DetailsCaregivers";
 import { useAuth } from "@src/context/auth-provider/authProvider";
 import { Navigate } from "react-router-dom";
 import MyHome from "./pages/my-home/MyHome";
 import { useEffect } from "react";
-import { saveToLocalStorage, getFromLocalStorage } from "@src/common/utils/localStorage";
+import {
+  saveToLocalStorage,
+  getFromLocalStorage,
+} from "@src/common/utils/localStorage";
 
-// import ModalCustom from "@components/modals/modal-custom/ModalCustom";
+import FormProfile from "./components/forms/formProfile/FormProfile";
 
-//import useAlert 
+//import useAlert
 import useAlert from "@src/common/hooks/use-alert/useAlert";
+// Imports Components
 
 function App() {
-
   useAlert();
-  
+
   const auth = useAuth();
   const location = useLocation();
-  
+
   function storeCurrentRouteInSession() {
     const storage = getFromLocalStorage("session");
     let currentRoute;
 
-    if(currentRoute !== "/verificando" || currentRoute !== "/iniciar-sesion"){
+    if (currentRoute !== "/verificando" || currentRoute !== "/iniciar-sesion") {
       currentRoute = location.pathname;
     }
-   
+
     console.log(currentRoute);
-    if(storage?.token && storage?.userId){
+    if (storage?.token && storage?.userId) {
       const updatedstorage = {
         token: storage?.token,
         userId: storage?.userId,
         history: currentRoute,
-      }
+      };
 
-      saveToLocalStorage('session',updatedstorage);
+      saveToLocalStorage("session", updatedstorage);
     }
     console.log(`Ruta actual almacenada en sessionStorage: ${currentRoute}`);
   }
 
   const tokenExist = async () => {
-    const sessionLS = await getFromLocalStorage("session")
-    console.log(sessionLS)
-    if (sessionLS?.token) return true
-    return false
-  }
+    const sessionLS = await getFromLocalStorage("session");
+    console.log(sessionLS);
+    if (sessionLS?.token) return true;
+    return false;
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     storeCurrentRouteInSession();
-  },[])
+  }, []);
 
   return (
     <div className="App" id="App">
       <Routes>
+        {/* Home */}
         <Route path={routerNames["home"]} element={<Home />} />
         <Route path={routerNames["landing"]} element={<Landing />} />
         {/* Forms */}
@@ -79,7 +83,16 @@ function App() {
         <Route path={routerNames["register"]} element={<FormRegister />} />
         <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
         {/* dashboard */}
-        <Route path={routerNames["dashboard"]} element={tokenExist() ? <Dashboard/>:<Navigate to={routerNames["login"]}/>}>
+        <Route
+          path={routerNames["dashboard"]}
+          element={
+            tokenExist() ? (
+              <Dashboard />
+            ) : (
+              <Navigate to={routerNames["login"]} />
+            )
+          }
+        >
           <Route
             index
             path={routerNames["offersCaregivers"]}
@@ -109,7 +122,6 @@ function App() {
           />
           <Route path={routerNames["myHome"]} element={<MyHome />} />
         </Route>
-
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />
       </Routes>

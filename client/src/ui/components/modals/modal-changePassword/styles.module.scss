@@ -1,3 +1,28 @@
+.container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f4f8;
+  padding: 1rem;
+  border-radius: 3rem;
+  position: relative;
+  max-width: 800px;
+}
+.modal {
+  width: 100%;
+}
+
+.cross {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
 .profile_container {
   display: flex;
 }
@@ -9,7 +34,12 @@
 
   h1 {
     color: #6b89aa;
+  }
+  p {
     margin-bottom: 25px;
+    color: #36373b;
+    font-weight: bold;
+    font-size: 15px;
   }
 }
 
@@ -25,13 +55,14 @@
   justify-content: space-evenly;
 
   > * {
-    flex: 0 0 calc((100%) / 2);
+    flex: 0 0 calc((50%) / 2);
     max-width: 400px;
   }
 }
 
 .profile_card {
-  width: 100%;
+  margin: 0 auto;
+  max-width: 500px;
   border: 2px solid #e3e4e8;
   border-radius: 8px;
   padding: 4px 12px;
@@ -45,7 +76,7 @@
 }
 
 .profile_label {
-  width: 100%;
+  width: 50%;
   display: flex;
   align-items: center;
 
@@ -299,37 +330,6 @@ img.profile_logo {
       margin-bottom: 10px;
     }
   }
-}
-
-.containerOverlay {
-  position: fixed;
-  display: flex;
-  top: 0px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 100;
-  align-items: center;
-}
-
-.containerModal {
-  position: absolute;
-  top: 50%; /* Ajusta verticalmente */
-  left: 50%; /* Ajusta horizontalmente */
-  transform: translate(-50%, -50%);
-  width: max-content;
-  height: max-content;
-}
-
-.cross {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 2rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  cursor: pointer;
 }
 
 .togglePassword {
