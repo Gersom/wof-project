@@ -9,14 +9,24 @@ import CardReviewPets from "@src/ui/components/cards/card-reviews/CardReviewPets
 import CardAccept from "@src/ui/components/cards/card-accept/cardAccept";
 import ModalPrice from "@src/ui/components/modals/modal-price/ModalPrice";
 import ModalCustom from "@src/ui/components/modals/modal-custom/ModalCustom";
+import ModalSendOffer from "@src/ui/components/modals/modal-send-offer/SendOffer";
 
 const Details = () => {
   const { id } = useParams();
   const { isLoading, details } = useGetDetails(id);
   const [success, setSuccess] = useState(false);
   const [statusModal, setStatusModal] = useState(false);
+  const [payedInfoModal, setPayedInfoModal] = useState(false);
 
   console.log(details);
+  
+
+  const manageModal = ()=>{
+    setStatusModal(false)
+    if(statusModal){
+      setPayedInfoModal(true);
+    }
+  }
 
   const acceptFunc = () => {
     setStatusModal(true);
@@ -50,16 +60,28 @@ const Details = () => {
           toggleModal={() => setStatusModal(true)}
         />
         {!isLoading && (
-          <ModalCustom
-            state={statusModal}
-            toggleModal={() => setStatusModal(!statusModal)}
-            isWarning={false}
-          >
-            <ModalPrice
-              data={details}
-              toggleModal={() => setStatusModal(false)}
-            />
-          </ModalCustom>
+          <>
+            <ModalCustom
+              state={statusModal}
+              toggleModal={() => setStatusModal(!statusModal)}
+              isWarning={false}
+            >
+              <ModalPrice
+                data={details}
+                toggleModal={() => manageModal()}
+              />
+
+
+            </ModalCustom>
+            <ModalCustom
+             state={payedInfoModal}
+             toggleModal={() => setPayedInfoModal(false)}
+              
+            >
+              <ModalSendOffer />
+            </ModalCustom>
+
+          </>
         )}
       </div>
     </div>
