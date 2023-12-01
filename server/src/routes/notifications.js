@@ -4,13 +4,13 @@ const controllers = require("../controllers/notifications")
 
 // route => /notifications/...
 
-router.get("/", controllers.getAllNotifications)
+router.get("/", controllers.getAllNotifications) // "/notifications"   || "/notifications?userId=1"
 
 router.get("/:id", controllers.getNotification)
 
 router.post("/", controllers.createNotification)
 
-router.put("/", controllers.updateNotificationByUser)
+router.put("/", controllers.updateNotificationByUser)  //   "/notifications?userId=1"
 
 router.put("/:id", controllers.updateNotification)
 
