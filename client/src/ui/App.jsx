@@ -1,14 +1,13 @@
 // Imports React
-
 import routerNames from "@common/constants/routes";
 
 // Imports Router
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 // Imports Pages
 import Home from "./pages/home/Home";
 import NotFound from "./pages/notFound/NotFound";
-import Landing from "./pages/landing/Landing";
+import Landing from "./pages/Landing/Landing";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
 import Details from "./pages/details/Details";
@@ -20,9 +19,43 @@ import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
 import VerifyingLogin from "./components/verifying-login/VerifyingLogin";
 import FormProfile from "./components/forms/formProfile/formProfile";
 import DetailsCaregivers from "./pages/details/DetailsCaregivers";
+import { useAuth } from "@src/context/auth-provider/authProvider";
+import { Navigate } from "react-router-dom";
+import MyHome from "./pages/my-home/MyHome";
+import { useEffect } from "react";
+import { saveToLocalStorage, getFromLocalStorage } from "@src/common/utils/localStorage";
+
 // import ModalCustom from "@components/modals/modal-custom/ModalCustom";
 
 function App() {
+  const auth = useAuth();
+  const location = useLocation();
+  
+  function storeCurrentRouteInSession() {
+    const {token, userId} = getFromLocalStorage("session");
+    let currentRoute;
+
+    if(currentRoute !== "/verificando" || currentRoute !== "/iniciar-sesion"){
+      currentRoute = location.pathname;
+    }
+   
+    console.log(currentRoute);
+    if(token && userId){
+      const updatedSorage = {
+        token: token,
+        userId: userId,
+        history: currentRoute,
+      }
+
+      saveToLocalStorage('session',updatedSorage);
+    }
+    console.log(`Ruta actual almacenada en sessionStorage: ${currentRoute}`);
+  }
+
+  useEffect(()=>{
+    storeCurrentRouteInSession();
+  },[])
+
   return (
     <div className="App">
       <Routes>
@@ -33,12 +66,7 @@ function App() {
         <Route path={routerNames["register"]} element={<FormRegister />} />
         <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
         {/* dashboard */}
-        {/* <Route
-          path={routerNames["dashboard"]}
-          element={<ProtectedRoute />}
-          children={{ path: routerNames["dashboard"], element: <Dashboard /> }}
-        > */}
-        <Route path={routerNames["dashboard"]} element={<Dashboard />}>
+        <Route path={routerNames["dashboard"]} element={auth.isAuthenticated? <Dashboard/>:<Navigate to={routerNames["login"]}/>}>
           <Route
             index
             path={routerNames["offersCaregivers"]}
@@ -66,6 +94,7 @@ function App() {
             path={routerNames["myPetsEdit"] + ":idPet"}
             element={<MyPetsEdit />}
           />
+          <Route path={routerNames["myHome"]} element={<MyHome />} />
         </Route>
 
         {/* Not Found 404 */}
