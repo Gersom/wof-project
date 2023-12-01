@@ -143,6 +143,11 @@ const VerifyingLogin = () => {
     }
   }, [isAuthenticated]);
 
+  const resetLocal = () => {
+    saveToLocalStorage("session", "")
+    navigate("/")
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles["form-container"]}>
@@ -158,11 +163,26 @@ const VerifyingLogin = () => {
           <form>
             <div className={styles["input_container"]}>
               <label htmlFor="email">
-                <span>Espere un momento, estamos verificando su inicio de sesión, no nos tomará mucho tiempo, gracias por confiar en nosotros 💖</span>
+                <span>Estamos verificando su inicio de sesión, no nos tomará mucho tiempo, gracias por confiar en nosotros 💖</span>
               </label>
             </div>
           </form>
         </div>
+
+        <div className={styles["auth_form"]}>
+          <form>
+            <div className={styles["input_container"]}>
+              <label htmlFor="email">
+                <span>Si no le redireccionamos en unos 10 segundos, puedes volver a intentarlo.</span>
+              </label>
+              <button className={styles.buttonBlue}
+              onClick={resetLocal}>
+                Volver a intentar
+              </button>
+            </div>
+          </form>
+        </div>
+        
       </div>
     </div>
   );

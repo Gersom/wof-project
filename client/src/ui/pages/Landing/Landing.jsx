@@ -17,7 +17,8 @@ const LandingPage = () => {
       navigate(routerNames["loading"]);
     }
     // }
-  }, []);
+    console.log('API:', API)
+  }, [navigate]);
 
   return (
     <div className={styles.mainContainer}>
@@ -26,7 +27,7 @@ const LandingPage = () => {
       </div>
       <div className={styles.cont}>
         <Link to={routerNames["contact"]} className={styles.contactBtn}>
-          Contáctanos {API}
+          Contáctanos
         </Link>
         <Link to={routerNames["login"]} className={styles.loginBtn}>
           Inicia Sesión
