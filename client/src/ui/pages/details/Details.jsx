@@ -9,10 +9,6 @@ import CardReviewPets from "@src/ui/components/cards/card-reviews/CardReviewPets
 import CardAccept from "@src/ui/components/cards/card-accept/cardAccept";
 import ModalPrice from "@src/ui/components/modals/modal-price/ModalPrice";
 import ModalCustom from "@src/ui/components/modals/modal-custom/ModalCustom";
-import {
-  saveToLocalStorage,
-  getFromLocalStorage,
-} from "@common/utils/localStorage";
 
 const Details = () => {
   const { id } = useParams();
@@ -25,14 +21,6 @@ const Details = () => {
   const acceptFunc = () => {
     setStatusModal(true);
   };
-
-  useEffect(() => {
-    const posts = getFromLocalStorage("posts");
-    if (posts) {
-      const includeId = posts.includes(id);
-      if (includeId) setSuccess(true);
-    }
-  }, [id]);
 
   return (
     <div className={styles.mainContainerGrid}>
