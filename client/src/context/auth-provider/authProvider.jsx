@@ -1,17 +1,47 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const AuthContext = createContext({
   isAuthenticated: false,
-  setAuthenticated: () => {}, 
+  setAuthenticated: () => { },
 });
 
 function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [accessToken, setAccessToken] = useState("");
 
   const setAuthenticated = (value) => {
     setIsAuthenticated(value);
   };
+
+ 
+  async function checkAuth(){
+    if(accessToken){
+      setAuthenticated(true)
+    }else{
+      const token = getToken();
+      if(token){
+        setAuthenticated(true);
+        return;
+      }
+      setIsAuthenticated(false);
+      return; 
+      
+    }
+  }
+
+  
+  function getToken(){
+    
+    const {token} = localStorage?.getItem("session");
+    if(token){
+        setAccessToken(token);
+      	return token;
+    }
+    setAccessToken(null);
+    return null;
+  }
+
+  useEffect(() => {checkAuth() }, []);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setAuthenticated }}>
