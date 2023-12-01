@@ -96,8 +96,8 @@ const VerifyingLogin = () => {
       case "caregiver":
         // console.log(allLocal);
         setAuthenticated(true);
-        if (storage?.history) {
-          // console.log("INTERNAL  HISTORY",history);
+        if (!storage?.history === "/verificando") {
+          console.log("INTERNAL  HISTORY",history);
           navigate(history);
           return;
         }
@@ -124,16 +124,16 @@ const VerifyingLogin = () => {
   };
 
   useEffect(() => {
-    console.log("LOGIN COMPONENT IS AUTH0", isAuth0enticated, user);
+    //console.log("LOGIN COMPONENT IS AUTH0", isAuth0enticated, user);
     if (isAuth0enticated) {
       integrateLogin();
     }
   }, [isLoading]);
 
-  // useEffect(() => {
-  //   console.log('LOCAL AUTH STATE', isAuthenticated);
-  //   manageRedirection();
-  // }, [isAuthenticated]);
+  useEffect(() => {
+    console.log('LOCAL AUTH STATE', isAuthenticated);
+    manageRedirection();
+  }, [isAuthenticated]);
 
   return (
     <div className={styles.container}>
