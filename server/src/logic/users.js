@@ -33,43 +33,50 @@ const getUserLogic = async (id) => {
 };
 
 const postUserLogic = async (data) => {
-  const { province, role, country } = data;
-  const saltRounds = 10;
-  data.password = await bcrypt.hash(data.password, saltRounds);
+  const originalPassword = data.password
+  const originalEmail = data.email
+  const originalName = data.name
+  let messages = ['The user was created successfully.']
 
-  const newUser = await UsersModel.createUser(data);
+  if (originalPassword && originalEmail && originalName) {
+    // Password hash
+    let { password, ...newData } = data
+    const saltRounds = 10;
+    const hashPassword = await bcrypt.hash(password, saltRounds);
+    newData.password = hashPassword
 
-  if (country) {
-    const countryDB = await CountriesModel.findOne({
-      where: {
-        name: country,
-      },
-    });
-    await newUser.setCountry(countryDB);
-  }
-  if (province) {
-    const provinceDB = await ProvincesModel.findOne({
-      where: {
-        name: province,
-      },
-    });
-    await newUser.setProvince(provinceDB);
-  }
+    // Country AR
+    const arId = await CountriesModel.findIdData("domain", "ar")
+    newData.countryId = arId
+    messages.push("Country Id Add successfully")
+    
+    newData.provinceId = Number(newData.provinceId)
+    if(typeof newData.provinceId === "number") {
+      messages.push("Province Id Add successfully")
+    }
+    
+    const newUser = await UsersModel.createUser(newData);
 
-  if (role === "caregiver") {
-    newUser.createCaregiver({
-      userId: newUser.id,
-    });
+    // Roles
+    const role = data.role;
+    if (role === "caregiver") {
+      await CaregiversModel.create({userId: newUser.id})
+      messages.push("New Caregiver created successfully")
+    }
+    if (role === "owner") {
+      await OwnersModel.create({userId: newUser.id})
+      messages.push("New Owner created successfully")
+    }
+
+    // return newUser;
+    return { 
+      success: messages,
+      email: newUser.email,
+      name: newUser.name,
+      lastName: newUser.lastName
+    }
   }
-  if (role === "owner") {
-    newUser.createOwner({
-      userId: newUser.id,
-    });
-  }
-  return newUser;
-  // return {
-  //   success: 'The user was created successfully.'
-  // }
+  else throw Error("Data missing")
 };
 
 const updateUserLogic = async (id, data) => {
