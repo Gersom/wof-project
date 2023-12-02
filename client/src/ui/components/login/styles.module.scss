@@ -24,6 +24,13 @@
   position: relative;
   left: -53px;
   top: -24px;
+  a {
+    color: var(--color-blue-light);
+    &:hover {
+      color: var(--color-blue-light);
+      text-decoration: underline;
+    }
+  }
 }
 
 .register-container{
@@ -31,6 +38,13 @@
   display: flex;
   position: relative;
   left: -35px;
+  a {
+    color: var(--color-blue-light);
+    &:hover {
+      color: var(--color-blue-light);
+      text-decoration: underline;
+    }
+  }
 }
 
 .input_container {
@@ -182,5 +196,16 @@ p.footer_credit {
   color: #dddddd;
   span {
     margin: 0 5px;
+  }
+}
+
+.labelIcon{
+  svg {
+    height: 15px;
+    width: auto;
+    margin-right: 7px;
+  }
+  path {
+    stroke: #fff
   }
 }

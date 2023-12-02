@@ -2,8 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import routerNames from "@src/common/constants/routes";
 import logo from "@icons/nav/logo.svg";
-import password from "@icons/password.svg";
-import email from "@icons/email.svg";
+import PasswordIcon from "@icons/password.svg?react";
+import EmailIcon from "@icons/email.svg?react";
 import styles from "./styles.module.scss";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -35,7 +35,7 @@ const Login = () => {
         navigate(routerNames["loading"]);
       }
     //}
-  }, []);
+  }, [navigate]);
 
 
   const handleSubmit = async (e) => {
@@ -89,21 +89,15 @@ const Login = () => {
           <div className={styles["auth_form"]}>
             <form onSubmit={handleSubmit}>
               <div className={styles["input_container"]}>
-                <label htmlFor="email">
-                  <div
-                    className={styles["auth_form_icon"]}
-                    style={{ backgroundImage: "url('" + email + "')" }}
-                  ></div>
+                <label className={styles["labelIcon"]} htmlFor="email">
+                  <EmailIcon/>
                   <span>Email:</span>
                 </label>
                 <input type="text" name="email" />
               </div>
               <div className={styles["input_container"]}>
-                <label htmlFor="password">
-                  <div
-                    className={styles["auth_form_icon"]}
-                    style={{ backgroundImage: "url('" + password + "')" }}
-                  ></div>
+                <label className={styles["labelIcon"]} htmlFor="password">
+                  <PasswordIcon />
                   <span>Contraseña:</span>
                 </label>
                 <input
