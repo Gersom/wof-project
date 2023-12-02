@@ -12,10 +12,18 @@ const CardOffersCaregivers = ({
 		price: '',
 		rating: 0,
 		caregiverId: 1,
+		id: 0,
 	},
-  setData=()=>null
+  setData=()=>null,
+  setIdPost = () => null,
 }) => {
 	const navigate = useNavigate();
+
+	const handleDetails = () => {
+		navigate(routerNames['detailsOwners'] + data.caregiverId);
+		setIdPost();
+	};
+
 	return (
 		<section className={styles.section}>
 			<header className={styles.header}>
@@ -44,7 +52,7 @@ const CardOffersCaregivers = ({
         </button>
 				<button 
         className={styles.buttonDetail} 
-        onClick={() => navigate(routerNames['detailsOwners'] + data.caregiverId)}>
+        onClick={handleDetails}>
           Detalles
         </button>
 			</div>
