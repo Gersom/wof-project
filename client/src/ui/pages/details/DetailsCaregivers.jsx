@@ -18,6 +18,8 @@ const DetailsCaregivers = () => {
 		// Aquí puedes manejar la lógica de envío del formulario si es necesario
 	};
 
+	console.log(details)
+
 	return (
 		<div className={styles.mainContainerGrid}>
 			<div className={styles.containerLeft}>
@@ -26,7 +28,7 @@ const DetailsCaregivers = () => {
 						name={details.user.name}
 						role={details.user.role}
 						address={details.user.address}
-						rating={details.user.rating}
+						rating={details.rating}
 						imgSrc={details.user.profilePicture}
 					/>
 				)}
