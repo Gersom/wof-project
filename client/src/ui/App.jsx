@@ -6,7 +6,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 // Imports Pages
 import Home from "./pages/home/Home";
-import NotFound from "./pages/notFound/NotFound";
+import NotFound from "./pages/not-found/NotFound";
 import Landing from "./pages/Landing/Landing";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
@@ -78,24 +78,21 @@ function App() {
         {/* Home */}
         <Route path={routerNames["home"]} element={<Home />} />
         <Route path={routerNames["landing"]} element={<Landing />} />
+        
         {/* Forms */}
         <Route path={routerNames["login"]} element={<Login />} />
         <Route path={routerNames["register"]} element={<Register />} />
         <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
+
         {/* dashboard */}
         <Route path={'/'} element={<ProtectedRoute />} >
-        <Route
-          path={routerNames["dashboard"]}
-          element={
-            tokenExist() ? (
-              <Dashboard />
-            ) : (
-              <Navigate to={routerNames["login"]} />
-            )
+        <Route path={routerNames["dashboard"]}
+          element={ tokenExist() 
+            ? ( <Dashboard /> ) 
+            : ( <Navigate to={routerNames["login"]} /> )
           }
         >
-          <Route
-            index
+          <Route index
             path={routerNames["offersCaregivers"]}
             element={<Offers />}
           />
@@ -124,6 +121,7 @@ function App() {
           <Route path={routerNames["myHome"]} element={<MyHome />} />
         </Route>
         </Route>
+
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />
       </Routes>
