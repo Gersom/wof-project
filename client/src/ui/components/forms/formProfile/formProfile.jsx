@@ -439,7 +439,7 @@ const FormProfile = () => {
                   onChange={handlerChangeImage}
                 />
                 <label
-                  for="image_input"
+                  htmlFor="image_input"
                   className={styles["profile_input_image"]}
                 >
                   <div className={styles["profile_input_image_preview"]}>
