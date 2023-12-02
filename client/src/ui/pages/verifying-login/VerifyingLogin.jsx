@@ -45,7 +45,7 @@ const VerifyingLogin = () => {
       email: user.email,
       password: `${token}`,
       profilePicture: user.picture,
-      role: "null",
+      role: "",
     };
 
     try {

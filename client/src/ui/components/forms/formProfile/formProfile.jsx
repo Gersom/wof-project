@@ -76,7 +76,7 @@ const FormProfile = () => {
   useEffect(() => {
     if (
       userData.role === null ||
-      userData.role === "null" ||
+      userData.role === "" ||
       userData.role === undefined
     ) {
       setModalRole(true);

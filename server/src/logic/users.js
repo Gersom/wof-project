@@ -50,9 +50,11 @@ const postUserLogic = async (data) => {
     newData.countryId = arId
     messages.push("Country Id Add successfully")
     
-    newData.provinceId = Number(newData.provinceId)
-    if(typeof newData.provinceId === "number") {
-      messages.push("Province Id Add successfully")
+    if(newData.provinceId) {
+      newData.provinceId = Number(newData.provinceId)
+      if(typeof newData.provinceId === "number") {
+        messages.push("Province Id Add successfully")
+      }
     }
     
     const newUser = await UsersModel.createUser(newData);
