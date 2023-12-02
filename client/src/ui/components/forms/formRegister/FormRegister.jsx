@@ -1,45 +1,26 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styles from "./styles.module.scss";
-import logo from "@icons/nav/logo.svg";
-import routerNames from "@src/common/constants/routes";
-import { validation } from "./validation";
-import { useDispatch } from "react-redux";
-import { setAlert } from "@src/common/store/slices/alertSlice";
-import {
-  API_URL_REGISTER,
-  API_URL_PROVINCES,
-} from "@src/common/constants/api";
-
-import PasswordIcon from "@icons/password.svg?react";
-import EmailIcon from "@icons/email.svg?react";
-import UserIcon from "@icons/nav/user.svg?react";
-import state from "@icons/state.svg";
+import { API_URL_PROVINCES } from "@src/common/constants/api";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+import { setAlert } from "@src/common/store/slices/alertSlice";
+import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { validation } from "./validation";
+
 import axios from "axios";
+import EmailIcon from "@icons/email.svg?react";
+import logo from "@icons/nav/logo.svg";
+import PasswordIcon from "@icons/password.svg?react";
+import routerNames from "@src/common/constants/routes";
+import state from "@icons/state.svg";
+import styles from "./styles.module.scss";
+import UserIcon from "@icons/nav/user.svg?react";
 
-const FormRegister = () => {
+const FormRegister = ({ onSubmitValidated= ()=>null }) => {
+  
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [provinces, setProvinces] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
-
-  const apiUrl = API_URL_REGISTER;
-
-  useEffect(() => {
-    axios(API_URL_PROVINCES)
-      .then(({ data }) => {
-        if (data) {
-          setProvinces(data);
-        } else {
-          window.alert("Error al obtener la data");
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  }, []);
+  const [provinces, setProvinces] = useState([]);
 
   // form´s fild states
   const [dataForm, setDataForm] = useState({
@@ -62,18 +43,12 @@ const FormRegister = () => {
 
   const handleProvinciaChange = (event) => {
     const provinceId = event.target.value;
-
     setDataForm({ ...dataForm, provinceId: provinceId });
   };
 
   const handleRoleChange = (event) => {
     const role = event.target.value;
-
     setDataForm({ ...dataForm, role: role });
-  };
-
-  const goBackHandler = () => {
-    navigate(-1);
   };
 
   const handleTogglePasswordVisibility = () => {
@@ -82,27 +57,26 @@ const FormRegister = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const passwordValue = e.target.elements.password.value;
-    const { name, password, email, lastName, role, provincia } = dataForm;
-
     const hasErrors = Object.values(errors).some((error) => error !== "");
 
     if (hasErrors) {
-      window.alert("Hay errores");
+      dispatch(setAlert({ message: "Te falta completar tus datos", type: "error" }))
     } else {
-      try {
-        await axios.post(apiUrl, dataForm);
-        // console.log("Respuesta del servidor:", response.data);
-
-        dispatch(setAlert({ message: "Usuario creado correctamente", type: "success" }))
-        goBackHandler();
-      } catch (error) {
-        console.error("Error al realizar la solicitud POST:", error.message);
-        dispatch(setAlert({ message: "Error al crear el usuario", type: "error" }))
-      }
+      onSubmitValidated(dataForm)
     }
   };
+
+  useEffect(() => {
+    const getProvinces = async () => {
+      try {
+        const response = await axios.get(API_URL_PROVINCES);
+        setProvinces(response.data)
+      } catch (error) {
+        dispatch(setAlert({ message: "Oops, no pudimos traer las provincias", type: "error" }))
+      }
+    }
+    getProvinces()
+  }, [dispatch]);
 
   return (
     <>
@@ -114,6 +88,7 @@ const FormRegister = () => {
           </div>
           <h1 className={styles.titulo}>Registrate</h1>
           <div className={styles["form_auth_hr"]}></div>
+
           <div className={styles["auth_form"]}>
             <form onSubmit={handleSubmit}>
               <div className={styles["auth_flex"]}>
@@ -188,9 +163,6 @@ const FormRegister = () => {
                     value={dataForm.role}
                     onChange={handleRoleChange}
                   >
-                    {/* <option value="" disabled>
-                      --Seleccionar
-                    </option> */}
                     <option value="owner">Dueño</option>
                     <option value="caregiver">Cuidador</option>
                   </select>
@@ -231,19 +203,6 @@ const FormRegister = () => {
                     <span></span>
                   </div>
                 )}
-
-                {/* /* {dataForm.role === "Cuidador" && (
-                  <div className={styles.formGroup}>
-                    <label> Adicional Cuidador: </label>
-                    <input
-                      type="text"
-                      name="additionalFieldCuidador"
-                      value={dataForm.additionalFieldCuidador}
-                      onChange={handleInputChange}
-                    />
-                    <span></span>
-                  </div>
-                )} */}
               </div>
 
               <div className={styles["auth_btns"]}>
@@ -267,14 +226,3 @@ const FormRegister = () => {
 };
 
 export default FormRegister;
-
-// dispatch(
-//   createUser({
-//     name,
-//     lastname,
-//     email,
-//     password,
-//     role,
-//     provincia,
-//   })
-// );

@@ -11,7 +11,6 @@ import Landing from "./pages/Landing/Landing";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
 import Details from "./pages/details/Details";
-import FormRegister from "./components/forms/formRegister/FormRegister";
 import Login from "./components/login/Login";
 import FormReview from "./components/reviews/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
@@ -29,6 +28,7 @@ import {
 } from "@src/common/utils/localStorage";
 
 import FormProfile from "./components/forms/formProfile/FormProfile";
+import Register from "./pages/register/Register";
 
 //import useAlert
 import useAlert from "@src/common/hooks/use-alert/useAlert";
@@ -80,7 +80,7 @@ function App() {
         <Route path={routerNames["landing"]} element={<Landing />} />
         {/* Forms */}
         <Route path={routerNames["login"]} element={<Login />} />
-        <Route path={routerNames["register"]} element={<FormRegister />} />
+        <Route path={routerNames["register"]} element={<Register />} />
         <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
         {/* dashboard */}
         <Route path={'/'} element={<ProtectedRoute />} >
