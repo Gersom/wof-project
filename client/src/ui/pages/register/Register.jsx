@@ -24,7 +24,7 @@ const Register = () => {
   
 
   return (
-    <div className="Register">
+    <div className="Register" style={{ height: "100%"}}>
       <FormRegister onSubmitValidated={handleSubmit} />
     </div>
   );
