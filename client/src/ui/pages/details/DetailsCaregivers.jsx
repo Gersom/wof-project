@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './styles.module.scss';
 import CardUser from '@src/ui/components/cards/card-user/CardUser';
 import Carousel from '@src/ui/components/carousel/Carousel';

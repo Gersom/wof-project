@@ -47,7 +47,7 @@
         width: 32rem;
         margin: -5rem 0rem 0rem 0rem;
         border-radius: 1rem;
-        padding: 1rem;
+        padding: 0.5rem 0.25rem 1rem 1rem;
         background-color: #ffffff;
         display: flex;
         flex-direction: row;
@@ -71,14 +71,12 @@
             h4{
                 font-size: 1.3rem;
                 margin: 0rem 0rem 0rem 0rem;
-                font-family: 'Lexend-Regular';
-                color: var(--color-text-dark);
+                font-family: 'Lexend-Medium';
             }
             h5{
                 font-size: 1.1rem;
                 margin: 0rem 0rem 0rem 0rem;
                 font-family: 'Lexend-SemiBold';
-                color: var(--color-text-grey);
             }
         }
         button{
@@ -90,15 +88,28 @@
             outline: none;
             cursor: pointer;
             color: var(--color-text-grey);
+            align-self: flex-start;
+            img{
+                width: 1.5rem;
+                height: 1.5rem;
+            }
         }
 
         .progressBar{
             position: absolute;
-            padding: 0.5rem 0rem;
+            padding: 0.3rem 0rem;
             bottom: 0;
             left: 0;
             border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
             animation: progressBarAnimation 5.8s ease-in-out;
+        }
+        .progressBarFill{
+            position: absolute;
+            padding: 0.3rem 0rem;
+            z-index: -1;
+            bottom: 0;
+            left: 0;
         }
     }
     
@@ -106,32 +117,45 @@
         transition: all 0.3s ease-in-out;
         margin: 1rem 0rem 0rem 0rem;
     }
-    .alertError{
-        img{
-            background-color: #fee4e8;
-            padding: 0.5rem;
+
+    .alertLight{
+        background-color: var(--color-text-primary);
+        h4{
+            color: var(--color-text-dark);
         }
+        h5{
+            color: var(--color-text-grey);
+        }
+        .progressBarFill{
+            background-color: #CCCCCC;
+        }
+    }
+
+    .alertDark{
+        background-color: #393F4D;
+        h4{
+            color: var(--color-text-primary);
+        }
+        h5{
+            color: #CCCCCC;
+        }
+        .progressBarFill{
+            background-color: var(--color-text-grey);
+        }
+    }
+    .alertError{
         .progressBar{
-            box-shadow: -3px -1px 10px 0px #ce4b4b;
-            background-color: #ce4b4b;
+            background-color: #CE4B4B;
         }
     }
     .alertSuccess{
-        img{
-            background-color: #e1ffe1;
-        }
         .progressBar{
-            box-shadow: -3px -1px 10px 0px #42CE83;
             background-color: #42CE83;
         }
     }
-    .alertInfo{
-        img{
-            background-color: #fbecdd;
-        }
+    .alertWarning{
         .progressBar{
-            box-shadow: -3px -1px 10px 0px #eab308;
-            background-color: #eab308;
+            background-color: #FCBF49;
         }
     }
 }
