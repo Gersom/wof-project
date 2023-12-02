@@ -91,16 +91,13 @@ const VerifyingLogin = () => {
     const storage = await getFromLocalStorage("session");
 
     const { data } = await axios.get(API_URL_USER + "/" + storage?.userId);
-    console.log("DATA USER ID", data);
 
-    console.log(data.role)
-    console.log(storage?.history)
     switch (data.role) {
       case "caregiver":
-        // console.log(allLocal);
+
         setAuthenticated(true);
-        if (storage?.history && storage?.history !== "/verificando") {
-          console.log("INTERNAL  HISTORY", history);
+        if (storage?.history && storage?.history !== routerNames['loading']) {
+
           navigate(storage.history);
           return;
         }
@@ -108,7 +105,7 @@ const VerifyingLogin = () => {
         return;
       case "owner":
         setAuthenticated(true);
-        if (storage?.history && storage?.history !== "/verificando") {
+        if (storage?.history && storage?.history !== routerNames['loading']) {
           navigate(storage.history);
           return;
         }
@@ -132,10 +129,7 @@ const VerifyingLogin = () => {
     }
   }, [isLoading]);
 
-  // useEffect(() => {
-  //   console.log('LOCAL AUTH STATE', isAuthenticated);
-  //   manageRedirection();
-  // }, [isAuthenticated])
+  
 
   useEffect(() => {
     if(isAuthenticated) {

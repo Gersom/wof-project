@@ -44,7 +44,6 @@ function App() {
 
     if (currentRoute !== "/verificando" || currentRoute !== "/iniciar-sesion") {
       currentRoute = location.pathname;
-      console.log(currentRoute);
     }
 
     if (storage?.token && storage?.userId) {
@@ -55,7 +54,6 @@ function App() {
       };
       saveToLocalStorage("session", updatedstorage);
     }
-    console.log(`Ruta actual almacenada en sessionStorage: ${currentRoute}`);
   }
   storeCurrentRouteInSession();
 

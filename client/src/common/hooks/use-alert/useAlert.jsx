@@ -2,13 +2,30 @@ import { useEffect } from 'react';
 import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import errorIcon from '@icons/errorIcon.svg';
-import successIcon from '@icons/successIcon.svg';
-import warningIcon from '@icons/warningIcon.svg';
+import errorIcon from '@icons/states/error.svg';
+import successIcon from '@icons/states/success.svg';
+import warningIcon from '@icons/states/warning.svg';
+import cross from '@icons/cross.svg';
+import crossGrey from '@icons/crossGrey.svg';
+import routerNames from '@src/common/constants/routes';
 
 const useAlert = () => {
 	const location = useLocation();
 	const alert = useSelector((state) => state?.alertReducer.alert);
+
+
+	const styleTheme = () => {
+		if (
+			location.pathname === routerNames['landing'] ||
+			location.pathname === routerNames['login'] ||
+			location.pathname === routerNames['register'] ||
+			location.pathname === routerNames['loading']
+		) {
+			return styles.alertDark;
+		} else {
+			return styles.alertLight;
+		}
+	};
 
 	const createAlert = (message, type, id) => {
 		const alertElement = document.createElement('section');
@@ -18,39 +35,49 @@ const useAlert = () => {
 		const messageDefault = document.createElement('h4');
 		const alertMessage = document.createElement('h5');
 		const buttonClose = document.createElement('button');
+		const crossIcon = document.createElement('img');
 		const progressBar = document.createElement('div');
+		const progressBarFill = document.createElement('div');
 
 		buttonClose.addEventListener('click', () => {
 			let alertElement = document.getElementById(id);
-			if(alertElement){
+			if (alertElement) {
 				alertElement.remove();
 			}
 		});
 
 		progressBar.classList.add(styles.progressBar);
+		progressBarFill.classList.add(styles.progressBarFill);
 
+		alertElement.classList.add(styleTheme());
 
 		alertElement.appendChild(alertIcon);
 		alertElement.appendChild(messageContainer);
+
 		messageContainer.appendChild(messageDefault);
 		messageContainer.appendChild(alertMessage);
-		alertElement.appendChild(buttonClose);
-		alertElement.appendChild(progressBar);
 
-		buttonClose.textContent = '✖';
+		alertElement.appendChild(buttonClose);
+		buttonClose.appendChild(crossIcon);
+
+		alertElement.appendChild(progressBar);
+		alertElement.appendChild(progressBarFill);
+
+
+		crossIcon.src = styleTheme() === styles.alertDark ? crossGrey : cross;
 		alertMessage.textContent = message;
 
 		if (type === 'error') {
 			alertIcon.src = errorIcon;
-			messageDefault.textContent = 'Error';
+			messageDefault.textContent = '¡OMG!';
 			alertElement.classList.add(styles.alertError);
 		} else if (type === 'success') {
 			alertIcon.src = successIcon;
-			messageDefault.textContent = 'Estupendo';
+			messageDefault.textContent = '¡Estupendo!';
 			alertElement.classList.add(styles.alertSuccess);
 		} else if (type === 'warning') {
 			alertIcon.src = warningIcon;
-			messageDefault.textContent = 'Advertencia';
+			messageDefault.textContent = '¡Cuidadito!';
 			alertElement.classList.add(styles.alertWarning);
 		}
 
@@ -70,21 +97,18 @@ const useAlert = () => {
 				alertContainer.appendChild(alertElement);
 				alertContainer.classList.add(styles.alertContainer);
 
-				
-					setTimeout(() => {
-						let alertElement = document.getElementById(alert.id);
-						if(alertElement){
-							alertElement.remove();
-						}
-					}, 6000);
-				
-					setTimeout(() => {
-						if (!alertContainer.hasChildNodes()) {
-							alertContainer.remove();
-						}
-					}, 7000);
-				
+				setTimeout(() => {
+					let alertElement = document.getElementById(alert.id);
+					if (alertElement) {
+						alertElement.remove();
+					}
+				}, 6000);
 
+				setTimeout(() => {
+					if (!alertContainer.hasChildNodes()) {
+						alertContainer.remove();
+					}
+				}, 7000);
 			} else if (app) {
 				const alertContainer = document.createElement('div');
 				alertContainer.id = 'alertContainer';
@@ -95,18 +119,16 @@ const useAlert = () => {
 				alertContainer.classList.add(styles.alertContainer);
 				app.appendChild(alertContainer);
 
-				
-					setTimeout(() => {
-						let alertElement = document.getElementById(alert.id);
-						if(alertElement){
-							alertElement.remove();
-						}
-					}, 6000);
-				
-					if (!alertContainer.hasChildNodes()) {
-						alertContainer.remove();
+				setTimeout(() => {
+					let alertElement = document.getElementById(alert.id);
+					if (alertElement) {
+						alertElement.remove();
 					}
-				
+				}, 6000);
+
+				if (!alertContainer.hasChildNodes()) {
+					alertContainer.remove();
+				}
 			}
 		}
 	}, [alert.trigger]);
