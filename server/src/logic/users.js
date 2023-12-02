@@ -71,9 +71,11 @@ const postUserLogic = async (data) => {
     // return newUser;
     return { 
       success: messages,
-      email: newUser.email,
-      name: newUser.name,
-      lastName: newUser.lastName
+      data: {
+        email: newUser.email,
+        name: newUser.name,
+        lastName: newUser.lastName
+      }
     }
   }
   else throw Error("Data missing")
