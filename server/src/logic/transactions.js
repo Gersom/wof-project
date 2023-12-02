@@ -11,12 +11,21 @@ const getTransactionByPostLogic = async (postId) => {
 }
 
 const postTransactionLogic = async (data) => {
-    const newTransaction = await TransactionsModel.create(data)
-    await PostsModel.updateData(data.postId, {status: "paid", caregiverId: data.caregiverId})
-    return {
-      success: 'The new Transaction was created successfully.',
-      data: newTransaction
-    }
+  const newTransaction = await TransactionsModel.create(data)
+  await PostsModel.updateData(data.postId, {status: "paid", caregiverId: data.caregiverId})
+
+    // Create Notification
+  const notifications = require("./../data/notifications/index")
+  const {NotificationsModel} = require("./../models/index")
+  await NotificationsModel.create({
+    ...notifications?.createdTransaction,
+    userId: data.userId
+  })
+
+  return {
+    success: 'The new Transaction was created successfully.',
+    data: newTransaction
+  }
 }
 
 

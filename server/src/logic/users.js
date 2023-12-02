@@ -1,5 +1,5 @@
 const { 
-  UsersModel, ProvincesModel, CountriesModel, CaregiversModel, OwnersModel
+  UsersModel, NotificationsModel, CountriesModel, CaregiversModel, OwnersModel
 } = require("../models");
 const bcrypt = require("bcrypt");
 
@@ -69,6 +69,18 @@ const postUserLogic = async (data) => {
       await OwnersModel.create({userId: newUser.id})
       messages.push("New Owner created successfully")
     }
+
+    // Create Notification
+    const notifications = require("./../data/notifications/index")
+    const formatedNoti = {
+      ...notifications?.createdUser,
+      message: `${notifications?.createdUser?.message} ${newUser.name}`
+    }
+    await NotificationsModel.create({
+      ...formatedNoti,
+      userId: newUser.id
+    })
+    messages.push("Notification Created User successfully")
 
     // return newUser;
     return { 
