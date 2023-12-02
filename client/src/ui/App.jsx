@@ -21,7 +21,6 @@ import DetailsCaregivers from "./pages/details/DetailsCaregivers";
 import { useAuth } from "@src/context/auth-provider/authProvider";
 import { Navigate } from "react-router-dom";
 import MyHome from "./pages/my-home/MyHome";
-import { useEffect } from "react";
 import {
   saveToLocalStorage,
   getFromLocalStorage,
@@ -35,31 +34,30 @@ import useAlert from "@src/common/hooks/use-alert/useAlert";
 // Imports Components
 
 function App() {
-  useAlert();
-
-  const auth = useAuth();
   const location = useLocation();
+  useAlert();
+  useAuth();
 
-  function storeCurrentRouteInSession() {
+  const storeCurrentRouteInSession = () => {
     const storage = getFromLocalStorage("session");
     let currentRoute;
 
     if (currentRoute !== "/verificando" || currentRoute !== "/iniciar-sesion") {
       currentRoute = location.pathname;
+      console.log(currentRoute);
     }
 
-    console.log(currentRoute);
     if (storage?.token && storage?.userId) {
       const updatedstorage = {
         token: storage?.token,
         userId: storage?.userId,
         history: currentRoute,
       };
-
       saveToLocalStorage("session", updatedstorage);
     }
     console.log(`Ruta actual almacenada en sessionStorage: ${currentRoute}`);
   }
+  storeCurrentRouteInSession();
 
   const tokenExist = async () => {
     const sessionLS = await getFromLocalStorage("session");
@@ -67,10 +65,6 @@ function App() {
     if (sessionLS?.token) return true;
     return false;
   };
-
-  useEffect(() => {
-    storeCurrentRouteInSession();
-  }, []);
 
   return (
     <div className="App" id="App">
