@@ -5,7 +5,7 @@ import wofImage from "@images/landing/wof.svg";
 import rectangle from "@images/landing/rectangle.svg";
 import { getFromLocalStorage } from "@common/utils/localStorage";
 import { useEffect } from "react";
-import {API} from "@common/constants/api"
+import { API } from "@common/constants/api";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const LandingPage = () => {
       navigate(routerNames["loading"]);
     }
     // }
-    console.log('API:', API)
+    console.log("API:", API);
   }, [navigate]);
 
   return (

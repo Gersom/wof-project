@@ -4,8 +4,9 @@ import starReview from '@icons/starReview.svg';
 function CardUser({ 
   name, role, address, rating, imgSrc, cellPhone, success
 }) {
-	const rol = role === 'owner' ? 'Dueño' : 'Cuidador';
+	const rol = role === 'owner' ? '🐶 Dueño' : '🤝 Cuidador';
 
+	
 	return (
 		<article className={styles.article}>
 			<figure>
