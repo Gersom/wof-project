@@ -144,6 +144,16 @@ button:not(:last-child) {
   background-position: center center;
   margin-right: 10px;
 }
+.labelIcon{
+  svg {
+    height: 15px;
+    width: auto;
+    margin-right: 7px;
+  }
+  path {
+    stroke: #fff
+  }
+}
 
 .input_container {
   width: 100%;

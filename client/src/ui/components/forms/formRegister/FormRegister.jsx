@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.scss";
 import logo from "@icons/nav/logo.svg";
@@ -11,9 +11,9 @@ import {
   API_URL_PROVINCES,
 } from "@src/common/constants/api";
 
-import passwordIcon from "@icons/password.svg";
-import emailIcon from "@icons/email.svg";
-import userIcon from "@icons/nav/user.svg";
+import PasswordIcon from "@icons/password.svg?react";
+import EmailIcon from "@icons/email.svg?react";
+import UserIcon from "@icons/nav/user.svg?react";
 import state from "@icons/state.svg";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -47,8 +47,8 @@ const FormRegister = () => {
     lastName: "",
     email: "",
     password: "",
-    provincia: "",
-    role: "",
+    provinceId: "",
+    role: "owner",
   });
 
   const [errors, setErrors] = useState({}); //  errors state
@@ -61,9 +61,9 @@ const FormRegister = () => {
   };
 
   const handleProvinciaChange = (event) => {
-    const provincia = event.target.value;
+    const provinceId = event.target.value;
 
-    setDataForm({ ...dataForm, provincia: provincia });
+    setDataForm({ ...dataForm, provinceId: provinceId });
   };
 
   const handleRoleChange = (event) => {
@@ -112,17 +112,14 @@ const FormRegister = () => {
             <img src={logo} alt="Logo" />
             <span>.com</span>
           </div>
-          <h1 className={styles.titulo}>Registro</h1>
+          <h1 className={styles.titulo}>Registrate</h1>
           <div className={styles["form_auth_hr"]}></div>
           <div className={styles["auth_form"]}>
             <form onSubmit={handleSubmit}>
               <div className={styles["auth_flex"]}>
                 <div className={styles["input_container"]}>
-                  <label>
-                    <div
-                      className={styles["auth_form_icon"]}
-                      style={{ backgroundImage: "url('" + emailIcon + "')" }}
-                    ></div>
+                  <label className={styles["labelIcon"]}>
+                    <EmailIcon/>
                     <span>Email:</span>
                   </label>
                   <input
@@ -134,11 +131,8 @@ const FormRegister = () => {
                   <span>{errors.email}</span>
                 </div>
                 <div className={styles["input_container"]}>
-                  <label>
-                    <div
-                      className={styles["auth_form_icon"]}
-                      style={{ backgroundImage: "url('" + userIcon + "')" }}
-                    ></div>
+                  <label className={styles["labelIcon"]}>
+                    <UserIcon />
                     <span>Nombre:</span>
                   </label>
                   <input
@@ -150,11 +144,8 @@ const FormRegister = () => {
                   <span>{errors.name}</span>
                 </div>
                 <div className={styles["input_container"]}>
-                  <label>
-                    <div
-                      className={styles["auth_form_icon"]}
-                      style={{ backgroundImage: "url('" + passwordIcon + "')" }}
-                    ></div>
+                  <label className={styles["labelIcon"]}>
+                    <PasswordIcon />
                     <span>Contraseña:</span>
                   </label>
                   <input
@@ -172,11 +163,8 @@ const FormRegister = () => {
                   <span>{errors.password}</span>
                 </div>
                 <div className={styles["input_container"]}>
-                  <label>
-                    <div
-                      className={styles["auth_form_icon"]}
-                      style={{ backgroundImage: "url('" + userIcon + "')" }}
-                    ></div>
+                  <label className={styles["labelIcon"]}>
+                    <UserIcon />
                     <span>Apellido:</span>
                   </label>
                   <input
@@ -203,10 +191,8 @@ const FormRegister = () => {
                     {/* <option value="" disabled>
                       --Seleccionar
                     </option> */}
-                    <option value="caregivers">Cuidador</option>
-                    <option value="owner" disabled>
-                      Dueño
-                    </option>
+                    <option value="owner">Dueño</option>
+                    <option value="caregiver">Cuidador</option>
                   </select>
                 </div>
                 <div className={styles["input_container"]}>
@@ -219,15 +205,15 @@ const FormRegister = () => {
                   </label>
                   <select
                     name="provincia"
-                    value={dataForm.provincia}
+                    value={dataForm.provinceId}
                     onChange={handleProvinciaChange}
                   >
                     <option value="" disabled>
                       --Seleccionar
                     </option>
-                    {provinces?.map((provinces) => (
-                      <option key={provinces.id} value={provinces.name}>
-                        {provinces.name}
+                    {provinces?.map((province) => (
+                      <option key={province.id} value={province.id}>
+                        {province.name}
                       </option>
                     ))}
                   </select>
