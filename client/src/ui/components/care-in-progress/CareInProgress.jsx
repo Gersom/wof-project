@@ -10,7 +10,6 @@ const CareInProgress = ({
 	image = 'https://wof-server.up.railway.app/pictures/pet1_02.png',
 	style = '',
 }) => {
-  console.log(startDate, endDate, image)
 	const dispatch = useDispatch();
 	const [isTimerExpired, setTimerExpired] = useState(false);
 	const [isServiceFinished, setServiceFinished] = useState(false);
@@ -29,8 +28,8 @@ const CareInProgress = ({
 		setStartBtnDisabled(isBeforeStartDate || isTimerExpired);
 	}, [isBeforeStartDate, isTimerExpired]);
 
-	const styleContainer =
-		style === 'small' ? styles.mainContainerSmall : styles.mainCont;
+	const styleContainer = style === 'small' ? styles.mainContainerSmall : styles.mainCont;
+
 	const handleFinishService = () => {
 		if (!isServiceFinished && isTimerExpired && !isBeforeStartDate) {
 			setServiceFinished(true);
@@ -57,18 +56,20 @@ const CareInProgress = ({
 	return (
 		<div className={styleContainer}>
 			<div className={styles.firstCont}>
-				<img src={image} className={styles.imagenCat} alt='Imagen de gato' />
+				<img src={image} alt='Imagen de gato' />
 			</div>
 			<div className={styles.secondCont}>
-				<h4 className={`${styles.care} ${styles.separator}`}>
-					{isServiceFinished&& 'Servicio Finalizado'}
-          {isTimerExpired && 'Servicio Finalizado'}
-          {isBeforeStartDate && 'Servicio no iniciado'}
-          {!isServiceFinished && !isTimerExpired && !isBeforeStartDate && 'Servicio en progreso'}
+				<h4 >
+					{isServiceFinished && 'Servicio Finalizado'}
+					{isTimerExpired && 'Servicio Finalizado'}
+					{isBeforeStartDate && 'Servicio no iniciado'}
+					{!isServiceFinished &&
+						!isTimerExpired &&
+						!isBeforeStartDate &&
+						'Servicio en progreso'}
 				</h4>
 				<span className={styles.timeText}>
 					Tiempo: <span className={styles.timeText}>{timerText}</span>
-					<hr className={styles.sep}></hr>
 				</span>
 
 				{!isServiceFinished && !isTimerExpired && (
@@ -82,33 +83,12 @@ const CareInProgress = ({
 
 				<div className={styles.buttonsCont}>
 					<button className={styles.supportBtn}>Soporte</button>
-
 					{isBeforeStartDate ? (
-						<button
-							className={`${styles.startBtn} ${
-								isStartBtnDisabled ? styles.disabledBtn : ''
-							}`}
-							disabled={isStartBtnDisabled}
-							onClick={handleStartService}
-							style={
-								isStartBtnDisabled
-									? {
-											cursor: 'not-allowed',
-											backgroundColor: 'gray',
-											opacity: 1,
-									  }
-									: {}
-							}
-						>
+						<button disabled={isStartBtnDisabled} onClick={handleStartService}>
 							Iniciar Servicio
 						</button>
 					) : (
 						<button
-							className={`${styles.finishBtn} ${
-								!isTimerExpired || isServiceFinished || isBeforeStartDate
-									? styles.disabledBtn
-									: ''
-							}`}
 							disabled={
 								!isTimerExpired || isServiceFinished || isBeforeStartDate
 							}

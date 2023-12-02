@@ -10,7 +10,7 @@ const Timer = ({ onExpire, expiryTimestamp, style }) => {
   });
 
   return (
-    <div>
+    <div className={styles.containerTimer}>
       <h2
         className={styleTimer}
       >{`${days} dias - ${hours} horas - ${minutes} minutos - ${seconds} segundos`}</h2>
