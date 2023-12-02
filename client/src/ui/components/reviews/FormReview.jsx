@@ -6,15 +6,18 @@ import { validate } from "./validate";
 import comment from "@icons/comment.svg";
 import axios from "axios";
 import { API_URL_REVIEWS } from "@src/common/constants/api";
+import { useSelector } from "react-redux";
 
 const FormReview = () => {
+  const user = useSelector((state) => state.userReducer.user);
+
   const [state, setState] = useState({
     rating: 1,
     review: "",
   });
   console.log(state);
   const [errors, setErrors] = useState({
-    review: "",
+    review: "*Requerido",
   });
 
   const renderStars = () => {
@@ -54,7 +57,19 @@ const FormReview = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(API_URL_REVIEWS, state);
+      const dataToSend = {
+        rating: state.rating.toString(), // Convertir rating a cadena si es necesario
+        comment: state.review,
+        from: "caregiver",
+        to: "owner",
+        userInfo: {
+          id: user.id,
+          role: user.role,
+          ownerId: "",
+          caregiverId: "",
+        },
+      };
+      const response = await axios.post(API_URL_REVIEWS, dataToSend);
 
       if (response.status === 200) {
         alert("¡Reseña enviada correctamente!");
@@ -68,6 +83,8 @@ const FormReview = () => {
       );
     }
   };
+  const isSubmitDisabled =
+    Object.values(errors).some((error) => error !== "") || state.review === "";
 
   return (
     <div className={styles.cont}>
@@ -93,7 +110,15 @@ const FormReview = () => {
           <span className={styles.errorReview}>{errors.review}</span>
         </div>
         <div className={styles.btnCont}>
-          <button className={styles.btnSubmit} type="submit">
+          <button
+            className={styles.btnSubmit}
+            type="submit"
+            disabled={isSubmitDisabled}
+            style={{
+              cursor: isSubmitDisabled ? "not-allowed" : "pointer",
+              backgroundColor: isSubmitDisabled ? "lightgray" : "#52C1E4",
+            }}
+          >
             Guardar Reseña
           </button>
         </div>
