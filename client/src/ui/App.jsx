@@ -26,7 +26,7 @@ import {
   getFromLocalStorage,
 } from "@src/common/utils/localStorage";
 
-import FormProfile from "./components/forms/formProfile/FormProfile";
+import FormProfile from "./components/forms/form-profile/FormProfile";
 import Register from "./pages/register/Register";
 
 //import useAlert
