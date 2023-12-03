@@ -209,7 +209,7 @@ const FormRegister = ({ onSubmitValidated= ()=>null }) => {
 
               <div className={styles["auth_btns"]}>
                 <DefaultButton 
-                  onAction={handleSubmit}
+                  type="submit"
                   background={true}
                   size="normal"
                   label="Registrarse">
