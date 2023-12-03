@@ -132,5 +132,22 @@ PostsModel['findOfferById'] = (id) => {
 PostsModel['createData'] = async (data) => {
   return await PostsModel.create(data);
 }
+PostsModel['findByCaregiverId'] = (caregiverId) => {
+  return PostsModel.findAll({
+    where: { caregiverId },
+    attributes: [ "id", "status", "address", "startDate", "endDate" ],
+    include: [
+      { 
+        model: PetsModel,
+        attributes: [ "id", "name" ],
+        include: [
+          {model: PetsImagesModel}, 
+          {model:SpeciesModel,  attributes: ["name", "icon"]},
+          {model: GendersModel}, 
+        ]
+      }
+    ]
+  })
+}
 
 module.exports = PostsModel

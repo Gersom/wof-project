@@ -20,7 +20,7 @@ const Details = () => {
   const [payedInfoModal, setPayedInfoModal] = useState(false);
   const [cancelModal, setCancelModal] = useState(false);
 
-  console.log(details);
+  // console.log(details);
 
   
   const manageModal = () => {
@@ -38,7 +38,7 @@ const Details = () => {
     setCancelModal(false);
     setStatusModal(false);
   };
-
+  // console.log("DETAILS DETAILS DETAILS",details);
   return (
     <div className={styles.mainContainerGrid}>
       <div className={styles.containerLeft}>
@@ -53,7 +53,7 @@ const Details = () => {
             success={success}
           />
         )}
-        {!isLoading && <CardReviewPets />}
+        {!isLoading && <CardReviewPets reviewsData={details.owner.reviews}/>}
       </div>
       <div className={styles.containerRight}>
         {!isLoading && <h1>{details.pet.name}</h1>}
