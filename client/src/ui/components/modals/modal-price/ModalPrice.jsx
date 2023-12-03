@@ -88,7 +88,7 @@ const ModalPrice = ({ message, data, toggleModal }) => {
 			<h1>Ofertar</h1>
 			<h3>Pon una tarifa y espera que el dueño responda</h3>
 			<div className={styles.containerModalPriceChildren}>
-				<CardPetInfo data={data}></CardPetInfo>
+				<CardPetInfo data={data} />
 				<div className={styles.containerOfferPrice}>
 					<h3>
 						¿Cuál sería la tarifa que quieres proponer para cuidar a esta
