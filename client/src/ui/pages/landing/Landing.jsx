@@ -6,6 +6,8 @@ import rectangle from "@images/landing/rectangle.svg";
 import { getFromLocalStorage } from "@common/utils/localStorage";
 import { useEffect } from "react";
 import { API } from "@common/constants/api";
+import DefaultButton from "@src/ui/components/buttons/DefaultButton";
+import SuccessIcon from '@icons/states/success.svg?react';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -42,11 +44,11 @@ const LandingPage = () => {
           </h1>
 
           <div className={styles.btn}>
-            <button className={styles.registerBtn}>
-              <Link to={routerNames["register"]} className={styles.textButton}>
-                Regístrate
-              </Link>
-            </button>
+            <DefaultButton 
+              onAction={()=> navigate(routerNames["register"])} 
+              label="Regístrate">
+              <SuccessIcon />
+            </DefaultButton>
           </div>
         </div>
       </div>
