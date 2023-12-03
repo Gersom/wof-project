@@ -8,7 +8,7 @@ import {
   API_URL_COUNTRYS,
   API_URL_UPDATE_USER,
 } from "@src/common/constants/api";
-import { validation } from "./validation";
+
 import phoneIcon from "@icons/phoneIcon.svg";
 import pictureIcon from "@icons/pictureIcon.svg";
 import email from "@icons/email.svg";
@@ -27,6 +27,7 @@ import ModalChangePassword from "../../modals/modal-changePassword/ModalChangePa
 import cross from "@icons/filterSortLocationBar/cross.svg";
 import { setAlert } from "@src/common/store/slices/alertSlice";
 import { actionGetUser } from "@common/store/actions/userActions";
+import { formValidations } from "@src/common/utils/formValidations";
 
 const FormProfile = () => {
   const apiUrl = API_URL_UPDATE_USER;
@@ -168,7 +169,7 @@ const FormProfile = () => {
     const { name, value } = e.target;
 
     setDataForm((prevDataForm) => ({ ...prevDataForm, [name]: value }));
-    validation({ ...dataForm, [name]: value }, errors, setErrors);
+    formValidations({ ...dataForm, [name]: value }, errors, setErrors);
     console.log(userData);
     console.log(dataForm);
   };
