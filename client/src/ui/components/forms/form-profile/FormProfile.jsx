@@ -27,7 +27,7 @@ import ModalChangePassword from "../../modals/modal-changePassword/ModalChangePa
 import cross from "@icons/filterSortLocationBar/cross.svg";
 import { setAlert } from "@src/common/store/slices/alertSlice";
 import { actionGetUser } from "@common/store/actions/userActions";
-import { formValidations } from "@src/common/utils/formValidations";
+import { handleValidation } from "@src/common/utils/formValidations";
 
 const FormProfile = () => {
   const apiUrl = API_URL_UPDATE_USER;
@@ -169,7 +169,7 @@ const FormProfile = () => {
     const { name, value } = e.target;
 
     setDataForm((prevDataForm) => ({ ...prevDataForm, [name]: value }));
-    formValidations({ ...dataForm, [name]: value }, errors, setErrors);
+    handleValidation({ ...dataForm, [name]: value }, setErrors);
     console.log(userData);
     console.log(dataForm);
   };

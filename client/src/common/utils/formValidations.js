@@ -14,7 +14,7 @@ export const handleValidation = (dataForm, setErrors) => {
 
 // Validar el Correo Electrónico
 export const emailValidation = (dataForm, errors) => {
-  if (dataForm.email.trim() === "") {
+  if (dataForm.email === "") {
     errors.email = "";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dataForm.email)) {
     errors.email = "Ingrese un correo electrónico válido";
@@ -25,7 +25,7 @@ export const emailValidation = (dataForm, errors) => {
 
 // Validar el Nombre
 export const nameValidation = (dataForm, errors) => {
-  if (dataForm.name.trim() === "") {
+  if (dataForm.name === "") {
     errors.name = "";
   } else if (dataForm.name.length < 3) {
     errors.name = "El Nombre debe contener al menos 3 caracteres";
@@ -43,20 +43,20 @@ export const nameValidation = (dataForm, errors) => {
 
 // Validar el Apellido
 export const lastNameValidation = (dataForm, errors) => {
-  if (dataForm.last_name.trim() === "") {
-    errors.last_name = "";
-  } else if (dataForm.last_name.length < 3) {
-    errors.last_name = "El apellido debe contener al menos 3 caracteres";
-  } else if (dataForm.last_name.length > 50) {
-    errors.last_name = "El apellido no puede superar los 50 caracteres";
+  if (dataForm.lastName === "") {
+    errors.lastName = "";
+  } else if (dataForm.lastName.length < 3) {
+    errors.lastName = "El apellido debe contener al menos 3 caracteres";
+  } else if (dataForm.lastName.length > 50) {
+    errors.lastName = "El apellido no puede superar los 50 caracteres";
   } else if (
-    /\d/.test(dataForm.last_name) ||
-    /[!@#$%^&*(),.?":{}|<>]/.test(dataForm.last_name)
+    /\d/.test(dataForm.lastName) ||
+    /[!@#$%^&*(),.?":{}|<>]/.test(dataForm.lastName)
   ) {
-    errors.last_name =
+    errors.lastName =
       "El apellido no debe contener numeros ni caracteres especiales";
   } else {
-    errors.last_name = "";
+    errors.lastName = "";
   }
 };
 
@@ -101,7 +101,7 @@ export const confirmPasswordValidation = (dataForm, errors) => {
 
 // Validar numero de telefono
 export const cellPhoneValidation = (dataForm, errors) => {
-  if (dataForm.cellPhone.trim() === "") {
+  if (dataForm.cellPhone === "") {
     errors.cellPhone = "";
   } else if (!/^\+?\d+$/.test(dataForm.cellPhone)) {
     errors.cellPhone =
@@ -115,12 +115,12 @@ export const cellPhoneValidation = (dataForm, errors) => {
 export const dniValidation = (dataForm, errors) => {
   if (!/^\d+$/.test(dataForm.dni)) {
     errors.dni = "Solo se permiten números en este campo";
-  } else if (Value.length !== 8) {
+  } else if (dataForm.dni.length !== 8) {
     errors.dni = "El número de documento debe tener 8 dígitos";
   } else {
     errors.dni = "";
   }
 };
 
-// Uso en el componente
-handleValidation(dataForm, setErrors);
+// // Uso en el componente
+// handleValidation(dataForm, setErrors);
