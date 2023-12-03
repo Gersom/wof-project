@@ -6,6 +6,9 @@
   min-height: 100%;
   background-color: var(--color-background-dark);
   padding: 35px 20px 20px 20px;
+  input[type="password"] {
+    padding-right: 30px; /* Ajusta según sea necesario */
+  }
 }
 
 .form-container {
@@ -51,9 +54,7 @@
   position: relative;
 }
 
-input[type="password"] {
-  padding-right: 30px; /* Ajusta según sea necesario */
-}
+
 
 .toggle-password-icon {
   position: absolute;
@@ -61,49 +62,6 @@ input[type="password"] {
   right: 11px; /* Ajusta según sea necesario */
   transform: translateY(-50%);
   cursor: pointer;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-p {
-  color: var(--color-background-light);
-  font-size: 10px;
-}
-
-label {
-  margin-bottom: 3px;
-  color: var(--color-text-primary);
-  text-align: left;
-}
-
-h1 {
-  font-family: "Nanum-Brush";
-  color: var(--color-text-primary);
-}
-
-input {
-  margin-bottom: 15px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
-button {
-  margin-top: 4px;
-  background-color: var(--color-background-dark);
-  color: var(--color-text-primary);
-  height: 100%;
-  width: 100%;
-  border: solid 1px white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:not(:last-child) {
-  margin-right: 10px;
 }
 
 .logo_container {
@@ -123,7 +81,7 @@ button:not(:last-child) {
   background: #2f333c;
   width: 100%;
   max-width: 270px;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
 }
 
 .auth_form {
@@ -190,13 +148,6 @@ button:not(:last-child) {
 .auth_btn:hover {
   background: rgb(221 221 221 / 10%);
   color: #fff;
-}
-
-p.footer_credit {
-  color: #dddddd;
-  span {
-    margin: 0 5px;
-  }
 }
 
 .labelIcon{

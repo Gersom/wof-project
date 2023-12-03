@@ -7,7 +7,13 @@ import ModalCustom from '../../modals/modal-custom/ModalCustom';
 
 import { useState } from 'react';
 
-const CardDisplayImages = ({ data = [''], setImage, handleDeleteImage }) => {
+const CardDisplayImages = ({
+	data = [''],
+	imagesLocal= [''],
+	setImage,
+	handleDeleteImage,
+	setImagesFiles,
+}) => {
 	const [modal, setModal] = useState(false);
 	const [imageSelected, setImageSelected] = useState('');
 
@@ -25,7 +31,7 @@ const CardDisplayImages = ({ data = [''], setImage, handleDeleteImage }) => {
 					<h3>Fotos :</h3>
 				</header>
 				<div>
-					{data.map((image, index) => (
+					{[...data,...imagesLocal].map((image, index) => (
 						<figure key={index}>
 							<img src={image} alt='pet' key={index} />
 							<figcaption>
@@ -43,7 +49,7 @@ const CardDisplayImages = ({ data = [''], setImage, handleDeleteImage }) => {
 							</figcaption>
 						</figure>
 					))}
-					<ButtonAgree setImage={setImage} />
+					<ButtonAgree setImage={setImage} setImagesFiles={setImagesFiles} />
 				</div>
 			</div>
 			<ModalCustom

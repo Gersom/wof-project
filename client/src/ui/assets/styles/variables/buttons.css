@@ -1,0 +1,12 @@
+:root {
+  --button-border-radius: 15px;
+  --button-border-width: 2px;
+  --button-font-size: 16px;
+  --button-font-size-small: 14px;
+
+	--button-height: 46px;
+	--button-height-small: 33px;
+	--button-max-width: 270px;
+	--button-max-width-small: 120px;
+	--button-max-width-large: 350px;
+}

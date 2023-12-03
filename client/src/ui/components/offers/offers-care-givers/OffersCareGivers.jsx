@@ -9,15 +9,18 @@ import ModalCustom from '@components/modals/modal-custom/ModalCustom';
 import ModalPayment from '@components/modals/modal-payment/ModalPayment';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updatePetsTriger } from '@common/store/slices/myPetsSlice';
+import { getMyPets, setPosts, deletePosts } from '@common/store/slices/myPetsSlice';
+import { getPets } from '@src/common/utils/helpers-redux/myPets';
+import { setAlert } from '@src/common/store/slices/alertSlice';
+import CareInProgress from '../../care-in-progress/CareInProgress';
+import CardUser from '../../cards/card-user/CardUser';
+import CardInfoCaregiver from '../../cards/card-info-caregiver/CardInfoCaregiver';
 
 const OffersCareGivers = () => {
 	const dispatch = useDispatch();
 	const { id } = useParams();
 	const { isLoading, details } = useGetPetId(id);
-	const { isLoadingOffers, offersCareGivers } = useOffersCaregivers(
-		details?.id || null
-	);
+	const { isLoadingOffers, offersCareGivers } = useOffersCaregivers(details?.id || null);
 
 	const [modalState, setModalState] = useState(false);
 	const [offerData, setOfferData] = useState({
@@ -31,7 +34,7 @@ const OffersCareGivers = () => {
 		rating: '...',
 	});
 
-	const successPaid = () => {
+	const successPaid = async () => {
 		setModalState(false);
 		setOfferData({
 			id: 0,
@@ -43,45 +46,87 @@ const OffersCareGivers = () => {
 			profilePicture: '...',
 			rating: '...',
 		});
-
-		dispatch(updatePetsTriger());
+		const pets = await getPets(details?.owner?.id);
+		dispatch(deletePosts(details?.id));
+		dispatch(getMyPets(pets));
+		dispatch(
+			setAlert({ message: 'Pago realizado con exito 👌', type: 'success' })
+		);
 	};
 
-	const onClicAccep = (data) => {
+	const onClickAccept = (data) => {
 		setOfferData(data);
 		setModalState(true);
 	};
 
-	return (
-		<div className={styles.containerMainGrid}>
-			<div className={styles.containerCardInfo}>
-				{details ? (
-					!isLoading && (
-						<>
-							<PetImage data={details} />
-							<CardInfoPet data={details} role={'caregiver'} />{' '}
-						</>
-					)
-				) : (
-					<h1>Parece que no se ha encontrado la mascota</h1>
-				)}
-			</div>
-			<div className={styles.containerOffers}>
-				{offersCareGivers.length === 0 ? (
+	const onClickDetails = () => {
+		dispatch(setPosts(details.id));
+	};
+
+	const renderOffers = () => {
+		return (
+			<>
+				{!isLoading && !isLoadingOffers && offersCareGivers.length === 0 ? (
 					<h1>Aun no has recibido ofertas</h1>
 				) : (
-					!isLoadingOffers &&
+					
 					offersCareGivers.map((offer) => (
 						<CardOffersCaregivers
 							data={offer}
 							key={offer.id}
 							rango={'intermedio'}
-							setData={onClicAccep}
+							setData={onClickAccept}
+							setIdPost={onClickDetails}
+
 						/>
 					))
 				)}
-			</div>
+			</>
+		);
+	};
 
+	const styleContainer =
+		details?.status !== 'paid'
+			? styles.containerMainGrid
+			: styles.containerPaid;
+
+	return (
+		<div className={styleContainer}>
+			{ details?.status !== 'paid' ? (
+				<>
+					<div className={styles.containerCardInfo}>
+						{ !isLoading && details ? (
+							<>
+								<PetImage data={details} />
+								<CardInfoPet data={details} role={'caregiver'} />{' '}
+							</>
+						) : (
+							<h1>Parece que no se ha encontrado la mascota</h1>
+						)}
+					</div>
+					<div className={styles.containerOffers}>{renderOffers()}</div>
+				</>
+			) : (
+				<>
+				
+					<CareInProgress
+						endDate={details?.endDate}
+						startDate={details?.startDate}
+						image={details?.pet.imageUrl}
+					/>
+					<div className={styles.containerInfoCaregiver}>
+						<CardUser
+							imgSrc={details?.caregiver.profilePicture}
+							address={details?.caregiver.address}
+							name={details?.caregiver.name}
+							rating={details?.caregiver.rating}
+							role={'caregiver'}
+						/>
+						<CardInfoCaregiver data={details?.caregiver} />
+					</div>
+				</>
+				
+			)}
 			<ModalCustom state={modalState} toggleModal={() => setModalState(false)}>
 				<ModalPayment successPaid={successPaid} data={offerData} />
 			</ModalCustom>

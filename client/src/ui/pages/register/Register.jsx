@@ -3,7 +3,7 @@ import { setAlert } from "@src/common/store/slices/alertSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import FormRegister from "@src/ui/components/forms/formRegister/FormRegister";
+import FormRegister from "@src/ui/components/forms/form-register/FormRegister";
 import routerNames from "@src/common/constants/routes";
 
 const Register = () => {

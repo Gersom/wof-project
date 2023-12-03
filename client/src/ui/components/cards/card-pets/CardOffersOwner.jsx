@@ -14,8 +14,9 @@ const CardOffersOwner = ({
 		rating: 0,
 	},
 }) => {
+	
 	return (
-		<Link to={routerNames['detailsCaregivers'] + data.pet.id} className={styles.link}>
+		<Link to={routerNames['detailsCaregivers'] + data.id} className={styles.link}>
 			<article className={styles.article}>
 				<PetImage data={data} />
 				<SectionOffer data={data}/>

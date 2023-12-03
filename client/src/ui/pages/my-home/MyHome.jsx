@@ -6,6 +6,7 @@ import useGetDetailsCaregivers from '@src/common/hooks/useGetDetailsCaregivers';
 import { useState, useEffect } from 'react';
 import { API_URL_CAREGIVERS } from '@src/common/constants/api';
 import { setAlert } from '@src/common/store/slices/alertSlice';
+import handleImageUpload from '@src/ui/components/cloudinary/imageUpload';
 
 const MyHome = () => {
 	const dispatch = useDispatch();
@@ -16,9 +17,11 @@ const MyHome = () => {
 		caregiverId: '',
 		images: [''],
 	});
-	const caregiverId = useSelector(
-		(state) => state?.userReducer?.user?.caregiver?.id
-	);
+	const [imagesFiles, setImagesFiles] = useState([]);
+	const [imagesLocal, setImagesLocal] = useState([]);
+
+	const caregiverId = useSelector((state) => state?.userReducer?.user?.caregiver?.id);
+
 	const { isLoading, details } = useGetDetailsCaregivers(caregiverId);
 
 	useEffect(() => {
@@ -38,25 +41,40 @@ const MyHome = () => {
 
 	const handleDeleteImage = (image) => {
 		const newImages = form.images.filter((img) => img !== image);
+		const newImagesLocal = imagesLocal.filter((img) => img !== image);
+		const findIndex = imagesLocal.findIndex((img) => img === image);
+		const newImagesFiles = imagesFiles.filter((img, index) => index !== findIndex);
+		setImagesFiles(newImagesFiles);
 		setForm({ ...form, images: newImages });
+		setImagesLocal(newImagesLocal);
 		dispatch(setAlert({ message: 'Imagen eliminada', type: 'success' }));
 	};
 
 	const handleSetImage = (image) => {
-		setForm({ ...form, images: [...form.images, image] });
+		setImagesLocal([...imagesLocal, image]);
 		dispatch(setAlert({ message: 'Imagen agregada', type: 'success' }));
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (caregiverId) {
-			const options = {
+			let options = {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify(form),
 			};
+
+			if(form.images.length === 0 && imagesLocal.length === 0) return dispatch(setAlert({ message: 'Debe agregar al menos una imagen 👀', type: 'warning' }));
+
+			if (imagesLocal.length > 0) {
+				dispatch(setAlert({ message: 'Estamos actualizando tu hogar...😊', type: 'success' }));
+				const imageUrls = await Promise.all(
+					imagesFiles.map(async (image) => await handleImageUpload(image))
+				);
+				options.body = JSON.stringify({...form, images:[...form.images, ...imageUrls]});
+			}
 			const response = await fetch(
 				`${API_URL_CAREGIVERS}/${caregiverId}`,
 				options
@@ -76,6 +94,8 @@ const MyHome = () => {
 					data={form.images}
 					setImage={handleSetImage}
 					handleDeleteImage={handleDeleteImage}
+					setImagesFiles={(image) => setImagesFiles([...imagesFiles, image])}
+					imagesLocal={imagesLocal}
 				/>
 			</div>
 			<button onClick={handleSubmit}>Guardar cambios</button>
