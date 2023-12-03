@@ -19,11 +19,9 @@
   // border
   border-width: var(--button-border-width);
   border-style: solid;
-  border-color: var(--color-blue-light);
   border-radius: 15px;
 
   // others
-  background: var(--color-blue-light);
   padding: 10px 15px;
   transition: 0.4s ease all;
   cursor: pointer;
@@ -36,16 +34,48 @@
   path {
     stroke: #fff
   }
-
+};
+.defaultButtonIconFill {
+  path {
+    fill: #fff;
+  }
+  &:hover {
+    path {
+      fill: var(--color-primary);
+    }
+  }
+}
+.defaultButtonIconFillDisabled {
+  path {
+    fill: var(--color-text-grey2);
+  }
+  &:hover {
+    path {
+      fill: var(--color-text-grey2);
+    }
+  }
+}
+.defaultButtonEnabled {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
   &:hover {
     transform: scale(1.05);
     background-color: transparent;
-    color: var(--color-blue-light);
+    color: var(--color-primary);
     path {
-      stroke: var(--color-blue-light)
+      stroke: var(--color-primary);
     }
   }
-};
+}
+.defaultButtonDisabled {
+  background: var(--color-disabled);
+  color: var(--color-text-grey2);
+  border: none;
+  path {
+    stroke: var(--color-text-grey2);
+  }
+}
+
 .defaultButtonLeft{
   justify-content: flex-start;
   padding: 10px 20px;
@@ -64,16 +94,7 @@
     }
   }
 }
-.defaultButtonIconFill{
-  path {
-    fill: #fff;
-  }
-  &:hover {
-    path {
-      fill: var(--color-blue-light)
-    }
-  }
-}
+
 
 
 .buttonContainer {

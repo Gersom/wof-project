@@ -1,11 +1,28 @@
 :root {
-	--color-text-primary: #ffffff; /* utilizado en textos con fondo azul oscuro */
+  /* company */
+  --color-primary: #52C1E4;
+
+	/* colos status */
+  --color-success: #42CE83;
+  --color-warning: #FCBF49;
+  --color-error: #CE4B4B;
+  --color-disabled: #63707B;
+
+  /* texts */
+  --color-text-title: #6E88AD;
+  --color-text-grey2: #CCCCCC;
+
+  /* bakgrounds */
+	--color-background-light: #f3f4f8; /* fondo claro  */
+	--color-background-dark: #282c34; /* fondo oscuro  */
+	--color-background-dark2: #393F4D; /* fondo oscuro  */
+
+  /* others */
+  --color-text-primary: #ffffff; /* utilizado en textos con fondo azul oscuro */
 	--color-text-secondary: #6e88ad; /* utilizado en textos con fondo blanco total  */
 	--color-text-dark: #1e1e1e; /* utilizado en textos para destacar en fondos blancos  */
 	--color-text-grey: #717171; /* utilizado en textos con fondo blancos  */
 	--color-text-muted: #ffffff89; /* utilizado en textos menos destacados  */
-	--color-background-dark: #282c34; /* fondo oscuro  */
-	--color-background-light: #f3f4f8; /* fondo claro  */
 	--color-blue-light: #52c1e4; /* utilizado en varios puntos */
 	--color-blue-primary: #646cff;
 	--color-button-green: #52cd8b; /* utilizado en botones */
