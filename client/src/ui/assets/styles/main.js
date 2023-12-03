@@ -1,4 +1,6 @@
+import './variables/colors.css';
+import './variables/buttons.css';
+
 import './App.css';
 import './index.css';
-import './colorVar.css';
 import './fonts.css';

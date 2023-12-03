@@ -14,7 +14,7 @@ const routerNames = {
   detailsCaregivers: "/app/caregivers/offers/details/",
 
   offersOwners: "/app/owners/offers/",
-  detailsOwners: "/app/owners/offers/details/", 
+  detailsOwners: "/app/owners/offers/details/",
 
   formReview: "/app/form",
   profile: "/app/profile",
@@ -23,7 +23,8 @@ const routerNames = {
   myPetsCreate: "/app/my-pets/create",
   myPetsEdit: "/app/my-pets/",
 
-  myHome : "/app/my-home",
+  myHome: "/app/my-home",
+  myClients: "/app/my-clients",
 };
 
 export default routerNames;

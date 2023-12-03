@@ -31,6 +31,8 @@ import Register from "./pages/register/Register";
 
 //import useAlert
 import useAlert from "@src/common/hooks/use-alert/useAlert";
+import MyClients from "./pages/my-clients/MyClients";
+
 // Imports Components
 
 function App() {
@@ -54,12 +56,12 @@ function App() {
       };
       saveToLocalStorage("session", updatedstorage);
     }
-  }
+  };
   storeCurrentRouteInSession();
 
   const tokenExist = async () => {
     const sessionLS = await getFromLocalStorage("session");
-    
+
     if (sessionLS?.token) return true;
     return false;
   };
@@ -70,48 +72,57 @@ function App() {
         {/* Home */}
         <Route path={routerNames["home"]} element={<Home />} />
         <Route path={routerNames["landing"]} element={<Landing />} />
-        
+
         {/* Forms */}
         <Route path={routerNames["login"]} element={<Login />} />
         <Route path={routerNames["register"]} element={<Register />} />
         <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
 
         {/* dashboard */}
-        <Route path={'/'} element={<ProtectedRoute />} >
-        <Route path={routerNames["dashboard"]}
-          element={ tokenExist() 
-            ? ( <Dashboard /> ) 
-            : ( <Navigate to={routerNames["login"]} /> )
-          }
-        >
-          <Route index
-            path={routerNames["offersCaregivers"]}
-            element={<Offers />}
-          />
+        <Route path={"/"} element={<ProtectedRoute />}>
           <Route
-            path={routerNames["detailsCaregivers"] + ":id"}
-            element={<Details />}
-          />
-          <Route path={routerNames["profile"]} element={<FormProfile />} />
-          <Route
-            path={routerNames["offersOwners"] + ":id"}
-            element={<Offers />}
-          />
-          <Route
-            path={routerNames["detailsOwners"] + ":id"}
-            element={<DetailsCaregivers />}
-          />
+            path={routerNames["dashboard"]}
+            element={
+              tokenExist() ? (
+                <Dashboard />
+              ) : (
+                <Navigate to={routerNames["login"]} />
+              )
+            }
+          >
+            <Route
+              index
+              path={routerNames["offersCaregivers"]}
+              element={<Offers />}
+            />
+            <Route
+              path={routerNames["detailsCaregivers"] + ":id"}
+              element={<Details />}
+            />
+            <Route path={routerNames["profile"]} element={<FormProfile />} />
+            <Route
+              path={routerNames["offersOwners"] + ":id"}
+              element={<Offers />}
+            />
+            <Route
+              path={routerNames["detailsOwners"] + ":id"}
+              element={<DetailsCaregivers />}
+            />
 
-          <Route path={routerNames["formReview"]} element={<FormReview />} />
+            <Route path={routerNames["formReview"]} element={<FormReview />} />
 
-          <Route path={routerNames["myPets"]} element={<MyPets />} />
-          <Route path={routerNames["myPetsCreate"]} element={<MyPetsEdit />} />
-          <Route
-            path={routerNames["myPetsEdit"] + ":idPet"}
-            element={<MyPetsEdit />}
-          />
-          <Route path={routerNames["myHome"]} element={<MyHome />} />
-        </Route>
+            <Route path={routerNames["myPets"]} element={<MyPets />} />
+            <Route
+              path={routerNames["myPetsCreate"]}
+              element={<MyPetsEdit />}
+            />
+            <Route
+              path={routerNames["myPetsEdit"] + ":idPet"}
+              element={<MyPetsEdit />}
+            />
+            <Route path={routerNames["myHome"]} element={<MyHome />} />
+            <Route path={routerNames["myClients"]} element={<MyClients />} />
+          </Route>
         </Route>
 
         {/* Not Found 404 */}

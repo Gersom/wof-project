@@ -1,0 +1,416 @@
+/* ButtonComponents.module.scss */
+.defaultButton {
+  // font
+  font-family: "Lexend-Medium";
+  font-size: var(--button-font-size);
+  font-weight: 400;
+  
+  // display
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  // size
+  height: var(--button-height);
+  width: 100%;
+  max-width: var(--button-max-width);
+  
+  // border
+  border-width: var(--button-border-width);
+  border-style: solid;
+  border-radius: 15px;
+
+  // others
+  padding: 10px 15px;
+  transition: 0.4s ease all;
+  cursor: pointer;
+
+  svg {
+    height: 20px;
+    width: auto;
+    margin-right: 10px;
+  }
+  path {
+    stroke: #fff
+  }
+};
+.defaultButtonSmall {
+  padding: 5px 5px;
+  font-size: var(--button-font-size-small);
+  height: var(--button-height-small);
+  max-width: var(--button-max-width-small);
+  svg {
+    margin-right: 5px;
+  }
+}
+.defaultButtonLarge {
+  max-width: var(--button-max-width-large);
+}
+.defaultButtonIconFill {
+  path {
+    fill: #fff;
+  }
+  &:hover {
+    path {
+      fill: var(--color-primary);
+    }
+  }
+}
+.defaultButtonIconFillNotBackground {
+  path {
+    fill: var(--color-primary);
+  }
+}
+.defaultButtonIconFillDisabled {
+  path {
+    fill: var(--color-text-grey2);
+  }
+  &:hover {
+    path {
+      fill: var(--color-text-grey2);
+    }
+  }
+}
+.defaultButtonNotBackground {
+  background: none;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  path {
+    stroke: var(--color-primary);
+  }
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+.defaultButtonEnabled {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  &:hover {
+    transform: scale(1.05);
+    background-color: transparent;
+    color: var(--color-primary);
+    path {
+      stroke: var(--color-primary);
+    }
+  }
+}
+.defaultButtonDisabled {
+  background: var(--color-disabled);
+  color: var(--color-text-grey2);
+  border: none;
+  path {
+    stroke: var(--color-text-grey2);
+  }
+}
+
+.defaultButtonLeft{
+  justify-content: flex-start;
+  padding: 10px 20px;
+  svg {
+    margin-right: 15px;
+  }
+  svg, span {
+    position: relative;
+    left: 0px;
+    transition: 0.3s ease all;
+  }
+  &:hover {
+    transform: none;
+    svg, span {
+      left: 10px
+    }
+  }
+}
+
+
+
+.buttonContainer {
+    margin: 5px;
+    padding: 1px 5px;
+    border: 5px solid transparent;
+    font-family: "Lexend-Medium";
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    text-align: left;
+    border-radius: 0.9375rem;
+    width: 16.875rem;
+    height: 3rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    cursor: pointer;
+};
+
+.ofertasButton {
+  margin: 5px;
+  padding: 1px 5px;
+  border: 5px solid transparent;
+  color: var(--color-text-primary);
+  font-family: "Lexend-Medium";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 0.9375rem;
+  background-color: var(--Principal, #52C1E4);
+  width: 16.875rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: row;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lightblue;
+    color: white;
+  }
+}
+
+.ofertasButtonleft {
+  margin: 5px;
+  padding: 1px 5px;
+  border: 5px solid transparent;
+  color: var(--color-text-primary);
+  font-family: "Lexend-Medium";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2rem;
+  text-align: left;
+  border-radius: 0.9375rem;
+  background-color: var(--Principal, #52C1E4);
+  width: 16.875rem;
+  height: 3rem;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  display: flex;
+  align-items: left;
+  gap: 1rem;
+  flex-direction: row;
+  cursor: pointer;
+
+&:hover {
+  background-color: lightblue;
+  color: white;
+}
+}
+.iconOfertas{
+  line-height: 2rem;
+  margin: 2px;
+}
+
+
+.AceptarButton {
+  margin: 5px;
+    padding: 1px 5px;
+    border: 5px solid transparent;
+    color: var(--color-text-primary);
+    font-family: "Lexend-Medium";
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2rem;
+    text-align: center;
+    border-radius: 0.9375rem;
+    background-color: var(--Success, #42CE83);
+    width: 16.875rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: row;
+    
+    cursor: pointer;
+    
+    
+    &:hover {
+      background-color: #23c483;
+      box-shadow: lightblue;
+      color: #fff;
+      transform: translateY(-7px);
+    }
+    
+    button:active {
+      transform: translateY(-1px);
+    }
+}
+
+.CancelButton {
+  margin: 5px;
+  padding: 1px 5px;
+  border: 5px solid transparent;
+  color: var(--color-text-primary);
+  font-family: "Lexend-Medium";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 0.9375rem;
+  background-color: red;
+  width: 16.875rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: row;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: red;
+    box-shadow: red;
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+  button:active {
+    transform: translateY(-1px);
+  }
+}
+
+.DisabledButton{
+  margin: 5px;
+  padding: 1px 5px;
+  border: 5px solid transparent;
+  color: var(--color-text-primary);
+  font-family: "Lexend-Medium";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 0.9375rem;
+  background-color: gray;
+  width: 16.875rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: row;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: gray;
+    box-shadow: white;
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+  button:active {
+    transform: translateY(-1px);
+  }
+}
+
+
+.BuscarButton{
+  width: 7.5rem;
+height: 2.0625rem;
+flex-shrink: 0;
+    margin: 5px;
+    border-radius: 0.625rem;
+  border: 2px solid var(--Principal, #52C1E4);
+  padding: rem 4rem;
+  background-color: white;
+  color: var(--Principal, #52C1E4);
+  text-align: center;
+font-size: 0.875rem;
+font-style: normal;
+font-weight: 500;
+line-height: 1.03125rem; 
+  font-family: 'Lexend-Medium';
+   line-height: 2rem;
+  cursor: pointer;
+  &:hover {
+    background-color: lightblue;
+    color: white;
+  }
+  }
+
+.smallButton{
+  width: 9.375rem;
+height: 2.875rem;
+  margin: 0;
+  border-radius: 0.625rem;
+border: 2px solid var(--Principal, #52C1E4);
+padding: rem 4rem;
+background-color: white;
+color: var(--Principal, #52C1E4);
+text-align: center;
+font-size: 0.875rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.03125rem; /* 117.857% */
+font-family: 'Lexend-Medium';
+cursor: pointer;
+&:hover {
+  background-color: var(--Principal, #52C1E4);
+  color: white;
+}
+}
+.dobleLine {
+  width: 9.375rem;
+  height: 2.875rem;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 4rem 4rem;
+  border-radius: 1rem;
+  border: 5px solid var(--Principal, #52C1E4);;
+  background-color: white;
+  color: lightblue;
+  font-family: 'Lexend-Medium';
+  font-size: 1.3rem;
+  cursor: pointer;
+  &:hover {
+  background-color: var(--Principal, #52C1E4);
+  color: white;
+}
+}
+
+.GuardarButton {
+  width: 21.875rem;
+height: 2.875rem;
+flex-shrink: 0;
+  margin: 5px;
+    padding: 1px 5px;
+    border: 5px solid transparent;
+    color: var(--color-text-primary);
+    font-family: "Lexend-Medium";
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2rem;
+    text-align: center;
+    border-radius: 0.625rem;
+    background-color: var(--Principal, #52C1E4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: row;
+    cursor: pointer;
+
+  &:hover {
+    background-color: lightblue;
+    color: white;
+  }
+}
