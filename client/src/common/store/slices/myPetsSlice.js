@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
 	myPets: [],
 	updatePetsTriger: false,
+	posts : []
 };
 
 const myPetsSlice = createSlice({
@@ -14,10 +15,16 @@ const myPetsSlice = createSlice({
 		},
 		updatePetsTriger: (state) => {
 			state.updatePetsTriger = !state.updatePetsTriger;
+		},
+		setPosts: (state, action) => {
+			state.posts = [...state.posts, action.payload];
+		},
+		deletePosts: (state, action) => {
+			state.posts = state.posts.filter((id) => id !== action.payload);
 		}
 	},
 });
 
-export const { getMyPets, updatePetsTriger } = myPetsSlice.actions;
+export const { getMyPets, updatePetsTriger, setPosts, deletePosts } = myPetsSlice.actions;
 
 export default myPetsSlice.reducer;
