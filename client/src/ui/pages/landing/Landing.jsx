@@ -7,7 +7,7 @@ import { getFromLocalStorage } from "@common/utils/localStorage";
 import { useEffect } from "react";
 import { API } from "@common/constants/api";
 import DefaultButton from "@src/ui/components/buttons/DefaultButton";
-import SuccessIcon from '@icons/states/success.svg?react';
+import SignUpIcon from "@icons/login/sign-up.svg?react"
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -45,9 +45,9 @@ const LandingPage = () => {
 
           <div className={styles.btn}>
             <DefaultButton 
-              onAction={()=> navigate(routerNames["register"])} 
+              onAction={()=> navigate(routerNames["register"])}
               label="Regístrate">
-              <SuccessIcon />
+              <SignUpIcon />
             </DefaultButton>
           </div>
         </div>

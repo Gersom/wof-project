@@ -3,22 +3,34 @@ import styles from './styles.module.scss';
 const DefaultButton = ({ 
   onAction= ()=>null,
   label = "Aceptar",
-  iconFill = "fill",
+  iconFill = "stroke",
   disabled = false,
+  background = true,
+  size = "normal",
   children,
 }) => {
 
   const generateClasses = () => {
     let classes = `${styles.defaultButton}`
+
+    if (size === "small") {
+      classes += ` ${styles.defaultButtonSmall}`
+    } else if (size === "large") {
+      classes += ` ${styles.defaultButtonLarge}`
+    }
     
-    if (!disabled) {
+    if (!disabled && background) {
       classes += ` ${styles.defaultButtonEnabled}`
-    } else {
+    } else if (!disabled && !background) {
+      classes += ` ${styles.defaultButtonNotBackground}`
+    } else if (disabled) {
       classes += ` ${styles.defaultButtonDisabled}`
     }
 
-    if (iconFill === 'fill' && !disabled) {
+    if (iconFill === 'fill' && !disabled && background) {
       classes += ` ${styles.defaultButtonIconFill}`
+    } else if (iconFill === 'fill' && !disabled && !background) {
+      classes += ` ${styles.defaultButtonIconFillNotBackground}`
     } else if (iconFill === 'fill' && disabled) {
       classes += ` ${styles.defaultButtonIconFillDisabled}`
     }

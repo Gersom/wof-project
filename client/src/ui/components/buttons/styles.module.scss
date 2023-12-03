@@ -14,7 +14,7 @@
   // size
   height: var(--button-height);
   width: 100%;
-  max-width: 270px;
+  max-width: var(--button-max-width);
   
   // border
   border-width: var(--button-border-width);
@@ -35,6 +35,18 @@
     stroke: #fff
   }
 };
+.defaultButtonSmall {
+  padding: 5px 5px;
+  font-size: var(--button-font-size-small);
+  height: var(--button-height-small);
+  max-width: var(--button-max-width-small);
+  svg {
+    margin-right: 5px;
+  }
+}
+.defaultButtonLarge {
+  max-width: var(--button-max-width-large);
+}
 .defaultButtonIconFill {
   path {
     fill: #fff;
@@ -45,6 +57,11 @@
     }
   }
 }
+.defaultButtonIconFillNotBackground {
+  path {
+    fill: var(--color-primary);
+  }
+}
 .defaultButtonIconFillDisabled {
   path {
     fill: var(--color-text-grey2);
@@ -53,6 +70,17 @@
     path {
       fill: var(--color-text-grey2);
     }
+  }
+}
+.defaultButtonNotBackground {
+  background: none;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  path {
+    stroke: var(--color-primary);
+  }
+  &:hover {
+    transform: scale(1.05);
   }
 }
 .defaultButtonEnabled {
