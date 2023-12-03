@@ -3,7 +3,6 @@ const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const PostsModel = require("./posts")
 const CaregiversModel = require("./caregivers")
 const addMethods = require("../utils/addStaticMethods")
-const { Op } = require('sequelize');
 
 //toDo: rename Model
 const name = 'requests'
@@ -48,7 +47,7 @@ RequestsModel.belongsTo(CaregiversModel)
 addMethods(RequestsModel)
 
 RequestsModel['findAllRequests'] = async () => { // muestra todas las request que tengan un state !== "accepted"
-  const request = await RequestsModel.findAll({where:{state: {[Op.not]: "accepted"}}})
+  const request = await RequestsModel.findAll({where:{state: "pending"}})
   return request
 }
 
@@ -59,7 +58,7 @@ RequestsModel["findRequestsByOwner"] = async (ownerId) => { // muestra las resqu
   const owner = await OwnersModel.findByPk(ownerId, {
     include: {
       model: PostsModel,
-      include: [{model:RequestsModel,where:{state:{[Op.not]: "accepted"}}}]
+      include: [{model:RequestsModel,where:{state:"pending"}}]
     },
   });
   const requests = owner?.posts?.flatMap(post => post.requests || [])
