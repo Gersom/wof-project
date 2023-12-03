@@ -4,9 +4,17 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const request = await RequestsModel.findAllData()
-  if (request) {
-    res.status(200).json(request)
+  const { ownerId } = req.query
+  let requests
+  if(ownerId){ // si recibe un ownerId muestra las solicitudes de ese owner
+    requests = await RequestsModel.findRequestsByOwner(ownerId)
+    return res.status(200).json(requests)
+  }
+
+  requests = await RequestsModel.findAllRequests() 
+
+  if (requests) {
+    res.status(200).json(requests)
   }
   else res.status(200).json({error: "request not found"})
  

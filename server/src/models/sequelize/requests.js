@@ -3,6 +3,7 @@ const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const PostsModel = require("./posts")
 const CaregiversModel = require("./caregivers")
 const addMethods = require("../utils/addStaticMethods")
+const { Op } = require('sequelize');
 
 //toDo: rename Model
 const name = 'requests'
@@ -28,6 +29,10 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  state: {
+    type: DataTypes.STRING,
+    defaultValue: "pending"
+  }
 }
 
 const RequestsModel = sequelize.define(name, schema, config)
@@ -41,6 +46,25 @@ RequestsModel.belongsTo(CaregiversModel)
 
 // add static methods (functions) to model
 addMethods(RequestsModel)
+
+RequestsModel['findAllRequests'] = async () => { // muestra todas las request que tengan un state !== "accepted"
+  const request = await RequestsModel.findAll({where:{state: {[Op.not]: "accepted"}}})
+  return request
+}
+
+RequestsModel["findRequestsByOwner"] = async (ownerId) => { // muestra las resquest de un owner y que el state !== "accepted"
+  const {OwnersModel} = require("../index")
+  const {PostsModel} = require("../index")
+  
+  const owner = await OwnersModel.findByPk(ownerId, {
+    include: {
+      model: PostsModel,
+      include: [{model:RequestsModel,where:{state:{[Op.not]: "accepted"}}}]
+    },
+  });
+  const requests = owner?.posts?.flatMap(post => post.requests || [])
+  return requests
+}
 
 RequestsModel['createData'] = async (data) => {
   // Crear el registro en RequestsModel
