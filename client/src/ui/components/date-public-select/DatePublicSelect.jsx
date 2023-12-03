@@ -6,6 +6,8 @@ import { useState } from 'react';
 import { API_URL_CREATE_POST } from '@src/common/constants/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { updatePetsTriger } from '@src/common/store/slices/myPetsSlice';
+import { setAlert } from '@src/common/store/slices/alertSlice';
+
 
 const DatePublicSelect = ({
 	data = {
@@ -18,7 +20,7 @@ const DatePublicSelect = ({
 		pet: {
 			id: 0,
 		},
-		address: ''
+		address: '',
 	},
 	toggleModal,
 }) => {
@@ -44,20 +46,45 @@ const DatePublicSelect = ({
 			petId: data.pet.id,
 			address: data.address || address,
 		};
-		
+
 		const options = {
-			method : 'POST',
+			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(body),
+		};
+		const currentDate = new Date().toISOString().split('T')[0]; // Obtener la fecha actual
+
+		if (!startDate || !endDate) {
+			dispatch(setAlert({ message: 'Debes seleccionar una fecha', type: 'warning' }));
+			return;
 		}
-		if(startDate && endDate){
-			if (data.id){
+
+		if (startDate < currentDate) {
+			dispatch(setAlert({ message: 'La fecha de inicio no puede ser menor a la fecha actual', type: 'warning' }));
+			return;
+		}
+		if (endDate < startDate) {
+			dispatch(setAlert({ message: 'La fecha de fin no puede ser menor a la fecha de inicio', type: 'warning' }));
+			return;
+		}
+		if (startDate > endDate) {
+			dispatch(setAlert({ message: 'La fecha de inicio no puede ser mayor a la fecha de fin', type: 'warning' }));
+			return;
+		}
+		if (startDate === endDate) {
+			dispatch(setAlert({ message: 'La fecha de inicio no puede ser igual a la fecha de fin', type: 'warning' }));
+			return;
+		}
+		if (startDate && endDate) {
+			if (data.id) {
 				options.method = 'PUT';
-				await fetch(`${API_URL_CREATE_POST}${data.id}`, options)
+				await fetch(`${API_URL_CREATE_POST}${data.id}`, options);
+				dispatch(setAlert({ message: 'Publicación actualizada', type: 'success' }));
 			} else {
-				await fetch(API_URL_CREATE_POST, options)
+				await fetch(API_URL_CREATE_POST, options);
+				dispatch(setAlert({ message: 'Publicación creada', type: 'success' }));
 			}
 			dispatch(updatePetsTriger());
 			toggleModal();
