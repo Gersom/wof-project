@@ -7,6 +7,7 @@ const DefaultButton = ({
   disabled = false,
   background = true,
   size = "normal",
+  type="button",
   children,
 }) => {
 
@@ -42,7 +43,8 @@ const DefaultButton = ({
     <button 
       disabled={disabled}
       className={generateClasses()} 
-      onClick={onAction}>
+      onClick={onAction}
+      type={type}>
       {children}
       <span className={styles.defaultButtonText}>
         {label}

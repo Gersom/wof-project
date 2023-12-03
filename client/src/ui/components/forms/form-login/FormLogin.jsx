@@ -74,7 +74,7 @@ const FormLogin = ({ onSubmitValidated = ()=>null }) => {
                 </Link>
               </div>
               <DefaultButton 
-                onAction={handleSubmit}
+                type="submit"
                 background={true}
                 size="normal"
                 iconFill="fill"
