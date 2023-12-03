@@ -81,11 +81,11 @@ const deleteUserMail = async (
           style="padding: 15px; font-size: 45px; color: #cbcbd0"
         >
         <h1>Nombre:${name}${lastName}</h1> 
-        <p>$Email:{email}</p>
+        <p>$Email:~${email}</p>
         <p>Numero de trasaccion:${transactionId}</p>
         <p>Cargo realizado:${currencyCode}${amount}</p>
         <p>Fecha:${date}</p>
-          ¡Gracias por aquirir nuestro servicio! 
+          ¡Gracias por adquirir nuestro servicio! 
         </td>
       </tr>
       <tr>

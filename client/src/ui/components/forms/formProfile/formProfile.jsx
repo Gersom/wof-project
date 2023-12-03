@@ -221,8 +221,8 @@ const FormProfile = () => {
                     name="email"
                     value={dataForm.email}
                     onChange={handleInputChange}
+                    disabled
                   />
-                  <span>{errors.email}</span>
                 </div>
                 <div className={styles["profile_input"]}>
                   <div className={styles["profile_label"]}>
@@ -237,8 +237,9 @@ const FormProfile = () => {
                     name="password"
                     value={dataForm.password}
                     onChange={handleInputChange}
+                    disabled
                   />
-                  <div
+                  {/* <div
                     className={styles.togglePassword}
                     style={{
                       backgroundImage:
@@ -249,12 +250,11 @@ const FormProfile = () => {
                     onClick={() =>
                       setContrasenaPasswordShow(!contrasenaPasswordShow)
                     }
-                  ></div>
-                  <span>{errors.password} </span>
+                  ></div> 
                   <div
                     style={{ backgroundImage: "url('" + password + "')" }}
                     onClick={handleTogglePasswordVisibility}
-                  ></div>
+                  ></div>*/}
                   <div className={styles.butonModal}>
                     <button
                       onClick={handleToggleModal}
@@ -295,6 +295,7 @@ const FormProfile = () => {
                     onChange={handleCountryChange}
                   >
                     <option disabled>{userData?.countries}</option>
+                    {console.log(countries)}
                     {countries.map((countries) => (
                       <option key={countries.id} value={countries.id}>
                         {countries.name}
