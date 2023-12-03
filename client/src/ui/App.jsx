@@ -22,6 +22,7 @@ import DetailsCaregivers from "./pages/details/DetailsCaregivers";
 import { useAuth } from "@src/context/auth-provider/authProvider";
 import { Navigate } from "react-router-dom";
 import MyHome from "./pages/my-home/MyHome";
+import MyClients from "./pages/my-clients/Myclients";
 import { useEffect } from "react";
 import {
   saveToLocalStorage,
@@ -32,6 +33,7 @@ import FormProfile from "./components/forms/formProfile/FormProfile";
 
 //import useAlert
 import useAlert from "@src/common/hooks/use-alert/useAlert";
+
 // Imports Components
 
 function App() {
@@ -63,7 +65,7 @@ function App() {
 
   const tokenExist = async () => {
     const sessionLS = await getFromLocalStorage("session");
-    
+
     if (sessionLS?.token) return true;
     return false;
   };
@@ -83,46 +85,50 @@ function App() {
         <Route path={routerNames["register"]} element={<FormRegister />} />
         <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
         {/* dashboard */}
-        <Route path={'/'} element={<ProtectedRoute />} >
-        <Route
-          path={routerNames["dashboard"]}
-          element={
-            tokenExist() ? (
-              <Dashboard />
-            ) : (
-              <Navigate to={routerNames["login"]} />
-            )
-          }
-        >
+        <Route path={"/"} element={<ProtectedRoute />}>
           <Route
-            index
-            path={routerNames["offersCaregivers"]}
-            element={<Offers />}
-          />
-          <Route
-            path={routerNames["detailsCaregivers"] + ":id"}
-            element={<Details />}
-          />
-          <Route path={routerNames["profile"]} element={<FormProfile />} />
-          <Route
-            path={routerNames["offersOwners"] + ":id"}
-            element={<Offers />}
-          />
-          <Route
-            path={routerNames["detailsOwners"] + ":id"}
-            element={<DetailsCaregivers />}
-          />
+            path={routerNames["dashboard"]}
+            element={
+              tokenExist() ? (
+                <Dashboard />
+              ) : (
+                <Navigate to={routerNames["login"]} />
+              )
+            }
+          >
+            <Route
+              index
+              path={routerNames["offersCaregivers"]}
+              element={<Offers />}
+            />
+            <Route
+              path={routerNames["detailsCaregivers"] + ":id"}
+              element={<Details />}
+            />
+            <Route path={routerNames["profile"]} element={<FormProfile />} />
+            <Route
+              path={routerNames["offersOwners"] + ":id"}
+              element={<Offers />}
+            />
+            <Route
+              path={routerNames["detailsOwners"] + ":id"}
+              element={<DetailsCaregivers />}
+            />
 
-          <Route path={routerNames["formReview"]} element={<FormReview />} />
+            <Route path={routerNames["formReview"]} element={<FormReview />} />
 
-          <Route path={routerNames["myPets"]} element={<MyPets />} />
-          <Route path={routerNames["myPetsCreate"]} element={<MyPetsEdit />} />
-          <Route
-            path={routerNames["myPetsEdit"] + ":idPet"}
-            element={<MyPetsEdit />}
-          />
-          <Route path={routerNames["myHome"]} element={<MyHome />} />
-        </Route>
+            <Route path={routerNames["myPets"]} element={<MyPets />} />
+            <Route
+              path={routerNames["myPetsCreate"]}
+              element={<MyPetsEdit />}
+            />
+            <Route
+              path={routerNames["myPetsEdit"] + ":idPet"}
+              element={<MyPetsEdit />}
+            />
+            <Route path={routerNames["myHome"]} element={<MyHome />} />
+            <Route path={routerNames["myClients"]} element={<MyClients />} />
+          </Route>
         </Route>
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />
