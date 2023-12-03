@@ -15,9 +15,11 @@ import routerNames from "@src/common/constants/routes";
 import state from "@icons/state.svg";
 import styles from "./styles.module.scss";
 import UserIcon from "@icons/nav/user.svg?react";
+import DefaultButton from "@components/buttons/DefaultButton"
+import SignUpIcon from "@icons/login/sign-up.svg?react"
 
 const FormRegister = ({ onSubmitValidated= ()=>null }) => {
-  
+
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [provinces, setProvinces] = useState([]);
@@ -206,12 +208,22 @@ const FormRegister = ({ onSubmitValidated= ()=>null }) => {
               </div>
 
               <div className={styles["auth_btns"]}>
-                <button className={styles["auth_btn"]} type="submit">
-                  Registrarse
-                </button>
-                <Link to={routerNames["login"]} className={styles["auth_btn"]}>
-                  Iniciar Sesión
-                </Link>
+                <DefaultButton 
+                  onAction={handleSubmit}
+                  background={true}
+                  size="normal"
+                  label="Registrarse">
+                  <SignUpIcon />
+                </DefaultButton>
+                <div style={{marginBottom: "15px"}}></div>
+                <div className={styles["register-container"]}>
+                  <label>
+                    ¿Ya tienes cuenta?&nbsp;
+                  </label>
+                  <Link to={routerNames["login"]}>
+                    inicia sesión
+                  </Link>
+                </div>
               </div>
             </form>
           </div>
