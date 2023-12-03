@@ -95,6 +95,7 @@ const DetailsCaregivers = () => {
 								endDate={pet?.endDate}
 								startDate={pet?.startDate}
 								image={pet?.pet?.imageUrl}
+								petName={pet?.pet?.name}
 								style={'small'}
 							/>
 						))}
