@@ -1,9 +1,8 @@
-import React from 'react';
 import styles from './styles.module.scss';
 
 
-const InfoCuidador = ({
-     data = { service:"", myHouse:"", experiences:"", notes:"" } }, role="caregiver") => {
+const CardInfoCaregiver = ({
+     data = { service:"Muy bueno", myHouse:"", experiencies:"No tiene", notes:"" } }, role="caregiver") => {
         const classRole = role === 'caregiver' ? styles.caregivers : styles.owner;
     return (
         <div>
@@ -21,7 +20,7 @@ const InfoCuidador = ({
         </div>
         <div className={styles.info}>
           <h4>Experiencia:</h4>
-          <h5>{data.experiences}</h5>
+          <h5>{data.experiencies}</h5>
         </div>
         <div className={styles.info}>
           <h4>Notas:</h4>
@@ -32,5 +31,5 @@ const InfoCuidador = ({
       
     );
   };
-  export default InfoCuidador;  
+  export default CardInfoCaregiver;  
     

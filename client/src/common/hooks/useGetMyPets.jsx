@@ -14,7 +14,9 @@ const useGetMyPets = (ownerId) => {
 			const pets = await getPets(ownerId);
 			dispatch(getMyPets(pets));
 		};
-		get();
+		if(ownerId !== undefined){
+			get();
+		}
         setIsLoading(false);
 	}, [dispatch, ownerId, updatePetsTriger]);
 

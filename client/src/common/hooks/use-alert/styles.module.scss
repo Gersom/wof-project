@@ -3,7 +3,7 @@
         opacity: 0;
         transform: translateY(100%);
     }
-    25% {
+    15% {
         opacity: 1;
         transform: translateY(0);
     }
@@ -17,11 +17,19 @@
     }
 }
 
+@keyframes progressBarAnimation {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        
+        transform: translateX(100%);
+    }
+    
+}
 
 
 .alertContainer{
-    color: black;
-    font-size: 20px;
     width: max-content;
     z-index: 2000;
     position: fixed;
@@ -33,27 +41,122 @@
     justify-content: end;
     align-items: end;
     section{
-        animation: enterAnimation 2.1s ease-in-out;
-        
-        width: 20rem;
-        border: 1px solid rgba(0, 0, 0, 0.907);
-        margin: -3.5rem 0rem 0rem 0rem;
+        position: relative;
+        overflow: hidden;
+        animation: enterAnimation 6.1s ease-in-out;
+        width: 32rem;
+        margin: -5rem 0rem 0rem 0rem;
         border-radius: 1rem;
-        padding: 1rem;
+        padding: 0.5rem 0.25rem 1rem 1rem;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        cursor: default;
+        img{
+            width: 4rem;
+            height: 4rem;
+            margin: 0rem 0rem 0rem 0rem;
+            border-radius: 0.5rem;
+        }
+
+        div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1rem;
+            width: 100%;
+            text-align: left;
+            h4{
+                font-size: 1.3rem;
+                margin: 0rem 0rem 0rem 0rem;
+                font-family: 'Lexend-Medium';
+            }
+            h5{
+                font-size: 1.1rem;
+                margin: 0rem 0rem 0rem 0rem;
+                font-family: 'Lexend-SemiBold';
+            }
+        }
+        button{
+            width: 2rem;
+            height: 2rem;
+            font-size: 1.5rem;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: var(--color-text-grey);
+            align-self: flex-start;
+            img{
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+        }
+
+        .progressBar{
+            position: absolute;
+            padding: 0.3rem 0rem;
+            bottom: 0;
+            left: 0;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            animation: progressBarAnimation 5.8s ease-in-out;
+        }
+        .progressBarFill{
+            position: absolute;
+            padding: 0.3rem 0rem;
+            z-index: -1;
+            bottom: 0;
+            left: 0;
+        }
     }
     
     &:hover section{
         transition: all 0.3s ease-in-out;
         margin: 1rem 0rem 0rem 0rem;
     }
+
+    .alertLight{
+        background-color: var(--color-text-primary);
+        h4{
+            color: var(--color-text-dark);
+        }
+        h5{
+            color: var(--color-text-grey);
+        }
+        .progressBarFill{
+            background-color: #CCCCCC;
+        }
+    }
+
+    .alertDark{
+        background-color: #393F4D;
+        h4{
+            color: var(--color-text-primary);
+        }
+        h5{
+            color: #CCCCCC;
+        }
+        .progressBarFill{
+            background-color: var(--color-text-grey);
+        }
+    }
     .alertError{
-        background-color: rgb(215, 76, 76)
-        
+        .progressBar{
+            background-color: #CE4B4B;
+        }
     }
     .alertSuccess{
-        background-color: rgba(67, 159, 67, 0.975);
+        .progressBar{
+            background-color: #42CE83;
+        }
     }
-    .alertInfo{
-        background-color: rgb(72, 72, 183);
+    .alertWarning{
+        .progressBar{
+            background-color: #FCBF49;
+        }
     }
 }

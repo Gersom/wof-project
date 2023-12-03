@@ -6,30 +6,28 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 // Imports Pages
 import Home from "./pages/home/Home";
-import NotFound from "./pages/notFound/NotFound";
-import Landing from "./pages/Landing/Landing";
+import NotFound from "./pages/not-found/NotFound";
+import Landing from "./pages/landing/Landing";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
 import Details from "./pages/details/Details";
-import FormRegister from "./components/forms/formRegister/FormRegister";
-import Login from "./components/login/Login";
+import Login from "./pages/login/Login";
 import FormReview from "./components/reviews/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
 import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
 import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
-import VerifyingLogin from "./components/verifying-login/VerifyingLogin";
+import VerifyingLogin from "./pages/verifying-login/VerifyingLogin";
 import DetailsCaregivers from "./pages/details/DetailsCaregivers";
 import { useAuth } from "@src/context/auth-provider/authProvider";
 import { Navigate } from "react-router-dom";
 import MyHome from "./pages/my-home/MyHome";
-import MyClients from "./pages/my-clients/Myclients";
-import { useEffect } from "react";
 import {
   saveToLocalStorage,
   getFromLocalStorage,
 } from "@src/common/utils/localStorage";
 
 import FormProfile from "./components/forms/formProfile/FormProfile";
+import Register from "./pages/register/Register";
 
 //import useAlert
 import useAlert from "@src/common/hooks/use-alert/useAlert";
@@ -37,12 +35,11 @@ import useAlert from "@src/common/hooks/use-alert/useAlert";
 // Imports Components
 
 function App() {
-  useAlert();
-
-  const auth = useAuth();
   const location = useLocation();
+  useAlert();
+  useAuth();
 
-  function storeCurrentRouteInSession() {
+  const storeCurrentRouteInSession = () => {
     const storage = getFromLocalStorage("session");
     let currentRoute;
 
@@ -50,18 +47,16 @@ function App() {
       currentRoute = location.pathname;
     }
 
-    console.log(currentRoute);
     if (storage?.token && storage?.userId) {
       const updatedstorage = {
         token: storage?.token,
         userId: storage?.userId,
         history: currentRoute,
       };
-
       saveToLocalStorage("session", updatedstorage);
     }
-    console.log(`Ruta actual almacenada en sessionStorage: ${currentRoute}`);
-  }
+  };
+  storeCurrentRouteInSession();
 
   const tokenExist = async () => {
     const sessionLS = await getFromLocalStorage("session");
@@ -70,20 +65,18 @@ function App() {
     return false;
   };
 
-  useEffect(() => {
-    storeCurrentRouteInSession();
-  }, []);
-
   return (
     <div className="App" id="App">
       <Routes>
         {/* Home */}
         <Route path={routerNames["home"]} element={<Home />} />
         <Route path={routerNames["landing"]} element={<Landing />} />
+
         {/* Forms */}
         <Route path={routerNames["login"]} element={<Login />} />
-        <Route path={routerNames["register"]} element={<FormRegister />} />
+        <Route path={routerNames["register"]} element={<Register />} />
         <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
+
         {/* dashboard */}
         <Route path={"/"} element={<ProtectedRoute />}>
           <Route
@@ -130,6 +123,7 @@ function App() {
             <Route path={routerNames["myClients"]} element={<MyClients />} />
           </Route>
         </Route>
+
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />
       </Routes>

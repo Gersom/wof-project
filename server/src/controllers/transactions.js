@@ -21,7 +21,7 @@ const getAllTransactions = catchedAsync(async (req, res) => {
 // CREATE ITEM
 const createTransaction = catchedAsync(async (req, res) => {
   const newTransaction = await postTransactionLogic(req.body);
-  const [transactionId, date, currencyCode, amount, name, lastName, email] =
+  const {transactionId, date, currencyCode, amount, name, lastName, email} =
     req.body;
   paymentComplete(
     transactionId,
