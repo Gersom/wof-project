@@ -35,7 +35,7 @@ const schema = {
   },
   address: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   startDate: {
     type: DataTypes.DATE,
