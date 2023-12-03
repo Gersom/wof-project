@@ -13,6 +13,7 @@ import {
 import { setAlert } from '@src/common/store/slices/alertSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import handleImageUpload from '@src/ui/components/cloudinary/imageUpload';
 import routerNames from '@src/common/constants/routes';
 
 const MyPetsEdit = () => {
@@ -33,13 +34,14 @@ const MyPetsEdit = () => {
 		ownerId: ownerId,
 		imageUrl: [],
 	});
-
 	const [error, setError] = useState({
 		name: '',
 		temperaments: '',
 		manners: '',
 		notes: '',
 	});
+	const [imagesFiles, setImagesFiles] = useState([]);
+	const [imagesLocal , setImagesLocal] = useState([]);
 
 	useEffect(() => {
 		if (idPet) {
@@ -75,12 +77,13 @@ const MyPetsEdit = () => {
 	};
 
 	const handleSetImage = (image) => {
-		setForm({ ...form, imageUrl: [...form.imageUrl, image] });
+		setImagesLocal([...imagesLocal, image]);
 		dispatch(setAlert({ message: 'Imagen agregada', type: 'success' }));
 	};
 
+
 	const handleSubmit = async (e) => {
-		const options = {
+		let options = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -102,7 +105,7 @@ const MyPetsEdit = () => {
 				if (error[key] !== '') {
 					setTimeout(() => {
 						dispatch(setAlert({ message: `${error[key]}`, type: 'error' }));
-					}, 1);
+					}, 10);
 				}
 			}
 			setError(updatedErrors);
@@ -110,6 +113,16 @@ const MyPetsEdit = () => {
 		}
 
 		if (Object.values(error).some((error) => error !== '')) return;
+		
+		if(form.imageUrl.length === 0 && imagesLocal.length === 0) return dispatch(setAlert({ message: 'Debe agregar al menos una imagen 👀', type: 'warning' }));
+
+		if (imagesFiles.length > 0) {
+			dispatch(setAlert({ message: 'Estamos actualizando tu mascota...😊', type: 'success' }));
+			const imageUrls = await Promise.all(
+				imagesFiles.map(async (image) => await handleImageUpload(image))
+			)
+			options.body = JSON.stringify({ ...form, imageUrl: [...form.imageUrl, ...imageUrls] });
+		}
 
 		const url = idPet ? `${API_URL_MY_PETS}/${idPet}` : API_URL_MY_PETS;
 		options.method = idPet ? 'PUT' : 'POST';
@@ -129,8 +142,10 @@ const MyPetsEdit = () => {
 				<FormPetEdit form={form} handleChange={handleChange} errors={error} />
 				<CardDisplayImages
 					data={form.imageUrl}
+					imagesLocal={imagesLocal}
 					setImage={handleSetImage}
 					handleDeleteImage={handleDeleteImage}
+					setImagesFiles={(image) => setImagesFiles([...imagesFiles, image])}
 				/>
 			</div>
 			<ButtonsSave onSubmit={handleSubmit} />
