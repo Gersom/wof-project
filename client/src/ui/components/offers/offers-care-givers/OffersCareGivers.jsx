@@ -20,9 +20,7 @@ const OffersCareGivers = () => {
 	const dispatch = useDispatch();
 	const { id } = useParams();
 	const { isLoading, details } = useGetPetId(id);
-	const { isLoadingOffers, offersCareGivers } = useOffersCaregivers(
-		details?.id || null
-	);
+	const { isLoadingOffers, offersCareGivers } = useOffersCaregivers(details?.id || null);
 
 	const [modalState, setModalState] = useState(false);
 	const [offerData, setOfferData] = useState({
@@ -68,10 +66,10 @@ const OffersCareGivers = () => {
 	const renderOffers = () => {
 		return (
 			<>
-				{offersCareGivers.length === 0 ? (
+				{!isLoading && !isLoadingOffers && offersCareGivers.length === 0 ? (
 					<h1>Aun no has recibido ofertas</h1>
 				) : (
-					!isLoadingOffers &&
+					
 					offersCareGivers.map((offer) => (
 						<CardOffersCaregivers
 							data={offer}
@@ -87,7 +85,6 @@ const OffersCareGivers = () => {
 		);
 	};
 
-	console.log(details);
 	const styleContainer =
 		details?.status !== 'paid'
 			? styles.containerMainGrid

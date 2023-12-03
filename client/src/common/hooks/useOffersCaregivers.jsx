@@ -8,6 +8,7 @@ import { sortOffersCaregivers } from '../utils/helpers-redux/sortOffersCaregiver
 const useOffersCaregivers = (id) => {
 	const dispatch = useDispatch();
 	const [isLoadingOffers, setIsLoadingOffers] = useState(true);
+	const [idRequest, setIdRequest] = useState(null);
 	const offersCareGiversInmutable = useSelector(
 		(state) => state.offersReducer.offersCareGiversInmutable
 	);
@@ -24,6 +25,10 @@ const useOffersCaregivers = (id) => {
 	useEffect(() => {
 		setIsLoadingOffers(true);
 		if (id) {
+			if( idRequest !== id){
+				setIdRequest(id);
+				dispatch(actionGetOffersCareGivers(id));
+			}
 			if (offersCareGiversInmutable.length === 0) {
 				dispatch(actionGetOffersCareGivers(id));
 			}
@@ -31,21 +36,21 @@ const useOffersCaregivers = (id) => {
 			// 	offersCareGiversInmutable,
 			// 	filtersOffersCareGivers
 			// );
-			if (offersCareGiversInmutable.length > 0) {
-				let sortedOffers = sortOffersCaregivers(
-					offersCareGivers,
-					sortsOffersCareGivers
-				);
-				dispatch(actionSetOffersCareGivers(sortedOffers));
-			}
+			let sortedOffers = sortOffersCaregivers(
+				offersCareGivers,
+				sortsOffersCareGivers
+			);
+			dispatch(actionSetOffersCareGivers(sortedOffers));
+
 			setIsLoadingOffers(false);
 		}
 	}, [
+		id,
 		dispatch,
 		offersCareGiversInmutable.length,
 		filtersOffersCareGivers,
 		sortsOffersCareGivers,
-		id,
+		idRequest,
 	]);
 
 	return { isLoadingOffers, offersCareGivers };

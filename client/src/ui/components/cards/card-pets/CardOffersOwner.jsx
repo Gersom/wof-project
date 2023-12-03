@@ -14,7 +14,7 @@ const CardOffersOwner = ({
 		rating: 0,
 	},
 }) => {
-	console.log(data)
+	
 	return (
 		<Link to={routerNames['detailsCaregivers'] + data.id} className={styles.link}>
 			<article className={styles.article}>
