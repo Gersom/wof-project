@@ -22,6 +22,12 @@ const postTransactionLogic = async (data) => {
     userId: data.userId
   })
 
+  //Update Request ... actualiza el 'state' de la Request  de "pending" a "accepted"
+  const { RequestsModel } = require("../models/index")
+  const requestId = await RequestsModel.findIdData("postId",data.postId);
+  if(!requestId) throw Error("the request does not exist")
+  await RequestsModel.updateData(requestId,{state:"accepted"})
+
   return {
     success: 'The new Transaction was created successfully.',
     data: newTransaction
