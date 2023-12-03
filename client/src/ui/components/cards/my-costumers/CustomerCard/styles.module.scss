@@ -1,0 +1,126 @@
+.article {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 0.5rem;
+	background-color: var(--color-text-primary);
+	padding: 1.8rem 3rem;
+	width: 22rem;
+	height: max-content;
+	figure {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+		margin: 0;
+		padding: 0;
+		img {
+			object-fit: cover;
+			border-radius: 50%;
+			width: 10rem;
+			height: 10rem;
+		}
+		figcaption {
+            display: flex;
+            flex-direction: column;
+            width: max-content;
+            justify-content: flex-start;
+            margin: 0.5rem 0rem;
+            color: #282C34;
+			h3 {
+				font-size: 2rem;
+			}
+			h4 {
+				font-size: 1rem;
+        
+
+			}
+		}
+	}
+    footer {
+        margin: 0;
+        padding: 0;
+        h4 {
+            color: var(--color-text-dark);
+            font-family: 'Lexend-SemiBold';
+            font-size: 1.1rem;
+        }
+        div {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            justify-content: center;
+            align-items: first baseline;
+            margin: 0.5rem 0rem;
+            h5 {
+                color: #282C34;
+                font-size: 1rem;
+                margin-right: 1rem;
+            }
+            img {
+                width: 1.25rem;
+                height: 1.25rem;
+                align-self: center;
+            }
+            h4{
+                font-size: 1rem;
+                color:var(--color-text-grey)
+            }
+        }
+    }
+}
+
+.bar {
+  margin-top: 15px;
+  height: 1px;
+  width: 100%;
+  background-color: rgba(0,0,0,0.1);
+}
+.contSec{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.contSec img{
+    margin-left: 10px;
+}
+.date{
+    color: #717171
+}
+.address{
+    color: #717171;
+}
+.separator{
+    text-align: center;
+    width: 50%;
+    margin: 0.5rem auto;
+    border: 1px solid lightgrey;
+}
+.dates{
+    display: flex;
+}
+.separatorSec{
+    text-align: center;
+    width: 100%;
+    border: 1px solid lightgrey;
+    margin: 1rem 0;
+    gap: 3rem;
+}
+.textDates{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    
+}
+.texts{
+    color:var(--color-text-grey);
+    font-size: 1rem;
+    font-family: 'Lexend-Medium';
+    line-height: 12px;
+}
+.date{
+    margin: 0 0.5rem;
+}
+
+  
