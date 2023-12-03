@@ -3,12 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100%;
-  background-color: var(--color-background-dark);
   padding: 35px 20px 20px 20px;
-  input[type="password"] {
-    padding-right: 30px; /* Ajusta según sea necesario */
-  }
+  min-height: 100%;
+  background-color: #f3f4f8;
 }
 
 .form-container {
@@ -21,47 +18,50 @@
   max-width: 270px;
 }
 
-.pasword-recovery-container{
-  font-size: small;
-  display: flex;
-  position: relative;
-  left: -53px;
-  top: -24px;
-  a {
-    color: var(--color-blue-light);
-    &:hover {
-      color: var(--color-blue-light);
-      text-decoration: underline;
-    }
-  }
-}
-
-.register-container{
-  font-size: small;
-  display: flex;
-  position: relative;
-  left: -35px;
-  a {
-    color: var(--color-blue-light);
-    &:hover {
-      color: var(--color-blue-light);
-      text-decoration: underline;
-    }
-  }
-}
-
 .input_container {
   position: relative;
 }
 
-
+input[type="password"] {
+  padding-right: 30px; /* Ajusta según sea necesario */
+}
 
 .toggle-password-icon {
   position: absolute;
-  top: 75%;
+  width: 30px;
+  top: 70%;
   right: 11px; /* Ajusta según sea necesario */
   transform: translateY(-50%);
   cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+p {
+  color: var(--color-background-dark);
+  font-size: 10px;
+}
+
+label {
+  margin-bottom: 3px;
+  color: var(--color-background-dark);
+  text-align: left;
+}
+
+.titulo {
+  font-family: "Lexend-Medium";
+  color: var(--color-background-dark);
+}
+
+input,
+select {
+  margin-bottom: 15px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
 .logo_container {
@@ -81,11 +81,14 @@
   background: #2f333c;
   width: 100%;
   max-width: 270px;
-  margin-bottom: 15px;
+  margin-bottom: 35px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .auth_form {
-  input {
+  input,
+  select {
     background: #dddddd;
     width: 100%;
     margin-bottom: 0;
@@ -119,6 +122,7 @@
 }
 
 .auth_form_icon {
+  color: var(--color-background-dark);
   width: 20px;
   height: 16px;
   background-size: contain;
@@ -130,12 +134,21 @@
 .input_container {
   width: 100%;
   margin-bottom: 28px;
+  > span {
+    text-align: left;
+    width: 100%;
+    display: block;
+    font-size: 11px;
+    line-height: 1;
+    margin-top: 5px;
+    color: #f44336;
+  }
 }
 
 .auth_btn {
   width: 100%;
   font-size: 14px;
-  color: #fff;
+  color: #151313;
   font-family: "Lexend-Medium";
   height: 32px;
   border: 1px solid #dddddd;
@@ -150,13 +163,55 @@
   color: #fff;
 }
 
-.labelIcon{
-  svg {
-    height: 15px;
-    width: auto;
-    margin-right: 7px;
+p.footer_credit {
+  color: #dddddd;
+  span {
+    margin: 0 5px;
   }
-  path {
-    stroke: #fff
+}
+
+.auth_flex {
+  width: 575px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .input_container {
+    flex: 0 0 calc((100% - 35px) / 2);
   }
+
+  @media screen and (max-width: 660px) {
+    flex-direction: column;
+    max-width: 270px;
+    width: 100%;
+
+    .input_container:nth-child(1) {
+      order: 3;
+    }
+
+    .input_container:nth-child(2) {
+      order: 1;
+    }
+
+    .input_container:nth-child(3) {
+      order: 4;
+    }
+
+    .input_container:nth-child(4) {
+      order: 2;
+    }
+
+    .input_container:nth-child(5) {
+      order: 5;
+    }
+
+    .input_container:nth-child(6) {
+      order: 6;
+    }
+  }
+}
+
+.auth_btns {
+  width: 100%;
+  max-width: 270px;
 }

@@ -8,7 +8,7 @@ import password from "@icons/password.svg";
 import eye from "@icons/eye.svg";
 import closeEye from "@icons/closeEye.svg";
 import cross from "@icons/filterSortLocationBar/cross.svg";
-import { validation } from "../../forms/formProfile/validation";
+import { validation } from "../../forms/form-profile/validation";
 
 const ModalChangePassword = ({
   children,

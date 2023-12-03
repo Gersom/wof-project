@@ -10,6 +10,7 @@ import CardAccept from "@src/ui/components/cards/card-accept/cardAccept";
 import ModalPrice from "@src/ui/components/modals/modal-price/ModalPrice";
 import ModalCustom from "@src/ui/components/modals/modal-custom/ModalCustom";
 import ModalSendOffer from "@src/ui/components/modals/modal-send-offer/SendOffer";
+import ModalCancelOffer from "@src/ui/components/modals/modal-cancelOffer/ModalCancelOffer";
 
 const Details = () => {
   const { id } = useParams();
@@ -21,7 +22,7 @@ const Details = () => {
 
   console.log(details);
 
-
+  
   const manageModal = () => {
     setStatusModal(false)
     if (statusModal) {
@@ -34,7 +35,8 @@ const Details = () => {
   };
 
   const cancelFunc = () => {
-    setCancelModal(true);
+    setCancelModal(false);
+    setStatusModal(false);
   };
 
   return (
@@ -64,7 +66,7 @@ const Details = () => {
           onAccept={acceptFunc}
           toggleModal={() => setStatusModal(true)}
           onCancel={cancelFunc}
-          toggleCancelModal={() => setCancelModal(false)}
+          toggleCancelModal={() => setCancelModal(true)}
         />
         {!isLoading && (
           <>
@@ -83,17 +85,15 @@ const Details = () => {
             <ModalCustom
               state={payedInfoModal}
               toggleModal={() => { setPayedInfoModal(false); setSuccess(true); }}
-
             >
-              <ModalSendOffer />
+              <ModalSendOffer nameOwner={details.owner.name}/>
             </ModalCustom>
-            {/* <ModalCustom
+            <ModalCustom
               state={cancelModal}
-              toggleModal={() => {setPayedInfoModal(false); setSuccess(true);}}
-
+              toggleModal={() => {setCancelModal(false); setSuccess(false);}}
             >
-              <ModalSendOffer />
-            </ModalCustom> */}
+              <ModalCancelOffer nameOwner={details.owner.name} data={details}/>
+            </ModalCustom>
 
           </>
         )}
