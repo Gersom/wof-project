@@ -74,12 +74,12 @@ const Details = () => {
               state={statusModal}
               toggleModal={() => setStatusModal(!statusModal)}
               isWarning={false}
+              closeButton={true}
             >
               <ModalPrice
                 data={details}
                 toggleModal={() => manageModal()}
               />
-
 
             </ModalCustom>
             <ModalCustom
