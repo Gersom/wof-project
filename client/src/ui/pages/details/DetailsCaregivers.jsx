@@ -22,7 +22,7 @@ const DetailsCaregivers = () => {
 	useEffect(() => {
 		setPetsRelation(
 			myPets?.map((pet) => {
-				if (pet?.status === 'paid' && pet.id == id) {
+				if (pet?.status === 'paid' && pet.caregiver.id == id) {
 					return pet;
 				} else{
 					return null
@@ -30,8 +30,6 @@ const DetailsCaregivers = () => {
 			}).filter((pet) => pet !== null) 
 		);
 	}, [myPets, id]);
-
-	console.log(petsRelation)
 
 	const returnForm = (event) => {
 		event.preventDefault();
