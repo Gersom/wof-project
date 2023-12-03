@@ -72,7 +72,12 @@ const MyPetsEdit = () => {
 
 	const handleDeleteImage = (image) => {
 		const newImages = form.imageUrl.filter((img) => img !== image);
+		const newImagesLocal = imagesLocal.filter((img) => img !== image);
+		const findIndex = imagesLocal.findIndex((img) => img === image);
+		const newImagesFiles = imagesFiles.filter((img, index) => index !== findIndex);
+		setImagesFiles(newImagesFiles);
 		setForm({ ...form, imageUrl: newImages });
+		setImagesLocal(newImagesLocal);
 		dispatch(setAlert({ message: 'Imagen eliminada', type: 'success' }));
 	};
 
