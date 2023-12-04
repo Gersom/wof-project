@@ -4,7 +4,7 @@ const UsersModel = require(`./users`)
 const addMethods = require("../utils/addStaticMethods")
 
 const name = 'caregivers'
-const config = { 
+const config = {
   timestamps: false, // createAt, updateAt
   freezeTableName: true
 }
@@ -37,10 +37,28 @@ CaregiversModel.belongsTo(UsersModel)
 // add static methods (functions) to model
 addMethods(CaregiversModel)
 
+CaregiversModel["findCaredPets"] = async (id) => {
+  const { PostsModel } = require("../index");
+  const { PetsModel } = require("../index");
+  const { OwnersModel } = require("../index");
+  const { UsersModel } = require("../index");
+  const { SpeciesModel } = require("../index");
+  const { BreedsModel } = require("../index");
+  const { ReviewsModel } = require("../index");
+  const caredPets = await PostsModel.findAll({
+    where: { caregiverId: id }, attributes: ["address", "startDate", "endDate"],
+    include: [
+      { model: PetsModel, attributes: ["name"], include: [{ model: SpeciesModel }, { model: BreedsModel }] },
+      { model: OwnersModel, include: [{ model: UsersModel, attributes: ["name", "profilePicture"] },] }
+    ],
+  })
+  return caredPets
+}
+
 CaregiversModel["findAllCaregivers"] = async () => {
   const caregivers = await CaregiversModel.findAll({
-    include:[
-      {model: UsersModel},
+    include: [
+      { model: UsersModel },
     ]
   })
   return caregivers
@@ -51,8 +69,8 @@ CaregiversModel["findCaregiver"] = async (id) => {
   const caregiver = await CaregiversModel.findOne({
     where: { id },
     include: [
-      {model: UsersModel},
-      {model: CaregiversImagesModel, attributes:["imageUrl"]}
+      { model: UsersModel },
+      { model: CaregiversImagesModel, attributes: ["imageUrl"] }
     ]
   })
   return caregiver
