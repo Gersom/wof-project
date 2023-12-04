@@ -24,8 +24,8 @@ const verifyEmail = catchedAsync(async (req, res) => {
 
 	res.status(200).json({verify : verifyEmail.verified});
 
-
 }, ErrorHandler.verifyEmailErrorHandler);
+
 
 
 module.exports = {

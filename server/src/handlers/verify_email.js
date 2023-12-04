@@ -2,7 +2,7 @@ const sendVerifyEmailErrorHandler = (err, req, res, next) => {
 	console.error('Error in sendVerifyEmailErrorHandler:', err);
 
 	console.log('err.name:', err.name);
-	console.log('--------------->', err)
+	console.log('--------------->', err);
 
 	console.log('err.message:', err.message);
 
@@ -11,9 +11,7 @@ const sendVerifyEmailErrorHandler = (err, req, res, next) => {
 			.status(404)
 			.json({ error: 'User not found in sendVerifyEmail operation.' });
 	} else if (err.message === 'Email already exist') {
-		res
-			.status(404)
-			.json({ error: 'Email already exist in sendVerifyEmail operation.' });
+		res.status(404).json({ error: 'Email already exist  operation.' });
 	} else {
 		res
 			.status(500)
