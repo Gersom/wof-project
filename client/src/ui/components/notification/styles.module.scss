@@ -1,0 +1,25 @@
+.notifica {
+  p {
+    color: black;
+  }
+  h1 {
+    color: #6b89aa;
+    margin-bottom: 25px;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  max-width: 80%;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.card {
+  img {
+    width: 100px;
+  }
+}

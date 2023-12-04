@@ -32,6 +32,7 @@ import Register from "./pages/register/Register";
 //import useAlert
 import useAlert from "@src/common/hooks/use-alert/useAlert";
 import MyClients from "./pages/my-clients/MyClients";
+import NotificatioPanel from "./components/notification/NotificatioPanel";
 
 // Imports Components
 
@@ -103,6 +104,10 @@ function App() {
             <Route
               path={routerNames["offersOwners"] + ":id"}
               element={<Offers />}
+            />
+            <Route
+              path={routerNames["alerts"]}
+              element={<NotificatioPanel />}
             />
             <Route
               path={routerNames["detailsOwners"] + ":id"}
