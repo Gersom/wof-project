@@ -22,7 +22,7 @@ const verifyEmail = catchedAsync(async (req, res) => {
 	
 	const verifyEmail = await verifyEmailLogic(req.body);
 
-	res.status(200).json(verifyEmail);
+	res.status(200).json({verify : verifyEmail.verified});
 
 
 }, ErrorHandler.verifyEmailErrorHandler);
