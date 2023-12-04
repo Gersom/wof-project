@@ -2,10 +2,10 @@
 export const handleValidation = (dataForm, setErrors) => {
   const errors = {};
 
-  emailValidation(dataForm, errors);
+  //   emailValidation(dataForm, errors);
   nameValidation(dataForm, errors);
   lastNameValidation(dataForm, errors);
-  passwordValidation(dataForm, errors);
+  //   passwordValidation(dataForm, errors);
   cellPhoneValidation(dataForm, errors);
   dniValidation(dataForm, errors);
 

@@ -203,44 +203,43 @@ const FormProfile = () => {
   return (
     <>
       <div className={`${styles["container"]}`}>
-        <div className={styles["profile_wrapper"]}>
-          <h1>Mi Perfil {String(!userData.role)}</h1>
-          <div className={styles["profile_cards_container"]}>
-            <div className={styles["profile_cards_wrapper"]}>
-              <div className={styles["profile_card"]}>
-                <h2>Datos de usuario</h2>
-                <div className={styles["profile_input"]}>
-                  <div className={styles["profile_label"]}>
-                    <div
-                      className={styles["profile_input_icon"]}
-                      style={{ backgroundImage: "url('" + email + "')" }}
-                    ></div>
-                    <span>Email :</span>
+        <form onSubmit={handleSubmit}>
+          <div className={styles["profile_wrapper"]}>
+            <h1>Mi Perfil {String(!userData.role)}</h1>
+            <div className={styles["profile_cards_container"]}>
+              <div className={styles["profile_cards_wrapper"]}>
+                <div className={styles["profile_card"]}>
+                  <h2>Datos de usuario</h2>
+                  <div className={styles["profile_input"]}>
+                    <div className={styles["profile_label"]}>
+                      <div
+                        className={styles["profile_input_icon"]}
+                        style={{ backgroundImage: "url('" + email + "')" }}
+                      ></div>
+                      <span>Email :</span>
+                    </div>
+                    <input
+                      type="text"
+                      name="email"
+                      value={dataForm.email}
+                      disabled
+                    />
                   </div>
-                  <input
-                    type="text"
-                    name="email"
-                    value={dataForm.email}
-                    onChange={handleInputChange}
-                    disabled
-                  />
-                </div>
-                <div className={styles["profile_input"]}>
-                  <div className={styles["profile_label"]}>
-                    <div
-                      className={styles["profile_input_icon"]}
-                      style={{ backgroundImage: "url('" + password + "')" }}
-                    ></div>
-                    <span>Contraseña :</span>
-                  </div>
-                  <input
-                    type="password"
-                    name="password"
-                    value={dataForm.password}
-                    onChange={handleInputChange}
-                    disabled
-                  />
-                  {/* <div
+                  <div className={styles["profile_input"]}>
+                    <div className={styles["profile_label"]}>
+                      <div
+                        className={styles["profile_input_icon"]}
+                        style={{ backgroundImage: "url('" + password + "')" }}
+                      ></div>
+                      <span>Contraseña :</span>
+                    </div>
+                    <input
+                      type="password"
+                      name="password"
+                      value={dataForm.password}
+                      disabled
+                    />
+                    {/* <div
                     className={styles.togglePassword}
                     style={{
                       backgroundImage:
@@ -256,29 +255,172 @@ const FormProfile = () => {
                     style={{ backgroundImage: "url('" + password + "')" }}
                     onClick={handleTogglePasswordVisibility}
                   ></div>*/}
-                  <div className={styles.butonModal}>
-                    <button
-                      onClick={handleToggleModal}
-                      className={styles["profile_btn"]}
+                    <div className={styles.butonModal}>
+                      <button
+                        onClick={handleToggleModal}
+                        className={styles["profile_btn"]}
+                      >
+                        Cambiar Contraseña
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles["profile_card"]}>
+                  <h2>Localicacion</h2>
+                  <div className={styles["profile_input"]}>
+                    <div className={styles["profile_label"]}>
+                      <div
+                        className={styles["profile_input_icon"]}
+                        style={{ backgroundImage: "url('" + email + "')" }}
+                      ></div>
+                      <span>Direccion :</span>
+                    </div>
+                    <input
+                      name="address"
+                      value={dataForm.address}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className={styles["profile_input"]}>
+                    <div className={styles["profile_label"]}>
+                      <div
+                        className={styles["profile_input_icon"]}
+                        style={{ backgroundImage: "url('" + world + "')" }}
+                      ></div>
+                      <span>Pais :</span>
+                    </div>
+                    <select
+                      name="country"
+                      value={dataForm.countryId}
+                      onChange={handleCountryChange}
                     >
-                      Cambiar Contraseña
-                    </button>
+                      <option disabled>{userData?.countries}</option>
+                      {console.log(countries)}
+                      {countries.map((countries) => (
+                        <option key={countries.id} value={countries.id}>
+                          {countries.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className={styles["profile_input"]}>
+                    <div className={styles["profile_label"]}>
+                      <div
+                        className={styles["profile_input_icon"]}
+                        style={{ backgroundImage: "url('" + flag + "')" }}
+                      ></div>
+                      <span>Provincia :</span>
+                    </div>
+                    <select
+                      name="provinces"
+                      value={dataForm.provinceId}
+                      onChange={handleProvinciaChange}
+                    >
+                      <option disabled>{userData?.provinces}</option>
+                      {provinces.map((provinces) => (
+                        <option key={provinces.id} value={provinces.id}>
+                          {provinces.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
               </div>
               <div className={styles["profile_card"]}>
-                <h2>Localicacion</h2>
+                <h2>Datos personales</h2>
                 <div className={styles["profile_input"]}>
                   <div className={styles["profile_label"]}>
                     <div
                       className={styles["profile_input_icon"]}
-                      style={{ backgroundImage: "url('" + email + "')" }}
+                      style={{ backgroundImage: "url('" + user + "')" }}
                     ></div>
-                    <span>Direccion :</span>
+                    <span>Nombres :</span>
                   </div>
                   <input
-                    name="address"
-                    value={dataForm.address}
+                    type="text"
+                    name="name"
+                    value={dataForm.name}
+                    onChange={handleInputChange}
+                  />
+                  <span>{errors.name}</span>
+                </div>
+                <div className={styles["profile_input"]}>
+                  <div className={styles["profile_label"]}>
+                    <div
+                      className={styles["profile_input_icon"]}
+                      style={{ backgroundImage: "url('" + user + "')" }}
+                    ></div>
+                    <span>Apellidos :</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={dataForm.lastName}
+                    onChange={handleInputChange}
+                  />
+                  <span>{errors.lastName}</span>
+                </div>
+                <div className={styles["profile_input"]}>
+                  <div className={styles["profile_label"]}>
+                    <div
+                      className={styles["profile_input_icon"]}
+                      style={{ backgroundImage: "url('" + phoneIcon + "')" }}
+                    ></div>
+                    <span>Nro de Celular :</span>
+                  </div>
+                  <input
+                    type={phonePasswordShow ? "text" : "password"}
+                    name="cellPhone"
+                    value={dataForm.cellPhone}
+                    onChange={handleInputChange}
+                  />
+                  <div
+                    className={styles.togglePassword}
+                    style={{
+                      backgroundImage:
+                        "url('" + (!phonePasswordShow ? eye : closeEye) + "')",
+                    }}
+                    onClick={() => setPhonePasswordShow(!phonePasswordShow)}
+                  ></div>
+                  <span>{errors.cellPhone}</span>
+                </div>
+                <div className={styles["profile_input"]}>
+                  <div className={styles["profile_label"]}>
+                    <div
+                      className={styles["profile_input_icon"]}
+                      style={{ backgroundImage: "url('" + idIcon + "')" }}
+                    ></div>
+                    <span>DNI :</span>
+                  </div>
+                  <input
+                    type={dniPasswordShow ? "text" : "password"}
+                    name="dni"
+                    value={dataForm.dni}
+                    onChange={handleInputChange}
+                  />
+                  <div
+                    className={styles.togglePassword}
+                    style={{
+                      backgroundImage:
+                        "url('" + (!dniPasswordShow ? eye : closeEye) + "')",
+                    }}
+                    onClick={() => setDniPasswordShow(!dniPasswordShow)}
+                  ></div>
+                  <span>{errors.dni}</span>
+                </div>
+                <div className={styles["profile_input"]}>
+                  <div className={styles["profile_label"]}>
+                    <div
+                      className={styles["profile_input_icon"]}
+                      style={{ backgroundImage: "url('" + birthdate + "')" }}
+                    ></div>
+                    <span>Fecha de Nacimiento :</span>
+                  </div>
+                  <input
+                    name="birthdate"
+                    type="date"
+                    value={convertirDate(dataForm.birthdate)}
+                    max={new Date().toISOString().split("T")[0]} // Establece el máximo a la fecha actual
                     onChange={handleInputChange}
                   />
                 </div>
@@ -286,184 +428,42 @@ const FormProfile = () => {
                   <div className={styles["profile_label"]}>
                     <div
                       className={styles["profile_input_icon"]}
-                      style={{ backgroundImage: "url('" + world + "')" }}
+                      style={{ backgroundImage: "url('" + pictureIcon + "')" }}
                     ></div>
-                    <span>Pais :</span>
+                    <span>Foto de perfil :</span>
                   </div>
-                  <select
-                    name="country"
-                    value={dataForm.countryId}
-                    onChange={handleCountryChange}
+                  <input
+                    type="file"
+                    name="file"
+                    id="image_input"
+                    className={styles["input_file_hidden"]}
+                    onChange={handlerChangeImage}
+                  />
+                  <label
+                    htmlFor="image_input"
+                    className={styles["profile_input_image"]}
                   >
-                    <option disabled>{userData?.countries}</option>
-                    {console.log(countries)}
-                    {countries.map((countries) => (
-                      <option key={countries.id} value={countries.id}>
-                        {countries.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className={styles["profile_input"]}>
-                  <div className={styles["profile_label"]}>
-                    <div
-                      className={styles["profile_input_icon"]}
-                      style={{ backgroundImage: "url('" + flag + "')" }}
-                    ></div>
-                    <span>Provincia :</span>
-                  </div>
-                  <select
-                    name="provinces"
-                    value={dataForm.provinceId}
-                    onChange={handleProvinciaChange}
-                  >
-                    <option disabled>{userData?.provinces}</option>
-                    {provinces.map((provinces) => (
-                      <option key={provinces.id} value={provinces.id}>
-                        {provinces.name}
-                      </option>
-                    ))}
-                  </select>
+                    <div className={styles["profile_input_image_preview"]}>
+                      <img
+                        className={styles.imgProfile}
+                        src={dataForm.profilePicture}
+                        alt=""
+                      />
+                    </div>
+                    <div className={styles["profile_input_image_btn"]}>
+                      Cargar desde ordenador
+                    </div>
+                  </label>
                 </div>
               </div>
             </div>
-            <div className={styles["profile_card"]}>
-              <h2>Datos personales</h2>
-              <div className={styles["profile_input"]}>
-                <div className={styles["profile_label"]}>
-                  <div
-                    className={styles["profile_input_icon"]}
-                    style={{ backgroundImage: "url('" + user + "')" }}
-                  ></div>
-                  <span>Nombres :</span>
-                </div>
-                <input
-                  type="text"
-                  name="name"
-                  value={dataForm.name}
-                  onChange={handleInputChange}
-                />
-                <span>{errors.name}</span>
-              </div>
-              <div className={styles["profile_input"]}>
-                <div className={styles["profile_label"]}>
-                  <div
-                    className={styles["profile_input_icon"]}
-                    style={{ backgroundImage: "url('" + user + "')" }}
-                  ></div>
-                  <span>Apellidos :</span>
-                </div>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={dataForm.lastName}
-                  onChange={handleInputChange}
-                />
-                <span>{errors.lastName}</span>
-              </div>
-              <div className={styles["profile_input"]}>
-                <div className={styles["profile_label"]}>
-                  <div
-                    className={styles["profile_input_icon"]}
-                    style={{ backgroundImage: "url('" + phoneIcon + "')" }}
-                  ></div>
-                  <span>Nro de Celular :</span>
-                </div>
-                <input
-                  type={phonePasswordShow ? "text" : "password"}
-                  name="cellPhone"
-                  value={dataForm.cellPhone}
-                  onChange={handleInputChange}
-                />
-                <div
-                  className={styles.togglePassword}
-                  style={{
-                    backgroundImage:
-                      "url('" + (!phonePasswordShow ? eye : closeEye) + "')",
-                  }}
-                  onClick={() => setPhonePasswordShow(!phonePasswordShow)}
-                ></div>
-                <span>{errors.cellPhone}</span>
-              </div>
-              <div className={styles["profile_input"]}>
-                <div className={styles["profile_label"]}>
-                  <div
-                    className={styles["profile_input_icon"]}
-                    style={{ backgroundImage: "url('" + idIcon + "')" }}
-                  ></div>
-                  <span>DNI :</span>
-                </div>
-                <input
-                  type={dniPasswordShow ? "text" : "password"}
-                  name="dni"
-                  value={dataForm.dni}
-                  onChange={handleInputChange}
-                />
-                <div
-                  className={styles.togglePassword}
-                  style={{
-                    backgroundImage:
-                      "url('" + (!dniPasswordShow ? eye : closeEye) + "')",
-                  }}
-                  onClick={() => setDniPasswordShow(!dniPasswordShow)}
-                ></div>
-                <span>{errors.dni}</span>
-              </div>
-              <div className={styles["profile_input"]}>
-                <div className={styles["profile_label"]}>
-                  <div
-                    className={styles["profile_input_icon"]}
-                    style={{ backgroundImage: "url('" + birthdate + "')" }}
-                  ></div>
-                  <span>Fecha de Nacimiento :</span>
-                </div>
-                <input
-                  name="birthdate"
-                  type="date"
-                  value={convertirDate(dataForm.birthdate)}
-                  max={new Date().toISOString().split("T")[0]} // Establece el máximo a la fecha actual
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className={styles["profile_input"]}>
-                <div className={styles["profile_label"]}>
-                  <div
-                    className={styles["profile_input_icon"]}
-                    style={{ backgroundImage: "url('" + pictureIcon + "')" }}
-                  ></div>
-                  <span>Foto de perfil :</span>
-                </div>
-                <input
-                  type="file"
-                  name="file"
-                  id="image_input"
-                  className={styles["input_file_hidden"]}
-                  onChange={handlerChangeImage}
-                />
-                <label
-                  htmlFor="image_input"
-                  className={styles["profile_input_image"]}
-                >
-                  <div className={styles["profile_input_image_preview"]}>
-                    <img
-                      className={styles.imgProfile}
-                      src={dataForm.profilePicture}
-                      alt=""
-                    />
-                  </div>
-                  <div className={styles["profile_input_image_btn"]}>
-                    Cargar desde ordenador
-                  </div>
-                </label>
-              </div>
+            <div className={styles["profile_footer"]}>
+              <button type="submit" className={styles["profile_btn"]}>
+                Guardar cambios
+              </button>
             </div>
           </div>
-          <div className={styles["profile_footer"]}>
-            <button onClick={handleSubmit} className={styles["profile_btn"]}>
-              Guardar cambios
-            </button>
-          </div>
-        </div>
+        </form>
       </div>
 
       <ModalCustom state={modalRole} closeButton={false}>
@@ -475,7 +475,6 @@ const FormProfile = () => {
           <ModalChangePassword
             className={styles.containerModal}
             errors={errors}
-            setErrors={setErrors}
             handleToggleModal={handleToggleModal}
           >
             <img

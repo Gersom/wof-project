@@ -8,17 +8,16 @@ import password from "@icons/password.svg";
 import eye from "@icons/eye.svg";
 import closeEye from "@icons/closeEye.svg";
 import cross from "@icons/filterSortLocationBar/cross.svg";
-import { validation } from "../../forms/form-profile/validation";
+import { handleValidation } from "../modal-changePassword/validation";
+import { setAlert } from "@src/common/store/slices/alertSlice";
+import { useDispatch } from "react-redux";
 
-const ModalChangePassword = ({
-  children,
-  errors,
-  setErrors,
-  handlerToggleModal,
-}) => {
+const ModalChangePassword = ({ children, handlerToggleModal }) => {
   const userData = useSelector((state) => state.userReducer.user);
+  const [errors, setErrors] = useState({});
   const apiUrl = API_URL_UPDATE_USER;
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
   const [contrasenaPasswordShow, setContrasenaPasswordShow] = useState(false);
   const [repeatContrasenaPasswordShow, setRepeatContrasenaPasswordShow] =
     useState(false);
@@ -32,7 +31,7 @@ const ModalChangePassword = ({
     const { name, value } = e.target;
 
     setDataForm((prevDataForm) => ({ ...prevDataForm, [name]: value }));
-    validation({ ...dataForm, [name]: value }, errors, setErrors);
+    handleValidation({ ...dataForm, [name]: value }, errors);
   };
 
   const handleTogglePasswordVisibility = () => {
@@ -45,7 +44,7 @@ const ModalChangePassword = ({
     const hasErrors = Object.values(errors).some((error) => error !== "");
 
     if (dataForm.password != dataForm.repeatPassword) {
-      window.alert("Hay errores");
+      setAlert({ message: "Completa los campos", type: "error" });
     } else {
       try {
         await axios.put(`${apiUrl}/change-password/`, {
@@ -54,7 +53,12 @@ const ModalChangePassword = ({
           userId: dataForm.id,
         });
         // console.log("Respuesta del servidor:", response.data);
-        window.alert("¡Contraseña actualizada!");
+        dispatch(
+          setAlert({
+            message: `Contraseña Actualizada`,
+            type: "success",
+          })
+        );
         handlerToggleModal();
       } catch (error) {
         console.error("Error al realizar la solicitud PUT:", error.message);
@@ -65,86 +69,85 @@ const ModalChangePassword = ({
   return (
     <>
       <div className={styles.modal}>
-        <div className={styles.container}>
-          <div className={styles["profile_wrapper"]}>
-            <h1>¿Deseas cambiar tu contraseña?</h1>
-            <p>Es facil y sencillo, solo pon tu nueva contraseña y listo.</p>
-            <div className={styles["profile_card"]}>
-              <h2>Password</h2>
-              <div className={styles["profile_input"]}>
-                <div className={styles["profile_label"]}>
+        <form onClick={handleSubmit}>
+          <div className={styles.container}>
+            <div className={styles["profile_wrapper"]}>
+              <h1>¿Deseas cambiar tu contraseña?</h1>
+              <p>Es facil y sencillo, solo pon tu nueva contraseña y listo.</p>
+              <div className={styles["profile_card"]}>
+                <h2>Password</h2>
+                <div className={styles["profile_input"]}>
+                  <div className={styles["profile_label"]}>
+                    <div
+                      className={styles["profile_input_icon"]}
+                      style={{ backgroundImage: "url('" + password + "')" }}
+                    ></div>
+                    <span>Nueva Contraseña:</span>
+                  </div>
+                  <input
+                    type={contrasenaPasswordShow ? "text" : "password"}
+                    name="password"
+                    value={dataForm.password}
+                    onChange={handleInputChange}
+                  />
                   <div
-                    className={styles["profile_input_icon"]}
-                    style={{ backgroundImage: "url('" + password + "')" }}
+                    className={styles.togglePassword}
+                    style={{
+                      backgroundImage:
+                        "url('" +
+                        (!contrasenaPasswordShow ? eye : closeEye) +
+                        "')",
+                    }}
+                    onClick={() =>
+                      setContrasenaPasswordShow(!contrasenaPasswordShow)
+                    }
                   ></div>
-                  <span>Nueva Contraseña:</span>
+                  <span>{errors.password}</span>
                 </div>
-                <input
-                  type={contrasenaPasswordShow ? "text" : "password"}
-                  name="password"
-                  value={dataForm.password}
-                  onChange={handleInputChange}
-                />
-                <div
-                  className={styles.togglePassword}
-                  style={{
-                    backgroundImage:
-                      "url('" +
-                      (!contrasenaPasswordShow ? eye : closeEye) +
-                      "')",
-                  }}
-                  onClick={() =>
-                    setContrasenaPasswordShow(!contrasenaPasswordShow)
-                  }
-                ></div>
-                <span>{errors.password}</span>
-              </div>
-              <div className={styles["profile_input"]}>
-                <div className={styles["profile_label"]}>
+                <div className={styles["profile_input"]}>
+                  <div className={styles["profile_label"]}>
+                    <div
+                      className={styles["profile_input_icon"]}
+                      style={{ backgroundImage: "url('" + password + "')" }}
+                    ></div>
+                    <span>Repite Contraseña:</span>
+                  </div>
+                  <input
+                    type={repeatContrasenaPasswordShow ? "text" : "password"}
+                    name="repeatPassword"
+                    value={dataForm.repeatPassword}
+                    onChange={handleInputChange}
+                  />
                   <div
-                    className={styles["profile_input_icon"]}
-                    style={{ backgroundImage: "url('" + password + "')" }}
+                    className={styles.togglePassword}
+                    style={{
+                      backgroundImage:
+                        "url('" +
+                        (!repeatContrasenaPasswordShow ? eye : closeEye) +
+                        "')",
+                    }}
+                    onClick={() =>
+                      setRepeatContrasenaPasswordShow(
+                        !repeatContrasenaPasswordShow
+                      )
+                    }
                   ></div>
-                  <span>Repite Contraseña:</span>
-                </div>
-                <input
-                  type={repeatContrasenaPasswordShow ? "text" : "password"}
-                  name="repeatPassword"
-                  value={dataForm.repeatPassword}
-                  onChange={handleInputChange}
-                />
-                <div
-                  className={styles.togglePassword}
-                  style={{
-                    backgroundImage:
-                      "url('" +
-                      (!repeatContrasenaPasswordShow ? eye : closeEye) +
-                      "')",
-                  }}
-                  onClick={() =>
-                    setRepeatContrasenaPasswordShow(
-                      !repeatContrasenaPasswordShow
-                    )
-                  }
-                ></div>
-                <span>{errors.password} </span>
-                <div
-                  style={{ backgroundImage: "url('" + password + "')" }}
-                  onClick={handleTogglePasswordVisibility}
-                ></div>
-                <div className={styles.butonModal}>
-                  <button
-                    onClick={handleSubmit}
-                    className={styles["profile_btn"]}
-                  >
-                    Cambiar Contraseña
-                  </button>
+                  <span>{errors.repeatPassword} </span>
+                  <div
+                    style={{ backgroundImage: "url('" + password + "')" }}
+                    onClick={handleTogglePasswordVisibility}
+                  ></div>
+                  <div className={styles.butonModal}>
+                    <button type="submit" className={styles["profile_btn"]}>
+                      Cambiar Contraseña
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
+            {children}
           </div>
-          {children}
-        </div>
+        </form>
       </div>
     </>
   );
