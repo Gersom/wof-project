@@ -37,6 +37,14 @@ VerifyEmailModel['createVerifyEmail'] = async (data) => {
 
 	if (!email) throw Error('Email is required');
 
+	const emailExist  = await VerifyEmailModel.findOne({
+		where: {
+			email,
+			verified: true,
+		},
+	});
+	if (emailExist) throw Error('Email already exist');
+
 	const newVerifyEmail = await VerifyEmailModel.create(data);
 
 	return newVerifyEmail;
@@ -48,20 +56,15 @@ VerifyEmailModel['findOneVerifyEmail'] = async (data) => {
 	const verifyEmail = await VerifyEmailModel.findOne({
 		where: {
 			email,
-			code,
 		},
 	});
 
-	if (!verifyEmail) throw Error('Verify email not found');
+	if (!verifyEmail) throw Error('Email not found');
 
-	VerifyEmailModel.update(
-		{ verified: true },
-		{
-			where: {
-				id: verifyEmail.id,
-			},
-		}
-	);
+	if (verifyEmail.code !== code) throw Error('Code is not valid');
+
+	verifyEmail.verified = true;
+	
 	return verifyEmail;
 };
 

@@ -80,7 +80,7 @@ const sendVerifyMail = async (email, code) => {
           <tr>
             <td align="center" style="padding: 30px 64px; color: #e2e4eb">
               <br />
-              Email: ${email}
+              Email: ${email}-
               Codigo : ${code}
             </td>
             

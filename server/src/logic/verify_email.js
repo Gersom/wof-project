@@ -24,8 +24,7 @@ const verifyEmailLogic = async (data) => {
 
     if (!verifyEmail) throw Error("Verify email not found");
 
-
-    return true;   
+    return verifyEmail;   
 }
 
 
