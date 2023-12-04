@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./styles.module.scss";
 import CardUser from "@src/ui/components/cards/card-user/CardUser";
 import Carousel from "@src/ui/components/carousel/Carousel";
@@ -10,7 +10,7 @@ import CardAccept from "@src/ui/components/cards/card-accept/cardAccept";
 import ModalPrice from "@src/ui/components/modals/modal-price/ModalPrice";
 import ModalCustom from "@src/ui/components/modals/modal-custom/ModalCustom";
 import ModalSendOffer from "@src/ui/components/modals/modal-send-offer/SendOffer";
-import ModalCancelOffer from "@src/ui/components/modals/modal-cancelOffer/ModalCancelOffer";
+import ModalCancelOffer from "@src/ui/components/modals/modal-cancel-offer/ModalCancelOffer";
 
 const Details = () => {
   const { id } = useParams();
