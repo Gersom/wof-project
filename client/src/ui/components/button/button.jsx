@@ -45,8 +45,8 @@ export const AceptarButton= ({ onClick, alignLeft, children }) => (
     <div className={styles.buttonContainer}>
       <button className={`${styles.AceptarButton} ${alignLeft ? styles.alignLeft : ''}`} onClick={onClick}>
         {children}
-        <img src={iconAceptar} alt="icon" className={styles.iconAceptar} />
-        <span className={styles.buttonText}>Acepto</span>
+        {/* <img src={iconAceptar} alt="icon" className={styles.iconAceptar} /> */}
+        <span className={styles.buttonText}>Regresar</span>
       </button>
     </div>
   );

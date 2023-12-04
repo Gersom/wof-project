@@ -23,7 +23,7 @@ const dbConnectPostgresql = async () => {
     let optionsSequelize = { force: true }
     if (modeServer === 'prod') optionsSequelize = {}
     
-    await sequelize.sync(optionsSequelize);
+    await sequelize.sync();
     console.log('- Models synchronization completed');
   } catch (e) {
     console.error('\n*** PostgreSQL ERROR CONEXION ***\n\n', e.message)
