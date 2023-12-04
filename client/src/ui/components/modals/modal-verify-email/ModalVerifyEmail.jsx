@@ -1,7 +1,10 @@
 import styles from "./styles.module.scss";
 import mail from "@icons/mail.svg";
+import { useState } from "react";
 
-const ModalVerifyEmail = ({ message, email }) => {
+const ModalVerifyEmail = ({ message, email, onSubmit}) => {
+  const [code, setCode] = useState("");
+
   return (
     <div className={styles.container}>
       <h1>Verifica tu email</h1>
@@ -14,9 +17,11 @@ const ModalVerifyEmail = ({ message, email }) => {
         <input
           placeholder="Código de email..."
           className={styles.input}
-        ></input>
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+        ></input>   
       </section>
-      <button className={styles.boton}>Registrarse</button>
+      <button className={styles.boton} onClick={() => onSubmit(code)}>Registrarse</button>
     </div>
   );
 };
