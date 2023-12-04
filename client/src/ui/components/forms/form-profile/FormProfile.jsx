@@ -257,6 +257,7 @@ const FormProfile = () => {
                   ></div>*/}
                     <div className={styles.butonModal}>
                       <button
+                        type="button"
                         onClick={handleToggleModal}
                         className={styles["profile_btn"]}
                       >
