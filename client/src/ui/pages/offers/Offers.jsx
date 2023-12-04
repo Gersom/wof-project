@@ -1,40 +1,58 @@
-import CareInProgress from "@src/ui/components/care-in-progress/CareInProgress";
-import styles from "./styles.module.scss";
-import FilterSortLocationBar from "@src/ui/components/filter-sort-location-bar/FilterSortLocationBar";
-import OffersCareGivers from "@src/ui/components/offers/offers-care-givers/OffersCareGivers";
-import OffersOwner from "@src/ui/components/offers/offers-owner/OffersOwner";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import CareInProgress from '@src/ui/components/care-in-progress/CareInProgress';
+import styles from './styles.module.scss';
+import FilterSortLocationBar from '@src/ui/components/filter-sort-location-bar/FilterSortLocationBar';
+import OffersCareGivers from '@src/ui/components/offers/offers-care-givers/OffersCareGivers';
+import OffersOwner from '@src/ui/components/offers/offers-owner/OffersOwner';
+import { useSelector } from 'react-redux';
+import useGetPostsCaregiverId from '@src/common/hooks/useGetPostsCaregiverId';
+
 const Offers = () => {
-  const role = useSelector((state) => state.userReducer.user.role);
-  const { id } = useParams();
+	const role = useSelector((state) => state.userReducer.user.role);
 
-  const renderOffers = () => {
-    if (role === "caregiver") {
-      return (
-        <>
-          <CareInProgress />
-          <h1>Mas Ofertas</h1>
-          <OffersOwner />
-        </>
-      );
-    } else {
-      return <OffersCareGivers />;
-    }
-  };
+	const { isLoading, posts } = useGetPostsCaregiverId();
 
-  return (
-    <div className={styles.containerGrid}>
-      <h1>
-        {role === "caregiver"
-          ? "Mascotas para cuidar"
-          : "Cuidadores para tu mascota"}
-      </h1>
-      <FilterSortLocationBar role={role} />
+	const renderOffers = () => {
+		if (role === 'caregiver') {
+			return (
+				<>
+					{!isLoading && posts.length > 0 && (
+						<>
+							{posts.map(
+								(post, index) =>
+									post.status === 'paid' && (
+										<CareInProgress
+											endDate={post.startDate}
+											startDate={post.startDate}
+                      petName={post.pet.name}
+											image={post.pet.imageUrl}
+											key={index}
+										/>
+									)
+							)}
+							<h1>Mas ofertas</h1>
+						</>
+					)}
 
-      {renderOffers()}
-    </div>
-  );
+					<OffersOwner />
+				</>
+			);
+		} else {
+			return <OffersCareGivers />;
+		}
+	};
+
+	return (
+		<div className={styles.containerGrid}>
+			<h1>
+				{role === 'caregiver'
+					? 'Mascotas para cuidar'
+					: 'Cuidadores para tu mascota'}
+			</h1>
+			<FilterSortLocationBar role={role} />
+
+			{renderOffers()}
+		</div>
+	);
 };
 
 export default Offers;

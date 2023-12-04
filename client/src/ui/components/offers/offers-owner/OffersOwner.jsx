@@ -6,12 +6,12 @@ function OffersOwner() {
 	const { offersOwner } = useOffersOwner();
 	return (
 		<div className={styles.container}>
-			{offersOwner.map((offer, index) => (
-				<CardOffersOwner
-					key={index}
-					data={offer}
-				/>
-			))}
+			{offersOwner.map(
+				(offer, index) =>
+					offer.status !== 'paid' && (
+						<CardOffersOwner key={index} data={offer} />
+					)
+			)}
 		</div>
 	);
 }

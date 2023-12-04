@@ -23,7 +23,7 @@ import user from "@icons/user.svg";
 import { useDispatch } from "react-redux";
 import ModalCustom from "@components/modals/modal-custom/ModalCustom";
 import ModalRole from "@components/modals/modal-role/ModalRole";
-import ModalChangePassword from "../../modals/modal-changePassword/ModalChangePassword";
+import ModalChangePassword from "../../modals/modal-change-password/ModalChangePassword";
 import cross from "@icons/filterSortLocationBar/cross.svg";
 import { setAlert } from "@src/common/store/slices/alertSlice";
 import { actionGetUser } from "@common/store/actions/userActions";

@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Timer from './timer/Timer';
 import { useDispatch } from 'react-redux';
@@ -8,6 +8,7 @@ const CareInProgress = ({
 	startDate = '2023-11-27T05:00:00.000Z',
 	endDate = '2023-12-05T05:00:00.000Z',
 	image = 'https://wof-server.up.railway.app/pictures/pet1_02.png',
+	petName = '',
 	style = '',
 }) => {
 	const dispatch = useDispatch();
@@ -28,7 +29,8 @@ const CareInProgress = ({
 		setStartBtnDisabled(isBeforeStartDate || isTimerExpired);
 	}, [isBeforeStartDate, isTimerExpired]);
 
-	const styleContainer = style === 'small' ? styles.mainContainerSmall : styles.mainCont;
+	const styleContainer =
+		style === 'small' ? styles.mainContainerSmall : styles.mainCont;
 
 	const handleFinishService = () => {
 		if (!isServiceFinished && isTimerExpired && !isBeforeStartDate) {
@@ -55,11 +57,12 @@ const CareInProgress = ({
 
 	return (
 		<div className={styleContainer}>
-			<div className={styles.firstCont}>
+			<figure>
 				<img src={image} alt='Imagen de gato' />
-			</div>
+				<figcaption>{petName}</figcaption>
+			</figure>
 			<div className={styles.secondCont}>
-				<h4 >
+				<h4>
 					{isServiceFinished && 'Servicio Finalizado'}
 					{isTimerExpired && 'Servicio Finalizado'}
 					{isBeforeStartDate && 'Servicio no iniciado'}
