@@ -43,7 +43,7 @@ const ModalChangePassword = ({
     Object.values(errors).some((error) => error !== "");
 
     if (dataForm.password != dataForm.repeatPassword) {
-      window.alert("Hay errores");
+      // window.alert("Hay errores");
     } else {
       try {
         await axios.put(`${apiUrl}/change-password/`, {
@@ -52,7 +52,7 @@ const ModalChangePassword = ({
           userId: dataForm.id,
         });
         // console.log("Respuesta del servidor:", response.data);
-        window.alert("¡Contraseña actualizada!");
+        // window.alert("¡Contraseña actualizada!");
         handlerToggleModal();
       } catch (error) {
         console.error("Error al realizar la solicitud PUT:", error.message);
@@ -80,8 +80,8 @@ const ModalChangePassword = ({
                   </div>
                   <input
                     type={contrasenaPasswordShow ? "text" : "password"}
-                    name="password"
-                    value={dataForm.password}
+                    name="newPassword"
+                    value={dataForm.newPassword}
                     onChange={handleInputChange}
                   />
                   <div
@@ -108,8 +108,8 @@ const ModalChangePassword = ({
                   </div>
                   <input
                     type={repeatContrasenaPasswordShow ? "text" : "password"}
-                    name="repeatPassword"
-                    value={dataForm.repeatPassword}
+                    name="newPasswordRepeat"
+                    value={dataForm.newPasswordRepeat}
                     onChange={handleInputChange}
                   />
                   <div
