@@ -70,7 +70,7 @@ const deleteUserMail = async (
         <td align="center" style=" max-width: 135px">
           <img
             style="width: 100%"
-            src="https://wof-server.up.railway.app/pictures/mailing/missYou.jpg"
+            src="https://wof-server.up.railway.app/pictures/mailing/payment.jpg"
             alt="img"
           />
         </td>
@@ -81,11 +81,10 @@ const deleteUserMail = async (
           style="padding: 15px; font-size: 45px; color: #cbcbd0"
         >
         <h1>Nombre:${name}${lastName}</h1> 
-        <p>$Email:{email}</p>
+        <p>$Email:~${email}</p>
         <p>Numero de trasaccion:${transactionId}</p>
         <p>Cargo realizado:${currencyCode}${amount}</p>
-        <p>Fecha:${date}</p>
-          ¡Gracias por aquirir nuestro servicio! 
+          ¡Gracias por adquirir nuestro servicio! 
         </td>
       </tr>
       <tr>
