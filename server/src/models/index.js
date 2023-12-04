@@ -30,7 +30,8 @@ const models = {
   UsersModel: require(`./${pathModel}/users`),
   GerdersModel: require(`./${pathModel}/genders`),
   NotificationsModel: require(`./${pathModel}/notifications`),
-  AdminModel: require(`./${pathModel}/admin`)
+  AdminModel: require(`./${pathModel}/admin`),
+  VerifyEmailModel: require(`./${pathModel}/verify_email`),
 }
 
 module.exports = models

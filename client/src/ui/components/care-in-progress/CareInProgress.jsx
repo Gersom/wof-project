@@ -63,9 +63,7 @@ const CareInProgress = ({
 			</figure>
 			<div className={styles.secondCont}>
 				<h4>
-					{isServiceFinished && 'Servicio Finalizado'}
-					{isTimerExpired && 'Servicio Finalizado'}
-					{isBeforeStartDate && 'Servicio no iniciado'}
+					{isTimerExpired | isBeforeStartDate && 'Servicio Finalizado'}
 					{!isServiceFinished &&
 						!isTimerExpired &&
 						!isBeforeStartDate &&

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { API_URL_UPDATE_USER } from "@src/common/constants/api";
+import { API_URL } from "@src/common/constants/api";
 import styles from "./styles.module.scss";
 import password from "@icons/password.svg";
 import eye from "@icons/eye.svg";
@@ -15,7 +15,6 @@ const ModalChangePassword = ({
   handlerToggleModal,
 }) => {
   const userData = useSelector((state) => state.userReducer.user);
-  const apiUrl = API_URL_UPDATE_USER;
   const [showPassword, setShowPassword] = useState(false);
   const [contrasenaPasswordShow, setContrasenaPasswordShow] = useState(false);
   const [repeatContrasenaPasswordShow, setRepeatContrasenaPasswordShow] =
@@ -43,16 +42,16 @@ const ModalChangePassword = ({
     Object.values(errors).some((error) => error !== "");
 
     if (dataForm.password != dataForm.repeatPassword) {
-      window.alert("Hay errores");
+      // window.alert("Hay errores");
     } else {
       try {
-        await axios.put(`${apiUrl}/change-password/`, {
+        await axios.put(`${API_URL}/change-password/`, {
           newPassword: dataForm.newPassword,
           newPasswordRepeat: dataForm.newPasswordRepeat,
-          userId: dataForm.id,
+          userId: dataForm.userId,
         });
         // console.log("Respuesta del servidor:", response.data);
-        window.alert("¡Contraseña actualizada!");
+        // window.alert("¡Contraseña actualizada!");
         handlerToggleModal();
       } catch (error) {
         console.error("Error al realizar la solicitud PUT:", error.message);

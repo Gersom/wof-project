@@ -94,7 +94,7 @@ const FormProfile = () => {
         if (data) {
           setProvinces(data);
         } else {
-          window.alert("Error al obtener la data");
+          // window.alert("Error al obtener la data");
         }
       })
       .catch((error) => {
@@ -108,7 +108,7 @@ const FormProfile = () => {
         if (data) {
           setCountries(data);
         } else {
-          window.alert("Error al obtener la data");
+          // window.alert("Error al obtener la data");
         }
       })
       .catch((error) => {

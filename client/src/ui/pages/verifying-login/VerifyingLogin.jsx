@@ -50,10 +50,10 @@ const VerifyingLogin = () => {
 
     try {
       await axios.post(apiUrl, userData);
-      window.alert("Usuario creado correctamente");
+      // window.alert("Usuario creado correctamente");
     } catch (error) {
       console.error("Error al realizar la solicitud POST:", error.message);
-      window.alert("Error al crear usuario");
+      // window.alert("Error al crear usuario");
     }
   };
 
