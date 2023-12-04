@@ -3,7 +3,7 @@ import { API_URL } from "@src/common/constants/api";
 import styles from "./styles.module.scss";
 import axios from "axios";
 
-const ModalCancelOffer = ({ message, nameOwner , data}) => {
+const ModalCancelOffer = ({ nameOwner , data}) => {
 
   const cancelOffer = async (data) => {
     try {

@@ -3,11 +3,9 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { API_URL_UPDATE_USER } from "@src/common/constants/api";
 import styles from "./styles.module.scss";
-import email from "@icons/email.svg";
 import password from "@icons/password.svg";
 import eye from "@icons/eye.svg";
 import closeEye from "@icons/closeEye.svg";
-import cross from "@icons/filterSortLocationBar/cross.svg";
 import { validation } from "../../forms/form-profile/validation";
 
 const ModalChangePassword = ({
@@ -42,7 +40,7 @@ const ModalChangePassword = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const hasErrors = Object.values(errors).some((error) => error !== "");
+    Object.values(errors).some((error) => error !== "");
 
     if (dataForm.password != dataForm.repeatPassword) {
       window.alert("Hay errores");
