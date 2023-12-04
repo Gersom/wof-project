@@ -80,8 +80,8 @@ const ModalChangePassword = ({
                   </div>
                   <input
                     type={contrasenaPasswordShow ? "text" : "password"}
-                    name="password"
-                    value={dataForm.password}
+                    name="newPassword"
+                    value={dataForm.newPassword}
                     onChange={handleInputChange}
                   />
                   <div
@@ -108,8 +108,8 @@ const ModalChangePassword = ({
                   </div>
                   <input
                     type={repeatContrasenaPasswordShow ? "text" : "password"}
-                    name="repeatPassword"
-                    value={dataForm.repeatPassword}
+                    name="newPasswordRepeat"
+                    value={dataForm.newPasswordRepeat}
                     onChange={handleInputChange}
                   />
                   <div
