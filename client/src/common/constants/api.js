@@ -20,6 +20,8 @@ export const API_URL_UPDATE_USER = API_URL + "/users";
 export const API_URL_TRANSACTIONS = API_URL + "/transactions";
 export const API_URL_NOTIFICATIONS = API_URL + "/notifications";
 
+export const API_URL_VERIFY_EMAIL = API_URL + "/verify_email";
+
 export const API_URL_MY_PETS = API_URL + "/pets";
 export const API_URL_MY_PETS_OWNER_ID = API_URL_MY_PETS + "?ownerId=";
 export const API_URL_SPECIES = API_URL + "/species";

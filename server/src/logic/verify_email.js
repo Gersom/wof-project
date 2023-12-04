@@ -6,11 +6,11 @@ const {
 const { createUser } = require('./users');
 
 const postSendVerifyEmailLogic = async (data) => {
-    const User = await UsersModel.findAllUsers();
+    
+    const User = await UsersModel.findOneData('email', data.email);
 
-    const alreadyExist = User.find((user) => user.email === data.email);
 
-    if (alreadyExist) throw Error("Email already exist");
+    if (User) throw Error("Email already exist");
 
     const newVerifyEmail = await VerifyEmailModel.createVerifyEmail(data);
 
@@ -24,8 +24,9 @@ const verifyEmailLogic = async (data) => {
 
     if (!verifyEmail) throw Error("Verify email not found");
 
+    await VerifyEmailModel
 
-    return true;   
+    return verifyEmail;   
 }
 
 

@@ -32,10 +32,20 @@ const schema = {
 
 const VerifyEmailModel = sequelize.define(name, schema, config);
 
+// add static methods (functions) to model
+
+addMethods(VerifyEmailModel);
+
 VerifyEmailModel['createVerifyEmail'] = async (data) => {
 	const { email } = data;
 
 	if (!email) throw Error('Email is required');
+
+	await VerifyEmailModel.destroy({
+		where: {
+			email,
+		},
+	});
 
 	const newVerifyEmail = await VerifyEmailModel.create(data);
 
@@ -48,25 +58,20 @@ VerifyEmailModel['findOneVerifyEmail'] = async (data) => {
 	const verifyEmail = await VerifyEmailModel.findOne({
 		where: {
 			email,
-			code,
 		},
 	});
 
-	if (!verifyEmail) throw Error('Verify email not found');
+	if (!verifyEmail) throw Error('Email not found');
 
-	VerifyEmailModel.update(
-		{ verified: true },
-		{
-			where: {
-				id: verifyEmail.id,
-			},
-		}
-	);
+	if (verifyEmail.code !== code) throw Error('Code is not valid');
+
+	verifyEmail.verified = true;
+	VerifyEmailModel.destroy({
+		where: {
+			email,
+		},
+	});
 	return verifyEmail;
 };
-
-// add static methods (functions) to model
-
-addMethods(VerifyEmailModel);
 
 module.exports = VerifyEmailModel;
