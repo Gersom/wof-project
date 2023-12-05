@@ -7,7 +7,7 @@ import { API_URL_CREATE_POST } from '@src/common/constants/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { updatePetsTriger } from '@src/common/store/slices/myPetsSlice';
 import { setAlert } from '@src/common/store/slices/alertSlice';
-
+import useWsOwner from '@src/common/utils/websocket/useWsOwner';
 
 const DatePublicSelect = ({
 	data = {
@@ -25,9 +25,13 @@ const DatePublicSelect = ({
 	toggleModal,
 }) => {
 	const dispatch = useDispatch();
+	const { sendMessage } = useWsOwner('owner');
+
 	const [startDate, setStartDate] = useState(data.startDate?.split('T')[0]);
 	const [endDate, setEndDate] = useState(data.endDate?.split('T')[0]);
 	const address = useSelector((state) => state.userReducer?.user?.address);
+
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		if (name === 'startDate') {
@@ -87,6 +91,7 @@ const DatePublicSelect = ({
 				dispatch(setAlert({ message: 'Publicación creada', type: 'success' }));
 			}
 			dispatch(updatePetsTriger());
+			sendMessage({ type: 'offers_update' });
 			toggleModal();
 		}
 	};
