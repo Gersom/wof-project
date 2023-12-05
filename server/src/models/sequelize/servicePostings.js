@@ -13,8 +13,7 @@ const UsersModel = require("./users")
 
 const addMethods = require("../utils/addStaticMethods")
 
-//toDo:rename model
-const name = 'posts'
+const name = 'servicePostings'
 const config = {
   timestamps: true, // createAt, updateAt
   freezeTableName: true
