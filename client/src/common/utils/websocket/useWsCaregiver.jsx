@@ -38,6 +38,20 @@ const useWsCaregiver = (role) => {
 						);
 						setLastProcessedMessage(null);
 					}
+
+					//
+					if(data.type === 'payment_complete'){
+						if (lastProcessedMessage === data.type) return;
+						setLastProcessedMessage(data.type);
+						dispatch(actionGetOffersOwner());
+						dispatch(
+							setAlert({
+								message: `El pago de ${data.petName} ha sido realizado por ${data.ownerName}`,
+								type: 'success',
+							})
+						);
+						setLastProcessedMessage(null);
+					}
 				} catch (error) {
 					console.log(error);
 				}
