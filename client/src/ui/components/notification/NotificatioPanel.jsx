@@ -29,18 +29,30 @@ const NotificatioPanel = () => {
           <h1 className={styles.title}>Notificaciones</h1>
         </div>
         <div className={styles.card}>
-          <div>
-            <p>{userData.name}</p>
-          </div>
+          <div
+            className={styles.notiImg}
+            style={{
+              backgroundImage: "url('" + userData.profilePicture + "')",
+            }}
+          ></div>
 
-          <div>
-            <img src={userData.profilePicture} alt="" />
-          </div>
-          <div>
+          <div className={styles.notiCard}>
+            <p>{userData.name}</p>
             {notifications.map((notification) => (
-              <div key={notification.id} value={notification.id}>
-                {notification.message}
-              </div>
+              <>
+                <div
+                  className={styles.notiText}
+                  key={notification.id}
+                  value={notification.id}
+                >
+                  {notification.message}
+                </div>
+                {notification.action && (
+                  <div onClick="" className={styles.notiButton}>
+                    {notification.action}
+                  </div>
+                )}
+              </>
             ))}
           </div>
         </div>

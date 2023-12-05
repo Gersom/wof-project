@@ -12,14 +12,52 @@
   display: flex;
   flex-direction: row;
   background-color: white;
-  max-width: 80%;
+  max-width: 870px;
   align-items: center;
-  justify-content: center;
+  padding: 10px 20px;
   margin: auto;
+  border-radius: 12px;
+  margin-bottom: 20px;
 }
 
 .card {
   img {
     width: 100px;
   }
+}
+
+.notiCard {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin-right: auto;
+    font-size: 18px;
+  }
+}
+
+.notiText {
+  text-align: left;
+  + .notiText {
+    color: #000;
+  }
+}
+
+.notiButton {
+  background-color: #52cd8b;
+  margin-left: auto;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.notiImg {
+  background-repeat: no-repeat;
+  border-radius: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+  background-size: cover;
+  background-position: center center;
 }
