@@ -11,8 +11,10 @@ const getTransactionByPostLogic = async (postId) => {
 }
 
 const postTransactionLogic = async (data) => {
+  data.servicePostingId = data.postId
+
   const newTransaction = await TransactionsModel.create(data)
-  await PostsModel.updateData(data.postId, {status: "paid", caregiverId: data.caregiverId})
+  await PostsModel.updateData(data.servicePostingId, {status: "paid", caregiverId: data.caregiverId})
 
     // Create Notification
   const notifications = require("./../data/notifications/index")
@@ -24,7 +26,7 @@ const postTransactionLogic = async (data) => {
 
   //Update Request ... actualiza el 'state' de la Request  de "pending" a "accepted"
   const { RequestsModel } = require("../models/index")
-  const requestId = await RequestsModel.findIdData("postId",data.postId);
+  const requestId = await RequestsModel.findIdData("servicePostingId",data.servicePostingId);
   if(!requestId) throw Error("the request does not exist")
   await RequestsModel.updateData(requestId,{state:"accepted"})
 
