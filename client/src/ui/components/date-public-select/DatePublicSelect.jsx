@@ -36,6 +36,7 @@ const DatePublicSelect = ({
 	};
 
 	const handleSubmit = async (e) => {
+		const ws = new WebSocket('ws://localhost:3001');
 		e.preventDefault();
 		const body = {
 			startDate,
@@ -60,8 +61,10 @@ const DatePublicSelect = ({
 				await fetch(API_URL_CREATE_POST, options)
 			}
 			dispatch(updatePetsTriger());
+			ws.send(JSON.stringify({ type: 'offers_update' }));
 			toggleModal();
 		}
+		ws.close();
 	};
 
 	return (
