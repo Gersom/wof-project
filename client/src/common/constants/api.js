@@ -1,6 +1,9 @@
 import { API_URL_DEPLOY } from "./envs";
 
 const apiUrlLocal = "http://localhost:3001";
+const wsUrlLocal = "ws://localhost:3001";
+
+export const WS_URL = wsUrlLocal;
 
 export const API = API_URL_DEPLOY || apiUrlLocal;
 export const API_URL = API + "/api";
