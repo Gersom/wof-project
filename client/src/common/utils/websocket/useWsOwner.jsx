@@ -52,7 +52,7 @@ const useWsOwner = (role) => {
 				ws.close(); // Cerrar la conexión al desmontar el componente
 			}
 		};
-	}, [ws , dispatch, role]);
+	}, [ws , dispatch, role,lastProcessedMessage]);
 
   const sendMessage = (message) => {
     if (ws && ws.readyState === WebSocket.OPEN) {
