@@ -28,12 +28,12 @@ const getAllCaregiversLogic = async () => {
 const getCaregiverLogic = async (id) => {
   const caregiver = await CaregiversModel.findCaregiver(id)
   if (!caregiver) throw Error("User not found")
-  const tmp = String((Math.random() * (5 - 3) + 3).toFixed(2))
-  const caregiverAddRating = {
-    ...caregiver.toJSON(),
-    rating: tmp,
-  }
-  return caregiverAddRating
+  // const tmp = String((Math.random() * (5 - 3) + 3).toFixed(2))
+  // const caregiverAddRating = {
+    // ...caregiver.toJSON(),
+    // rating: tmp,
+  // }
+  return caregiver
 };
 
 const getCaredPetsLogic = async (id) => {
@@ -42,13 +42,14 @@ const getCaredPetsLogic = async (id) => {
     return {
         ...c.toJSON(),
         pet: {
-            name: c.pet?.name,
-            species: c.pet?.species?.icon,
-            breed: c.pet?.breed?.name
+            name      : c.pet?.name,
+            species   : c.pet?.species?.icon,
+            breed     : c.pet?.breed?.name
         },
         owner: {
-            name: c.owner?.user?.name,
-            profilePicture : c.owner?.user?.profilePicture
+            name            : c.owner?.user?.name,
+            profilePicture  : c.owner?.user?.profilePicture,
+            rating          : c.owner?.rating
         }
     }
 })

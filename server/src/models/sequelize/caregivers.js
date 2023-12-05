@@ -26,6 +26,11 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  rating: {
+    type: DataTypes.FLOAT,
+    defaultValue:0,
+    allowNull:true
+  }
 }
 
 const CaregiversModel = sequelize.define(name, schema, config)
@@ -44,7 +49,7 @@ CaregiversModel["findCaredPets"] = async (id) => {
   const { UsersModel } = require("../index");
   const { SpeciesModel } = require("../index");
   const { BreedsModel } = require("../index");
-  const { ReviewsModel } = require("../index");
+
   const caredPets = await PostsModel.findAll({
     where: { caregiverId: id }, attributes: ["address", "startDate", "endDate"],
     include: [

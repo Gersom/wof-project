@@ -15,7 +15,12 @@ const getReviewLogic = async (id) => {
 };
 
 const postReviewLogic = async (data) => {
+  const {rating, from, to, caregiverId, ownerId } = data
+  if(!rating || !from || !to || !caregiverId || !ownerId ) throw Error('./missing data')
+  if(from === to) throw Error(`'from' and 'to' cannot be equal`)
+
   const newReview = await ReviewsModel.createReview(data)
+
   return newReview
   }
 //   return {
@@ -23,7 +28,10 @@ const postReviewLogic = async (data) => {
 //   }
 
 const updateReviewLogic = async (id, data) => {
-  await ReviewsModel.updateData(id, data)
+  const { comment, rating } = data
+ 
+  await ReviewsModel.updateData(id, {comment,rating})
+
   return {
     success: 'User was update correctly.'
   }

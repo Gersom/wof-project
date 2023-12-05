@@ -15,6 +15,11 @@ const schema = {
     primaryKey: true,
     autoIncrement: true,
   },
+  rating: {
+    type: DataTypes.FLOAT,
+    defaultValue:0,
+    allowNull:true
+  }
 }
 
 const OwnersModel = sequelize.define(name, schema, config)
