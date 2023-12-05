@@ -1,4 +1,4 @@
-const { createdPet, deletedPet } = require("../data/notifications");
+const { createdPet, deletedPet, updatedPet } = require("../data/notifications");
 const { PetsModel, UsersModel, OwnersModel } = require("../models");
 const { PetsImagesModel } = require("../models");
 const { NotificationsModel } = require("../models");
@@ -85,6 +85,7 @@ const postPetLogic = async (data) => {
 const updatePetLogic = async (petId, data) => {
   await PetsImagesModel.removeDataByPet(petId);
   await PetsModel.updateData(petId, data);
+  const idUser = await OwnersModel.findDataById(id);
   const images = data.imageUrl;
 
   if (images) {
@@ -94,6 +95,10 @@ const updatePetLogic = async (petId, data) => {
     }));
     await PetsImagesModel.createMany(imagesFormated);
   }
+  await NotificationsModel.create({
+    ...updatedPet,
+    userId: idUser.userId,
+  });
   return {
     success: "Pet was update correctly.",
   };
