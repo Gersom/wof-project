@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import FormLogin from "@src/ui/components/forms/form-login/FormLogin";
 import routerNames from "@src/common/constants/routes";
-import { useAuth } from "@src/context/auth-provider/authProvider";
+import { useAuth } from "@common/context/authProvider";
 import {
   saveToLocalStorage,
   getFromLocalStorage,

@@ -1,25 +1,25 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const {MAIL_PASSWORD} = process.env;
+const { MAIL_PASSWORD } = process.env;
 
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
 const sendVerifyMail = async (email, code) => {
-    const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false,
-        auth: {
-            user: "wofbot.noreplay@gmail.com",
-            pass: `${MAIL_PASSWORD}`,
-          },
-    });
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "wofbot.noreplay@gmail.com",
+      pass: `${MAIL_PASSWORD}`,
+    },
+  });
 
-    let info = await transporter.sendMail({
-        from: '"soporte" <wofbot.noreplay@gmail.com>',
-        to: email,
-        subject: "Verificación de correo electrónico",
-        html: `
+  let info = await transporter.sendMail({
+    from: '"soporte" <wofbot.noreplay@gmail.com>',
+    to: email,
+    subject: "Verificación de correo electrónico",
+    html: ` -->
         <!DOCTYPE html>
     <html
       lang="es"
@@ -32,7 +32,7 @@ const sendVerifyMail = async (email, code) => {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="x-apple-disable-message-reformatting" />
         <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
-        <title>Bienvenido</title>
+        <title>Verificación</title>
         <style>
           table,
           td,
@@ -73,16 +73,17 @@ const sendVerifyMail = async (email, code) => {
               align="center"
               style="padding: 15px; font-size: 45px; color: #cbcbd0"
             >
-              Tu cuenta se ha creado con &eacute;xito! 
+              Código de Verificación.
             </td>
             
           </tr>
           <tr>
-            <td align="center" style="padding: 30px 64px; color: #e2e4eb">
+            <td align="center" style="padding: 30px 64px; color: #e2e4eb; font-size: 25px;">
               <br />
-              Email: ${email}
+              Email: ${email}-
               Codigo : ${code}
             </td>
+            
             
           </tr>
           <tr>
@@ -115,7 +116,7 @@ const sendVerifyMail = async (email, code) => {
           <tr>
             <td align="center" style="padding: 30px 64px; color: rgb(248, 248, 248)">
               <h3>
-                Muchas gracias por unirte y esperemos que tengas una experiencia wofcional!
+                Ingresa este código para poder verificar tu cuenta para poder comenzar.
               </h3>
               <span>
                 *Si no reconoces esta acci&oacute;n, por favor hacer caso omiso de
@@ -224,7 +225,8 @@ const sendVerifyMail = async (email, code) => {
       </body>
     </html>
     
-        `
-})}
+        `,
+  });
+};
 
-module.exports = sendVerifyMail
+module.exports = sendVerifyMail;

@@ -1,7 +1,7 @@
+import axios from "axios";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { API_URL_TRANSACTIONS } from "@common/constants/api";
-import axios from "axios";
-const paypalClientId = import.meta.env.VITE_PAYPAL_CLIENT_ID;
+import { PAYPAL_CLIENT_ID } from "@common/constants/envs"
 
 const PaypalView = ({
   dataPost = {
@@ -70,14 +70,14 @@ const PaypalView = ({
     console.log("ocurrio un error papi");
     console.log(err);
   };
-  const clickHandler = (data, actions) => {
+  const clickHandler = () => {
     // console.log('le dio clic papi')
   };
 
   return (
     <PayPalScriptProvider
       options={{
-        "client-id": paypalClientId,
+        "client-id": PAYPAL_CLIENT_ID,
       }}
     >
       <PayPalButtons
