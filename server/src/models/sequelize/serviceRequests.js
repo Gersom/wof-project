@@ -61,7 +61,7 @@ RequestsModel["findRequestsByOwner"] = async (ownerId) => { // muestra las resqu
       include: [{model:RequestsModel,where:{state:"pending"}}]
     },
   });
-  const requests = owner?.posts?.flatMap(post => post.requests || [])
+  const requests = owner?.servicePostings?.flatMap(post => post.requests || [])
   return requests
 }
 
@@ -69,33 +69,33 @@ RequestsModel['createData'] = async (data) => {
   // Crear el registro en RequestsModel
   const newRequest = await RequestsModel.create(data);
 
-  // Establecer la relación con PostsModel
-  if (data.postId) {
-    const post = await PostsModel.findByPk(data.postId);
-    if (post) {
-      await newRequest.setServicePostings(post);
-    }
-  }
+  // // Establecer la relación con PostsModel
+  // if (data.postId) {
+  //   const post = await PostsModel.findByPk(data.postId);
+  //   if (post) {
+  //     await newRequest.setServicePostings(post);
+  //   }
+  // }
 
   // Establecer la relación con CaregiversModel
-  if (data.caregiverId) {
-    const caregiver = await CaregiversModel.findByPk(data.caregiverId);
-    if (caregiver) {
-      await newRequest.setCaregiver(caregiver);
+  // if (data.caregiverId) {
+  //   const caregiver = await CaregiversModel.findByPk(data.caregiverId);
+  //   if (caregiver) {
+  //     await newRequest.setCaregiver(caregiver);
 
-      // Establecer el caregiver en el modelo PostsModel
-      if (data.postId) {
-        await PostsModel.update({ caregiverId: data.caregiverId }, { where: { id: data.postId } });
-      }
-    }
-  }
+  //     // Establecer el caregiver en el modelo PostsModel
+  //     if (data.postId) {
+  //       await PostsModel.update({ caregiverId: data.caregiverId }, { where: { id: data.postId } });
+  //     }
+  //   }
+  // }
 
   return newRequest;
 }
-RequestsModel['findRequestsByPost'] = async (postId) => {
+RequestsModel['findRequestsByPost'] = async (servicePostingId) => {
   const UsersModel = require("./users")
   return await RequestsModel.findAll({
-    where: { postId },
+    where: { servicePostingId },
     attributes: [ "id", "price"],
     include: [
       { 
