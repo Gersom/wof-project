@@ -8,17 +8,17 @@ const getAllPetsLogic = async (ownerId) => {
   return pets.map((pet) => {
     let petImgUrl = "";
 
-    const postObj = pet?.post?.toJSON();
+    const postObj = pet?.servicePosting?.toJSON();
 
     if (pet?.petsImages?.length > 0) {
       petImgUrl = pet?.petsImages[0]?.imageUrl;
     }
     return {
-      id: pet?.post?.id,
-      status: pet?.post?.status,
-      address: pet?.post?.address,
-      startDate: pet?.post?.startDate,
-      endDate: pet?.post?.endDate,
+      id: pet?.servicePosting?.id,
+      status: pet?.servicePosting?.status,
+      address: pet?.servicePosting?.address,
+      startDate: pet?.servicePosting?.startDate,
+      endDate: pet?.servicePosting?.endDate,
       pet: {
         id: pet?.id,
         name: pet?.name,
