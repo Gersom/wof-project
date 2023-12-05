@@ -1,18 +1,19 @@
 import { WS_URL } from '@src/common/constants/api';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { actionGetOffersOwner } from '@src/common/store/actions/offersActions';
-import { useLocation } from 'react-router-dom';
+import { setAlert } from '@src/common/store/slices/alertSlice';
 
-const useWsCaregiver = () => {
+const useWsCaregiver = (role) => {
 	const dispatch = useDispatch();
-  const location = useLocation();
 
+	const [isLoading, setIsLoading] = useState(false);
+	const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
 	const [ws, setWs] = useState(null);
 
 	useEffect(() => {
-    if(!location.pathname.includes('caregivers')) return;
+		if (role !== 'caregiver') return;
 		if (!ws) {
 			const newWs = new WebSocket(WS_URL);
 
@@ -22,14 +23,26 @@ const useWsCaregiver = () => {
 
 			newWs.onmessage = (event) => {
 				// Lógica para manejar mensajes recibidos
-        try {
-          const data = JSON.parse(event.data);
-          if (data.type === 'newOffer') {
-            dispatch(actionGetOffersOwner());
-          }
-        } catch (error) {
-          console.log(error);
-        }
+				try {
+					const data = JSON.parse(event.data);
+					if (data.type === 'offers_update') {
+						if (lastProcessedMessage === data.type) return;
+
+						setLastProcessedMessage(data.type);
+
+						dispatch(actionGetOffersOwner());
+						dispatch(
+							setAlert({
+								message: 'Hay ofertas nuevas disponiples 😊',
+								type: 'success',
+							})
+						);
+						setLastProcessedMessage(null);
+					}
+					setIsLoading(true);
+				} catch (error) {
+					console.log(error);
+				}
 			};
 
 			newWs.onclose = () => {
@@ -38,6 +51,7 @@ const useWsCaregiver = () => {
 			};
 
 			setWs(newWs);
+			setIsLoading(false);
 		}
 
 		return () => {
@@ -45,17 +59,17 @@ const useWsCaregiver = () => {
 				ws.close(); // Cerrar la conexión al desmontar el componente
 			}
 		};
-	}, [ws , dispatch, location.pathname]);
+	}, [ws, dispatch, role, lastProcessedMessage]);
 
-  const sendMessage = (message) => {
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.send(JSON.stringify(message));
-    } else {
-      console.error('WebSocket connection is not established or is closed');
-    }
-  };
+	const sendMessage = (message) => {
+		if (ws && ws.readyState === WebSocket.OPEN) {
+			ws.send(JSON.stringify(message));
+		} else {
+			console.error('WebSocket connection is not established or is closed');
+		}
+	};
 
-	return;
+	return { sendMessage };
 };
 
 export default useWsCaregiver;
