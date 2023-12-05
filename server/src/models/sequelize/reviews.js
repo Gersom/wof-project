@@ -4,6 +4,7 @@ const OwnersModel = require(`./owners`)
 const CaregiversModel = require(`./caregivers`)
 const UsersModel = require("./users")
 const addMethods = require("../utils/addStaticMethods")
+const averageRating = require("../../utils/averageRating")
 
 const name = 'reviews'
 const config = { 
@@ -64,10 +65,9 @@ ReviewsModel['findByOwner'] = (ownerId) => {
 }
 
 ReviewsModel['createReview'] = async (data) => {
-  const averageRating = require("../../utils/averageRating")
   const { ReviewsModel } = require("../index")
   
-  await ReviewsModel.create(data)
+  const newReview = await ReviewsModel.create(data)
   
   if(data.to === "caregiver"){
     const { CaregiversModel } = require("../index")
@@ -81,6 +81,8 @@ ReviewsModel['createReview'] = async (data) => {
 
     averageRating(reviewsOwner,OwnersModel,data.ownerId)
   }
+
+  return newReview
 }
 
 module.exports = ReviewsModel

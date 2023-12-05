@@ -49,7 +49,7 @@ CaregiversModel["findCaredPets"] = async (id) => {
   const { UsersModel } = require("../index");
   const { SpeciesModel } = require("../index");
   const { BreedsModel } = require("../index");
-  const { ReviewsModel } = require("../index");
+
   const caredPets = await PostsModel.findAll({
     where: { caregiverId: id }, attributes: ["address", "startDate", "endDate"],
     include: [
