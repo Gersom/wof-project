@@ -34,6 +34,12 @@ const deletedPet = {
   action: "",
 };
 
+const updatedPet = {
+  message: "Tu mascota se ha actualizado",
+  status: false,
+  action: "",
+};
+
 module.exports = {
   changePassword,
   createdUser,
@@ -41,4 +47,5 @@ module.exports = {
   createdPet,
   createdReview,
   deletedPet,
+  updatedPet,
 };
