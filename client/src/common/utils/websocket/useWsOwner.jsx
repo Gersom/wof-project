@@ -2,14 +2,11 @@ import { WS_URL } from '@src/common/constants/api';
 
 import  { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { actionGetOffersOwner } from '@src/common/store/actions/offersActions';
 import { setAlert } from '@src/common/store/slices/alertSlice';
-import { useLocation } from 'react-router-dom';
 
 const useWsOwner = (role) => {
 	const dispatch = useDispatch();
-  const location = useLocation();
-
+  const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
 	const [ws, setWs] = useState(null);
 
 	useEffect(() => {
@@ -25,11 +22,22 @@ const useWsOwner = (role) => {
 				// Lógica para manejar mensajes recibidos
         try {
           const data = JSON.parse(event.data);
-          
+          if (data.type === 'request_update') {
+            if (lastProcessedMessage === data.type) return;
+            setLastProcessedMessage(data.type);
+            dispatch(
+              setAlert({
+                message: `¡Hay una nueva oferta para ${data.petName} de ${data.caregiverName}!`,
+                type: 'success',
+              })
+            );
+          }
+          setLastProcessedMessage(null);
         } catch (error) {
           console.log(error);
         }
 			};
+
 
 			newWs.onclose = () => {
 				console.log('Connection closed');

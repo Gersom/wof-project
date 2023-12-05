@@ -8,7 +8,6 @@ import { setAlert } from '@src/common/store/slices/alertSlice';
 const useWsCaregiver = (role) => {
 	const dispatch = useDispatch();
 
-	const [isLoading, setIsLoading] = useState(false);
 	const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
 	const [ws, setWs] = useState(null);
 
@@ -39,7 +38,6 @@ const useWsCaregiver = (role) => {
 						);
 						setLastProcessedMessage(null);
 					}
-					setIsLoading(true);
 				} catch (error) {
 					console.log(error);
 				}
@@ -51,7 +49,6 @@ const useWsCaregiver = (role) => {
 			};
 
 			setWs(newWs);
-			setIsLoading(false);
 		}
 
 		return () => {
