@@ -9,10 +9,13 @@ import routerNames from "@src/common/constants/routes";
 import userReducer from "@src/common/store/reducers/userReducer";
 import ModalCustom from "@src/ui/components/modals/modal-custom/ModalCustom";
 import ModalReview from "@src/ui/components/modals/modal-review/ModalReview";
+import useWsCaregiver from "@src/common/utils/websocket/useWsCaregiver";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
+  useWsCaregiver();
 
   userReducer;
   const userData = useSelector((state) => state.userReducer.user);

@@ -38,7 +38,6 @@ const DatePublicSelect = ({
 	};
 
 	const handleSubmit = async (e) => {
-		const ws = new WebSocket('ws://localhost:3001');
 		e.preventDefault();
 		const body = {
 			startDate,
@@ -88,10 +87,8 @@ const DatePublicSelect = ({
 				dispatch(setAlert({ message: 'Publicación creada', type: 'success' }));
 			}
 			dispatch(updatePetsTriger());
-			ws.send(JSON.stringify({ type: 'offers_update' }));
 			toggleModal();
 		}
-		ws.close();
 	};
 
 	return (

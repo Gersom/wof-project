@@ -16,8 +16,6 @@ const configureWebSocket = (server) => {
 
 	wss.on('connection', (ws) => {
 		clients.add(ws);
-
-        console.log('------------------------->',clients)
         
 		ws.on('message', (message) => {
             if (typeof message === 'string') {
@@ -44,8 +42,10 @@ const configureWebSocket = (server) => {
 
 		ws.on('close', () => {
 			clients.delete(ws);
+			console.log('Client disconnected', clients.size);
 		});
-        console.log('New client connected', clients.size);
+        
+      console.log('New client connected', clients.size);
 	});
 	// Función para enviar mensajes a todos los clientes conectados
 

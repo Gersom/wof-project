@@ -22,35 +22,6 @@ const useOffersOwner = () => {
 		(state) => state.offersReducer.filtersOffersOwner
 	);
 
-	const ws = new WebSocket('ws://localhost:3001');
-
-	ws.onopen = () => {
-		console.log('connected');
-	};
-
-	ws.onmessage = (event) => {
-		const receivedData = event.data;
-	
-		if (typeof receivedData === 'string') {
-			// Si el mensaje es una cadena, intenta analizarlo como JSON
-			try {
-				const parsedMessage = JSON.parse(receivedData);
-				console.log('Mensaje recibido:', parsedMessage);
-	
-				// Realiza las acciones necesarias según el tipo de mensaje recibido
-				if (parsedMessage.type === 'offers_update') {
-					// Realiza acciones relacionadas con la actualización de ofertas
-					// ... tu lógica aquí
-					dispatch(actionGetOffersOwner());
-				}
-			} catch (error) {
-				console.error('Error al analizar el mensaje JSON:', error);
-			}
-		} else {
-			// Si el mensaje no es una cadena, imprímelo tal como está
-			console.log('Mensaje recibido:', receivedData);
-		}
-	};
 
 	useEffect(() => {
 		setIsLoadingOffers(true);
