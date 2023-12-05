@@ -38,6 +38,11 @@ const offersReducer = (state = offersState, { type, payload }) => {
 				offersCareGivers: payload,
 				offersCareGiversInmutable: payload,
 			};
+		case 'CLEAR_OFFERS_CAREGIVERS':
+			return {
+				...state,
+				offersCareGivers: [],
+			};
 		case 'SET_OFFERS_CAREGIVERS':
 			return {
 				...state,

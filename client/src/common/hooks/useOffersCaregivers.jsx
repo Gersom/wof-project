@@ -3,12 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
 	actionGetOffersCareGivers,
 	actionSetOffersCareGivers,
+	actionClearOffersCareGivers
 } from '../store/actions/offersActions';
 import { sortOffersCaregivers } from '../utils/helpers-redux/sortOffersCaregivers';
 const useOffersCaregivers = (id) => {
 	const dispatch = useDispatch();
 	const [isLoadingOffers, setIsLoadingOffers] = useState(true);
 	const [idRequest, setIdRequest] = useState(null);
+
 	const offersCareGiversInmutable = useSelector(
 		(state) => state.offersReducer.offersCareGiversInmutable
 	);
@@ -24,6 +26,7 @@ const useOffersCaregivers = (id) => {
 
 	useEffect(() => {
 		setIsLoadingOffers(true);
+		
 		if (id) {
 			if( idRequest !== id){
 				setIdRequest(id);
@@ -44,6 +47,10 @@ const useOffersCaregivers = (id) => {
 
 			setIsLoadingOffers(false);
 		}
+		return () => {
+			dispatch(actionClearOffersCareGivers());
+			setIsLoadingOffers(true);
+		};
 	}, [
 		id,
 		dispatch,

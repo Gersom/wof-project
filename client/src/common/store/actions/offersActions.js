@@ -40,6 +40,12 @@ export const actionGetOffersCareGivers = (id) => async (dispatch) => {
 	});
 };
 
+export const actionClearOffersCareGivers = () => {
+	return {
+		type: 'CLEAR_OFFERS_CAREGIVERS',
+	};
+}
+
 export const actionSetOffersCareGivers = (offersCareGivers) => {
 	return {
 		type: 'SET_OFFERS_CAREGIVERS',

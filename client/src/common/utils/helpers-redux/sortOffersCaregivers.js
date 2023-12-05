@@ -19,7 +19,6 @@ export const sortOffersCaregivers = (offers, sorts) => {
 			const priceB = b.price.replace('$', '');
 			return priceA - priceB;
 		});
-	} else {
-		return [...offers];
 	}
+	return [...offers];
 };
