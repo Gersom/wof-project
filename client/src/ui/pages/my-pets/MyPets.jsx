@@ -16,8 +16,7 @@ const MyPets = () => {
 			<h1>Mis Mascotas</h1>
 			{!isPets &&  <h2>Hola, {userName}<br/> Agrega tu primera mascota para poder empezar</h2>}
 			<div className={styles.gridContainer}>
-
-				{!isLoading & isPets && pets.map((pet) => (
+				{!isLoading && isPets && pets.map((pet) => (
 					<CardPetPublic key={pet.pet.id} data={pet} />
 				))}
 				<ButtonAgree />
