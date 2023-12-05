@@ -1,13 +1,14 @@
 import { WS_URL } from '@src/common/constants/api';
 
 import  { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setAlert } from '@src/common/store/slices/alertSlice';
 
 const useWsOwner = (role) => {
 	const dispatch = useDispatch();
   const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
 	const [ws, setWs] = useState(null);
+  const ownerId = useSelector((state) => state.userReducer.user?.owner?.id)
 
 	useEffect(() => {
     if(role !== 'owner') return;
@@ -22,7 +23,7 @@ const useWsOwner = (role) => {
 				// Lógica para manejar mensajes recibidos
         try {
           const data = JSON.parse(event.data);
-          if (data.type === 'request_update') {
+          if (data.type === 'request_update' && data.ownerId === ownerId) {
             if (lastProcessedMessage === data.type) return;
             setLastProcessedMessage(data.type);
             dispatch(

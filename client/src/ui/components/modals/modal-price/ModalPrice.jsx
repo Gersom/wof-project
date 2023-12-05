@@ -39,7 +39,7 @@ const ModalPrice = ({ message, data, toggleModal }) => {
 			dispatch(
 				setAlert({ message: '¡Tarifa enviada correctamente!', type: 'success' })
 			);
-			sendMessage({ type: 'request_update', petName: data.pet.name, caregiverName: nameCaregiver });
+			sendMessage({ type: 'request_update', petName: data.pet.name, caregiverName: nameCaregiver, ownerId: data.owner.id});
 			toggleModal(false);
 		}
 	};
