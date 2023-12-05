@@ -66,7 +66,9 @@ ReviewsModel['findByOwner'] = (ownerId) => {
 ReviewsModel['createReview'] = async (data) => {
   const averageRating = require("../../utils/averageRating")
   const { ReviewsModel } = require("../index")
-
+  
+  await ReviewsModel.create(data)
+  
   if(data.to === "caregiver"){
     const { CaregiversModel } = require("../index")
     const reviewsCaregiver = await ReviewsModel.findAll({where: {caregiverId:data.caregiverId}})
@@ -79,7 +81,6 @@ ReviewsModel['createReview'] = async (data) => {
 
     averageRating(reviewsOwner,OwnersModel,data.ownerId)
   }
-  return await ReviewsModel.create(data)
 }
 
 module.exports = ReviewsModel
