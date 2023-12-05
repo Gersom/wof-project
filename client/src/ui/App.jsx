@@ -18,7 +18,7 @@ import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
 import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
 import VerifyingLogin from "./pages/verifying-login/VerifyingLogin";
 import DetailsCaregivers from "./pages/details/DetailsCaregivers";
-import { useAuth } from "@src/context/auth-provider/authProvider";
+import { useAuth } from "@common/context/authProvider";
 import { Navigate } from "react-router-dom";
 import MyHome from "./pages/my-home/MyHome";
 import {

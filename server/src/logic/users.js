@@ -86,6 +86,7 @@ const postUserLogic = async (data) => {
     return { 
       success: messages,
       data: {
+        id: newUser.id,
         email: newUser.email,
         name: newUser.name,
         lastName: newUser.lastName

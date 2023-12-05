@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux"
 import { Auth0Provider } from '@auth0/auth0-react';
-import { AuthProvider } from './context/auth-provider/authProvider.jsx';
+import { AuthProvider } from "@common/context/authProvider";
 
 
 // App
@@ -14,8 +14,7 @@ import store from '@common/store/store.js'
 import '@styles/main.js';
 
 //envs
-import { AUTH_DOMAIN, CLIENT_ID, LOADING } from './config/envs.js';
-import { useContext } from 'react';
+import { AUTH_DOMAIN, AUTH_CLIENT_ID, LOADING_URL } from '@common/constants/envs.js';
 
 // Init Project
 ReactDOM.createRoot(
@@ -24,9 +23,9 @@ ReactDOM.createRoot(
   <AuthProvider>
     <Auth0Provider
       domain={AUTH_DOMAIN}
-      clientId={CLIENT_ID}
+      clientId={AUTH_CLIENT_ID}
       authorizationParams={{
-        redirect_uri: LOADING
+        redirect_uri: LOADING_URL
       }}>
       <Provider store={store}>
         <BrowserRouter>

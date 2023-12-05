@@ -36,6 +36,26 @@ const getCaregiverLogic = async (id) => {
   return caregiverAddRating
 };
 
+const getCaredPetsLogic = async (id) => {
+  const CaredPets = await CaregiversModel.findCaredPets(id);
+  const CaredPetsMap = CaredPets.map(c => {
+    return {
+        ...c.toJSON(),
+        pet: {
+            name: c.pet?.name,
+            species: c.pet?.species?.icon,
+            breed: c.pet?.breed?.name
+        },
+        owner: {
+            name: c.owner?.user?.name,
+            profilePicture : c.owner?.user?.profilePicture
+        }
+    }
+})
+
+return CaredPetsMap
+}
+
 const postCaregiverLogic = async (data) => {
   const { idUser } = data
   const user = await UsersModel.findOneData(idUser)
@@ -77,6 +97,7 @@ const deleteCaregiverLogic = async (id, data) => {
 module.exports = {
   getAllCaregiversLogic,
   getCaregiverLogic,
+  getCaredPetsLogic,
   postCaregiverLogic,
   updateCaregiverLogic,
   deleteCaregiverLogic
