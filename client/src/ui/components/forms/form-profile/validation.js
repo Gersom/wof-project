@@ -8,7 +8,7 @@ export const validation = (dataForm, errors, setErrors) => {
   } else if (dataForm.email.trim() === "") {
     setErrors((prevErrors) => ({
       ...prevErrors,
-      email: "El campo está vacío",
+      email: "",
     }));
   } else {
     setErrors((prevErrors) => ({ ...prevErrors, email: "" }));

@@ -9,6 +9,7 @@ import { saveToLocalStorage } from '@common/utils/localStorage';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import LogOutIcon from "@icons/login/log-out.svg?react"
 
 const NavBar = ({ userData }) => {
 	const location = useLocation();
@@ -110,11 +111,10 @@ const NavBar = ({ userData }) => {
 						<button
 							className={`${styles.linkContainer}`}
 							onClick={closeSession}
-						>
-							<img
-								src='/src/ui/assets/icons/nav/padlock.svg'
-								alt='Cerrar sesión'
-							/>
+						> 
+              <div className={styles.LogOutIcon}>
+                  <LogOutIcon />
+              </div>
 							{show && <li>Cerrar sesión</li>}
 						</button>
 					</ul>

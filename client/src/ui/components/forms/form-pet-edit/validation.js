@@ -13,7 +13,7 @@ const validation = (name, value, error) => {
 			}
 		} else if (name === 'temperaments') {
 			if (value.length < 5) {
-				errors.temperaments = 'Debe escribir al menos 1 caracteristica';
+				errors.temperaments = 'Debe escribir al menos 1 Temperamento';
 			} else if (value.length > 60) {
 				errors.temperaments = 'Debe escribir menos de 60 caracteres';
 			} else {
@@ -21,7 +21,7 @@ const validation = (name, value, error) => {
 			}
 		} else if (name === 'manners') {
 			if (value.length < 5) {
-				errors.manners = 'Debe escribir al menos 1 caracteristica';
+				errors.manners = 'Debe escribir al menos 1 Modal';
 			} else if (value.length > 80) {
 				errors.manners = 'Debe escribir menos de 80 caracteres';
 			} else {
@@ -29,7 +29,7 @@ const validation = (name, value, error) => {
 			}
 		} else if (name === 'notes') {
 			if (value.length < 5) {
-				errors.notes = 'Debe escribir al menos 5 caracteres';
+				errors.notes = 'Debe escribir al menos 1 nota';
 			} else if (value.length > 80) {
 				errors.notes = 'Debe escribir menos de 80 caracteres';
 			} else {

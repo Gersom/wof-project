@@ -18,7 +18,7 @@ import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
 import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
 import VerifyingLogin from "./pages/verifying-login/VerifyingLogin";
 import DetailsCaregivers from "./pages/details/DetailsCaregivers";
-import { useAuth } from "@src/context/auth-provider/authProvider";
+import { useAuth } from "@common/context/authProvider";
 import { Navigate } from "react-router-dom";
 import MyHome from "./pages/my-home/MyHome";
 import {
@@ -26,7 +26,7 @@ import {
   getFromLocalStorage,
 } from "@src/common/utils/localStorage";
 
-import FormProfile from "./components/forms/formProfile/FormProfile";
+import FormProfile from "./components/forms/form-profile/FormProfile";
 import Register from "./pages/register/Register";
 
 //import useAlert

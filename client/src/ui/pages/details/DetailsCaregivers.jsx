@@ -9,8 +9,11 @@ import CareInProgress from '@src/ui/components/care-in-progress/CareInProgress';
 import { AceptarButton } from '@src/ui/components/button/button';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import routerNames from '@src/common/constants/routes';
 
 const DetailsCaregivers = () => {
+  const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { id } = useParams();
 	const { isLoading, details } = useGetDetailsCaregivers(id);
@@ -22,7 +25,7 @@ const DetailsCaregivers = () => {
 	useEffect(() => {
 		setPetsRelation(
 			myPets?.map((pet) => {
-				if (pet?.status === 'paid' && pet.id == id) {
+				if (pet?.status === 'paid' && pet.caregiver.id == id) {
 					return pet;
 				} else{
 					return null
@@ -30,8 +33,6 @@ const DetailsCaregivers = () => {
 			}).filter((pet) => pet !== null) 
 		);
 	}, [myPets, id]);
-
-	console.log(petsRelation)
 
 	const returnForm = (event) => {
 		event.preventDefault();
@@ -63,7 +64,7 @@ const DetailsCaregivers = () => {
 				<CardInfoCaregiver data={details} />
 				{posts.length > 0 && (
 					<>
-						<form
+						{/* <form
 							name='form'
 							onSubmit={returnForm}
 							style={{ display: 'flex', alignItems: 'center' }}
@@ -77,13 +78,13 @@ const DetailsCaregivers = () => {
 									Acepto los términos y condiciones
 								</label>
 							</div>
-						</form>
+						</form> */}
 
 						<AceptarButton
 							type='Aceptar'
 							disabled={false}
 							onClick={() => {
-								console.log('Aceptar');
+								navigate(-1)
 							}}
 						></AceptarButton>
 					</>
@@ -97,6 +98,7 @@ const DetailsCaregivers = () => {
 								endDate={pet?.endDate}
 								startDate={pet?.startDate}
 								image={pet?.pet?.imageUrl}
+								petName={pet?.pet?.name}
 								style={'small'}
 							/>
 						))}

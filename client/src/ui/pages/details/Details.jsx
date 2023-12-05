@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./styles.module.scss";
 import CardUser from "@src/ui/components/cards/card-user/CardUser";
 import Carousel from "@src/ui/components/carousel/Carousel";
@@ -10,6 +10,7 @@ import CardAccept from "@src/ui/components/cards/card-accept/cardAccept";
 import ModalPrice from "@src/ui/components/modals/modal-price/ModalPrice";
 import ModalCustom from "@src/ui/components/modals/modal-custom/ModalCustom";
 import ModalSendOffer from "@src/ui/components/modals/modal-send-offer/SendOffer";
+import ModalCancelOffer from "@src/ui/components/modals/modal-cancel-offer/ModalCancelOffer";
 
 const Details = () => {
   const { id } = useParams();
@@ -19,9 +20,9 @@ const Details = () => {
   const [payedInfoModal, setPayedInfoModal] = useState(false);
   const [cancelModal, setCancelModal] = useState(false);
 
-  console.log(details);
+  // console.log(details);
 
-
+  
   const manageModal = () => {
     setStatusModal(false)
     if (statusModal) {
@@ -34,9 +35,10 @@ const Details = () => {
   };
 
   const cancelFunc = () => {
-    setCancelModal(true);
+    setCancelModal(false);
+    setStatusModal(false);
   };
-
+  // console.log("DETAILS DETAILS DETAILS",details);
   return (
     <div className={styles.mainContainerGrid}>
       <div className={styles.containerLeft}>
@@ -51,7 +53,7 @@ const Details = () => {
             success={success}
           />
         )}
-        {!isLoading && <CardReviewPets />}
+        {!isLoading && <CardReviewPets reviewsData={details.owner.reviews}/>}
       </div>
       <div className={styles.containerRight}>
         {!isLoading && <h1>{details.pet.name}</h1>}
@@ -64,7 +66,7 @@ const Details = () => {
           onAccept={acceptFunc}
           toggleModal={() => setStatusModal(true)}
           onCancel={cancelFunc}
-          toggleCancelModal={() => setCancelModal(false)}
+          toggleCancelModal={() => setCancelModal(true)}
         />
         {!isLoading && (
           <>
@@ -72,28 +74,26 @@ const Details = () => {
               state={statusModal}
               toggleModal={() => setStatusModal(!statusModal)}
               isWarning={false}
+              closeButton={true}
             >
               <ModalPrice
                 data={details}
                 toggleModal={() => manageModal()}
               />
 
-
             </ModalCustom>
             <ModalCustom
               state={payedInfoModal}
               toggleModal={() => { setPayedInfoModal(false); setSuccess(true); }}
-
             >
-              <ModalSendOffer />
+              <ModalSendOffer nameOwner={details.owner.name}/>
             </ModalCustom>
-            {/* <ModalCustom
+            <ModalCustom
               state={cancelModal}
-              toggleModal={() => {setPayedInfoModal(false); setSuccess(true);}}
-
+              toggleModal={() => {setCancelModal(false); setSuccess(false);}}
             >
-              <ModalSendOffer />
-            </ModalCustom> */}
+              <ModalCancelOffer nameOwner={details.owner.name} data={details}/>
+            </ModalCustom>
 
           </>
         )}

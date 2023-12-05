@@ -28,13 +28,34 @@ const getAllCaregiversLogic = async () => {
 const getCaregiverLogic = async (id) => {
   const caregiver = await CaregiversModel.findCaregiver(id)
   if (!caregiver) throw Error("User not found")
-  const tmp = String((Math.random() * (5 - 3) + 3).toFixed(2))
-  const caregiverAddRating = {
-    ...caregiver.toJSON(),
-    rating: tmp,
-  }
-  return caregiverAddRating
+  // const tmp = String((Math.random() * (5 - 3) + 3).toFixed(2))
+  // const caregiverAddRating = {
+    // ...caregiver.toJSON(),
+    // rating: tmp,
+  // }
+  return caregiver
 };
+
+const getCaredPetsLogic = async (id) => {
+  const CaredPets = await CaregiversModel.findCaredPets(id);
+  const CaredPetsMap = CaredPets.map(c => {
+    return {
+        ...c.toJSON(),
+        pet: {
+            name      : c.pet?.name,
+            species   : c.pet?.species?.icon,
+            breed     : c.pet?.breed?.name
+        },
+        owner: {
+            name            : c.owner?.user?.name,
+            profilePicture  : c.owner?.user?.profilePicture,
+            rating          : c.owner?.rating
+        }
+    }
+})
+
+return CaredPetsMap
+}
 
 const postCaregiverLogic = async (data) => {
   const { idUser } = data
@@ -77,6 +98,7 @@ const deleteCaregiverLogic = async (id, data) => {
 module.exports = {
   getAllCaregiversLogic,
   getCaregiverLogic,
+  getCaredPetsLogic,
   postCaregiverLogic,
   updateCaregiverLogic,
   deleteCaregiverLogic

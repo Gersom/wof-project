@@ -8,9 +8,10 @@ import styles from "./styles.module.scss";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Auth0Btutton from "../../auth/auth0-button/Auth0Button";
+import DefaultButton from "@components/buttons/DefaultButton"
+import SignInIcon from "@icons/login/sign-in.svg?react"
 
 const FormLogin = ({ onSubmitValidated = ()=>null }) => {
-
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -72,13 +73,18 @@ const FormLogin = ({ onSubmitValidated = ()=>null }) => {
                   Olvidaste la contraseña?
                 </Link>
               </div>
-
-              <button type="submit" className={styles["auth_btn"]}>
-                Ingresar
-              </button>
+              <DefaultButton 
+                type="submit"
+                background={true}
+                size="normal"
+                iconFill="fill"
+                label="Ingresar">
+                <SignInIcon />
+              </DefaultButton>
+              <div style={{marginBottom: "15px"}}></div>
               <div className={styles["register-container"]}>
                 <label>
-                  No tienes cuenta?&nbsp;
+                  ¿No tienes cuenta?&nbsp;
                 </label>
                 <Link to={routerNames["register"]}>
                   Registrarse

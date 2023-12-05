@@ -11,6 +11,7 @@ const catchedAsync = require("../utils/catchedAsync");
 const createUserMail = require("../config/mailing/createUserMail.js");
 const deleteUserMail = require("../config/mailing/deleteUserMail.js");
 const { loginUserLogic } = require("../logic/sing-in.js");
+const { createNotification } = require("./notifications.js");
 
 // READ ITEMS
 const getAllUsers = catchedAsync(async (req, res) => {
@@ -40,10 +41,22 @@ const getUser = catchedAsync(async (req, res) => {
 
 // CREATE ITEM
 const createUser = catchedAsync(async (req, res) => {
-  const newUser = await postUserLogic(req.body);
+  let newUser = await postUserLogic(req.body);
+  
   const { email, name, lastName } = req.body;
-  createUserMail(email, name, lastName);
-  res.status(200).json(newUser);
+  try {
+    await createUserMail(email, name, lastName);
+    const messageOk = "email sent successfully"
+    if(newUser.success) newUser.success.push(messageOk)
+    else newUser.success = [messageOk]
+    return res.status(201).json(newUser);
+  } 
+  catch (error) {
+    const messageErr = `Could not send registration email to ${email}`
+    if(newUser.error) newUser.error.push(messageErr)
+    else newUser.error = [messageErr]
+    return res.status(201).json(newUser);
+  }
 }, ErrorHandler.createUserErrorHandler);
 
 // UPDATE ITEM
