@@ -64,6 +64,21 @@ ReviewsModel['findByOwner'] = (ownerId) => {
 }
 
 ReviewsModel['createReview'] = async (data) => {
+  const averageRating = require("../../utils/averageRating")
+  const { ReviewsModel } = require("../index")
+
+  if(data.to === "caregiver"){
+    const { CaregiversModel } = require("../index")
+    const reviewsCaregiver = await ReviewsModel.findAll({where: {caregiverId:data.caregiverId}})
+
+    averageRating(reviewsCaregiver,CaregiversModel,data.caregiverId)
+  }
+  if(data.to === "owner"){
+    const { OwnersModel } = require("../index");
+    const reviewsOwner = await ReviewsModel.findAll({where:{ownerId:data.ownerId}})
+
+    averageRating(reviewsOwner,OwnersModel,data.ownerId)
+  }
   return await ReviewsModel.create(data)
 }
 

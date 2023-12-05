@@ -26,6 +26,11 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  rating: {
+    type: DataTypes.FLOAT,
+    defaultValue:0,
+    allowNull:true
+  }
 }
 
 const CaregiversModel = sequelize.define(name, schema, config)
