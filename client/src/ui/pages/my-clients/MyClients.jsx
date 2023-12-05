@@ -1,56 +1,54 @@
+import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import CustomerList from "@src/ui/components/cards/my-costumers/CustomerList/CustomerList";
 import FilterSortLocationBar from "@src/ui/components/filter-sort-location-bar/FilterSortLocationBar";
 import { useSelector } from "react-redux";
+import { getCaredPets } from "@src/common/utils/helpers-redux/getCaredPets";
 
 const MyClients = () => {
-  let myArray = [
-    {
-      id: 1,
-      name: "Bianca",
-      rating: 3.3,
-      imgSrc:
-        "https://images.pexels.com/photos/15637445/pexels-photo-15637445/free-photo-of-mujer-cara-pelo-largo-pelirrojo.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-      petName: "Ramses",
-      petBreed: "Mist australiano",
-      petIcon: "🐱",
-      startDate: "2023-11-19T04:00:00.000Z",
-      endDate: "2023-11-23T04:00:00.000Z",
-      address: "Av. Los Juarez - Quito",
-    },
-    {
-      id: 2,
-      name: "Anny",
-      rating: 4.7,
-      imgSrc: "http://localhost:3001/pictures/anny.png",
-      petName: "Peluche",
-      petBreed: "Pastor Alemán",
-      petIcon: "🐶",
-      startDate: "2023-11-18T04:00:00.000Z",
-      endDate: "2023-11-20T04:00:00.000Z",
-      address: "Av. Los Prados - Cercado",
-    },
-    {
-      id: 3,
-      name: "Paz",
-      rating: 4.7,
-      imgSrc:
-        "https://images.pexels.com/photos/15637445/pexels-photo-15637445/free-photo-of-mujer-cara-pelo-largo-pelirrojo.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-      petName: "Peluche",
-      petBreed: "Pastor Alemán",
-      petIcon: "🐶",
-      startDate: "2023-11-18T04:00:00.000Z",
-      endDate: "2023-11-20T04:00:00.000Z",
-      address: "Av. Los Prados - Cercado",
-    },
-  ];
+  const caregiverId = useSelector(
+    (state) => state?.userReducer?.user?.caregiver?.id
+  );
+
+  const [caredPets, setCaredPets] = useState([]);
+  const [loading, setLoading] = useState(true); //Limpiar remanentes
   const role = useSelector((state) => state.userReducer.user.role);
+
+  useEffect(() => {
+    setLoading(true);
+
+    if (caregiverId) {
+      getCaredPets(caregiverId)
+        .then((response) => {
+          console.log("Cared Pets Response:", response);
+          setCaredPets(response);
+        })
+        .catch((error) => {
+          console.error("Error fetching cared pets:", error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  }, [caregiverId]);
+
+  console.log("Cantidad de elementos del array:", caredPets.length);
+
   if (role === "caregiver") {
     return (
       <div className={styles.mainContainerl}>
         <h1 className={styles.myClients}>Mis Clientes</h1>
         <FilterSortLocationBar role={role} />
-        <CustomerList customers={myArray} />
+
+        {loading ? (
+          <p>Cargando...</p>
+        ) : caredPets.length === 0 ? (
+          <h1 className={styles.noClients}>
+            ¿Sin Clientes? Revisa el apartado de ofertas
+          </h1>
+        ) : (
+          <CustomerList customers={caredPets} />
+        )}
       </div>
     );
   } else {
