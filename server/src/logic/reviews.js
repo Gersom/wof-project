@@ -41,7 +41,6 @@ const updateReviewLogic = async (id, data) => {
   await NotificationsModel.create({
     ...updatedReview,
   });
-  console.log(pruebaNoti);
 
   return {
     success: "User was update correctly.",
