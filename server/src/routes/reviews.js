@@ -1,17 +1,17 @@
-const express = require("express")
-const router = express.Router()
-const controllers = require("../controllers/reviews")
+const express = require("express");
+const router = express.Router();
+const controllers = require("../controllers/reviews");
 
 // route => /reviews/...
 
-router.get("/", controllers.getAllReviews)
+router.get("/", controllers.getAllReviews);
 
-router.get("/:id", controllers.getReview)
+router.get("/:id", controllers.getReview);
 
-router.post("/", controllers.createReview)
+router.post("/", controllers.createReview);
 
-router.put("/:id", controllers.updateReview)
+router.put("/:id", controllers.updateReview);
 
-router.delete("/:id", controllers.deleteReview)
+router.delete("/:id", controllers.deleteReview);
 
-module.exports = router
+module.exports = router;

@@ -1,15 +1,17 @@
-const { PetsModel } = require("../models")
-const { PetsImagesModel } = require("../models")
+const { createdPet, deletedPet } = require("../data/notifications");
+const { PetsModel, UsersModel, OwnersModel } = require("../models");
+const { PetsImagesModel } = require("../models");
+const { NotificationsModel } = require("../models");
 
 const getAllPetsLogic = async (ownerId) => {
-  const pets = await PetsModel.findAllPets(ownerId)
-  return pets.map(pet => {
-    let petImgUrl = ""
+  const pets = await PetsModel.findAllPets(ownerId);
+  return pets.map((pet) => {
+    let petImgUrl = "";
 
-    const postObj = pet?.post?.toJSON()
+    const postObj = pet?.post?.toJSON();
 
     if (pet?.petsImages?.length > 0) {
-      petImgUrl = pet?.petsImages[0]?.imageUrl
+      petImgUrl = pet?.petsImages[0]?.imageUrl;
     }
     return {
       id: pet?.post?.id,
@@ -24,11 +26,10 @@ const getAllPetsLogic = async (ownerId) => {
         manners: pet?.manners,
         notes: pet?.notes,
 
-        imageUrl:petImgUrl,
+        imageUrl: petImgUrl,
         species: pet?.species,
         breed: pet?.breed,
         gender: pet?.gender,
-
       },
       owner: {
         id: pet?.owner?.id,
@@ -48,58 +49,72 @@ const getAllPetsLogic = async (ownerId) => {
         profilePicture: postObj?.caregiver?.user?.profilePicture,
         address: postObj?.caregiver?.user?.address,
         rating: String((Math.random() * (5 - 3) + 3).toFixed(2)),
-      }
-    }
-  })
-}
+      },
+    };
+  });
+};
 
 const getPetLogic = async (id) => {
-    const pet = await PetsModel.findPet(id)
-    if (!pet) throw Error("Pet not found")
-    return pet
+  const pet = await PetsModel.findPet(id);
+  if (!pet) throw Error("Pet not found");
+  return pet;
 };
 
 const postPetLogic = async (data) => {
-    const newPet = await PetsModel.createPet(data)
-    const images = data.imageUrl
-    if (images) {
-      const imagesFormated = images.map((img) => ({
-        petId: newPet.id, imageUrl: img
-      }))
-      await PetsImagesModel.createMany(imagesFormated)
-    }
-
-    return newPet
-    //   return {
-    //     success: 'The user was created successfully.'
-    //   }
-}
-
-const updatePetLogic = async (petId, data) => {
-  await PetsImagesModel.removeDataByPet(petId)
-  await PetsModel.updateData(petId, data)
-  const images = data.imageUrl
+  const newPet = await PetsModel.createPet(data);
+  const images = data.imageUrl;
   if (images) {
     const imagesFormated = images.map((img) => ({
-      petId, imageUrl: img
-    }))
-    await PetsImagesModel.createMany(imagesFormated)
+      petId: newPet.id,
+      imageUrl: img,
+    }));
+    await PetsImagesModel.createMany(imagesFormated);
+  }
+  await NotificationsModel.create({
+    ...createdPet,
+    ownerId: data.ownerId,
+    userId: data.userId,
+  });
+
+  return newPet;
+  //   return {
+  //     success: 'The user was created successfully.'
+  //   }
+};
+
+const updatePetLogic = async (petId, data) => {
+  await PetsImagesModel.removeDataByPet(petId);
+  await PetsModel.updateData(petId, data);
+  const images = data.imageUrl;
+  if (images) {
+    const imagesFormated = images.map((img) => ({
+      petId,
+      imageUrl: img,
+    }));
+    await PetsImagesModel.createMany(imagesFormated);
   }
   return {
-      success: 'Pet was update correctly.'
-  }
-}
+    success: "Pet was update correctly.",
+  };
+};
 const deletePetLogic = async (id) => {
-    await PetsModel.removeData(id)
-    return {
-        success: 'Pet was deleted correctly.'
-    }
-}
+  const dataPet = await PetsModel.findDataById(id);
+  const dataOwner = await OwnersModel.findDataById(id);
+  await PetsModel.removeData(id);
+  await NotificationsModel.create({
+    ...deletedPet,
+    userId: dataOwner.userId,
+    message: deletedPet.message + dataPet.name,
+  });
+  return {
+    success: "Pet was deleted correctly.",
+  };
+};
 
 module.exports = {
-    getAllPetsLogic,
-    getPetLogic,
-    postPetLogic,
-    updatePetLogic,
-    deletePetLogic
+  getAllPetsLogic,
+  getPetLogic,
+  postPetLogic,
+  updatePetLogic,
+  deletePetLogic,
 };
