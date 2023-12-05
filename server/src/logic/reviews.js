@@ -26,6 +26,7 @@ const postReviewLogic = async (data) => {
     ...createdReview,
     ownerId: data.ownerId,
     caregiverId: data.caregiverId,
+    userId: data.userId,
   });
 
   return newReview;
@@ -38,9 +39,6 @@ const updateReviewLogic = async (id, data) => {
   const { comment, rating } = data;
 
   await ReviewsModel.updateData(id, { comment, rating });
-  await NotificationsModel.create({
-    ...updatedReview,
-  });
 
   return {
     success: "User was update correctly.",
