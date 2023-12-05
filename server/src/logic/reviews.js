@@ -1,5 +1,5 @@
 const { ReviewsModel, UsersModel, NotificationsModel } = require("../models");
-const { createdReview, updatedReview } = require("../data/notifications");
+const { createdReview } = require("../data/notifications");
 
 const getAllReviewsLogic = async (ownerid) => {
   const reviews = await ReviewsModel.findAllData();

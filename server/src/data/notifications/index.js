@@ -40,6 +40,5 @@ module.exports = {
   createdTransaction,
   createdPet,
   createdReview,
-  updatedReview,
   deletedPet,
 };

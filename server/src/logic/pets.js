@@ -86,6 +86,7 @@ const updatePetLogic = async (petId, data) => {
   await PetsImagesModel.removeDataByPet(petId);
   await PetsModel.updateData(petId, data);
   const images = data.imageUrl;
+
   if (images) {
     const imagesFormated = images.map((img) => ({
       petId,
