@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
 const UsersModel = require("./users")
-const PostsModel = require("./posts")
+const PostsModel = require("./servicePostings")
 const CaregiversModel = require("./caregivers")
 const addMethods = require("../utils/addStaticMethods")
 

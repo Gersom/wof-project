@@ -28,8 +28,8 @@ const createdReview = {
   action: "",
 };
 
-const updatedReview = {
-  message: "Tu review se ha actualizado correctamente",
+const deletedPet = {
+  message: "Tu mascota se ha eliminado correctamente ",
   status: false,
   action: "",
 };
@@ -40,5 +40,5 @@ module.exports = {
   createdTransaction,
   createdPet,
   createdReview,
-  updatedReview,
+  deletedPet,
 };

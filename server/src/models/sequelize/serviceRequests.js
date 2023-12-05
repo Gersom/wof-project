@@ -1,11 +1,11 @@
 const {DataTypes} = require("sequelize")
 const { sequelize } = require("../../config/dbConnect/engines/postgresql")
-const PostsModel = require("./posts")
+const PostsModel = require("./servicePostings")
 const CaregiversModel = require("./caregivers")
 const addMethods = require("../utils/addStaticMethods")
 
-//toDo: rename Model
-const name = 'requests'
+
+const name = 'serviceRequests'
 const config = { 
   timestamps: true, // createAt, updateAt
   freezeTableName: true

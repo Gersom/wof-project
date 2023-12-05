@@ -1,5 +1,5 @@
-const { createdPet } = require("../data/notifications");
-const { PetsModel } = require("../models");
+const { createdPet, deletedPet } = require("../data/notifications");
+const { PetsModel, UsersModel, OwnersModel } = require("../models");
 const { PetsImagesModel } = require("../models");
 const { NotificationsModel } = require("../models");
 
@@ -73,6 +73,7 @@ const postPetLogic = async (data) => {
   await NotificationsModel.create({
     ...createdPet,
     ownerId: data.ownerId,
+    userId: data.userId,
   });
 
   return newPet;
@@ -85,6 +86,7 @@ const updatePetLogic = async (petId, data) => {
   await PetsImagesModel.removeDataByPet(petId);
   await PetsModel.updateData(petId, data);
   const images = data.imageUrl;
+
   if (images) {
     const imagesFormated = images.map((img) => ({
       petId,
@@ -97,7 +99,14 @@ const updatePetLogic = async (petId, data) => {
   };
 };
 const deletePetLogic = async (id) => {
+  const dataPet = await PetsModel.findDataById(id);
+  const dataOwner = await OwnersModel.findDataById(id);
   await PetsModel.removeData(id);
+  await NotificationsModel.create({
+    ...deletedPet,
+    userId: dataOwner.userId,
+    message: deletedPet.message + dataPet.name,
+  });
   return {
     success: "Pet was deleted correctly.",
   };
