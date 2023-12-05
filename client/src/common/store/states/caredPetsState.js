@@ -1,0 +1,3 @@
+const caredPetState = {
+  caredPets: [],
+};

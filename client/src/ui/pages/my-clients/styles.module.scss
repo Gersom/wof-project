@@ -11,3 +11,11 @@
     justify-content: center;
     align-items: center;
 }
+.noClients {
+    display: grid;
+    place-items: center;
+    height: 50vh;
+    color: var(--color-text-title);
+    padding: 5rem;
+  }
+  

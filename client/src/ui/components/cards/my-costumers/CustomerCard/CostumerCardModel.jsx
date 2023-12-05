@@ -3,17 +3,13 @@ import styles from "./styles.module.scss";
 import starReview from "@icons/starReview.svg";
 
 const CustomerCardModel = ({ customerData }) => {
+  const { pet, owner, startDate, endDate, address } = customerData;
   const {
-    name,
-    rating,
-    imgSrc,
-    petIcon,
-    petName,
-    petBreed,
-    startDate,
-    endDate,
-    address,
-  } = customerData;
+    name: ownerName,
+    profilePicture: ownerPicture,
+    rating: ownerRating,
+  } = owner;
+  const { name: petName, species: petSpecies, breed: petBreed } = pet;
 
   const [formattedServiceStartDate, setFormattedServiceStartDate] = useState(
     []
@@ -42,21 +38,21 @@ const CustomerCardModel = ({ customerData }) => {
   return (
     <div className={styles.article}>
       <figure>
-        <img src={imgSrc} alt={`${name} foto de perfil`} />
+        <img src={ownerPicture} alt={`${ownerName} foto de perfil`} />
         <figcaption>
-          <h3>{name}</h3>
+          <h3>{ownerName}</h3>
         </figcaption>
       </figure>
       <div className={styles.cont}>
         <div className={styles.contSec}>
           <h5>Puntuación :</h5>
           <img src={starReview} alt="starReview" />
-          <h4>{rating}</h4>
+          <h4>{ownerRating}</h4>
         </div>
         <hr className={styles.separator}></hr>
         <div>
           <h4>
-            {petIcon} {petName} - {petBreed}
+            {petSpecies} {petName} - {petBreed}
           </h4>
           <h4 className={styles.address}>{address}</h4>
           <hr className={styles.separatorSec}></hr>
