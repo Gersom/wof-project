@@ -73,7 +73,7 @@ RequestsModel['createData'] = async (data) => {
   if (data.postId) {
     const post = await PostsModel.findByPk(data.postId);
     if (post) {
-      await newRequest.setPost(post);
+      await newRequest.setServicePostings(post);
     }
   }
 
