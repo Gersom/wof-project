@@ -97,7 +97,7 @@ const updatePetLogic = async (petId, data) => {
   }
   await NotificationsModel.create({
     ...updatedPet,
-    userId: dataOwner.userId,
+    userId: idUser.userId,
   });
   return {
     success: "Pet was update correctly.",
