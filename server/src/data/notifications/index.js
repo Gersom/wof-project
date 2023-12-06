@@ -10,6 +10,12 @@ const createdUser = {
   action: "",
 };
 
+const updatedUser = {
+  message: "Se ha actualizado correctamente tu usuario",
+  status: false,
+  action: "",
+};
+
 const createdTransaction = {
   message: "Tu pago se registro correctamente",
   status: false,
@@ -43,6 +49,7 @@ const updatedPet = {
 module.exports = {
   changePassword,
   createdUser,
+  updatedUser,
   createdTransaction,
   createdPet,
   createdReview,

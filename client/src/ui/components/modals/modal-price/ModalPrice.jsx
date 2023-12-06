@@ -9,13 +9,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setAlert } from '@src/common/store/slices/alertSlice';
 import useWsCaregiver from '@src/common/utils/websocket/useWsCaregiver';
 
-const ModalPrice = ({ message, data, toggleModal }) => {
+const ModalPrice = ({ data, toggleModal, setSuccess }) => {
 	const dispatch = useDispatch();
 	const { sendMessage } = useWsCaregiver('caregiver');
 
 	const nameCaregiver = useSelector((state) => state.userReducer?.user?.name)
 
 	const [price, setPrice] = useState('');
+
 	const postPrice = async (dataPost) => {
 		try {
 			const response = await axios.post(API_URL + '/requests', dataPost);
@@ -39,7 +40,8 @@ const ModalPrice = ({ message, data, toggleModal }) => {
 			dispatch(
 				setAlert({ message: '¡Tarifa enviada correctamente!', type: 'success' })
 			);
-			sendMessage({ type: 'request_update', petName: data.pet.name, caregiverName: nameCaregiver });
+			setSuccess(true);
+			sendMessage({ type: 'request_update', petName: data.pet.name, caregiverName: nameCaregiver, ownerId: data.owner.id});
 			toggleModal(false);
 		}
 	};

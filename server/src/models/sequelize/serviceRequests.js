@@ -112,5 +112,20 @@ RequestsModel['findRequestsByPost'] = async (servicePostingId) => {
   })
 }
 
+RequestsModel['deleteRequestsByCaregiver'] = async (servicePostingId, caregiverId) => {
+  try {
+    const deletedRequestsCount = await RequestsModel.destroy({
+      where: {
+        servicePostingId,
+        caregiverId
+      }
+    });
+    return { success: true, message: `Deleted ${deletedRequestsCount} requests for caregiver ${caregiverId} and servicePostingId ${servicePostingId}` };
+  } catch (error) {
+    console.log('------------->',error);
+    return { success: false, message: error.message };
+  }
+};
+
 
 module.exports = RequestsModel

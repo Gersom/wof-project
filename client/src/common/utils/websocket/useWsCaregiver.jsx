@@ -1,18 +1,21 @@
 import { WS_URL } from '@src/common/constants/api';
 
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actionGetOffersOwner } from '@src/common/store/actions/offersActions';
 import { setAlert } from '@src/common/store/slices/alertSlice';
 
 const useWsCaregiver = (role) => {
 	const dispatch = useDispatch();
-
+	
 	const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
 	const [ws, setWs] = useState(null);
 
+	const caregiverId = useSelector((state) => state.userReducer.user?.caregiver?.id);
+
 	useEffect(() => {
 		if (role !== 'caregiver') return;
+
 		if (!ws) {
 			const newWs = new WebSocket(WS_URL);
 
@@ -40,7 +43,7 @@ const useWsCaregiver = (role) => {
 					}
 
 					//
-					if(data.type === 'payment_complete'){
+					if(data.type === 'payment_complete'&& data.caregiverId === caregiverId){
 						if (lastProcessedMessage === data.type) return;
 						setLastProcessedMessage(data.type);
 						dispatch(actionGetOffersOwner());

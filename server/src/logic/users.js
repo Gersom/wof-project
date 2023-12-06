@@ -1,6 +1,11 @@
-const { 
-  UsersModel, NotificationsModel, CountriesModel, CaregiversModel, OwnersModel
+const {
+  UsersModel,
+  NotificationsModel,
+  CountriesModel,
+  CaregiversModel,
+  OwnersModel,
 } = require("../models");
+const { updatedUser } = require("../data/notifications");
 const bcrypt = require("bcrypt");
 
 const getAllUsersLogic = async () => {
@@ -33,74 +38,79 @@ const getUserLogic = async (id) => {
 };
 
 const postUserLogic = async (data) => {
-  const originalPassword = data.password
-  const originalEmail = data.email
-  const originalName = data.name
-  let messages = ['The user was created successfully.']
+  const originalPassword = data.password;
+  const originalEmail = data.email;
+  const originalName = data.name;
+  let messages = ["The user was created successfully."];
 
   if (originalPassword && originalEmail && originalName) {
     // Password hash
-    let { password, ...newData } = data
+    let { password, ...newData } = data;
     const saltRounds = 10;
     const hashPassword = await bcrypt.hash(password, saltRounds);
-    newData.password = hashPassword
+    newData.password = hashPassword;
 
     // Country AR
-    const arId = await CountriesModel.findIdData("domain", "ar")
-    newData.countryId = arId
-    messages.push("Country Id Add successfully")
-    
-    if(newData.provinceId) {
-      newData.provinceId = Number(newData.provinceId)
-      if(typeof newData.provinceId === "number") {
-        messages.push("Province Id Add successfully")
+    const arId = await CountriesModel.findIdData("domain", "ar");
+    newData.countryId = arId;
+    messages.push("Country Id Add successfully");
+
+    if (newData.provinceId) {
+      newData.provinceId = Number(newData.provinceId);
+      if (typeof newData.provinceId === "number") {
+        messages.push("Province Id Add successfully");
       }
     }
-    
+
     const newUser = await UsersModel.createUser(newData);
 
     // Roles
     const role = data.role;
     if (role === "caregiver") {
-      await CaregiversModel.create({userId: newUser.id})
-      messages.push("New Caregiver created successfully")
+      await CaregiversModel.create({ userId: newUser.id });
+      messages.push("New Caregiver created successfully");
     }
     if (role === "owner") {
-      await OwnersModel.create({userId: newUser.id})
-      messages.push("New Owner created successfully")
+      await OwnersModel.create({ userId: newUser.id });
+      messages.push("New Owner created successfully");
     }
 
     // Create Notification
-    const notifications = require("./../data/notifications/index")
+    const notifications = require("./../data/notifications/index");
     const formatedNoti = {
       ...notifications?.createdUser,
-      message: `${notifications?.createdUser?.message} ${newUser.name}`
-    }
+      message: `${notifications?.createdUser?.message} ${newUser.name}`,
+    };
     await NotificationsModel.create({
       ...formatedNoti,
-      userId: newUser.id
-    })
-    messages.push("Notification Created User successfully")
+      userId: newUser.id,
+    });
+    messages.push("Notification Created User successfully");
 
     // return newUser;
-    return { 
+    return {
       success: messages,
       data: {
         id: newUser.id,
         email: newUser.email,
         name: newUser.name,
-        lastName: newUser.lastName
-      }
-    }
-  }
-  else throw Error("Data missing")
+        lastName: newUser.lastName,
+      },
+    };
+  } else throw Error("Data missing");
 };
 
 const updateUserLogic = async (id, data) => {
   // if(data.password) throw Error("cannot change password")
   // if(data.email) throw Error("cannot change email")
   const { email, password, ...newData } = data;
+  const idUser = await UsersModel.findDataById(id);
   await UsersModel.updateData(id, newData);
+ 
+  await NotificationsModel.create({
+    ...updatedUser,
+    userId: idUser.id,
+  });
   return {
     success: "User was update correctly.",
   };
@@ -113,23 +123,23 @@ const deleteUserLogic = async (id, data) => {
 };
 
 const postNewRoleLogic = async (userId, body) => {
-  const role = body.role
-  const User = await UsersModel.updateData(userId, {role});
+  const role = body.role;
+  const User = await UsersModel.updateData(userId, { role });
 
   if (role === "caregiver") {
-    const exist = await CaregiversModel.dataExistByUser(userId)
+    const exist = await CaregiversModel.dataExistByUser(userId);
     if (!exist) {
-      const responseCreate = await CaregiversModel.create({userId});
-      return {caregiverId: responseCreate?.id};
+      const responseCreate = await CaregiversModel.create({ userId });
+      return { caregiverId: responseCreate?.id };
     }
-    return User
+    return User;
   } else if (role === "owner") {
-    const exist = await OwnersModel.dataExistByUser(userId)
+    const exist = await OwnersModel.dataExistByUser(userId);
     if (!exist) {
-      const responseCreate = await OwnersModel.create({userId});
-      return {caregiverId: responseCreate?.id};
+      const responseCreate = await OwnersModel.create({ userId });
+      return { caregiverId: responseCreate?.id };
     }
-    return User
+    return User;
   }
 };
 
