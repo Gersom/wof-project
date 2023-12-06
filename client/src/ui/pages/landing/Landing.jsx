@@ -19,7 +19,7 @@ const LandingPage = () => {
       navigate(routerNames["loading"]);
     }
     // }
-    console.log("API:", API);
+    //console.log("API:", API);
   }, [navigate]);
 
   return (

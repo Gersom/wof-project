@@ -28,7 +28,7 @@ export const nameValidation = (dataForm, errors) => {
   if (dataForm.name === "") {
     errors.name = "";
   } else if (dataForm.name.length < 3) {
-    errors.name = "El Nombre debe contener al menos 3 caracteres";
+    errors.name = "El Nombre es demasiado corto";
   } else if (dataForm.name.length > 30) {
     errors.name = "El Nombre no puede superar los 30 caracteres";
   } else if (
@@ -46,7 +46,7 @@ export const lastNameValidation = (dataForm, errors) => {
   if (dataForm.lastName === "") {
     errors.lastName = "";
   } else if (dataForm.lastName.length < 3) {
-    errors.lastName = "El apellido debe contener al menos 3 caracteres";
+    errors.lastName = "El Apellido es demasiado corto";
   } else if (dataForm.lastName.length > 50) {
     errors.lastName = "El apellido no puede superar los 50 caracteres";
   } else if (
