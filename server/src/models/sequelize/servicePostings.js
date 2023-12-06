@@ -64,10 +64,10 @@ const PostsModel = sequelize.define(name, schema, config)
 OwnersModel.hasMany(PostsModel)
 PostsModel.belongsTo(OwnersModel)
 
-PetsModel.hasOne(PostsModel)
+PetsModel.hasMany(PostsModel)
 PostsModel.belongsTo(PetsModel)
 
-CaregiversModel.hasOne(PostsModel)
+CaregiversModel.hasMany(PostsModel)
 PostsModel.belongsTo(CaregiversModel)
 
 // add static methods (functions) to model

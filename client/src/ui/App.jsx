@@ -34,6 +34,8 @@ import useAlert from "@src/common/hooks/use-alert/useAlert";
 import MyClients from "./pages/my-clients/MyClients";
 import NotificatioPanel from "./components/notification/NotificatioPanel";
 import { useEffect } from "react";
+import Admin from "./pages/admin/admin";
+import Users from "./pages/users/users";
 
 // Imports Components
 
@@ -46,8 +48,6 @@ function App() {
     const storage = getFromLocalStorage("session");
 
     if (newRoute !== "/verificando" && newRoute !== "/iniciar-sesion") {
-
-
       if (storage?.token && storage?.userId) {
         const updatedstorage = {
           token: storage?.token,
@@ -57,7 +57,6 @@ function App() {
         saveToLocalStorage("session", updatedstorage);
       }
     }
-
   };
 
   const tokenExist = async () => {
@@ -70,7 +69,6 @@ function App() {
   useEffect(() => {
     const newRoute = location.pathname;
     storeCurrentRouteInSession(newRoute);
-
   }, [location.pathname]);
 
   return (
@@ -135,7 +133,9 @@ function App() {
             <Route path={routerNames["myClients"]} element={<MyClients />} />
           </Route>
         </Route>
-
+        <Route path={routerNames["admin"]} element={<Admin />}>
+          <Route path={routerNames["users"]} element={<Users />}></Route>
+        </Route>
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />
       </Routes>
