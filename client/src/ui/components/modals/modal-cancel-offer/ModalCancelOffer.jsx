@@ -1,24 +1,8 @@
-import { API_URL } from "@src/common/constants/api";
 
 import styles from "./styles.module.scss";
-import axios from "axios";
 
-const ModalCancelOffer = ({ nameOwner , data}) => {
+const ModalCancelOffer = ({ nameOwner }) => {
 
-  const cancelOffer = async (data) => {
-    try {
-      const response = await axios.delete(API_URL + "/requests/"+`${data.id}`);
-      //console.log(response);
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  //console.log(data);
-  const asyncOperation = async() =>{
-    await cancelOffer(data);
-  }
-  asyncOperation();
 
   return (
     <div className={styles.container}>
