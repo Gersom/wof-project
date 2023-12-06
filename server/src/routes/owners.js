@@ -8,6 +8,8 @@ router.get("/", controllers.getAllOwners)
 
 router.get("/:id", controllers.getOwner)
 
+router.get("/:id/hired-caregivers", controllers.getHiredCaregivers)
+
 router.post("/", controllers.createOwner)
 
 router.put("/:id", controllers.updateOwner)
