@@ -8,7 +8,7 @@ function OffersOwner() {
 		<div className={styles.container}>
 			{offersOwner.map(
 				(offer, index) =>
-					offer.status !== 'paid' && (
+					offer.status !== 'paid' && offer.status !== 'completed' && (
 						<CardOffersOwner key={index} data={offer} />
 					)
 			)}

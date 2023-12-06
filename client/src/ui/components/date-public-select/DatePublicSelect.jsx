@@ -82,9 +82,13 @@ const DatePublicSelect = ({
 			return;
 		}
 		if (startDate && endDate) {
-			if (data.id) {
+			if (data.status === 'completed'){
+				await fetch(`${API_URL_CREATE_POST}`, options);
+				dispatch(setAlert({ message: 'Publicación creada', type: 'success' }));
+			}
+			else if (data.id && data.status === 'published') {
 				options.method = 'PUT';
-				await fetch(`${API_URL_CREATE_POST}${data.id}`, options);
+				await fetch(`${API_URL_CREATE_POST}/${data.id}`, options);
 				dispatch(setAlert({ message: 'Publicación actualizada', type: 'success' }));
 			} else {
 				await fetch(API_URL_CREATE_POST, options);
