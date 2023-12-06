@@ -21,7 +21,9 @@ const Details = () => {
   const [statusModal, setStatusModal] = useState(false);
   const [payedInfoModal, setPayedInfoModal] = useState(false);
   const [cancelModal, setCancelModal] = useState(false);
-  const caregiverId = useSelector((state) => state?.userReducer?.user?.caregiver?.id);
+  const caregiverId = useSelector(
+    (state) => state?.userReducer?.user?.caregiver?.id
+  );
   // console.log(details);
 
   useEffect(() => {
@@ -30,19 +32,19 @@ const Details = () => {
       const data = await response.json();
       if (data.some((item) => item.caregiverId === caregiverId)) {
         setSuccess(true);
-      }else{
+      } else {
         setSuccess(false);
       }
-    }
+    };
     getRequest();
-  },[id, caregiverId])
-  
+  }, [id, caregiverId]);
+
   const manageModal = () => {
-    setStatusModal(false)
+    setStatusModal(false);
     if (statusModal) {
       setPayedInfoModal(true);
     }
-  }
+  };
 
   const acceptFunc = () => {
     setStatusModal(true);
@@ -51,20 +53,7 @@ const Details = () => {
   const cancelFunc = async () => {
     setCancelModal(false);
     setStatusModal(false);
-    let options = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({caregiverId: caregiverId}),
-    };
-    const response = await fetch(`${API_URL_SERVICES}${id}`, options);
-    const data = await response.json();
-    if (data) {
-      setSuccess(false);
-    }
   };
-
 
   return (
     <div className={styles.mainContainerGrid}>
@@ -80,7 +69,7 @@ const Details = () => {
             success={success}
           />
         )}
-        {!isLoading && <CardReviewPets reviewsData={details.owner.reviews}/>}
+        {!isLoading && <CardReviewPets reviewsData={details.owner.reviews} />}
       </div>
       <div className={styles.containerRight}>
         {!isLoading && <h1>{details.pet.name}</h1>}
@@ -108,21 +97,24 @@ const Details = () => {
                 toggleModal={() => manageModal()}
                 setSuccess={() => setSuccess(true)}
               />
-
             </ModalCustom>
             <ModalCustom
               state={payedInfoModal}
-              toggleModal={() => { setPayedInfoModal(false) }}
+              toggleModal={() => {
+                setPayedInfoModal(false);
+              }}
             >
-              <ModalSendOffer nameOwner={details.owner.name}/>
+              <ModalSendOffer nameOwner={details.owner.name} />
             </ModalCustom>
             <ModalCustom
               state={cancelModal}
-              toggleModal={() => {setCancelModal(false); setSuccess(false);}}
+              toggleModal={() => {
+                setCancelModal(false);
+                setSuccess(false);
+              }}
             >
-              <ModalCancelOffer nameOwner={details.owner.name} data={details}/>
+              <ModalCancelOffer nameOwner={details.owner.name} data={details} />
             </ModalCustom>
-
           </>
         )}
       </div>

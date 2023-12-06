@@ -106,7 +106,7 @@ const updatePetLogic = async (petId, data) => {
 };
 const deletePetLogic = async (id) => {
   const dataPet = await PetsModel.findDataById(id);
-  const dataOwner = await OwnersModel.findDataById(id);
+  const dataOwner = await UsersModel.findDataById(id);
   await PetsModel.removeData(id);
   await NotificationsModel.create({
     ...deletedPet,
