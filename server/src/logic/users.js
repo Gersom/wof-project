@@ -104,12 +104,12 @@ const updateUserLogic = async (id, data) => {
   // if(data.password) throw Error("cannot change password")
   // if(data.email) throw Error("cannot change email")
   const { email, password, ...newData } = data;
-  const idUser = await OwnersModel.findDataById(id);
+  const idUser = await UsersModel.findDataById(id);
   await UsersModel.updateData(id, newData);
-
+ 
   await NotificationsModel.create({
     ...updatedUser,
-    userId: idUser.userId,
+    userId: idUser.id,
   });
   return {
     success: "User was update correctly.",
