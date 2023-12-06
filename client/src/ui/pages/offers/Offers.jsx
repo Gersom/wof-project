@@ -26,6 +26,7 @@ const Offers = () => {
                       petName={post.pet.name}
 											image={post.pet.imageUrl}
 											key={index}
+											postId={post.id}
 										/>
 									)
 							)}

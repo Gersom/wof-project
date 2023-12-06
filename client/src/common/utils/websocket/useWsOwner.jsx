@@ -17,6 +17,13 @@ const useWsOwner = (role) => {
 
 			newWs.onopen = () => {
 				console.log('connected');
+        newWs.send(
+          JSON.stringify({
+            type: 'register',
+            role: 'owner',
+            ownerId : ownerId,
+          })
+        );
 			};
 
 			newWs.onmessage = (event) => {
