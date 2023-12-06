@@ -31,6 +31,32 @@ const getOwnerLogic = async (id) => {
     return owner
 };
 
+const getHiredCaregiversLogic = async (id) => {
+    const hiredCaregivers = await OwnersModel.findHiredCaregivers(id);
+    
+    const formatted = hiredCaregivers.map(c => {
+        const requestByCaregiverId = c.requests.find(r => r.caregiverId == c.caregiver.id)
+        return {
+            id: c.id,
+            address: c.address,
+            startDate: c.startDate,
+            endDate: c.endDate,
+            pet: {
+                name: c.pet?.name,
+                species: c.pet?.species?.icon,
+                breed: c.pet?.breed?.name
+            },
+            caregiver: {
+                name: c.caregiver?.user?.name,
+                profilePicture: c.caregiver?.user?.profilePicture,
+                rating: c.caregiver?.rating,
+                price: requestByCaregiverId?.price
+            }
+        }
+    })
+    return formatted
+}
+
 const postOwnerLogic = async (data) => {
     const { idUser } = data
     const user = await UsersModel.findOneData(idUser)
@@ -61,6 +87,7 @@ const deleteOwnerLogic = async (id, data) => {
 module.exports = {
     getAllOwnersLogic,
     getOwnerLogic,
+    getHiredCaregiversLogic,
     postOwnerLogic,
     updateOwnerLogic,
     deleteOwnerLogic
