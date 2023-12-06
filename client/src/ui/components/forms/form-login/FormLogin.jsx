@@ -1,108 +1,104 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import routerNames from "@src/common/constants/routes";
-import logo from "@icons/nav/logo.svg";
-import PasswordIcon from "@icons/password.svg?react";
-import EmailIcon from "@icons/email.svg?react";
+import LogoIcon from "@icons/company/logotype.svg?react";
 import styles from "./styles.module.scss";
-import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Auth0Btutton from "../../auth/auth0-button/Auth0Button";
 import DefaultButton from "@components/buttons/DefaultButton"
 import SignInIcon from "@icons/login/sign-in.svg?react"
+import EmailInput from "@components/inputs/EmailInput"
+import PasswordInput from "@components/inputs/PasswordInput"
+import { useDispatch } from "react-redux";
+import { setAlert } from "@src/common/store/slices/alertSlice";
 
-const FormLogin = ({ onSubmitValidated = ()=>null }) => {
-  const [showPassword, setShowPassword] = useState(false);
+const FormLogin = ({
+  onSubmitValidated = ()=>null,
+  dark=false
+}) => {
+  const dispatch = useDispatch();
+  const [dataForm, setDataForm] = useState({
+    email: '', password: ''
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    let validations = true
+    for (let clave in dataForm) {
+      if (clave === '' || clave === false){
+        validations = false;
+        break;
+      }
+    }
 
-    const emailValue = e.target.elements.email.value;
-    const passwordValue = e.target.elements.password.value;
-
-    onSubmitValidated({
-      email: emailValue,
-      password: passwordValue,
-    })
+    if(validations) {
+      onSubmitValidated(dataForm)
+    } else {
+      dispatch(setAlert({ message: "Completa los todos los datos correctamente", type: "warning" }));
+    }
   };
 
-  const handleTogglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const handleEmail = (e) => setDataForm({...dataForm, email: e})
+  const handlePassword = (pass) => setDataForm({...dataForm, password: pass})
 
   return (
-    <>
-      <div className={styles.container}>
-        <div className={styles["form-container"]}>
+    <div className={`${styles.container} ${dark?styles.modeDark:''}`}>
+      <div className={styles["form-container"]}>
+        <div className={styles.formContent}>
           <div className={styles["logo_container"]}>
-            <img src={logo} alt="Logo" />
+            <LogoIcon />
             <span>.com</span>
           </div>
           <div>
             <h1>Iniciar Sesion</h1>
-            <div className={styles["form_auth_hr"]}></div>
           </div>
 
           <div className={styles["auth_form"]}>
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className={styles["input_container"]}>
-                <label className={styles["labelIcon"]} htmlFor="email">
-                  <EmailIcon/>
-                  <span>Email:</span>
-                </label>
-                <input type="text" name="email" />
+                <EmailInput 
+                dark={dark} onValidated={handleEmail} />
               </div>
               <div className={styles["input_container"]}>
-                <label className={styles["labelIcon"]} htmlFor="password">
-                  <PasswordIcon />
-                  <span>Contraseña:</span>
-                </label>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                />
-                <div
-                  className={styles["toggle-password-icon"]}
-                  onClick={handleTogglePasswordVisibility}
-                >
-                  <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+                <PasswordInput 
+                dark={dark} validation={false} 
+                onValidated={handlePassword} />
+                <div className={styles["pasword-recovery-container"]}>
+                  <Link to={routerNames["register"]}>
+                    Olvidaste la contraseña?
+                  </Link>
                 </div>
               </div>
-              <div className={styles["pasword-recovery-container"]}>
-                <Link to={routerNames["register"]}>
-                  Olvidaste la contraseña?
-                </Link>
-              </div>
+              
               <DefaultButton 
-                type="submit"
+                type="button"
                 background={true}
-                size="normal"
+                size="large"
                 iconFill="fill"
-                label="Ingresar">
+                label="Ingresar"
+                onAction={handleSubmit}>
                 <SignInIcon />
               </DefaultButton>
-              <div style={{marginBottom: "15px"}}></div>
+              <div style={{marginBottom: "10px"}}></div>
               <div className={styles["register-container"]}>
-                <label>
+                <label style={dark?{color:'#fff'}:{}}>
                   ¿No tienes cuenta?&nbsp;
                 </label>
                 <Link to={routerNames["register"]}>
-                  Registrarse
+                  Regístrate
                 </Link>
               </div>
 
-              <div className={styles["form_auth_hr"]}></div>
             </form>
-            <Auth0Btutton type={"service"} />
+            <div className={styles["auth0Button"]}>
+              <Auth0Btutton type={"service"} />
+            </div>
           </div>
 
-          <div className={styles["form_auth_hr"]}></div>
         </div>
-        <p className={styles["footer_credit"]}>
-          <span>•</span>By Group 3<span>•</span>
-        </p>
       </div>
-    </>
+      <p className={styles["footer_credit"]}>
+        <span>•</span>By Group 3<span>•</span>
+      </p>
+    </div>
   );
 };
 

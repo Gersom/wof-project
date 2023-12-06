@@ -1,0 +1,96 @@
+.defaultInput {
+  input {
+    font-family: "Lexend-Regular";
+    width: 100%;
+    height: 34px;
+    margin: 0;
+    padding: 5px 20px;
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    font-size: 14px;
+  
+    color: var(--color-background-dark2);
+    background-color: #fff;
+  }
+  input::placeholder{
+    opacity: 0.7;
+  }
+  span {
+    font-size: 12px;
+    margin: 0 0 0 0;
+    padding: 0;
+    display: block;
+    text-align: center;
+  }
+  label {
+    font-size: 14px;
+    color: var(--color-background-dark2)
+  }
+}
+.titleInput {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 5px;
+  svg {
+    height: 18px;
+    width: auto;
+    margin-right: 10px;
+  }
+  path {
+    stroke: var(--color-background-dark2)
+  }
+}
+.grayBG {
+  input {
+    background-color: var(--color-background-light);
+  }
+  input:focus {
+    background-color: #fff;
+  }
+}
+.darkInput {
+  [class^="_titleInput"] {
+    label { color: #fff; }
+    path {
+      stroke: #fff;
+    }
+  }
+}
+
+.errorInput {
+  input {
+    border-color: var(--color-error);
+  }
+  span {
+    color: var(--color-error);
+    margin: 3px 0 0 0;
+  }
+}
+.validatedInput{
+  span {
+    color: var(--color-success);
+    margin: 3px 0 0 0;
+  }
+}
+
+.inputPass {
+  position: relative;
+  button {
+    position: absolute;
+    border: none;
+    width: initial;
+    height: 100%;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    right: 10px;
+    padding: 0 5px;
+    margin: 0;
+  }
+  svg path {
+    stroke: var(--color-text-grey);
+  }
+}

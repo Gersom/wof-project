@@ -50,7 +50,7 @@ const Login = () => {
 
   return (
     <div className="Login" style={{ height: "100%"}}>
-      <FormLogin onSubmitValidated={handleSubmit} />
+      <FormLogin onSubmitValidated={handleSubmit}  dark={true}/>
     </div>
   );
 };
