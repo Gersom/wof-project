@@ -85,7 +85,8 @@ const postPetLogic = async (data) => {
 const updatePetLogic = async (petId, data) => {
   await PetsImagesModel.removeDataByPet(petId);
   await PetsModel.updateData(petId, data);
-  const idUser = await OwnersModel.findDataById(id);
+  const pet = await PetsModel.findDataById(petId);
+  const owner = await OwnersModel.findDataById(pet.ownerId);
   const images = data.imageUrl;
 
   if (images) {
@@ -97,7 +98,7 @@ const updatePetLogic = async (petId, data) => {
   }
   await NotificationsModel.create({
     ...updatedPet,
-    userId: idUser.userId,
+    userId: owner.userId,
   });
   return {
     success: "Pet was update correctly.",
