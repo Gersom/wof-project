@@ -10,6 +10,12 @@ const createdUser = {
   action: "",
 };
 
+const updatedUser = {
+  message: "Se ha actualizado correctamente tu usuario",
+  status: false,
+  action: "",
+};
+
 const createdTransaction = {
   message: "Tu pago se registro correctamente",
   status: false,
@@ -28,8 +34,14 @@ const createdReview = {
   action: "",
 };
 
-const updatedReview = {
-  message: "Tu review se ha actualizado correctamente",
+const deletedPet = {
+  message: "Tu mascota se ha eliminado correctamente ",
+  status: false,
+  action: "",
+};
+
+const updatedPet = {
+  message: "Tu mascota se ha actualizado",
   status: false,
   action: "",
 };
@@ -37,8 +49,10 @@ const updatedReview = {
 module.exports = {
   changePassword,
   createdUser,
+  updatedUser,
   createdTransaction,
   createdPet,
   createdReview,
-  updatedReview,
+  deletedPet,
+  updatedPet,
 };

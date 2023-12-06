@@ -51,7 +51,7 @@ CaregiversModel["findCaredPets"] = async (id) => {
   const { BreedsModel } = require("../index");
 
   const caredPets = await PostsModel.findAll({
-    where: { caregiverId: id }, attributes: ["address", "startDate", "endDate"],
+    where: { caregiverId: id }, attributes: ["id","address", "startDate", "endDate"],
     include: [
       { model: PetsModel, attributes: ["name"], include: [{ model: SpeciesModel }, { model: BreedsModel }] },
       { model: OwnersModel, include: [{ model: UsersModel, attributes: ["name", "profilePicture"] },] }

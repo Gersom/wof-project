@@ -9,14 +9,20 @@ import routerNames from "@src/common/constants/routes";
 import userReducer from "@src/common/store/reducers/userReducer";
 import ModalCustom from "@src/ui/components/modals/modal-custom/ModalCustom";
 import ModalReview from "@src/ui/components/modals/modal-review/ModalReview";
+import useWsCaregiver from "@src/common/utils/websocket/useWsCaregiver";
+import useWsOwner from "@src/common/utils/websocket/useWsOwner";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
+  
   userReducer;
-  const userData = useSelector((state) => state.userReducer.user);
+  const userData = useSelector((state) => state?.userReducer?.user);
 
+  useWsCaregiver(userData?.role || null);
+  useWsOwner(userData?.role || null);
+  
   useEffect(() => {
     const { userId } = getFromLocalStorage("session");
     if (userId) {

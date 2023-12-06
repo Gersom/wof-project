@@ -2,6 +2,7 @@ export const convertDates = (startDate, endDate) => {
     const meses = [
         'ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'
       ];
+      
       const dateStart = new Date(startDate);
       const dayStart = dateStart.getDate();
       const mothStart = meses[dateStart.getMonth()];

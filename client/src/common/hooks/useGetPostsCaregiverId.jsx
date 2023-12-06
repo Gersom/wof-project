@@ -5,6 +5,7 @@ import { API_URL_POSTS_CAREGIVERID } from "../constants/api";
  const useGetPostsCaregiverId = () => {
     const caregiverId = useSelector((state) => state.userReducer.user?.caregiver?.id)
 
+    const offersOwner = useSelector((state) => state.offersReducer.offersOwner)
     const [isLoading, setIsLoading] = useState(true)
     const [posts, setPosts] = useState([])
 
@@ -19,7 +20,7 @@ import { API_URL_POSTS_CAREGIVERID } from "../constants/api";
             getPosts()
             setIsLoading(false)
         }
-    },[caregiverId])
+    },[caregiverId, offersOwner])
 
   return {isLoading, posts}
 }

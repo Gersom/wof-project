@@ -15,9 +15,11 @@ import { setAlert } from '@src/common/store/slices/alertSlice';
 import CareInProgress from '../../care-in-progress/CareInProgress';
 import CardUser from '../../cards/card-user/CardUser';
 import CardInfoCaregiver from '../../cards/card-info-caregiver/CardInfoCaregiver';
+import useWsOwner from '@src/common/utils/websocket/useWsOwner';
 
 const OffersCareGivers = () => {
 	const dispatch = useDispatch();
+	const { sendMessage } = useWsOwner('owner');
 	const { id } = useParams();
 	const { isLoading, details } = useGetPetId(id);
 	const { isLoadingOffers, offersCareGivers } = useOffersCaregivers(details?.id || null);
@@ -52,6 +54,7 @@ const OffersCareGivers = () => {
 		dispatch(
 			setAlert({ message: 'Pago realizado con exito 👌', type: 'success' })
 		);
+		sendMessage({ type: 'payment_complete', petName: details?.pet?.name , ownerName: details?.owner?.name, caregiverId : offerData.caregiverId});
 	};
 
 	const onClickAccept = (data) => {

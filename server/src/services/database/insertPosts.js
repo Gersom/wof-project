@@ -37,7 +37,7 @@ const insertPosts = async () => {
     
 
     await insertRecords({
-      name: 'Posts',
+      name: 'servicePostings',
       model: PostsModel,
       data: postsData,
     })

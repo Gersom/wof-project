@@ -64,7 +64,7 @@ PetsModel["createPet"] = async (data) => {
 }
 
 PetsModel["findAllPets"] = async (ownerId) => {
-  const PostsModel = require("./posts")
+  const PostsModel = require("./servicePostings")
   const petImages = require("./pets_images")
   const CaregiversModel = require("./caregivers")
   const UsersModel = require("./users")

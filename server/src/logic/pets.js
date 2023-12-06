@@ -1,5 +1,5 @@
-const { createdPet } = require("../data/notifications");
-const { PetsModel } = require("../models");
+const { createdPet, deletedPet, updatedPet } = require("../data/notifications");
+const { PetsModel, UsersModel, OwnersModel } = require("../models");
 const { PetsImagesModel } = require("../models");
 const { NotificationsModel } = require("../models");
 
@@ -8,17 +8,17 @@ const getAllPetsLogic = async (ownerId) => {
   return pets.map((pet) => {
     let petImgUrl = "";
 
-    const postObj = pet?.post?.toJSON();
+    const postObj = pet?.servicePosting?.toJSON();
 
     if (pet?.petsImages?.length > 0) {
       petImgUrl = pet?.petsImages[0]?.imageUrl;
     }
     return {
-      id: pet?.post?.id,
-      status: pet?.post?.status,
-      address: pet?.post?.address,
-      startDate: pet?.post?.startDate,
-      endDate: pet?.post?.endDate,
+      id: pet?.servicePosting?.id,
+      status: pet?.servicePosting?.status,
+      address: pet?.servicePosting?.address,
+      startDate: pet?.servicePosting?.startDate,
+      endDate: pet?.servicePosting?.endDate,
       pet: {
         id: pet?.id,
         name: pet?.name,
@@ -73,6 +73,7 @@ const postPetLogic = async (data) => {
   await NotificationsModel.create({
     ...createdPet,
     ownerId: data.ownerId,
+    userId: data.userId,
   });
 
   return newPet;
@@ -84,7 +85,9 @@ const postPetLogic = async (data) => {
 const updatePetLogic = async (petId, data) => {
   await PetsImagesModel.removeDataByPet(petId);
   await PetsModel.updateData(petId, data);
+  const idUser = await OwnersModel.findDataById(id);
   const images = data.imageUrl;
+
   if (images) {
     const imagesFormated = images.map((img) => ({
       petId,
@@ -92,12 +95,23 @@ const updatePetLogic = async (petId, data) => {
     }));
     await PetsImagesModel.createMany(imagesFormated);
   }
+  await NotificationsModel.create({
+    ...updatedPet,
+    userId: idUser.userId,
+  });
   return {
     success: "Pet was update correctly.",
   };
 };
 const deletePetLogic = async (id) => {
+  const dataPet = await PetsModel.findDataById(id);
+  const dataOwner = await OwnersModel.findDataById(id);
   await PetsModel.removeData(id);
+  await NotificationsModel.create({
+    ...deletedPet,
+    userId: dataOwner.userId,
+    message: deletedPet.message + dataPet.name,
+  });
   return {
     success: "Pet was deleted correctly.",
   };

@@ -7,9 +7,14 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAlert } from '@src/common/store/slices/alertSlice';
+import useWsCaregiver from '@src/common/utils/websocket/useWsCaregiver';
 
 const ModalPrice = ({ message, data, toggleModal }) => {
 	const dispatch = useDispatch();
+	const { sendMessage } = useWsCaregiver('caregiver');
+
+	const nameCaregiver = useSelector((state) => state.userReducer?.user?.name)
+
 	const [price, setPrice] = useState('');
 	const postPrice = async (dataPost) => {
 		try {
@@ -34,10 +39,11 @@ const ModalPrice = ({ message, data, toggleModal }) => {
 			dispatch(
 				setAlert({ message: '¡Tarifa enviada correctamente!', type: 'success' })
 			);
+			sendMessage({ type: 'request_update', petName: data.pet.name, caregiverName: nameCaregiver, ownerId: data.owner.id});
 			toggleModal(false);
 		}
 	};
-
+	
 	const changeValue = (e) => {
 		const { value } = e.target;
     const regex = /^[0-9\b]+$/; // Expresión regular para permitir solo dígitos
