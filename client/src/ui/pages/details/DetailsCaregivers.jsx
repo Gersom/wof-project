@@ -100,6 +100,7 @@ const DetailsCaregivers = () => {
 								image={pet?.pet?.imageUrl}
 								petName={pet?.pet?.name}
 								style={'small'}
+								postId={pet?.id}
 							/>
 						))}
 					</>

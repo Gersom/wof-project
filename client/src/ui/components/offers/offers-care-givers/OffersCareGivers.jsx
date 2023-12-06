@@ -116,6 +116,7 @@ const OffersCareGivers = () => {
 						endDate={details?.endDate}
 						startDate={details?.startDate}
 						image={details?.pet.imageUrl}
+						postId={id}
 					/>
 					<div className={styles.containerInfoCaregiver}>
 						<CardUser

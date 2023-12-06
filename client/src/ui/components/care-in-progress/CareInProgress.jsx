@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Timer from './timer/Timer';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setAlert } from '@src/common/store/slices/alertSlice';
+import { API_URL_POST_UPDATE_STATUS } from '@src/common/constants/api';
 
 const CareInProgress = ({
 	startDate = '2023-11-27T05:00:00.000Z',
@@ -10,12 +11,14 @@ const CareInProgress = ({
 	image = 'https://wof-server.up.railway.app/pictures/pet1_02.png',
 	petName = '',
 	style = '',
+	postId = 0,
 }) => {
 	const dispatch = useDispatch();
 	const [isTimerExpired, setTimerExpired] = useState(false);
 	const [isServiceFinished, setServiceFinished] = useState(false);
 	const [isBeforeStartDate, setIsBeforeStartDate] = useState(false);
 	const [isStartBtnDisabled, setStartBtnDisabled] = useState(true);
+	const role = useSelector((state) => state?.userReducer?.user?.role);
 
 	useEffect(() => {
 		const currentDate = new Date();
@@ -32,18 +35,63 @@ const CareInProgress = ({
 	const styleContainer =
 		style === 'small' ? styles.mainContainerSmall : styles.mainCont;
 
-	const handleFinishService = () => {
+	const handleFinishService = async () => {
 		if (!isServiceFinished && isTimerExpired && !isBeforeStartDate) {
-			setServiceFinished(true);
-			dispatch(
-				setAlert({
-					message: '¡Felicidades servicio Finalizado! 😊',
-					type: 'success',
-				})
-			);
+			let options = {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			if (role === 'owner') {
+				options.body = JSON.stringify({ ownerVerified: true });
+				const response = await fetch(
+					`${API_URL_POST_UPDATE_STATUS}${postId}`,
+					options
+				);
+				const data = await response.json();
+				if (data.doubleVerified) {
+					dispatch(
+						setAlert({
+							message: '¡Felicidades servicio Finalizado! 😊',
+							type: 'success',
+						})
+					);
+				} else {
+					dispatch(
+						setAlert({
+							message: '¡Falta el cuidador por verificar! 😊',
+							type: 'warning',
+						})
+					);
+				}
+				setServiceFinished(true);
+			} else if (role === 'caregiver') {
+				options.body = JSON.stringify({ caregiverVerified: true });
+				const response = await fetch(
+					`${API_URL_POST_UPDATE_STATUS}${postId}`,
+					options
+				);
+				const data = await response.json();
+				if (data.doubleVerified) {
+					dispatch(
+						setAlert({
+							message: '¡Felicidades servicio Finalizado! 😊',
+							type: 'success',
+						})
+					);
+				} else {
+					dispatch(
+						setAlert({
+							message: '¡Falta el dueño por verificar! 😊',
+							type: 'warning',
+						})
+					);
+				}
+				setServiceFinished(true);
+			}
 		}
 	};
-
 	const handleStartService = () => {
 		dispatch(setAlert({ message: 'Iniciando servicio', type: 'success' }));
 	};

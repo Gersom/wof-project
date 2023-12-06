@@ -30,8 +30,8 @@ const validation = (name, value, error) => {
 		} else if (name === 'notes') {
 			if (value.length < 5) {
 				errors.notes = 'Debe escribir al menos 1 nota';
-			} else if (value.length > 80) {
-				errors.notes = 'Debe escribir menos de 80 caracteres';
+			} else if (value.length > 500) {
+				errors.notes = 'Debe escribir menos de 500 caracteres';
 			} else {
 				errors.notes = '';
 			}

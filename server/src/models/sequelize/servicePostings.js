@@ -48,6 +48,14 @@ const schema = {
     type: DataTypes.STRING,
     defaultValue: "published",
   },
+  ownerVerified: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  caregiverVerified: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }
 
 const PostsModel = sequelize.define(name, schema, config)
@@ -147,6 +155,10 @@ PostsModel['findByCaregiverId'] = (caregiverId) => {
       }
     ]
   })
+}
+
+PostsModel['updateStatus'] = (id, status) => {
+  const data = PostsModel.update({ status }, { where: { id } })
 }
 
 module.exports = PostsModel
