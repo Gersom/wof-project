@@ -30,7 +30,15 @@ const schema = {
     type: DataTypes.FLOAT,
     defaultValue:0,
     allowNull:true
-  }
+  },
+  recievedBalance: {
+    type: DataTypes.FLOAT,
+    defaultValue: 0
+  },
+  dueBalance: {
+    type: DataTypes.FLOAT,
+    defaultValue: 0
+  },
 }
 
 const CaregiversModel = sequelize.define(name, schema, config)
