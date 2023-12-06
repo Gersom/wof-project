@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const NotificatioPanel = () => {
+const NotificationPanel = () => {
   const userData = useSelector((state) => state.userReducer.user);
   const [notifications, setNotifications] = useState([]);
 
@@ -28,37 +28,36 @@ const NotificatioPanel = () => {
         <div>
           <h1 className={styles.title}>Notificaciones</h1>
         </div>
-        <div className={styles.card}>
-          <div
-            className={styles.notiImg}
-            style={{
-              backgroundImage: "url('" + userData.profilePicture + "')",
-            }}
-          ></div>
+        {notifications.map((notification) => (
+          <div className={styles.card}>
+            <div
+              className={styles.notiImg}
+              style={{
+                backgroundImage: "url('" + userData.profilePicture + "')",
+              }}
+            ></div>
 
-          <div className={styles.notiCard}>
-            <p>{userData.name}</p>
-            {notifications.map((notification) => (
-              <>
-                <div
-                  className={styles.notiText}
-                  key={notification.id}
-                  value={notification.id}
-                >
-                  {notification.message}
-                </div>
+            <div className={styles.notiCard}>
+              <p>{userData.name}</p>
+
+              <div
+                className={styles.notiText}
+                key={notification.id}
+                value={notification.id}
+              >
+                {notification.message}
                 {notification.action && (
                   <div onClick="" className={styles.notiButton}>
                     {notification.action}
                   </div>
                 )}
-              </>
-            ))}
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </>
   );
 };
 
-export default NotificatioPanel;
+export default NotificationPanel;
