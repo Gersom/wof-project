@@ -2,7 +2,7 @@
 import routerNames from "@common/constants/routes";
 
 // Imports Router
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 // Imports Pages
 import Home from "./pages/home/Home";
@@ -33,6 +33,7 @@ import Register from "./pages/register/Register";
 import useAlert from "@src/common/hooks/use-alert/useAlert";
 import MyClients from "./pages/my-clients/MyClients";
 import NotificatioPanel from "./components/notification/NotificatioPanel";
+import { useEffect } from "react";
 
 // Imports Components
 
@@ -41,24 +42,23 @@ function App() {
   useAlert();
   useAuth();
 
-  const storeCurrentRouteInSession = () => {
+  const storeCurrentRouteInSession = (newRoute) => {
     const storage = getFromLocalStorage("session");
-    let currentRoute;
 
-    if (currentRoute !== "/verificando" || currentRoute !== "/iniciar-sesion") {
-      currentRoute = location.pathname;
+    if (newRoute !== "/verificando" && newRoute !== "/iniciar-sesion") {
+
+
+      if (storage?.token && storage?.userId) {
+        const updatedstorage = {
+          token: storage?.token,
+          userId: storage?.userId,
+          history: newRoute,
+        };
+        saveToLocalStorage("session", updatedstorage);
+      }
     }
 
-    if (storage?.token && storage?.userId) {
-      const updatedstorage = {
-        token: storage?.token,
-        userId: storage?.userId,
-        history: currentRoute,
-      };
-      saveToLocalStorage("session", updatedstorage);
-    }
   };
-  storeCurrentRouteInSession();
 
   const tokenExist = async () => {
     const sessionLS = await getFromLocalStorage("session");
@@ -66,6 +66,12 @@ function App() {
     if (sessionLS?.token) return true;
     return false;
   };
+
+  useEffect(() => {
+    const newRoute = location.pathname;
+    storeCurrentRouteInSession(newRoute);
+
+  }, [location.pathname]);
 
   return (
     <div className="App" id="App">

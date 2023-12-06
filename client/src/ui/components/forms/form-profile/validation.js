@@ -42,7 +42,7 @@ export const validation = (dataForm, errors, setErrors) => {
   if (dataForm.lastName.length < 3) {
     setErrors({
       ...errors,
-      lastName: "El Apellido debe conterner al menos 3 caracteres",
+      lastName: "El Apellido es demasiado corto",
     });
   } else if (dataForm.lastName.length > 30) {
     setErrors((prevErrors) => ({

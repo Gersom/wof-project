@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@common/context/authProvider";
@@ -13,26 +13,26 @@ import styles from "./styles.module.scss";
 import logo from "@icons/nav/logo.svg";
 
 
+// ... (imports)
+
 const VerifyingLogin = () => {
   const apiUrl = API_URL_REGISTER;
   const navigate = useNavigate();
   const { isAuthenticated: isAuth0enticated, user, getAccessTokenSilently, isLoading } = useAuth0();
   const { isAuthenticated, setAuthenticated } = useAuth();
-
+ 
 
   const handleSilentLogin = async () => {
     try {
       const accessToken = await getAccessTokenSilently();
       return accessToken;
     } catch (error) {
-      console.error("Error al obtener el token de acceso:", error);
+      console.error(`Error al obtener el token de acceso: ${error}`);
+      throw error;
     }
   };
 
-  const getAuthToken = async () => {
-    const token = await handleSilentLogin();
-    return token;
-  };
+  const getAuthToken = async () => await handleSilentLogin();
 
   const handleAuth0LoginWhitRegister = async () => {
     const token = await handleSilentLogin();
@@ -52,7 +52,7 @@ const VerifyingLogin = () => {
       await axios.post(apiUrl, userData);
       // window.alert("Usuario creado correctamente");
     } catch (error) {
-      console.error("Error al realizar la solicitud POST:", error.message);
+      console.error(`Error al realizar la solicitud POST: ${error.message}`);
       // window.alert("Error al crear usuario");
     }
   };
@@ -72,75 +72,72 @@ const VerifyingLogin = () => {
         userId: response.data.userId,
         token: response.data.token,
       });
-      manageRedirection()
+      manageRedirection();
       if (response.data.token) {
-        console.warn("Inicio de sesion completado");
+        console.warn("Inicio de sesión completado");
       }
     } catch (error) {
-      console.warn("error en correo o contraseña");
-      console.error("Error al iniciar sesión:", error.message);
+      console.warn("Error en correo o contraseña");
+      console.error(`Error al iniciar sesión: ${error.message}`);
     }
   };
 
   const integrateLogin = async () => {
-    await handleAuth0LoginWhitRegister();
-    await handleAuth0LoginLogin();
+    try {
+      await Promise.all([handleAuth0LoginWhitRegister(), handleAuth0LoginLogin()]);
+      
+    } catch (error) {
+      console.error("Error durante la integración del inicio de sesión:", error);
+    }
   };
 
   const manageRedirection = async () => {
     const storage = await getFromLocalStorage("session");
 
-    const { data } = await axios.get(API_URL_USER + "/" + storage?.userId);
+    const { data } = await axios.get(`${API_URL_USER}/${storage?.userId}`) || {};
+    const { role = '' } = data || {};
 
-    switch (data.role) {
+    if (!data) return;
+
+    setAuthenticated(true);
+
+    const redirectTo = (path) => {
+      if (storage?.history && storage?.history !== routerNames['loading']) {
+        navigate(storage.history);
+      } else {
+        navigate(path);
+      }
+    };
+
+    switch (role) {
       case "caregiver":
-
-        setAuthenticated(true);
-        if (storage?.history && storage?.history !== routerNames['loading']) {
-
-          navigate(storage.history);
-          return;
-        }
-        navigate(routerNames["offersCaregivers"]);
-        return;
+        redirectTo(routerNames["offersCaregivers"]);
+        break;
       case "owner":
-        setAuthenticated(true);
-        if (storage?.history && storage?.history !== routerNames['loading']) {
-          navigate(storage.history);
-          return;
-        }
-        navigate(routerNames["myPets"]);
-        return;
+        redirectTo(routerNames["myPets"]);
+        break;
       default:
-        setAuthenticated(true);
-        if (storage?.history) {
-          navigate(storage.history);
-          return;
-        }
-        navigate(routerNames["profile"]);
-        return;
-    }    
+        redirectTo(routerNames["profile"]);
+    }
   };
 
   useEffect(() => {
-    //console.log("LOGIN COMPONENT IS AUTH0", isAuth0enticated, user);
+    // console.log("LOGIN COMPONENT IS AUTH0", isAuth0enticated, user);
     if (isAuth0enticated) {
       integrateLogin();
     }
   }, [isLoading]);
 
-  
-
   useEffect(() => {
-    if(isAuthenticated) {
+    if (isAuthenticated ) {
       manageRedirection();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
 
   const resetLocal = () => {
-    saveToLocalStorage("session", "")
-    navigate("/")
-  }
+    saveToLocalStorage("session", "");
+    navigate("/");
+  };
 
   return (
     <div className={styles.container}>
@@ -169,14 +166,12 @@ const VerifyingLogin = () => {
               <label htmlFor="email">
                 <span>Si no le redireccionamos en unos 10 segundos, puedes volver a intentarlo.</span>
               </label>
-              <button className={styles.buttonBlue}
-              onClick={resetLocal}>
+              <button className={styles.buttonBlue} onClick={resetLocal}>
                 Volver a intentar
               </button>
             </div>
           </form>
         </div>
-        
       </div>
     </div>
   );

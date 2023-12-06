@@ -143,7 +143,7 @@ const MyPetsEdit = () => {
 
 	return (
 		<div className={styles.mainContainer}>
-			<h1>Mi mascota: Peluche</h1>
+			<h1>Mi mascota {form.name}</h1>
 			<div className={styles.gridContainer}>
 				<FormPetEdit form={form} handleChange={handleChange} errors={error} />
 				<CardDisplayImages
