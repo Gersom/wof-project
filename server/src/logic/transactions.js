@@ -1,4 +1,4 @@
-const { TransactionsModel } = require("../models");
+const { TransactionsModel, CaregiversModel } = require("../models");
 const { PostsModel } = require("../models");
 
 const getAllTransactionsLogic = async () => {
@@ -27,9 +27,10 @@ const postTransactionLogic = async (data) => {
     userId: data.userId,
   });
 
+  const caregiver = CaregiversModel.findDataById(caregiverId)
   await NotificationsModel.create({
     ...notifications?.createdTransactionCaregivers,
-    userId: data.caregiverId,
+    userId: caregiver.userId,
   });
 
   //Update Request ... actualiza el 'state' de la Request  de "pending" a "accepted"
