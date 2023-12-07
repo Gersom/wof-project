@@ -1,11 +1,11 @@
-import { emailValidation } from "./validations"
+import { lastNameValidation } from "./validations"
 import { useState, useEffect } from "react";
-import EmailIcon from "@icons/form/email.svg?react";
+import UserIcon from "@icons/form/user.svg?react";
 import style from "./styles.module.scss"
 
-const EmailInput = ({
-  name="email",
-  label="Correo electrónico",
+const NameInput = ({
+  name="lastName",
+  label="Apellidos",
   background="white",
   validation=true,
   dark=false,
@@ -23,7 +23,7 @@ const EmailInput = ({
     setValueInput(value)
 
     if(validation) {  
-      const validationData = emailValidation(value)
+      const validationData = lastNameValidation(value)
       setStateInput(validationData.state)
       setTitleChar(validationData.char)
       setValue(validationData.message)
@@ -60,7 +60,7 @@ const EmailInput = ({
   return (
     <div className={stylesInput}>
       <div className={style.titleInput}>
-        <EmailIcon/>
+        <UserIcon/>
         <label>{label} : {titleChar}</label>
       </div>
       <input
@@ -69,11 +69,11 @@ const EmailInput = ({
         value={valueInput}
         onChange={handleChange}
         autoComplete='on'
-        placeholder='¿@gmail.com?'
+        placeholder=''
       />
       <span>{errorLabel}</span>
     </div>
   );
 };
 
-export default EmailInput;
+export default NameInput;

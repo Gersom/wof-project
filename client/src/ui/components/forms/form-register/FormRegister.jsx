@@ -17,8 +17,17 @@ import styles from "./styles.module.scss";
 import UserIcon from "@icons/nav/user.svg?react";
 import DefaultButton from "@components/buttons/DefaultButton"
 import SignUpIcon from "@icons/login/sign-up.svg?react"
+import EmailInput from "@components/inputs/EmailInput"
+import PasswordInput from "@components/inputs/PasswordInput"
+import NameInput from "@components/inputs/NameInput"
+import LastNameInput from "@components/inputs/LastNameInput"
+import RoleSelect from "@components/inputs/RoleSelect"
+import ProvincesSelect from "@components/inputs/ProvincesSelect"
 
-const FormRegister = ({ onSubmitValidated= ()=>null }) => {
+const FormRegister = ({ 
+  onSubmitValidated= ()=>null,
+  dark=true
+}) => {
 
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -95,7 +104,8 @@ const FormRegister = ({ onSubmitValidated= ()=>null }) => {
             <form onSubmit={handleSubmit}>
               <div className={styles["auth_flex"]}>
                 <div className={styles["input_container"]}>
-                  <label className={styles["labelIcon"]}>
+                  <EmailInput background="gray" dark={dark} />
+                  {/* <label className={styles["labelIcon"]}>
                     <EmailIcon/>
                     <span>Email:</span>
                   </label>
@@ -105,10 +115,11 @@ const FormRegister = ({ onSubmitValidated= ()=>null }) => {
                     value={dataForm.email}
                     onChange={handleInputChange}
                   />
-                  <span>{errors.email}</span>
+                  <span>{errors.email}</span> */}
                 </div>
                 <div className={styles["input_container"]}>
-                  <label className={styles["labelIcon"]}>
+                  <NameInput background="gray" dark={dark} />
+                  {/* <label className={styles["labelIcon"]}>
                     <UserIcon />
                     <span>Nombre:</span>
                   </label>
@@ -118,10 +129,11 @@ const FormRegister = ({ onSubmitValidated= ()=>null }) => {
                     value={dataForm.name}
                     onChange={handleInputChange}
                   />
-                  <span>{errors.name}</span>
+                  <span>{errors.name}</span> */}
                 </div>
                 <div className={styles["input_container"]}>
-                  <label className={styles["labelIcon"]}>
+                  <PasswordInput background="gray" dark={dark} />
+                  {/* <label className={styles["labelIcon"]}>
                     <PasswordIcon />
                     <span>Contraseña:</span>
                   </label>
@@ -137,10 +149,11 @@ const FormRegister = ({ onSubmitValidated= ()=>null }) => {
                   >
                     <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
                   </div>
-                  <span>{errors.password}</span>
+                  <span>{errors.password}</span> */}
                 </div>
                 <div className={styles["input_container"]}>
-                  <label className={styles["labelIcon"]}>
+                  <LastNameInput background="gray" dark={dark} />
+                  {/* <label className={styles["labelIcon"]}>
                     <UserIcon />
                     <span>Apellido:</span>
                   </label>
@@ -150,10 +163,11 @@ const FormRegister = ({ onSubmitValidated= ()=>null }) => {
                     value={dataForm.lastName}
                     onChange={handleInputChange}
                   />
-                  <span>{errors.lastName}</span>
+                  <span>{errors.lastName}</span> */}
                 </div>
                 <div className={styles["input_container"]}>
-                  <label>
+                  <RoleSelect background="gray" dark={dark} />
+                  {/* <label>
                     <div
                       className={styles["auth_form_icon"]}
                       style={{ backgroundImage: "url('" + state + "')" }}
@@ -167,10 +181,12 @@ const FormRegister = ({ onSubmitValidated= ()=>null }) => {
                   >
                     <option value="owner">Dueño</option>
                     <option value="caregiver">Cuidador</option>
-                  </select>
+                  </select> */}
                 </div>
                 <div className={styles["input_container"]}>
-                  <label>
+                  <ProvincesSelect data={provinces} 
+                  background="gray" dark={dark} />
+                  {/* <label>
                     <div
                       className={styles["auth_form_icon"]}
                       style={{ backgroundImage: "url('" + state + "')" }}
@@ -191,7 +207,7 @@ const FormRegister = ({ onSubmitValidated= ()=>null }) => {
                       </option>
                     ))}
                   </select>
-                  <span>{errors.provincia}</span>
+                  <span>{errors.provincia}</span> */}
                 </div>
                 {dataForm.role === "Dueño" && (
                   <div className={styles.formGroup}>
