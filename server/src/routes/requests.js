@@ -1,5 +1,9 @@
 const { RequestsModel, NotificationsModel } = require("../models/index");
-const { canceledRequest, postedRequest } = require("../data/notifications");
+const {
+  canceledRequest,
+  postedRequest,
+  postedRequestOwner,
+} = require("../data/notifications");
 
 const express = require("express");
 const router = express.Router();
@@ -42,6 +46,12 @@ router.post("/", async (req, res) => {
       ...postedRequest,
       userId,
       message: postedRequest.message + dataFormated.price,
+    });
+
+    await NotificationsModel.create({
+      ...postedRequestOwner,
+      userId: req.body.ownerId,
+      message: postedRequestOwner.message + dataFormated.price,
     });
 
     res.status(200).json(newRequest);
