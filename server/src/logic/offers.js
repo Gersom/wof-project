@@ -1,14 +1,19 @@
-const { PostsModel, ReviewsModel, RequestsModel } = require("../models");
+const {
+  PostsModel,
+  ReviewsModel,
+  RequestsModel,
+  UsersModel,
+} = require("../models");
 
 const getAllOffersLogic = async () => {
   try {
-    const offers = await PostsModel.findAllOffers()
+    const offers = await PostsModel.findAllOffers();
     const formattedOffers = offers.map((ele) => {
-      const offer = ele.toJSON()
-      let petImgUrl = ""
+      const offer = ele.toJSON();
+      let petImgUrl = "";
 
       if (offer.pet.petsImages.length > 0) {
-        petImgUrl = offer.pet.petsImages[0].imageUrl
+        petImgUrl = offer.pet.petsImages[0].imageUrl;
       }
       return {
         ...offer,
@@ -16,7 +21,7 @@ const getAllOffersLogic = async () => {
         owner: {
           id: offer.owner.id,
           userId: offer.owner.userId,
-          name: offer.owner.user.name
+          name: offer.owner.user.name,
         },
         pet: {
           id: offer.pet.id,
@@ -24,15 +29,15 @@ const getAllOffersLogic = async () => {
           species: offer.pet.species,
           imageUrl: petImgUrl,
           gender: offer.pet.gender.name,
-        }
-      }
-    })
-    return formattedOffers
+        },
+      };
+    });
+    return formattedOffers;
   } catch (error) {
-    console.error('Error retrieving all offers:', error.message);
-    throw new Error('Could not retrieve all offers');
+    console.error("Error retrieving all offers:", error.message);
+    throw new Error("Could not retrieve all offers");
   }
-}
+};
 
 const getOfferLogic = async (offerId) => {
   try {
@@ -42,7 +47,7 @@ const getOfferLogic = async (offerId) => {
       throw new Error(`Offer with ID ${offerId} not found`);
     }
 
-    offer = offer.toJSON()
+    offer = offer.toJSON();
     let reviewsData = await ReviewsModel.findByOwner(offer.owner.id);
     const formattedOffer = {
       ...offer,
@@ -51,15 +56,15 @@ const getOfferLogic = async (offerId) => {
         rating: "5.40",
         ...offer.owner.user,
         reviews: reviewsData.map((ele) => {
-          const review = ele.toJSON()
+          const review = ele.toJSON();
           return {
             ...review,
             caregiver: {
               id: review.caregiver.id,
-              ...review.caregiver.user
-            }
-          }
-        })
+              ...review.caregiver.user,
+            },
+          };
+        }),
       },
       pet: {
         id: offer.pet.id,
@@ -70,35 +75,32 @@ const getOfferLogic = async (offerId) => {
         species: offer.pet.species,
         breed: offer.pet.breed.name,
         images: offer.pet.petsImages.map((ele) => {
-          return ele.imageUrl
-        })
-      }
-    }
-    return formattedOffer
-
+          return ele.imageUrl;
+        }),
+      },
+    };
+    return formattedOffer;
   } catch (error) {
     console.error(`Error retrieving offer with ID ${offerId}:`, error.message);
     throw new Error(`Could not retrieve offer with ID ${offerId}`);
   }
-}
+};
 
 const postServiceRequestLogic = async (data) => {
   try {
-
     if (data.caregiverId && data.postId) {
       return RequestsModel.createData(data);
     }
-    
-    return new Error("missing data: caregiverId or publicationId")
 
+    return new Error("missing data: caregiverId or publicationId");
   } catch (error) {
     console.error(`Error creating offer:`, error.message);
     throw new Error(`Could not create offer`);
   }
-}
+};
 
 module.exports = {
   getAllOffersLogic,
   getOfferLogic,
-  postServiceRequestLogic
+  postServiceRequestLogic,
 };
