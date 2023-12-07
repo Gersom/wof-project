@@ -18,6 +18,7 @@
   margin: auto;
   border-radius: 12px;
   margin-bottom: 20px;
+  border: solid 1px #717171;
 }
 
 .card {
@@ -39,14 +40,13 @@
 
 .notiText {
   text-align: left;
-  + .notiText {
-    color: #000;
-  }
+  display: flex;
 }
 
 .notiButton {
   background-color: #52cd8b;
-  margin-left: auto;
+  margin-left: 315px;
+  margin-top: -20px;
   padding: 10px 20px;
   border-radius: 10px;
   color: white;

@@ -1,5 +1,5 @@
 const changePassword = {
-  message: "password changed",
+  message: "Has actualizado tu contraseña correctamente",
   status: false,
   action: "",
 };
@@ -20,6 +20,12 @@ const createdTransaction = {
   message: "Tu pago se registro correctamente",
   status: false,
   action: "",
+};
+
+const createdTransactionCaregivers = {
+  message: "Tu solicitud fue aceptada",
+  status: false,
+  action: "Ver",
 };
 
 const createdPet = {
@@ -53,7 +59,19 @@ const canceledRequest = {
 };
 
 const postedRequest = {
-  message: "Tu oferta se ha publicado correctamente, con la cantidad de ",
+  message: "Tu oferta se ha publicado correctamente, con la cantidad de $",
+  status: false,
+  action: "",
+};
+
+const serviceCompletedRequest = {
+  message: "Tu servicio a finalizado sin problemas",
+  status: false,
+  action: "Reseña",
+};
+
+const postedRequestOwner = {
+  message: "Has recibido una oferta por la cantidad de $",
   status: false,
   action: "",
 };
@@ -69,4 +87,7 @@ module.exports = {
   updatedPet,
   canceledRequest,
   postedRequest,
+  postedRequestOwner,
+  serviceCompletedRequest,
+  createdTransactionCaregivers,
 };
