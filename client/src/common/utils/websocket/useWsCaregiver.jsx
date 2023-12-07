@@ -21,6 +21,13 @@ const useWsCaregiver = (role) => {
 
 			newWs.onopen = () => {
 				console.log('connected');
+				newWs.send(
+					JSON.stringify({
+						type: 'register',
+						role: 'caregiver',
+						caregiverId : caregiverId,
+					})
+				);
 			};
 
 			newWs.onmessage = (event) => {
@@ -43,7 +50,7 @@ const useWsCaregiver = (role) => {
 					}
 
 					//
-					if(data.type === 'payment_complete'&& data.caregiverId === caregiverId){
+					if(data.type === 'payment_complete'){
 						if (lastProcessedMessage === data.type) return;
 						setLastProcessedMessage(data.type);
 						dispatch(actionGetOffersOwner());

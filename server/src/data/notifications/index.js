@@ -46,6 +46,18 @@ const updatedPet = {
   action: "",
 };
 
+const canceledRequest = {
+  message: "Tu oferta se ha eliminado correctamente",
+  status: false,
+  action: "",
+};
+
+const postedRequest = {
+  message: "Tu oferta se ha publicado correctamente, con la cantidad de ",
+  status: false,
+  action: "",
+};
+
 module.exports = {
   changePassword,
   createdUser,
@@ -55,4 +67,6 @@ module.exports = {
   createdReview,
   deletedPet,
   updatedPet,
+  canceledRequest,
+  postedRequest,
 };

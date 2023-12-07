@@ -48,6 +48,14 @@ const schema = {
     type: DataTypes.STRING,
     defaultValue: "published",
   },
+  ownerVerified: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  caregiverVerified: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }
 
 const PostsModel = sequelize.define(name, schema, config)
@@ -56,10 +64,10 @@ const PostsModel = sequelize.define(name, schema, config)
 OwnersModel.hasMany(PostsModel)
 PostsModel.belongsTo(OwnersModel)
 
-PetsModel.hasOne(PostsModel)
+PetsModel.hasMany(PostsModel)
 PostsModel.belongsTo(PetsModel)
 
-CaregiversModel.hasOne(PostsModel)
+CaregiversModel.hasMany(PostsModel)
 PostsModel.belongsTo(CaregiversModel)
 
 // add static methods (functions) to model
@@ -147,6 +155,10 @@ PostsModel['findByCaregiverId'] = (caregiverId) => {
       }
     ]
   })
+}
+
+PostsModel['updateStatus'] = (id, status) => {
+  const data = PostsModel.update({ status }, { where: { id } })
 }
 
 module.exports = PostsModel

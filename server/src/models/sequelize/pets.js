@@ -38,7 +38,10 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
-
+  onPost: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }
 
 const PetsModel = sequelize.define(name, schema, config)

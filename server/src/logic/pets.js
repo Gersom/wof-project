@@ -8,17 +8,17 @@ const getAllPetsLogic = async (ownerId) => {
   return pets.map((pet) => {
     let petImgUrl = "";
 
-    const postObj = pet?.servicePosting?.toJSON();
+    const postObj = pet?.servicePostings[0]?.toJSON();
 
     if (pet?.petsImages?.length > 0) {
       petImgUrl = pet?.petsImages[0]?.imageUrl;
     }
     return {
-      id: pet?.servicePosting?.id,
-      status: pet?.servicePosting?.status,
-      address: pet?.servicePosting?.address,
-      startDate: pet?.servicePosting?.startDate,
-      endDate: pet?.servicePosting?.endDate,
+      id: postObj.id,
+      status: postObj.status,
+      address: postObj.address,
+      startDate: postObj.startDate,
+      endDate: postObj.endDate,
       pet: {
         id: pet?.id,
         name: pet?.name,
@@ -106,7 +106,7 @@ const updatePetLogic = async (petId, data) => {
 };
 const deletePetLogic = async (id) => {
   const dataPet = await PetsModel.findDataById(id);
-  const dataOwner = await OwnersModel.findDataById(id);
+  const dataOwner = await UsersModel.findDataById(id);
   await PetsModel.removeData(id);
   await NotificationsModel.create({
     ...deletedPet,

@@ -12,7 +12,7 @@ const SectionDefault = ({ data, toggleModal }) => {
 					Publicar
 				</button>
 			</div>
-			<FooterDates data={data} />
+			<FooterDates  />
 		</section>
 	);
 };

@@ -14,8 +14,10 @@ export const API_URL_PROVINCES = API_URL + "/provinces";
 export const API_URL_COUNTRYS = API_URL + "/countries";
 export const API_URL_REVIEWS = API_URL + "/reviews";
 export const API_URL_SERVICES = API_URL + "/service-requests?post=";
-export const API_URL_CREATE_POST = API_URL + "/posts/";
+export const API_URL_CREATE_POST = API_URL + "/posts";
 export const API_URL_POSTS_CAREGIVERID = API_URL + "/posts?caregiverId=";
+export const API_URL_POST_UPDATE_STATUS = API_URL + "/posts?postId=";
+
 
 export const API_URL_USER = API_URL + "/users";
 export const API_URL_LOGIN = API_URL_USER + "/login";

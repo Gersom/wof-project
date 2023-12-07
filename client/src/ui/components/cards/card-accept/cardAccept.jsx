@@ -1,4 +1,4 @@
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 const CardAccept = ({
   startDate,
@@ -7,30 +7,32 @@ const CardAccept = ({
   onAccept = () => null,
   toggleModal,
   onCancel = () => null,
-  toggleCancelModal
+  toggleCancelModal,
 }) => {
-
   const formatDate = (fechaString) => {
     if (fechaString) {
       const fecha = new Date(fechaString);
 
-      const opcionesDeFormato = { year: 'numeric', month: 'long', day: 'numeric' };
+      const opcionesDeFormato = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
 
-      const formato = new Intl.DateTimeFormat('es-ES', opcionesDeFormato);
+      const formato = new Intl.DateTimeFormat("es-ES", opcionesDeFormato);
       const fechaFormateada = formato.format(fecha);
-      return fechaFormateada
-    }
-    else return ''
-  }
+      return fechaFormateada;
+    } else return "";
+  };
   const handleAccept = () => {
     onAccept();
     toggleModal();
-  }
+  };
 
   const handleCancel = () => {
     onCancel();
     toggleCancelModal();
-  }
+  };
   return (
     <article className={styles.article}>
       <h3>Publicación</h3>
@@ -43,21 +45,17 @@ const CardAccept = ({
       <div className={styles.info}>
         <h5>Hasta: {formatDate(endDate)}</h5>
       </div>
-      {
-        !completedAcept ?
-          <button className={styles.linkContainer}
-            onClick={handleAccept}>
-            Deseo Cuidar
-          </button>
-          :
-          <button className={styles.cancelButton}
-            onClick={handleCancel}>
-            Cancelar oferta
-          </button>
-      }
-
+      {!completedAcept ? (
+        <button className={styles.linkContainer} onClick={handleAccept}>
+          Deseo Cuidar
+        </button>
+      ) : (
+        <button className={styles.cancelButton} onClick={handleCancel}>
+          Cancelar oferta
+        </button>
+      )}
     </article>
-  )
-}
+  );
+};
 
 export default CardAccept;
