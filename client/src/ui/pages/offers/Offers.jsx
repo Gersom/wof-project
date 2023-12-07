@@ -1,7 +1,7 @@
 import CareInProgress from '@src/ui/components/care-in-progress/CareInProgress';
 import styles from './styles.module.scss';
 import FilterSortLocationBar from '@src/ui/components/filter-sort-location-bar/FilterSortLocationBar';
-import OffersCareGivers from '@src/ui/components/offers/offers-care-givers/OffersCareGivers';
+import OffersCaregiversDetail from '@src/ui/components/offers/offers-caregivers/OffersCaregiversDetail';
 import OffersOwner from '@src/ui/components/offers/offers-owner/OffersOwner';
 import { useSelector } from 'react-redux';
 import useGetPostsCaregiverId from '@src/common/hooks/useGetPostsCaregiverId';
@@ -38,7 +38,7 @@ const Offers = () => {
 				</>
 			);
 		} else {
-			return <OffersCareGivers />;
+			return <OffersCaregiversDetail />;
 		}
 	};
 

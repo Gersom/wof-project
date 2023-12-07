@@ -1,4 +1,4 @@
-.link{
+.link {
 	height: max-content;
 }
 
@@ -11,27 +11,27 @@
 	background-color: var(--color-text-primary);
 }
 .figure {
-    display: flex;
-    flex-flow: column;
-    width: 100%;
+	display: flex;
+	flex-flow: column;
+	width: 100%;
 	max-width: 22rem;
-    height: 21.5rem;
-    position: relative;
-    align-items: start;
-    justify-content: flex-end;
-    img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        border-radius: 1rem;
-    }
-    figcaption {
-        color: var(--color-blue-primary);
-        margin: 0.5rem 0.7rem;
-        position: absolute;
-        font-size: 2rem;
-    }
-	.buttonEditAbsolute{
+	max-height: 21.5rem;
+	position: relative;
+	align-items: start;
+	justify-content: flex-end;
+	img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+		border-radius: 1rem;
+	}
+	figcaption {
+		color: var(--color-blue-primary);
+		margin: 0.5rem 0.7rem;
+		position: absolute;
+		font-size: 2rem;
+	}
+	.buttonEditAbsolute {
 		transition: all 0.2s ease-in-out;
 		position: absolute;
 		width: max-content;
@@ -49,15 +49,15 @@
 		align-items: center;
 		justify-content: center;
 		gap: 0.2rem;
-		&:hover{
+		&:hover {
 			background-color: var(--color-text-primary);
 			color: var(--color-blue-light);
 			border: 1px solid var(--color-blue-light);
-			img{
+			img {
 				content: url('@icons/editBlue.svg');
 			}
 		}
-		img{
+		img {
 			width: 1.8rem;
 			height: 1.8rem;
 			margin: 0;
@@ -107,7 +107,7 @@
 
 /* Public */
 
-.sectionPublic{
+.sectionPublic {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -115,14 +115,13 @@
 	width: 100%;
 	font-family: 'Lexend-Regular';
 	padding: 0.5rem 0.8rem 1rem 0.8rem;
-	h3{
+	h3 {
 		color: var(--color-text-dark);
 		font-size: 1.3rem;
 		margin: 0;
 		padding: 0;
-	
 	}
-	.containerInfo{
+	.containerInfo {
 		width: 90%;
 		display: flex;
 		flex-direction: row;
@@ -131,26 +130,25 @@
 		margin-bottom: 0.6rem;
 		font-family: 'Lexend-Medium';
 		gap: 1rem;
-		h2{
+		h2 {
 			color: var(--color-blue-light);
 			font-size: 1.6rem;
 			margin: 0rem 1rem;
 			padding: 0;
 			text-decoration: underline;
-			
 		}
-		img{
+		img {
 			width: 1.5rem;
 			height: 1.5rem;
 			align-self: center;
 		}
-		h4{
+		h4 {
 			color: var(--color-text-grey);
 			font-size: 1.2rem;
 			margin: 0;
 			padding: 0;
 		}
-		button{
+		button {
 			transition: all 0.2s ease-in-out;
 			color: var(--color-blue-light);
 			background-color: var(--color-text-primary);
@@ -166,20 +164,18 @@
 			align-items: center;
 			justify-content: center;
 			gap: 0.5rem;
-			&:hover{
+			&:hover {
 				background-color: var(--color-blue-light);
 				color: var(--color-text-primary);
 			}
-			img{
+			img {
 				padding: 0;
 			}
 		}
-
 	}
-
 }
 
-.footerDates{
+.footerDates {
 	display: flex;
 	width: 90%;
 	flex-direction: row;
@@ -189,12 +185,12 @@
 	color: var(--color-text-grey);
 	border-top: 1px solid var(--color-text-grey);
 	padding: 0.5rem 0rem 0rem 0rem;
-	div{
+	div {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		h4{
+		h4 {
 			font-size: 1.15rem;
 			margin: -0.2rem 0;
 			padding: 0;
@@ -202,54 +198,49 @@
 	}
 }
 
-
-
-.buttonDefault{
+.buttonDefault {
 	transition: all 0.2s ease-in-out;
-	&:hover{
-		img{
+	&:hover {
+		img {
 			content: url('@icons/eyeWhite.svg');
 		}
 	}
 }
-.buttonEdit{
+.buttonEdit {
 	transition: all 0.2s ease-in-out;
-	&:hover{
-		img{
+	&:hover {
+		img {
 			transition: all 0.2s ease-in-out;
 			content: url('@icons/editWhite.svg');
 		}
 	}
-	img{
+	img {
 		width: 1.8rem;
 		height: 1.8rem;
 		margin: 0;
 		margin-bottom: -0.2rem;
 	}
-
 }
-.buttonSearch{
+.buttonSearch {
 	transition: all 0.2s ease-in-out;
 	margin: 0;
 	align-self: center;
-	img{
+	img {
 		margin: 0;
 	}
-	&:hover{
-		img{
+	&:hover {
+		img {
 			content: url('@icons/searchWhite.svg');
 		}
 	}
-
 }
-.imageEditable{
+.imageEditable {
 	filter: blur(1px);
 }
 
 /* info */
 
-
-.articleInfo{
+.articleInfo {
 	display: flex;
 	flex-direction: column;
 	width: 18rem;
@@ -257,7 +248,7 @@
 	border-radius: 0.5rem;
 	background-color: var(--color-text-primary);
 }
-.sectionInfo{
+.sectionInfo {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -265,13 +256,13 @@
 	justify-items: flex-start;
 	padding: 0.5rem 0.8rem;
 	text-align: left;
-	h5{
+	h5 {
 		color: var(--color-text-dark);
 		font-size: 1rem;
 		margin: 0;
 		padding: 0;
 	}
-	h4{
+	h4 {
 		color: var(--color-text-grey);
 		font-size: 1rem;
 		margin: 0;

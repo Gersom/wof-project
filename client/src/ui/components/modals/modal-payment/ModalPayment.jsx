@@ -33,7 +33,7 @@ const ModalPayment = ({
         <Paypal 
           onPaid={successPaid}
           dataPost={{
-          postId: params.id, 
+          postId: params.id || data.id, 
           userId: userData.id, 
           caregiverId: data.caregiverId,
           description: `WOF.COM - Servicio de cuidado de mascota - Cuidador: ${data.name} - Dirección: ${data.address}`,
