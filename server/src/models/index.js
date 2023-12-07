@@ -31,6 +31,7 @@ const models = {
   ReviewsModel: require(`./${pathModel}/reviews`),
   SpeciesModel: require(`./${pathModel}/species`),
   TransactionsModel: require(`./${pathModel}/transactions`),
+  CaregiverTransactionsModel: require(`./${pathModel}/caregiverTransactions`),
   UsersModel: require(`./${pathModel}/users`),
   VerifyEmailModel: require(`./${pathModel}/verify_email`),
 }
