@@ -35,3 +35,7 @@ export const API_URL_SPECIES = API_URL + "/species";
 export const API_URL_BREEDS = API_URL + "/breeds?speciesId=";
 
 export const API_URL_CAREGIVERS = API_URL + "/caregivers/";
+
+export const API_URL_CHAT = API_URL + "/chat";
+export const API_URL_CHAT_OWNER = API_URL_CHAT + "/owner/";
+export const API_URL_CHAT_CAREGIVER = API_URL_CHAT + "/caregiver/";

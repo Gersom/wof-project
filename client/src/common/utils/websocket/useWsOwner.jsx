@@ -62,7 +62,7 @@ const useWsOwner = (role) => {
 		};
 	}, [ws , dispatch, role,lastProcessedMessage]);
 
-  const sendMessage = (message) => {
+  const sendMessageOwner = (message) => {
     if (ws && ws.readyState === WebSocket.OPEN) {
       ws.send(JSON.stringify(message));
     } else {
@@ -70,7 +70,7 @@ const useWsOwner = (role) => {
     }
   };
 
-	return { sendMessage };
+	return { sendMessageOwner };
 };
 
 export default useWsOwner;

@@ -1,5 +1,8 @@
 const WebSocket = require('ws');
 
+const { ChatModel } = require('../models');
+const { MessagesChatModel } = require('../models');
+
 const configureWebSocket = (server) => {
 	const wss = new WebSocket.Server({ server });
 	const clients = new Set(); // Keep track of clients
@@ -30,6 +33,7 @@ const configureWebSocket = (server) => {
 			}
 		});
 	};
+
 	// Event listeners
 
 	wss.on('listening', () => {
@@ -37,7 +41,7 @@ const configureWebSocket = (server) => {
 	});
 
 	wss.on('connection', (ws) => {
-		ws.on('message', (message) => {
+		ws.on('message', async (message) => {
 			if (typeof message === 'string') {
 				console.log('Mensaje recibido (string):', message);
 
@@ -76,13 +80,26 @@ const configureWebSocket = (server) => {
 							sendToCaregiver(bufferText, parsedMessage.caregiverId);
 						} else if (parsedMessage.type === 'request_update') {
 							sendToOwner(bufferText, parsedMessage.ownerId);
+						} else if (parsedMessage.type === 'message' && parsedMessage.role === 'caregiver') {
+							 await ChatModel.createMessageCaregiver(
+								parsedMessage.message,
+								parsedMessage.caregiverId,
+								parsedMessage.ownerId
+							);
+							sendToOwner(bufferText, parsedMessage.ownerId);
+						} else if (parsedMessage.type === 'message' && parsedMessage.role === 'owner') {
+							await ChatModel.createMessageOwner(
+								parsedMessage.message,
+								parsedMessage.caregiverId,
+								parsedMessage.ownerId
+							);
+							sendToCaregiver(bufferText, parsedMessage.caregiverId);
 						}
 					}
 				} catch (error) {
 					console.error('Error al analizar el mensaje JSON:', error);
 				}
-
-				// Realiza acciones con el contenido del Buffer
+				
 			}
 		});
 

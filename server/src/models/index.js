@@ -32,6 +32,8 @@ const models = {
   NotificationsModel: require(`./${pathModel}/notifications`),
   AdminModel: require(`./${pathModel}/admin`),
   VerifyEmailModel: require(`./${pathModel}/verify_email`),
+  ChatModel: require(`./${pathModel}/chat`),
+  MessagesChatModel: require(`./${pathModel}/messageChat`),
 }
 
 module.exports = models

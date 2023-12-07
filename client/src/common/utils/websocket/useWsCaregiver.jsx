@@ -82,7 +82,7 @@ const useWsCaregiver = (role) => {
 		};
 	}, [ws, dispatch, role, lastProcessedMessage]);
 
-	const sendMessage = (message) => {
+	const sendMessageCaregiver = (message) => {
 		if (ws && ws.readyState === WebSocket.OPEN) {
 			ws.send(JSON.stringify(message));
 		} else {
@@ -90,7 +90,7 @@ const useWsCaregiver = (role) => {
 		}
 	};
 
-	return { sendMessage };
+	return { sendMessageCaregiver };
 };
 
 export default useWsCaregiver;
