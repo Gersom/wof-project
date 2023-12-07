@@ -126,7 +126,7 @@ CaregiversModel["findAllCaregivers"] = async () => {
 }
 
 CaregiversModel["findCaregiver"] = async (id) => {
-  const CaregiversImagesModel = require("./caregivers_images")
+  const CaregiversImagesModel = require("./caregiversImages")
   const caregiver = await CaregiversModel.findOne({
     where: { id },
     include: [
