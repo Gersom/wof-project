@@ -10,6 +10,8 @@ router.get("/:id", controllers.getCaregiver)
 
 router.get("/:id/cared-pets", controllers.getCaredPets)
 
+router.get("/:id/wallet", controllers.getWallet)
+
 router.post("/", controllers.createCaregiver)
 
 router.put("/:id", controllers.updateCaregiver)

@@ -53,6 +53,15 @@ const Details = () => {
   const cancelFunc = async () => {
     setCancelModal(false);
     setStatusModal(false);
+    let options = {
+      method : 'DELETE',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({caregiverId : caregiverId})
+    }
+    await fetch(`${API_URL_SERVICES}${id}`, options);
+
   };
 
   return (

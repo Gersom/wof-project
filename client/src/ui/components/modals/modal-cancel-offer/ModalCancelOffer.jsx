@@ -1,26 +1,9 @@
-import { API_URL } from "@src/common/constants/api";
-import { useSelector } from "react-redux";
-import styles from "./styles.module.scss";
-import axios from "axios";
 
-const ModalCancelOffer = ({ nameOwner, data }) => {
-  const userData = useSelector((state) => state.userReducer?.user);
-  const cancelOffer = async (data) => {
-    try {
-      const response = await axios.put(API_URL + "/requests/" + `${data.id}`, {
-        userId: userData.id,
-      });
-      //console.log(response);
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  //console.log(data);
-  const asyncOperation = async () => {
-    await cancelOffer(data);
-  };
-  asyncOperation();
+import styles from "./styles.module.scss";
+
+
+const ModalCancelOffer = ({ nameOwner }) => {
+
 
   return (
     <div className={styles.container}>

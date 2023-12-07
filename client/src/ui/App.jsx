@@ -18,6 +18,7 @@ import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
 import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
 import VerifyingLogin from "./pages/verifying-login/VerifyingLogin";
 import DetailsCaregivers from "./pages/details/DetailsCaregivers";
+import OffersCaregivers from "./components/offers/offers-caregivers/OffersCaregivers";
 import { useAuth } from "@common/context/authProvider";
 import { Navigate } from "react-router-dom";
 import MyHome from "./pages/my-home/MyHome";
@@ -106,6 +107,10 @@ function App() {
             />
             <Route path={routerNames["profile"]} element={<FormProfile />} />
             <Route
+              path={routerNames["offersOwners"]}
+              element={<OffersCaregivers />}
+            />
+            <Route
               path={routerNames["offersOwners"] + ":id"}
               element={<Offers />}
             />
@@ -136,6 +141,7 @@ function App() {
         <Route path={routerNames["admin"]} element={<Admin />}>
           <Route path={routerNames["users"]} element={<Users />}></Route>
         </Route>
+
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />
       </Routes>
