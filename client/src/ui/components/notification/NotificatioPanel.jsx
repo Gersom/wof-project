@@ -9,9 +9,13 @@ const NotificationPanel = () => {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
-    axios(API_URL_NOTIFICATIONS)
+    axios(`${API_URL_NOTIFICATIONS}${userData?.id}`)
       .then(({ data }) => {
         if (data) {
+          // Filtrar las notificaciones solo para el usuario actual
+          // const userNotifications = data.filter(
+          //   (notification) => notification.userId === userData.userId
+          // );
           setNotifications(data);
         } else {
           window.alert("Error al obtener la data");
@@ -20,7 +24,7 @@ const NotificationPanel = () => {
       .catch((error) => {
         console.log(error.message);
       });
-  }, []);
+  }, [userData.id]); // Asegúrate de incluir userData.id en la dependencia del useEffect
 
   return (
     <>
@@ -29,7 +33,7 @@ const NotificationPanel = () => {
           <h1 className={styles.title}>Notificaciones</h1>
         </div>
         {notifications.map((notification) => (
-          <div className={styles.card}>
+          <div className={styles.card} key={notification.id}>
             <div
               className={styles.notiImg}
               style={{
@@ -40,11 +44,7 @@ const NotificationPanel = () => {
             <div className={styles.notiCard}>
               <p>{userData.name}</p>
 
-              <div
-                className={styles.notiText}
-                key={notification.id}
-                value={notification.id}
-              >
+              <div className={styles.notiText}>
                 {notification.message}
                 {notification.action && (
                   <div onClick="" className={styles.notiButton}>

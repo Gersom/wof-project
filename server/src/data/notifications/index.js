@@ -1,5 +1,5 @@
 const changePassword = {
-  message: "password changed",
+  message: "Has actualizado tu contraseña correctamente",
   status: false,
   action: "",
 };
