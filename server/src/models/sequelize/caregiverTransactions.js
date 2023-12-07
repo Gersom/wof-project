@@ -58,13 +58,13 @@ const CaregiverTransactionsModel = sequelize.define(name, schema, config)
 addMethods(CaregiverTransactionsModel)
 
 // Add relationship
-// TransactionsModel.hasOne(caregiverTransactions)
-// caregiverTransactions.belongsTo(TransactionsModel)
+TransactionsModel.hasOne(CaregiverTransactionsModel)
+CaregiverTransactionsModel.belongsTo(TransactionsModel)
 
-// PostsModel.hasMany(caregiverTransactions)
-// caregiverTransactions.belongsTo(PostsModel)
+PostsModel.hasMany(CaregiverTransactionsModel)
+CaregiverTransactionsModel.belongsTo(PostsModel)
 
-// CaregiversModel.hasMany(caregiverTransactions)
-// caregiverTransactions.belongsTo(CaregiversModel)
+CaregiversModel.hasMany(CaregiverTransactionsModel)
+CaregiverTransactionsModel.belongsTo(CaregiversModel)
 
 module.exports = CaregiverTransactionsModel
