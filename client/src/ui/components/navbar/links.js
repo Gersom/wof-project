@@ -22,7 +22,7 @@ const LINKS_CAREGIVER= [
  const LINKS_OWNER = [
 	{ to: routerNames['alerts'], imgSrc: alerts, label: 'Mis notificaciones' },
 	{ to: routerNames['myPets'], imgSrc: points, label: 'Mis mascotas'},
-	{ to: routerNames['offersOwners'] + 1, imgSrc: arrows, label: 'Ofertas' },
+	{ to: routerNames['offersOwners'], imgSrc: arrows, label: 'Ofertas' },
 	{ to: routerNames['lastsCaregivers'], imgSrc: star, label: 'Cuidadores anteriores'}, 
 	{ to: routerNames['profile'], imgSrc: user, label: 'Perfil' },
 ];
@@ -37,7 +37,7 @@ const LINKS_CAREGIVER_ACTIVE = [
 	{ to: routerNames['detailsCaregivers'] + 1, imgSrc: arrows, label: 'Detalles de la oferta'},
 ];
 
-export const obtainLinks = (role, idPost, location) => {
+export const obtainLinks = (role, location) => {
 	if (role === 'caregiver'){
 		if(location.includes(routerNames['detailsCaregivers'])){
 			return LINKS_CAREGIVER_ACTIVE;
@@ -45,7 +45,6 @@ export const obtainLinks = (role, idPost, location) => {
 		return LINKS_CAREGIVER;
 	}
 	else if (role === 'owner'){
-		LINKS_OWNER[2].to = routerNames['offersOwners'] + idPost;
 		if(location.includes(routerNames['myPetsEdit'])){
 			return LINKS_OWNER_ACTIVE;
 			}

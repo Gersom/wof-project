@@ -27,8 +27,8 @@ const DatePublicSelect = ({
 	const dispatch = useDispatch();
 	const { sendMessage } = useWsOwner('owner');
 
-	const [startDate, setStartDate] = useState(data.startDate?.split('T')[0]);
-	const [endDate, setEndDate] = useState(data.endDate?.split('T')[0]);
+	const [startDate, setStartDate] = useState(data.status === 'completed' ? '' :data.startDate?.split('T')[0]);
+	const [endDate, setEndDate] = useState(data.status === 'completed' ? '' :data.endDate?.split('T')[0]);
 	const address = useSelector((state) => state.userReducer?.user?.address);
 
 
