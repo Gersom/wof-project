@@ -19,7 +19,6 @@ export const API_URL_CREATE_POST = API_URL + "/posts";
 export const API_URL_POSTS_CAREGIVERID = API_URL + "/posts?caregiverId=";
 export const API_URL_POST_UPDATE_STATUS = API_URL + "/posts?postId=";
 
-
 export const API_URL_USER = API_URL + "/users";
 export const API_URL_LOGIN = API_URL_USER + "/login";
 export const API_URL_REGISTER = API_URL_USER;
@@ -35,3 +34,4 @@ export const API_URL_SPECIES = API_URL + "/species";
 export const API_URL_BREEDS = API_URL + "/breeds?speciesId=";
 
 export const API_URL_CAREGIVERS = API_URL + "/caregivers/";
+export const API_URL_ADMIN = API_URL + "/admin/users-stats";
