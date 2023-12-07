@@ -28,5 +28,26 @@
     "experiencies": "experiencia de 2 meses",
     "myHouse": "vivo solo",
     "notes": "wasaaaaaaaaaaaaa"
+  },
+  {
+    "experiencies": "He tenido mascotas toda mi vida",
+    "myHouse": "Vivo en una casa, con un patio grande para que juegue tu bebe",
+    "notes": "No baño mascotas"
+  },
+  {
+    "experiencies": "Paseador de perros",
+    "myHouse": "Vivo en un departamento, frente a un parque",
+    "notes": "Tu mascota debe traer su comida"
+  },
+  {
+    "experiencies": "Cuidador 1 año en guarderia canina",
+    "myHouse": "Vivo en una casa, con un patio y juguetes caninos",
+    "notes": "Solo perros simpaticos"
+  },
+  {
+    "experiencies": "Cuidador a domicilio por 3 meses",
+    "myHouse": "Departamento espacioso, con terraza",
+    "notes": "Los saco a pasear 3 veces al dia"
   }
+  
 ]
