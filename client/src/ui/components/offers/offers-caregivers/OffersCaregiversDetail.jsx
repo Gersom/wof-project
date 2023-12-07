@@ -17,7 +17,7 @@ import CardUser from '../../cards/card-user/CardUser';
 import CardInfoCaregiver from '../../cards/card-info-caregiver/CardInfoCaregiver';
 import useWsOwner from '@src/common/utils/websocket/useWsOwner';
 
-const OffersCareGivers = () => {
+const OffersCaregiversDetail = () => {
 	const dispatch = useDispatch();
 	const { sendMessage } = useWsOwner('owner');
 	const { id } = useParams();
@@ -38,6 +38,14 @@ const OffersCareGivers = () => {
 
 	const successPaid = async () => {
 		setModalState(false);
+
+		const pets = await getPets(details?.owner?.id);
+		dispatch(deletePosts(details?.id));
+		dispatch(getMyPets(pets));
+		dispatch(
+			setAlert({ message: 'Pago realizado con exito 👌', type: 'success' })
+		);
+		sendMessage({ type: 'payment_complete', petName: details?.pet?.name , ownerName: details?.owner?.name, caregiverId : offerData.caregiverId});
 		setOfferData({
 			id: 0,
 			price: '1.00',
@@ -48,13 +56,6 @@ const OffersCareGivers = () => {
 			profilePicture: '...',
 			rating: '...',
 		});
-		const pets = await getPets(details?.owner?.id);
-		dispatch(deletePosts(details?.id));
-		dispatch(getMyPets(pets));
-		dispatch(
-			setAlert({ message: 'Pago realizado con exito 👌', type: 'success' })
-		);
-		sendMessage({ type: 'payment_complete', petName: details?.pet?.name , ownerName: details?.owner?.name, caregiverId : offerData.caregiverId});
 	};
 
 	const onClickAccept = (data) => {
@@ -138,4 +139,4 @@ const OffersCareGivers = () => {
 	);
 };
 
-export default OffersCareGivers;
+export default OffersCaregiversDetail;
