@@ -6,4 +6,6 @@ const controllers = require("../controllers/admin")
 
 router.get("/get-users-stats", controllers.getUserStats)
 
+router.get("/get-users-info", controllers.getUsersInfo)
+
 module.exports = router
