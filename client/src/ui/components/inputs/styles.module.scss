@@ -132,9 +132,10 @@
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
-  display: none;
-  max-height: calc(30px * 5);
-  overflow-y: auto;
+  max-height: 0px;
+  overflow-y: hidden;
+  transition: 0.5s ease all;
+  top: calc(100% + 7px);
   button {
     background: transparent;
     width: 100%;
@@ -157,6 +158,8 @@
     position: relative;
     padding: 5px;
     margin: 3px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
   &::-webkit-scrollbar-thumb {
     background: var(--color-text-grey2);
@@ -164,5 +167,7 @@
   }
 }
 .optionOpenRoleSelect {
-  display: block;
+  height: initial;
+  max-height: calc(30px * 5);
+  overflow-y: auto;
 }

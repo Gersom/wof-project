@@ -20,6 +20,7 @@ const RoleSelect = ({
   
   const handleChange = (value) => {
     setShowOptions(false)
+    console.log(value)
     setValueInput(value)
     onSelected(value.id)
   }
@@ -27,6 +28,10 @@ const RoleSelect = ({
   const ToggleOptions = () => {
     setShowOptions(!showOptions)
   }
+
+  // const closeOptions = () => {
+  //   setTimeout(()=>setShowOptions(false), 200)
+  // }
 
   useEffect(()=>{
     let styles = `${style.defaultInput}`
@@ -43,13 +48,12 @@ const RoleSelect = ({
   }, [background, dark])
   
   return (
-    <div className={stylesInput}>
+    <div className={stylesInput} >
       <div className={`${style.titleInput} ${style.notStroke}`}>
         <ShapesIcon/>
         <label>{label} :</label>
       </div>
-      <div className={style.DropDownRoleSelect}
-      onBlur={() => setShowOptions(false)}>
+      <div className={style.DropDownRoleSelect} onBlur={()=>setShowOptions(false)}>
         <button className={style.selectedRoleSelect} 
         type="button" onClick={ToggleOptions}>
           {valueInput.name}
