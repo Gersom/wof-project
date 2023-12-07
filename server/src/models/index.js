@@ -14,10 +14,14 @@ switch (DB_ENGINE) {
 }
 
 const models = {
+  AdminModel: require(`./${pathModel}/admin`),
   BreedsModel: require(`./${pathModel}/breeds`),
-  CaregiversImagesModel: require(`./${pathModel}/caregivers_images`),
+  CaregiversImagesModel: require(`./${pathModel}/caregiversImages`),
   CaregiversModel: require(`./${pathModel}/caregivers`),
+  CaregiverTransactionsModel: require(`./${pathModel}/caregiverTransactions`),
   CountriesModel: require(`./${pathModel}/countries`),
+  GerdersModel: require(`./${pathModel}/genders`),
+  NotificationsModel: require(`./${pathModel}/notifications`),
   OwnersModel: require(`./${pathModel}/owners`),
   PetsImagesModel: require(`./${pathModel}/pets_images`),
   PetsModel: require(`./${pathModel}/pets`),
@@ -29,9 +33,6 @@ const models = {
   TransactionsModel: require(`./${pathModel}/transactions`),
   CaregiverTransactionsModel: require(`./${pathModel}/caregiverTransactions`),
   UsersModel: require(`./${pathModel}/users`),
-  GerdersModel: require(`./${pathModel}/genders`),
-  NotificationsModel: require(`./${pathModel}/notifications`),
-  AdminModel: require(`./${pathModel}/admin`),
   VerifyEmailModel: require(`./${pathModel}/verify_email`),
 }
 
