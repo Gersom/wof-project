@@ -415,7 +415,22 @@ flex-shrink: 0;
   }
 }
 
+@keyframes spawnSpan {
+  0%{
+    scale: 0;
+  }
+  75%{
+    opacity: 1;
+    scale: 1.1;
+  }
+  100%{
+    opacity: 1;
+    scale: 1;
+  }
+}
+
 .btnChat {
+  position: relative;
   background-color: var(--color-blue-light);
   border: none;
   width: max-content;
@@ -430,5 +445,23 @@ flex-shrink: 0;
   gap: 0.75rem;
   svg{
     align-self: flex-end;
+  }
+  span{
+    animation: spawnSpan 0.5s ease;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: -1rem -0.5rem;
+    background-color: #CE4B4B;
+    color: var(--color-text-primary);
+    font-family: 'Lexend-Regular';
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    width: 2.25rem;
+    height: 2.25rem; 
+    border-radius: 50%;
   }
 }
