@@ -35,8 +35,8 @@ import useAlert from "@src/common/hooks/use-alert/useAlert";
 import MyClients from "./pages/my-clients/MyClients";
 import NotificatioPanel from "./components/notification/NotificatioPanel";
 import { useEffect } from "react";
-import Admin from "./pages/admin/admin";
-import Users from "./pages/users/users";
+import Admin from "./pages/admin/Admin";
+import Users from "./pages/users/Users";
 
 // Imports Components
 
