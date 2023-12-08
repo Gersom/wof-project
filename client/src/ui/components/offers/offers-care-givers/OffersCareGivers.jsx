@@ -55,6 +55,7 @@ const OffersCareGivers = () => {
 			setAlert({ message: 'Pago realizado con exito 👌', type: 'success' })
 		);
 		sendMessageOwner({ type: 'payment_complete', petName: details?.pet?.name , ownerName: details?.owner?.name, caregiverId : offerData.caregiverId});
+		
 	};
 
 	const onClickAccept = (data) => {

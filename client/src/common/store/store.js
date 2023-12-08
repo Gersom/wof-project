@@ -7,6 +7,7 @@ import offersReducer from './reducers/offersReducer';
 import navBarSlice from './slices/navBarSlice';
 import myPetsSlice from './slices/myPetsSlice';
 import alertSlice from './slices/alertSlice';
+import chatSlice from './slices/chatSlice';
 // combinaed Reducers
 const rootReducerCombined = combineReducers({
 	reducer: reducer,
@@ -15,6 +16,7 @@ const rootReducerCombined = combineReducers({
 	navBarReducer: navBarSlice, // rename the assignment reducer name
 	myPetsReducer: myPetsSlice,
 	alertReducer: alertSlice,
+	chatReducer : chatSlice
 });
 
 // configured store
