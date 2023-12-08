@@ -17,20 +17,32 @@ const ModalChat = ({
 	const messageNoChats =
 		role === 'owner'
 			? 'Actualmente no tienes ningún cuidador contratado. ¡Encuentra tu cuidador perfecto y comienza a chatear para brindarle lo mejor a tu mascota!'
-			: 'Actualmente no tienes ningún cliente asignado. ¡Estás listo para recibir nuevas oportunidades! Encuentra dueños de mascotas con quienes conectarte y brindarles tu atención especializada.';
+			: 'Actualmente no tienes ningún cliente asignado. Encuentra dueños de mascotas con quienes conectarte y brindarles tu atención especializada.';
+
+  const notChats = (
+    <p className={styles.messageNotChats}>
+      {messageNoChats}
+    </p>
+  )
+
+  const yesChats = (
+    <>{
+      data.map((chat) => {
+        return (
+          <CardChat key={chat.id} data={chat}  role={role} />
+        );
+      })
+    }</>
+  )
 	return (
 		<>
 			<div className={styles.mainContainerChat}>
 				<h3>Chats</h3>
-				<div className={styles.containerChats}>
-					{data.length > 0 ? (
-						data.map((chat) => {
-							return <CardChat key={chat.id} data={chat} role={role} />;
-						})
-					) : (
-						<h2>{messageNoChats}</h2>
-					)}
-				</div>
+				<div className={styles.containerChats}> { 
+          data.length > 0
+            ? yesChats
+            : notChats
+        } </div>
 			</div>
 		</>
 	);
