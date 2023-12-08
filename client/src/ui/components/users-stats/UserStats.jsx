@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./styles.modules.scss";
-import { API_URL_ADMIN } from "@src/common/constants/api";
+import { API_URL_ADMIN_STATS } from "@src/common/constants/api";
 
 const UserStats = () => {
   const [userData, setUserData] = useState(null);
@@ -9,7 +9,7 @@ const UserStats = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(API_URL_ADMIN);
+        const response = await axios.get(API_URL_ADMIN_STATS);
         console.log("API Response (Success):", response);
         setUserData(response.data);
       } catch (error) {
@@ -23,7 +23,7 @@ const UserStats = () => {
   return (
     <div className={styles.cards}>
       <section className={styles.cardss}>
-        <h4>🧑‍🎄 {userData && userData.userCount}</h4>
+        <h4>🧑‍🎄 {userData && userData.usersCount}</h4>
         <h4>
           🐶 {userData && userData.roleCounts && userData.roleCounts.owner}
         </h4>
@@ -34,8 +34,8 @@ const UserStats = () => {
       </section>
       {userData && (
         <div>
-          <p>Total de usuarios: {userData.userCount}</p>
-          <p>Cantidad de propietarios: {userData.roleCounts.owner}</p>
+          <p>Total de usuarios: {userData.usersCount}</p>
+          <p>Cantidad de dueños: {userData.roleCounts.owner}</p>
           <p>Cantidad de cuidadores: {userData.roleCounts.caregiver}</p>
           <p>Cantidad de mascotas: {userData.petsCount}</p>
         </div>

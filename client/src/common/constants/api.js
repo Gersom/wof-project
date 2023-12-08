@@ -34,4 +34,5 @@ export const API_URL_SPECIES = API_URL + "/species";
 export const API_URL_BREEDS = API_URL + "/breeds?speciesId=";
 
 export const API_URL_CAREGIVERS = API_URL + "/caregivers/";
-export const API_URL_ADMIN = API_URL + "/admin/users-stats";
+export const API_URL_ADMIN_STATS = API_URL + "/admin/users-stats";
+export const API_URL_ADMIN_INFO = API_URL + "/admin/users-info";
