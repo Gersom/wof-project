@@ -9,14 +9,14 @@ const useWsCaregiver = (role) => {
 	const dispatch = useDispatch();
 	
 	const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
-	const [ws, setWs] = useState(null);
+	const [wsCaregiver, setWsCaregiver] = useState(null);
 
 	const caregiverId = useSelector((state) => state.userReducer.user?.caregiver?.id);
 
 	useEffect(() => {
 		if (role !== 'caregiver') return;
 
-		if (!ws) {
+		if (!wsCaregiver) {
 			const newWs = new WebSocket(WS_URL);
 
 			newWs.onopen = () => {
@@ -69,28 +69,28 @@ const useWsCaregiver = (role) => {
 
 			newWs.onclose = () => {
 				console.log('Connection closed');
-				setWs(null); // Reiniciar la conexión WebSocket si se cierra
+				setWsCaregiver(null); // Reiniciar la conexión WebSocket si se cierra
 			};
 
-			setWs(newWs);
+			setWsCaregiver(newWs);
 		}
 
 		return () => {
-			if (ws) {
-				ws.close(); // Cerrar la conexión al desmontar el componente
+			if (wsCaregiver) {
+				wsCaregiver.close(); // Cerrar la conexión al desmontar el componente
 			}
 		};
-	}, [ws, dispatch, role, lastProcessedMessage]);
+	}, [wsCaregiver, dispatch, role, lastProcessedMessage]);
 
 	const sendMessageCaregiver = (message) => {
-		if (ws && ws.readyState === WebSocket.OPEN) {
-			ws.send(JSON.stringify(message));
+		if (wsCaregiver && wsCaregiver.readyState === WebSocket.OPEN) {
+			wsCaregiver.send(JSON.stringify(message));
 		} else {
 			console.error('WebSocket connection is not established or is closed');
 		}
 	};
 
-	return { sendMessageCaregiver };
+	return { sendMessageCaregiver, wsCaregiver };
 };
 
 export default useWsCaregiver;

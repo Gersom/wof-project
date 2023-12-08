@@ -4,81 +4,16 @@
 	height: max-content;
 	display: flex;
 	z-index: 100;
-
+	
 	/* Otros estilos necesarios para el contenedor principal */
 
 	.contChat {
-		background-color: white;
 		position: fixed;
 		bottom: 0;
 		right: 0;
-		margin: 1rem 5rem;
+		margin: 2rem 5rem;
 		width: max-content;
 		display: flex;
 		flex-direction: row;
-		h1 {
-			color: black;
-		}
 	}
-
-	.chat {
-		section {
-			background-color: red;
-			img {
-				width: 4rem;
-				height: 4rem;
-				border-radius: 50%;
-			}
-			h3 {
-				display: none;
-			}
-		}
-		.containerInput {
-			display: none;
-		}
-    p{
-      display: none;
-    }
-	}
-
-	.chatActive {
-    display: flex;
-    flex-direction: column;
-    section {
-      background-color: red;
-      img {
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
-      }
-      h3 {
-        display: none;
-      }
-    }
-    p{
-      color: black;
-    }
-    .containerInput {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      input {
-        width: 100%;
-        height: 100%;
-        border: none;
-        border-radius: 0.5rem;
-        padding: 0.5rem;
-        font-size: 1.5rem;
-        &:focus {
-          outline: none;
-        }
-      }
-    }
-	}
-  .msgOwnerByOwner{
-    text-align: right;
-  }
 }

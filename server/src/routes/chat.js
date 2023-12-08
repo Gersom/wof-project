@@ -49,6 +49,16 @@ router.delete('/', async (req, res) => {
 	res.status(200).json({ message: 'chat deleted' });
 });
 
+router.get('/caregiver/:caregiverId', async (req, res) => {
+	const { caregiverId } = req.params;
+	if (!caregiverId) return res.status(405).json({ error: 'need caregiverId' });
+
+	const chats = await ChatModel.getAllMessagesByCaregiverId(caregiverId);
+
+	return res.status(200).json({ message: 'chats', chats });
+});
+
+
 router.get('/owner/:ownerId', async (req, res) => {
 	const { ownerId } = req.params;
 	if (!ownerId) return res.status(405).json({ error: 'need ownerId' });
@@ -58,15 +68,6 @@ router.get('/owner/:ownerId', async (req, res) => {
 	return res.status(200).json({ message: 'chats', chats });
 });
 
-router.get('/caregiver/caregiverId'),
-	async (req, res) => {
-		const { caregiverId } = req.params;
-		if (!caregiverId)
-			return res.status(405).json({ error: 'need caregiverId' });
 
-		const chats = await ChatModel.getAllMessagesByCaregiverId(caregiverId);
-
-		return res.status(200).json({ message: 'chats', chats });
-	};
 
 module.exports = router;

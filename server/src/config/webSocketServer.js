@@ -33,6 +33,14 @@ const configureWebSocket = (server) => {
 			}
 		});
 	};
+	const sendToBothById = (message, caregiverId, ownerId) => {
+		clients.forEach((client) => {
+			if (client.role === 'caregiver' && client.caregiverId === caregiverId) {
+				client.ws.send(message);
+			} else if (client.role === 'owner' && client.ownerId === ownerId) {
+				client.ws.send(message);
+			}
+		})}
 
 	// Event listeners
 
@@ -81,19 +89,23 @@ const configureWebSocket = (server) => {
 						} else if (parsedMessage.type === 'request_update') {
 							sendToOwner(bufferText, parsedMessage.ownerId);
 						} else if (parsedMessage.type === 'message' && parsedMessage.role === 'caregiver') {
-							 await ChatModel.createMessageCaregiver(
+							const msg =  await ChatModel.createMessageCaregiver(
 								parsedMessage.message,
 								parsedMessage.caregiverId,
 								parsedMessage.ownerId
 							);
-							sendToOwner(bufferText, parsedMessage.ownerId);
+							const msgToJson = JSON.stringify(msg.dataValues)
+
+							sendToBothById(msgToJson, parsedMessage.caregiverId, parsedMessage.ownerId)
 						} else if (parsedMessage.type === 'message' && parsedMessage.role === 'owner') {
-							await ChatModel.createMessageOwner(
+							const msg =  await ChatModel.createMessageOwner(
 								parsedMessage.message,
 								parsedMessage.caregiverId,
 								parsedMessage.ownerId
 							);
-							sendToCaregiver(bufferText, parsedMessage.caregiverId);
+							const msgToJson = JSON.stringify(msg.dataValues)
+
+							sendToBothById(msgToJson, parsedMessage.caregiverId, parsedMessage.ownerId)
 						}
 					}
 				} catch (error) {

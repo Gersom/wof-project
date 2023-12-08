@@ -7,12 +7,12 @@ import { setAlert } from '@src/common/store/slices/alertSlice';
 const useWsOwner = (role) => {
 	const dispatch = useDispatch();
   const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
-	const [ws, setWs] = useState(null);
+	const [wsOwner, setWsOwner] = useState(null);
   const ownerId = useSelector((state) => state.userReducer.user?.owner?.id)
 
 	useEffect(() => {
     if(role !== 'owner') return;
-		if (!ws) {
+		if (!wsOwner) {
 			const newWs = new WebSocket(WS_URL);
 
 			newWs.onopen = () => {
@@ -49,28 +49,28 @@ const useWsOwner = (role) => {
 
 			newWs.onclose = () => {
 				console.log('Connection closed');
-				setWs(null); // Reiniciar la conexión WebSocket si se cierra
+				setWsOwner(null); // Reiniciar la conexión WebSocket si se cierra
 			};
 
-			setWs(newWs);
+			setWsOwner(newWs);
 		}
 
 		return () => {
-			if (ws) {
-				ws.close(); // Cerrar la conexión al desmontar el componente
+			if (wsOwner) {
+				wsOwner.close(); // Cerrar la conexión al desmontar el componente
 			}
 		};
-	}, [ws , dispatch, role,lastProcessedMessage]);
+	}, [wsOwner , dispatch, role,lastProcessedMessage]);
 
   const sendMessageOwner = (message) => {
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.send(JSON.stringify(message));
+    if (wsOwner && wsOwner.readyState === WebSocket.OPEN) {
+      wsOwner.send(JSON.stringify(message));
     } else {
       console.error('WebSocket connection is not established or is closed');
     }
   };
 
-	return { sendMessageOwner };
+	return { sendMessageOwner, wsOwner };
 };
 
 export default useWsOwner;
