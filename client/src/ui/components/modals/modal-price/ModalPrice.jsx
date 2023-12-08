@@ -22,7 +22,10 @@ const ModalPrice = ({ data, toggleModal, setSuccess }) => {
       const response = await axios.post(API_URL + "/requests", {
         ...dataPost,
         userId: dataUser.id,
+        ownerId: data.owner.id,
       });
+      console.log(dataPost);
+      console.log(data);
       return response.data;
     } catch (error) {
       dispatch(setAlert({ message: "Algo ha salido mal!", type: "error" }));

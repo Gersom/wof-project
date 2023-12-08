@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { passwordValidation } from "./validations"
-import PasswordIcon from "@icons/form/password.svg?react";
 import EyeIcon from "@icons/form/eye.svg?react";
 import EyeSlashIcon from "@icons/form/eye-slash.svg?react";
+import PadlockIcon from "@icons/form/padlock.svg?react";
 import style from "./styles.module.scss"
 
 const PasswordInput = ({
   name="password",
   label="Contraseña",
-  background="gray",
+  background="white",
   validation=true,
   dark=false,
   onValidated=()=>null
@@ -58,12 +58,12 @@ const PasswordInput = ({
 
     setStylesInput(styles)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stateInput])
+  }, [background, dark, stateInput])
   
   return (
     <div className={stylesInput}>
       <div className={style.titleInput}>
-        <PasswordIcon/>
+        <PadlockIcon />
         <label>{label} : {titleChar}</label>
       </div>
       <div className={style.inputPass}>
@@ -84,9 +84,7 @@ const PasswordInput = ({
           }
         </button>
       </div>
-      <span className="EmailInputError">
-        {errorLabel}
-      </span>
+      <span>{errorLabel}</span>
     </div>
   );
 };
