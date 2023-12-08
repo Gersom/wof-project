@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 import ChatButton from '../../buttons/ChatButton';
 import CardMessage from '../../cards/card-chats/CardMessage';
-import { useState } from 'react';
+import { useState , useRef , useEffect , useCallback} from 'react';
 import useWsCaregiver from '@src/common/utils/websocket/useWsCaregiver';
 import useWsOwner from '@src/common/utils/websocket/useWsOwner';
 import CardInput from '../../cards/card-chats/CardInput';
@@ -30,10 +30,14 @@ const ModalMessages = ({
 		createdAt: '',
 	});
 
+	const chatContainerRef = useRef(null)
+
+
+
 	const { sendMessageOwner } = useWsOwner(role);
 	const { sendMessageCaregiver } = useWsCaregiver(role);
 
-	const handleSendMessage = async () => {
+	const handleSendMessage = useCallback( async () => {
 		if(message.message.length <= 0) return ;
 		if (role === 'owner') {
 			await sendMessageOwner({
@@ -56,8 +60,11 @@ const ModalMessages = ({
 			});
       setMessage({ ...message, message: '' });
 		}
-	};
+	}, [message, role, data.caregiverId, data.ownerId, sendMessageOwner, sendMessageCaregiver] );
 
+	useEffect(() => {
+		chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+	},[handleSendMessage])
 
 	return (
 		<div className={styles.mainContainerChat}>
@@ -70,11 +77,11 @@ const ModalMessages = ({
 					</figcaption>
 				</figure>
 			</section>
-			<div className={styles.mainContainerMessages}>
-				{data.messageChats.map((message) => {
+			<div ref={chatContainerRef} className={styles.mainContainerMessages}>
+				{data.messageChats.map((message, index) => {
 					return (
 						<CardMessage
-							key={message.id}
+							key={index}
 							data={message}
 							caregiverName={data.caregiverName}
 							ownerName={data.ownerName}
