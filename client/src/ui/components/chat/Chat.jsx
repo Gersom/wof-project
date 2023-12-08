@@ -1,5 +1,5 @@
 import styles from './styles.module.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
 	API_URL_CHAT_CAREGIVER,
 	API_URL_CHAT_OWNER,
@@ -14,6 +14,7 @@ const Chat = ({ userData }) => {
 	const [modalChats, setModalChats] = useState(false);
 	const { wsCaregiver } = useWsCaregiver(userData?.role || null);
 	const { wsOwner } = useWsOwner(userData?.role || null);
+	const [newChats, setNewChats] = useState(false)
 	const [chats, setChats] = useState([
 		{
 			id: 0,
@@ -27,55 +28,64 @@ const Chat = ({ userData }) => {
 		},
 	]);
 
+	const getChats = useCallback(async () => {
+		if (userData?.role == 'owner') {
+			const response = await fetch(API_URL_CHAT_OWNER + userData?.owner?.id);
+			const data = await response.json();
+			setChats(data.chats);
+		} else if (userData?.role == 'caregiver') {
+			const response = await fetch(
+				API_URL_CHAT_CAREGIVER + userData?.caregiver?.id
+			);
+			const data = await response.json();
+			setChats(data.chats);
+		}
+	}, [userData?.role, userData?.owner?.id, userData?.caregiver?.id]);
+
 	//obetener todos los mensajes
 	useEffect(() => {
-		const getChats = async () => {
-			if (userData?.role == 'owner') {
-				const response = await fetch(API_URL_CHAT_OWNER + userData?.owner?.id);
-				const data = await response.json();
-				setChats(data.chats);
-			} else if (userData?.role == 'caregiver') {
-				const response = await fetch(
-					API_URL_CHAT_CAREGIVER + userData?.caregiver?.id
-				);
-				const data = await response.json();
-				setChats(data.chats);
-			}
-		};
 		getChats();
-	}, [userData?.role, userData?.owner?.id, userData?.caregiver?.id]);
+	}, [getChats, newChats]);
 
 	//websocket
 
 	useEffect(() => {
 		if (wsOwner) {
 			wsOwner.onmessage = (event) => {
-        const receivedMessage = JSON.parse(event.data);
-        setChats((prev) => {
-          const newChats = prev.map((chat) => {
-            if (chat.id === receivedMessage.chatId) {
-              chat.messageChats.push(receivedMessage);
-            }
-            return chat;
-          });
-          return newChats;
-        });
+				const receivedMessage = JSON.parse(event.data);
+				if (receivedMessage.type === 'message') {
+					setChats((prev) => {
+						const newChats = prev.map((chat) => {
+							if (chat.id === receivedMessage.chatId) {
+								chat.messageChats.push(receivedMessage);
+							}
+							return chat;
+						});
+						return newChats;
+					});
+				} else if (receivedMessage.type === 'update_message'){
+					setNewChats(!newChats)
+				}
 			};
 		} else if (wsCaregiver) {
-      wsCaregiver.onmessage = (event) => {
-        const receivedMessage = JSON.parse(event.data);
-        setChats((prev) => {
-          const newChats = prev.map((chat) => {
-            if (chat.id === receivedMessage.chatId) {
-              chat.messageChats.push(receivedMessage);
-            }
-            return chat;
-          });
-          return newChats;
-        });
-      };
-    }
-	}, [wsCaregiver, wsOwner]);
+			wsCaregiver.onmessage = (event) => {
+				const receivedMessage = JSON.parse(event.data);
+				if (receivedMessage.type === 'message') {
+					setChats((prev) => {
+						const newChats = prev.map((chat) => {
+							if (chat.id === receivedMessage.chatId) {
+								chat.messageChats.push(receivedMessage);
+							}
+							return chat;
+						});
+						return newChats;
+					});
+				} else if (receivedMessage.type === 'update_message'){
+					setNewChats(!newChats)
+				}
+			};
+		}
+	}, [wsCaregiver, wsOwner ]);
 
 	return (
 		<>
