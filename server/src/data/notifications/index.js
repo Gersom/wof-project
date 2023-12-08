@@ -17,7 +17,7 @@ const updatedUser = {
 };
 
 const createdTransaction = {
-  message: "Tu pago se registro correctamente",
+  message: " Felicitaciones, tu pago se registro correctamente.",
   status: false,
   action: "",
 };

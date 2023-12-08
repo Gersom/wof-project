@@ -27,7 +27,7 @@ const postTransactionLogic = async (data) => {
     userId: data.userId,
   });
 
-  const caregiver = await CaregiversModel.findDataById(data.caregiverId)
+  const caregiver = await CaregiversModel.findDataById(data.caregiverId);
   await NotificationsModel.create({
     ...notifications?.createdTransactionCaregivers,
     userId: caregiver.userId,

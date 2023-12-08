@@ -3,10 +3,27 @@ import styles from "./styles.module.scss";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import ModalAcceptPayed from "@components/modals/modal-accept-payed/modal-accept-payed";
+import ModalReview from "../modals/modal-review/ModalReview";
 
 const NotificationPanel = () => {
   const userData = useSelector((state) => state.userReducer.user);
   const [notifications, setNotifications] = useState([]);
+  const [switchModal, setSwitchModal] = useState(false);
+  const [switchModalReview, setSwitchModalReview] = useState(false);
+
+  const handleAction = (action) => {
+    switch (action) {
+      case "Ver":
+        setSwitchModal(true);
+        break;
+      case "Reseña":
+        setSwitchModalReview(true);
+        break;
+      default:
+        break;
+    }
+  };
 
   useEffect(() => {
     axios(`${API_URL_NOTIFICATIONS}${userData?.id}`)
@@ -44,18 +61,25 @@ const NotificationPanel = () => {
             <div className={styles.notiCard}>
               <p>{userData.name}</p>
 
-              <div className={styles.notiText}>
-                {notification.message}
-                {notification.action && (
-                  <div onClick="" className={styles.notiButton}>
-                    {notification.action}
-                  </div>
-                )}
-              </div>
+              <div className={styles.notiText}>{notification.message}</div>
             </div>
+            {notification.action && (
+              <div
+                onClick={() => handleAction(notification.action)}
+                className={styles.notiButton}
+              >
+                {notification.action}
+              </div>
+            )}
           </div>
         ))}
       </div>
+      {switchModal && (
+        <ModalAcceptPayed closeModal={() => setSwitchModal(false)} />
+      )}
+      {switchModalReview && (
+        <ModalReview closeModal={() => setSwitchModalReview(false)} />
+      )}
     </>
   );
 };

@@ -11,7 +11,7 @@ import useWsCaregiver from "@src/common/utils/websocket/useWsCaregiver";
 
 const ModalPrice = ({ data, toggleModal, setSuccess }) => {
   const dispatch = useDispatch();
-  const { sendMessage } = useWsCaregiver("caregiver");
+  const { sendMessageCaregiver } = useWsCaregiver("caregiver");
 
   const dataUser = useSelector((state) => state.userReducer?.user);
 
@@ -37,6 +37,7 @@ const ModalPrice = ({ data, toggleModal, setSuccess }) => {
   const params = useParams();
 
   const pressOffer = async () => {
+    if(price < 5) return dispatch(setAlert({message: '¡El Precio minimo son de 5$! ' , type:'warning'}))
     if (validate("tarifa", price)) {
       await postPrice({
         price: price,
@@ -47,7 +48,7 @@ const ModalPrice = ({ data, toggleModal, setSuccess }) => {
         setAlert({ message: "¡Tarifa enviada correctamente!", type: "success" })
       );
       setSuccess(true);
-      sendMessage({
+       sendMessageCaregiver({
         type: "request_update",
         petName: data.pet.name,
         caregiverName: dataUser?.name,
