@@ -1,66 +1,66 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    height: 100%;
-    background-color: #393F4D;
-    padding: 2.5rem 10rem;
-    border-radius: 1rem;
-    h1{
-        color: var(--color-text-secondary);
-        font-size: 5.2rem;
-    
-    }
-    h3{
-        color: var(--color-text-dark);
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        font-family: 'Lexend-SemiBold';
-    }
-    section{
-        width: max-content;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 1.5rem 2rem;
-        align-items: flex-start;
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	width: 100%;
+	height: 100%;
+	background-color: #393f4d;
+	padding: 2.5rem 10rem;
+	border-radius: 1rem;
+	h1 {
+		color: var(--color-text-secondary);
+		font-size: 5.2rem;
+	}
+	h3 {
+		color: var(--color-text-primary);
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		font-family: 'Lexend-Medium';
+	}
+	section {
+		width: max-content;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		align-items: flex-start;
+		width: 90%;
+		gap: 0.5rem;
 
-        .subtitulo {
-        text-align: left;
-        font-size: 15px;
+		p {
+			font-size: 1.4rem;
+			display: flex;
+			flex-direction: row;
+			gap: 0.5rem;
+			align-items: center;
+		}
+
+		input {
+			background-color: #dddddd;
+			width: 100%;
+			outline: none;
+			font-family: 'Lexend-Medium';
+			color: var(--color-text-dark);
+            border-radius: 0.75rem;
+		}
+	}
+
+	button {
+		width: 90%;
+		padding: 0.75rem;
+		background-color: transparent;
+		font-size: 1.3rem;
+		font-family: 'Lexend-Regular';
+        transition: all 0.3s ease;
+        border-radius: 0.75rem;
+        &:hover{
+            background-color: #dddddd;
+            color: #393f4d;
+            border-color: transparent;
         }
-        .mail {
-            margin-right: 0.5rem;
-        }
-
-        input{
-            
-            background-color: aliceblue;
-            width: 95%;
-            margin-right: 20rem;
-
-        }
-
-
-        h4{
-            color: var(--color-text-grey);
-            font-size: 1.2rem;
-        }
-        h2{
-            color: var(--color-blue-light);
-            font-size: 2.3rem;
-        }
-    }
-
-    button {
-        padding: 20px;
-        width: 200px;
-        border: 10%;
-    }
+	}
 }
