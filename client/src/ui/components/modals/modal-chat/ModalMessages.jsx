@@ -34,6 +34,7 @@ const ModalMessages = ({
 	const { sendMessageCaregiver } = useWsCaregiver(role);
 
 	const handleSendMessage = async () => {
+		if(message.message.length <= 0) return ;
 		if (role === 'owner') {
 			await sendMessageOwner({
 				...message,
@@ -56,6 +57,7 @@ const ModalMessages = ({
       setMessage({ ...message, message: '' });
 		}
 	};
+
 
 	return (
 		<div className={styles.mainContainerChat}>

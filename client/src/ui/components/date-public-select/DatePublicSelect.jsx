@@ -25,7 +25,7 @@ const DatePublicSelect = ({
 	toggleModal,
 }) => {
 	const dispatch = useDispatch();
-	const { sendMessage } = useWsOwner('owner');
+	const { sendMessageOwner } = useWsOwner('owner');
 
 	const [startDate, setStartDate] = useState(data.status === 'completed' ? '' :data.startDate?.split('T')[0]);
 	const [endDate, setEndDate] = useState(data.status === 'completed' ? '' :data.endDate?.split('T')[0]);
@@ -95,7 +95,7 @@ const DatePublicSelect = ({
 				dispatch(setAlert({ message: 'Publicación creada', type: 'success' }));
 			}
 			dispatch(updatePetsTriger());
-			sendMessage({ type: 'offers_update' });
+			sendMessageOwner({ type: 'offers_update' });
 			toggleModal();
 		}
 	};

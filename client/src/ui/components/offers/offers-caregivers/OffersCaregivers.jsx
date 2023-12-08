@@ -28,7 +28,7 @@ const OffersCaregivers = () => {
 	});
 	const myPets = useSelector((state) => state?.myPetsReducer?.myPets);
 	const ownerId = useSelector((state) => state?.userReducer?.user?.owner?.id);
-	const { sendMessage } = useWsOwner('owner');
+	const { sendMessageOwner } = useWsOwner('owner');
 
 	const successPaid = async () => {
 		setModalState(false);
@@ -54,7 +54,7 @@ const OffersCaregivers = () => {
 		
 		const petSelect = myPets.find((pet) => pet.id == offerData.id);
 
-		sendMessage({
+		sendMessageOwner({
 			type: 'payment_complete',
 			petName: petSelect?.pet?.name,
 			ownerName: petSelect?.owner?.name,
