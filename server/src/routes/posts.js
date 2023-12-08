@@ -1,4 +1,4 @@
-const { PostsModel } = require('./../models/index');
+const { PostsModel, ChatModel } = require('./../models/index');
 
 const express = require('express');
 const router = express.Router();
@@ -49,19 +49,46 @@ router.put('/', async (req, res) => {
 	const id = req.query.postId;
 	const { ownerVerified, caregiverVerified } = req.body;
 
-	await PostsModel.updateData(id, { ownerVerified, caregiverVerified });
+	try {
+		await PostsModel.updateData(id, { ownerVerified, caregiverVerified });
 
-	const post = await PostsModel.findDataById(id);
+		const post = await PostsModel.findDataById(id);
 
-	let message = {message: 'Post verified', doubleVerified: false};
+		let message = { message: 'Post verified', doubleVerified: false };
 
-	if (post.dataValues.caregiverVerified && post.dataValues.ownerVerified) {
-		 await PostsModel.updateData(id, { status: 'completed' });
-		message = {message: 'Post verified', doubleVerified: true};
+		if (post.dataValues.caregiverVerified && post.dataValues.ownerVerified) {
+			await PostsModel.updateData(id, { status: 'completed' });
+			const chatToDelete = await ChatModel.findOne({
+				where: {
+					caregiverId: post.dataValues.caregiverId,
+					ownerId: post.ownerId,
+				},
+			});
+			await ChatModel.update(
+				{ petsOnCare: chatToDelete.dataValues.petsOnCare - 1 },
+				{
+					where: {
+						id: chatToDelete.dataValues.id,
+					},
+				}
+			);
+			const chatFind = await ChatModel.findOne({
+				where: {
+					id: chatToDelete.dataValues.id,
+				},
+			});
+
+			if (chatFind.dataValues.petsOnCare <= 0) {
+				await ChatModel.destroy({ where: { id: chatFind.dataValues.id } });
+			}
+			message = { message: 'Post verified', doubleVerified: true };
+		}
+		if (post) {
+			res.status(200).json(message);
+		} else res.status(200).json({ error: 'Posts not found' });
+	} catch (error) {
+		return res.status(500).json({ error: 'EXPLOTO LA WEA' });
 	}
-	if (post) {
-		res.status(200).json(message);
-	} else res.status(200).json({ error: 'Posts not found' });
 });
 
 module.exports = router;

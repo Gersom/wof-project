@@ -16,6 +16,7 @@ import CareInProgress from '../../care-in-progress/CareInProgress';
 import CardUser from '../../cards/card-user/CardUser';
 import CardInfoCaregiver from '../../cards/card-info-caregiver/CardInfoCaregiver';
 import useWsOwner from '@src/common/utils/websocket/useWsOwner';
+import { API_URL_CHAT } from '@src/common/constants/api';
 
 const OffersCaregiversDetail = () => {
 	const dispatch = useDispatch();
@@ -46,6 +47,17 @@ const OffersCaregiversDetail = () => {
 			setAlert({ message: 'Pago realizado con exito 👌', type: 'success' })
 		);
 		sendMessageOwner({ type: 'payment_complete', petName: details?.pet?.name , ownerName: details?.owner?.name, caregiverId : offerData.caregiverId});
+		let options = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				ownerId: details?.owner?.id,
+				caregiverId: offerData.caregiverId,
+			}),
+		};
+		await fetch(`${API_URL_CHAT}`, options);
 		setOfferData({
 			id: 0,
 			price: '1.00',

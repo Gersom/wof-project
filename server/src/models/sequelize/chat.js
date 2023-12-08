@@ -41,6 +41,10 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  petsOnCare: {
+    type: DataTypes.INTEGER,
+    defaultValue : 0
+  }
 };
 
 const ChatModel = sequelize.define(name, schema, config);

@@ -23,13 +23,26 @@ router.post('/', async (req, res) => {
 	const owner = await OwnersModel.findOwner(ownerId);
 	if (!owner) return res.status(405).json({ error: 'owner not found' });
 
+	const chatExist = await ChatModel.findOne({
+		where: {
+			caregiverId: caregiverId,
+			ownerId: ownerId,
+		},
+	});
+
+	if (chatExist) {
+		await ChatModel.updateData(chatExist.dataValues.id, {petsOnCare : chatExist.dataValues.petsOnCare + 1});
+		return  res.status(202).json({ message: 'chat update', chat: chatExist })
+	}
+
 	const chat = await ChatModel.create({
-		caregiverId,
-		ownerId,
+		caregiverId : caregiverId,
+		ownerId: ownerId,
 		ownerName: owner?.user?.name,
 		caregiverName: caregiver?.user?.name,
 		ownerAvatar: owner?.user?.profilePicture,
 		caregiverAvatar: caregiver?.user?.profilePicture,
+		petsOnCare: 1
 	});
 
 	if (!chat) return res.status(405).json({ error: 'chat not created' });
@@ -58,7 +71,6 @@ router.get('/caregiver/:caregiverId', async (req, res) => {
 	return res.status(200).json({ message: 'chats', chats });
 });
 
-
 router.get('/owner/:ownerId', async (req, res) => {
 	const { ownerId } = req.params;
 	if (!ownerId) return res.status(405).json({ error: 'need ownerId' });
@@ -67,7 +79,5 @@ router.get('/owner/:ownerId', async (req, res) => {
 
 	return res.status(200).json({ message: 'chats', chats });
 });
-
-
 
 module.exports = router;
