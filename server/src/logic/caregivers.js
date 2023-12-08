@@ -57,6 +57,12 @@ const getCaredPetsLogic = async (id) => {
 return CaredPetsMap
 }
 
+const getWalletLogic = async (id) => {
+  const wallet = CaregiversModel.findWallet(id)
+
+  return wallet
+}
+
 const postCaregiverLogic = async (data) => {
   const { idUser } = data
   const user = await UsersModel.findOneData(idUser)
@@ -99,6 +105,7 @@ module.exports = {
   getAllCaregiversLogic,
   getCaregiverLogic,
   getCaredPetsLogic,
+  getWalletLogic,
   postCaregiverLogic,
   updateCaregiverLogic,
   deleteCaregiverLogic

@@ -1,8 +1,9 @@
-const ErrorHandler = require("../handlers/users")
+const ErrorHandler = require("../handlers/caregivers")
 const {
   getAllCaregiversLogic,
   getCaregiverLogic,
   getCaredPetsLogic,
+  getWalletLogic,
   postCaregiverLogic,
   updateCaregiverLogic,
   deleteCaregiverLogic
@@ -27,6 +28,12 @@ const getCaredPets =catchedAsync( async (req, res) => {
     const caredPets = await getCaredPetsLogic(id)
     res.status(200).json(caredPets);
 },ErrorHandler.getCaredPetsErrorHandler)
+
+const getWallet =catchedAsync( async (req, res) => {
+    const { id } = req.params
+    const wallet = await getWalletLogic(id)
+    res.status(200).json(wallet);
+},ErrorHandler.getWalletErrorHandler)
 
 // CREATE ITEM
 const createCaregiver =catchedAsync( async (req, res) => {
@@ -56,6 +63,7 @@ module.exports = {
   getAllCaregivers,
   getCaregiver,
   getCaredPets,
+  getWallet,
   createCaregiver,
   updateCaregiver,
   deleteCaregiver

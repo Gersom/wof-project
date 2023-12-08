@@ -16,6 +16,12 @@ const getCaredPetsErrorHandler = (error, req, res, next) => {
     res.status(500).json({ error: "An error occurred while retrieving the cared pets." });
 };
 
+const getWalletErrorHandler = (error, req, res, next) => {
+
+    console.error("Error in getWallet:", error);
+    res.status(500).json({ error: "An error occurred while retrieving the wallet." });
+};
+
 const createCaregiverErrorHandler = (error, req, res, next) => {
 
     console.error("Error in createCaregiver:", error);
@@ -39,6 +45,7 @@ module.exports = {
     getAllCaregiversErrorHandler,
     getCaregiverErrorHandler,
     getCaredPetsErrorHandler,
+    getWalletErrorHandler,
     createCaregiverErrorHandler,
     updateCaregiverErrorHandler,
     deleteCaregiverErrorHandler

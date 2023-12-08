@@ -1,44 +1,71 @@
-.container{
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 750px;
+  background-color: var(--color-text-primary);
+  padding: 2.5rem 10rem;
+  border-radius: 25px;
+  position: relative;
+  h1 {
+    color: var(--color-text-secondary);
+    font-size: 5.2rem;
+  }
+  h3 {
+    color: var(--color-text-dark);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: "Lexend-SemiBold";
+  }
+  section {
+    width: 100%;
+    max-width: 480px;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-text-primary);
-    padding: 2.5rem 10rem;
-    border-radius: 1rem;
-    h1{
-        color: var(--color-text-secondary);
-        font-size: 5.2rem;
-    
+    border: 0.2rem dashed var(--color-blue-light);
+    padding: 1.5rem 2rem;
+    h4 {
+      color: var(--color-text-grey);
+      font-size: 1.2rem;
     }
-    h3{
-        color: var(--color-text-dark);
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        font-family: 'Lexend-SemiBold';
+    h2 {
+      color: var(--color-blue-light);
+      font-size: 2.3rem;
     }
-    section{
-        width: 100%;
-        max-width: 480px;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border: 0.2rem dashed var(--color-blue-light);
-        padding: 1.5rem 2rem;
-        h4{
-            color: var(--color-text-grey);
-            font-size: 1.2rem;
+  }
+}
 
-        }
-        h2{
-            color: var(--color-blue-light);
-            font-size: 2.3rem;
-        }
-    }
+.containerFlex {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.background {
+  position: absolute;
+  background: rgb(0 0 0 / 42%);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.closeButton {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 25px;
+  right: 30px;
 }

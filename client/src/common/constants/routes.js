@@ -26,6 +26,9 @@ const routerNames = {
   myHome: "/app/my-home",
   lastsCaregivers: "/app/my-caregivers",
   alerts: "/app/my-notifications",
+
+  admin: "/admin",
+  users: "/admin/users",
 };
 
 export default routerNames;

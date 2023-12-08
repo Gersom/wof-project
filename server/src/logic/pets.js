@@ -14,11 +14,11 @@ const getAllPetsLogic = async (ownerId) => {
       petImgUrl = pet?.petsImages[0]?.imageUrl;
     }
     return {
-      id: postObj.id,
-      status: postObj.status,
-      address: postObj.address,
-      startDate: postObj.startDate,
-      endDate: postObj.endDate,
+      id: postObj?.id ?? null,
+      status: postObj?.status ?? null,
+      address: postObj?.address ?? null,
+      startDate: postObj?.startDate ?? null,
+      endDate: postObj?.endDate ?? null,
       pet: {
         id: pet?.id,
         name: pet?.name,

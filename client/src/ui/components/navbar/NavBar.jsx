@@ -7,7 +7,6 @@ import burgerClose from '@icons/nav/burgerClose.svg';
 import burgerOpen from '@icons/nav/burgerOpen.svg';
 import { saveToLocalStorage } from '@common/utils/localStorage';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import LogOutIcon from "@icons/login/log-out.svg?react"
 
@@ -19,14 +18,13 @@ const NavBar = ({ userData }) => {
 	const [links, setLinks] = useState([]);
 	const classShow = show ? styles.show : '';
 
-	const idPost = useSelector((state) => state?.myPetsReducer?.myPets[0]?.id)
 
 	useEffect(() => {
 		setShow(window.innerWidth > 768);
 	}, []);
 
 	useEffect(() => {
-		setLinks(obtainLinks(userData.role, idPost || 1, location.pathname));
+		setLinks(obtainLinks(userData.role, location.pathname));
 	}, [userData.role, location.pathname]);
 
 	const handleShow = () => {
