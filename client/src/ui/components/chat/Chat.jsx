@@ -61,7 +61,9 @@ const Chat = ({ userData }) => {
 						const newChats = prev.map((chat) => {
 							if (chat.id === receivedMessage.chatId) {
 								chat.messageChats.push(receivedMessage);
-								dispatch(setChat({ id: chat.id }));
+								if (receivedMessage.isCaregiver) {
+									dispatch(setChat({ id: chat.id }));
+								}
 							}
 							return chat;
 						});
@@ -79,7 +81,9 @@ const Chat = ({ userData }) => {
 						const newChats = prev.map((chat) => {
 							if (chat.id === receivedMessage.chatId) {
 								chat.messageChats.push(receivedMessage);
-								dispatch(setChat({ id: chat.id }));
+								if (receivedMessage.isOwner) {
+									dispatch(setChat({ id: chat.id }));
+								}
 							}
 							return chat;
 						});
@@ -92,15 +96,7 @@ const Chat = ({ userData }) => {
 		}
 	}, [wsCaregiver, wsOwner]);
 
-	const msgTotal = useSelector((state) => state.chatReducer.msgTotal);
-
-	const isModalOpenNotification = () => {
-		if (modalChats) {
-			return null;
-		} else {
-			return msgTotal;
-		}
-	};
+	const msgTotal = useSelector((state) => state?.chatReducer?.msgtotal);
 
 	return (
 		<>
@@ -109,6 +105,7 @@ const Chat = ({ userData }) => {
 					<ChatButton
 						text='Chats'
 						onClick={() => setModalChats(true)}
+						notifications={msgTotal}
 					/>
 				</div>
 			</div>
