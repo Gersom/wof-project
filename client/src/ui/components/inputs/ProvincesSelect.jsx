@@ -17,6 +17,7 @@ const ProvincesSelect = ({
   const [stylesInput, setStylesInput] = useState("")
   const [valueInput, setValueInput] = useState({id:0,name:'¿?'})
   const [showOptions, setShowOptions] = useState(false)
+  const [blurActive, setBlurActive] = useState(true)
   
   const handleChange = (value) => {
     setShowOptions(false)
@@ -25,7 +26,17 @@ const ProvincesSelect = ({
   }
 
   const ToggleOptions = () => {
+    if (!blurActive) {
+      setBlurActive(true)
+    }
     setShowOptions(!showOptions)
+  }
+
+  const closeOptions = () => {
+    if(blurActive) {
+      setTimeout(()=>setShowOptions(false), 300)
+      setBlurActive(false)
+    }
   }
 
   useEffect(()=>{
@@ -49,7 +60,7 @@ const ProvincesSelect = ({
         <label>{label} :</label>
       </div>
       <div className={style.DropDownRoleSelect} 
-      onBlur={() => setShowOptions(false)}>
+      onBlur={closeOptions}>
         <button className={style.selectedRoleSelect} 
         type="button" onClick={ToggleOptions}>
           {valueInput.name}
