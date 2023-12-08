@@ -9,7 +9,11 @@ import ModalCustom from '@components/modals/modal-custom/ModalCustom';
 import ModalPayment from '@components/modals/modal-payment/ModalPayment';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getMyPets, setPosts, deletePosts } from '@common/store/slices/myPetsSlice';
+import {
+	getMyPets,
+	setPosts,
+	deletePosts,
+} from '@common/store/slices/myPetsSlice';
 import { getPets } from '@src/common/utils/helpers-redux/myPets';
 import { setAlert } from '@src/common/store/slices/alertSlice';
 import CareInProgress from '../../care-in-progress/CareInProgress';
@@ -23,7 +27,9 @@ const OffersCaregiversDetail = () => {
 	const { sendMessageOwner } = useWsOwner('owner');
 	const { id } = useParams();
 	const { isLoading, details } = useGetPetId(id);
-	const { isLoadingOffers, offersCareGivers } = useOffersCaregivers(details?.id || null);
+	const { isLoadingOffers, offersCareGivers } = useOffersCaregivers(
+		details?.id || null
+	);
 
 	const [modalState, setModalState] = useState(false);
 	const [offerData, setOfferData] = useState({
@@ -46,7 +52,13 @@ const OffersCaregiversDetail = () => {
 		dispatch(
 			setAlert({ message: 'Pago realizado con exito 👌', type: 'success' })
 		);
-		sendMessageOwner({ type: 'payment_complete', petName: details?.pet?.name , ownerName: details?.owner?.name, caregiverId : offerData.caregiverId});
+		sendMessageOwner({
+			type: 'payment_complete',
+			petName: details?.pet?.name,
+			ownerName: details?.owner?.name,
+			caregiverId: offerData.caregiverId,
+		});
+
 		let options = {
 			method: 'POST',
 			headers: {
@@ -58,6 +70,13 @@ const OffersCaregiversDetail = () => {
 			}),
 		};
 		await fetch(`${API_URL_CHAT}`, options);
+
+		sendMessageOwner({
+			type: 'update_message',
+			ownerId: details?.owner?.id,
+			caregiverId: offerData.caregiverId,
+		});
+		
 		setOfferData({
 			id: 0,
 			price: '1.00',
@@ -85,7 +104,6 @@ const OffersCaregiversDetail = () => {
 				{!isLoading && !isLoadingOffers && offersCareGivers.length === 0 ? (
 					<h1>Aun no has recibido ofertas</h1>
 				) : (
-					
 					offersCareGivers.map((offer) => (
 						<CardOffersCaregivers
 							data={offer}
@@ -93,7 +111,6 @@ const OffersCaregiversDetail = () => {
 							rango={'intermedio'}
 							setData={onClickAccept}
 							setIdPost={onClickDetails}
-
 						/>
 					))
 				)}
@@ -108,10 +125,10 @@ const OffersCaregiversDetail = () => {
 
 	return (
 		<div className={styleContainer}>
-			{ details?.status !== 'paid' ? (
+			{details?.status !== 'paid' ? (
 				<>
 					<div className={styles.containerCardInfo}>
-						{ !isLoading && details ? (
+						{!isLoading && details ? (
 							<>
 								<PetImage data={details} />
 								<CardInfoPet data={details} role={'caregiver'} />{' '}
@@ -124,7 +141,6 @@ const OffersCaregiversDetail = () => {
 				</>
 			) : (
 				<>
-				
 					<CareInProgress
 						endDate={details?.endDate}
 						startDate={details?.startDate}
@@ -142,7 +158,6 @@ const OffersCaregiversDetail = () => {
 						<CardInfoCaregiver data={details?.caregiver} />
 					</div>
 				</>
-				
 			)}
 			<ModalCustom state={modalState} toggleModal={() => setModalState(false)}>
 				<ModalPayment successPaid={successPaid} data={offerData} />

@@ -94,18 +94,23 @@ const configureWebSocket = (server) => {
 								parsedMessage.caregiverId,
 								parsedMessage.ownerId
 							);
-							const msgToJson = JSON.stringify(msg.dataValues)
+							const msgToJson = JSON.stringify({...msg.dataValues, type: 'message'})
 
 							sendToBothById(msgToJson, parsedMessage.caregiverId, parsedMessage.ownerId)
+
 						} else if (parsedMessage.type === 'message' && parsedMessage.role === 'owner') {
 							const msg =  await ChatModel.createMessageOwner(
 								parsedMessage.message,
 								parsedMessage.caregiverId,
 								parsedMessage.ownerId
 							);
-							const msgToJson = JSON.stringify(msg.dataValues)
+							
+							const msgToJson = JSON.stringify({...msg.dataValues, type: 'message'})
 
 							sendToBothById(msgToJson, parsedMessage.caregiverId, parsedMessage.ownerId)
+
+						} else if(parsedMessage.type === 'update_message'){
+							sendToBothById(bufferText, parsedMessage.caregiverId, parsedMessage.ownerId)
 						}
 					}
 				} catch (error) {
