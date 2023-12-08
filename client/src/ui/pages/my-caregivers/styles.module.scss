@@ -1,0 +1,20 @@
+
+.mainContainerl{
+  padding-right: 5rem;
+  padding-left: 5rem;
+
+}
+.myClients{
+  font-size: 4.8rem;
+  color: #6E88AD;
+  margin: 2rem 0;
+  justify-content: center;
+  align-items: center;
+}
+.noClients {
+  display: grid;
+  place-items: center;
+  height: 50vh;
+  color: var(--color-text-title);
+  padding: 5rem;
+}

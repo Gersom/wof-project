@@ -36,6 +36,7 @@ import NotificatioPanel from "./components/notification/NotificatioPanel";
 import { useEffect } from "react";
 import Admin from "./pages/admin/admin";
 import Users from "./pages/users/users";
+import MyCaregivers from "./pages/my-caregivers/MyCaregivers";
 
 // Imports Components
 
@@ -130,7 +131,10 @@ function App() {
               element={<MyPetsEdit />}
             />
             <Route path={routerNames["myHome"]} element={<MyHome />} />
-            <Route path={routerNames["myClients"]} element={<MyClients />} />
+            <Route
+              path={routerNames["lastsCaregivers"]}
+              element={<MyCaregivers />}
+            />
           </Route>
         </Route>
         <Route path={routerNames["admin"]} element={<Admin />}>
