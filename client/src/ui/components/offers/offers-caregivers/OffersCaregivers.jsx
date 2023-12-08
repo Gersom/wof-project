@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import PetImage from '../../cards/card-pets/atoms/PetImage';
 import CardOffersCaregivers from '../../cards/card-offers-caregivers/CardOffersCaregivers';
-import { API_URL_SERVICES_ALL } from '@src/common/constants/api';
+import { API_URL_SERVICES_ALL, API_URL_CHAT } from '@src/common/constants/api';
 import ModalCustom from '@components/modals/modal-custom/ModalCustom';
 import ModalPayment from '@components/modals/modal-payment/ModalPayment';
 import { deletePosts } from '@src/common/store/slices/myPetsSlice';
@@ -13,10 +13,10 @@ import { setAlert } from '@src/common/store/slices/alertSlice';
 import useWsOwner from '@src/common/utils/websocket/useWsOwner';
 
 const OffersCaregivers = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const [offers, setOffers] = useState([]);
-  const [modalState, setModalState] = useState(false);
-  const [offerData, setOfferData] = useState({
+	const [modalState, setModalState] = useState(false);
+	const [offerData, setOfferData] = useState({
 		id: 0,
 		price: '1.00',
 		caregiverId: 0,
@@ -27,10 +27,10 @@ const OffersCaregivers = () => {
 		rating: '...',
 	});
 	const myPets = useSelector((state) => state?.myPetsReducer?.myPets);
-	const ownerId = useSelector((state) => state?.userReducer?.user?.owner?.id)
-  const { sendMessage } = useWsOwner('owner');
+	const ownerId = useSelector((state) => state?.userReducer?.user?.owner?.id);
+	const { sendMessageOwner } = useWsOwner('owner');
 
-  const successPaid = async () => {
+	const successPaid = async () => {
 		setModalState(false);
 		dispatch(deletePosts(offerData.id));
 		const pets = await getPets(ownerId);
@@ -39,9 +39,27 @@ const OffersCaregivers = () => {
 		dispatch(
 			setAlert({ message: 'Pago realizado con exito 👌', type: 'success' })
 		);
-		const petSelect = myPets.find((pet) => pet.id == offerData.id);
+
+		let options = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				ownerId: ownerId,
+				caregiverId: offerData.caregiverId,
+			}),
+		};
+		await fetch(`${API_URL_CHAT}`, options);
 		
-		sendMessage({ type: 'payment_complete', petName: petSelect?.pet?.name , ownerName: petSelect?.owner?.name, caregiverId : offerData.caregiverId});
+		const petSelect = myPets.find((pet) => pet.id == offerData.id);
+
+		sendMessageOwner({
+			type: 'payment_complete',
+			petName: petSelect?.pet?.name,
+			ownerName: petSelect?.owner?.name,
+			caregiverId: offerData.caregiverId,
+		});
 		setOfferData({
 			id: 0,
 			price: '1.00',
@@ -54,12 +72,10 @@ const OffersCaregivers = () => {
 		});
 	};
 
-  const onClickAccept = (data) => {
+	const onClickAccept = (data) => {
 		setOfferData(data);
 		setModalState(true);
 	};
-
-
 
 	useEffect(() => {
 		const postsId = myPets.map((pet) => pet.id);
@@ -94,10 +110,10 @@ const OffersCaregivers = () => {
 							offersPet.map((offer) => {
 								return (
 									<CardOffersCaregivers
-										data={{...offer, id: offer.id.toString()}}
+										data={{ ...offer, id: offer.id.toString() }}
 										key={offer.caregiverId}
 										rango={'intermedio'}
-                    setData={onClickAccept}
+										setData={onClickAccept}
 									/>
 								);
 							})

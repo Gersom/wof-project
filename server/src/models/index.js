@@ -34,6 +34,8 @@ const models = {
   CaregiverTransactionsModel: require(`./${pathModel}/caregiverTransactions`),
   UsersModel: require(`./${pathModel}/users`),
   VerifyEmailModel: require(`./${pathModel}/verify_email`),
+  ChatModel: require(`./${pathModel}/chat`),
+  MessagesChatModel: require(`./${pathModel}/messageChat`),
 }
 
 module.exports = models

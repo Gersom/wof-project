@@ -47,7 +47,7 @@ const Details = () => {
   };
 
   const acceptFunc = () => {
-    setStatusModal(true);
+    setStatusModal(false);
   };
 
   const cancelFunc = async () => {
@@ -89,7 +89,7 @@ const Details = () => {
           endDate={details.endDate}
           completedAcept={success}
           onAccept={acceptFunc}
-          toggleModal={() => setStatusModal(true)}
+          toggleModal={() => setStatusModal(!statusModal)}
           onCancel={cancelFunc}
           toggleCancelModal={() => setCancelModal(true)}
         />
@@ -103,7 +103,7 @@ const Details = () => {
             >
               <ModalPrice
                 data={details}
-                toggleModal={() => manageModal()}
+                toggleModal={ manageModal}
                 setSuccess={() => setSuccess(true)}
               />
             </ModalCustom>
