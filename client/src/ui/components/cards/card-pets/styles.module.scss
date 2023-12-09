@@ -6,6 +6,14 @@
 	display: flex;
 	flex-direction: column;
 	width: 22rem;
+	height: 29rem;
+	border-radius: 0.5rem;
+	background-color: var(--color-text-primary);
+}
+.articlePublic{
+	display: flex;
+	flex-direction: column;
+	width: 22rem;
 	height: 31rem;
 	border-radius: 0.5rem;
 	background-color: var(--color-text-primary);
@@ -247,6 +255,9 @@
 	height: 25rem;
 	border-radius: 0.5rem;
 	background-color: var(--color-text-primary);
+	img{
+		max-height: 18.2rem;
+	}
 }
 .sectionInfo {
 	display: flex;

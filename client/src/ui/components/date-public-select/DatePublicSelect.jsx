@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updatePetsTriger } from '@src/common/store/slices/myPetsSlice';
 import { setAlert } from '@src/common/store/slices/alertSlice';
 import useWsOwner from '@src/common/utils/websocket/useWsOwner';
+import CrossWhite from '@icons/crossWhite.svg?react';
 
 const DatePublicSelect = ({
 	data = {
@@ -27,10 +28,13 @@ const DatePublicSelect = ({
 	const dispatch = useDispatch();
 	const { sendMessageOwner } = useWsOwner('owner');
 
-	const [startDate, setStartDate] = useState(data.status === 'completed' ? '' :data.startDate?.split('T')[0]);
-	const [endDate, setEndDate] = useState(data.status === 'completed' ? '' :data.endDate?.split('T')[0]);
+	const [startDate, setStartDate] = useState(
+		data.status === 'completed' ? '' : data.startDate?.split('T')[0]
+	);
+	const [endDate, setEndDate] = useState(
+		data.status === 'completed' ? '' : data.endDate?.split('T')[0]
+	);
 	const address = useSelector((state) => state.userReducer?.user?.address);
-
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -61,42 +65,86 @@ const DatePublicSelect = ({
 		const currentDate = new Date().toISOString().split('T')[0]; // Obtener la fecha actual
 
 		if (!startDate || !endDate) {
-			dispatch(setAlert({ message: 'Debes seleccionar una fecha', type: 'warning' }));
+			dispatch(
+				setAlert({ message: 'Debes seleccionar una fecha', type: 'warning' })
+			);
 			return;
 		}
 
 		if (startDate < currentDate) {
-			dispatch(setAlert({ message: 'La fecha de inicio no puede ser menor a la fecha actual', type: 'warning' }));
+			dispatch(
+				setAlert({
+					message: 'La fecha de inicio no puede ser menor a la fecha actual',
+					type: 'warning',
+				})
+			);
 			return;
 		}
 		if (endDate < startDate) {
-			dispatch(setAlert({ message: 'La fecha de fin no puede ser menor a la fecha de inicio', type: 'warning' }));
+			dispatch(
+				setAlert({
+					message: 'La fecha de fin no puede ser menor a la fecha de inicio',
+					type: 'warning',
+				})
+			);
 			return;
 		}
 		if (startDate > endDate) {
-			dispatch(setAlert({ message: 'La fecha de inicio no puede ser mayor a la fecha de fin', type: 'warning' }));
+			dispatch(
+				setAlert({
+					message: 'La fecha de inicio no puede ser mayor a la fecha de fin',
+					type: 'warning',
+				})
+			);
 			return;
 		}
 		if (startDate === endDate) {
-			dispatch(setAlert({ message: 'La fecha de inicio no puede ser igual a la fecha de fin', type: 'warning' }));
+			dispatch(
+				setAlert({
+					message: 'La fecha de inicio no puede ser igual a la fecha de fin',
+					type: 'warning',
+				})
+			);
 			return;
 		}
 		if (startDate && endDate) {
-			if (data.status === 'completed'){
+			if (data.status === 'completed') {
 				await fetch(`${API_URL_CREATE_POST}`, options);
 				dispatch(setAlert({ message: 'Publicación creada', type: 'success' }));
-			}
-			else if (data.id && data.status === 'published') {
+			} else if (data.id && data.status === 'published') {
 				options.method = 'PUT';
 				await fetch(`${API_URL_CREATE_POST}/${data.id}`, options);
-				dispatch(setAlert({ message: 'Publicación actualizada', type: 'success' }));
+				dispatch(
+					setAlert({ message: 'Publicación actualizada 😎', type: 'success' })
+				);
 			} else {
 				await fetch(API_URL_CREATE_POST, options);
-				dispatch(setAlert({ message: 'Publicación creada', type: 'success' }));
+				dispatch(setAlert({ message: '¡Tu publicación ha sido creada!🤩', type: 'success' }));
 			}
 			dispatch(updatePetsTriger());
 			sendMessageOwner({ type: 'offers_update' });
 			toggleModal();
+		}
+	};
+
+	const handleDeletePost = async (e) => {
+		e.preventDefault();
+
+		if (data.status === 'published') {
+			try {
+				let options = {
+					method: 'DELETE',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
+				await fetch(`${API_URL_CREATE_POST}/${data.id}`, options);
+				dispatch(updatePetsTriger());
+				dispatch(setAlert({ message: 'Publicación cancelada correctamente 🙂', type: 'success' }));
+				toggleModal()
+			} catch (error) {
+				dispatch(setAlert({ message: '¡Oh no! Ocurrio un error mientras se cancelaba tu publicación...🧨', type: 'error' }));
+			}
 		}
 	};
 
@@ -134,6 +182,12 @@ const DatePublicSelect = ({
 					Publicar
 				</button>
 			</div>
+			{data.status === 'published' && (
+				<button className={styles.buttonDelete} onClick={handleDeletePost}>
+					<svg />
+					Cancelar Oferta
+				</button>
+			)}
 		</section>
 	);
 };

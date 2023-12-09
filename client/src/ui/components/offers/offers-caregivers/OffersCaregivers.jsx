@@ -63,7 +63,7 @@ const OffersCaregivers = () => {
 		sendMessageOwner({
 			type: 'update_message',
 			ownerId: ownerId,
-			caregiverId: offerData.caregiverId,
+			caregiverId: offerData?.caregiverId,
 		});
 		setOfferData({
 			id: 0,
@@ -123,7 +123,7 @@ const OffersCaregivers = () => {
 								);
 							})
 						) : (
-							<h1>No hay ofertas para esta mascota</h1>
+							<h3 className={styles.h3NoOffers}><span>¡Ups!</span> <br/>Todavía no has recibido ofertas de cuidadores para esta mascota</h3>
 						)}
 					</div>
 				</div>

@@ -101,6 +101,8 @@ const DetailsCaregivers = () => {
 								petName={pet?.pet?.name}
 								style={'small'}
 								postId={pet?.id}
+								caregiverId={pet?.caregiver?.id}
+								ownerId={pet?.owner?.id}
 							/>
 						))}
 					</>

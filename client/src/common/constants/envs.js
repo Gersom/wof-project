@@ -12,3 +12,5 @@ export const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
 //WS
 export const WS_URL_DEPLOY = import.meta.env.VITE_WS_URL;
 
+export const WS_URL_LOCAL = import.meta.env.VITE_WS_URL_LOCAL
+

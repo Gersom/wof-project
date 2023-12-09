@@ -43,7 +43,7 @@ const Chat = ({ userData }) => {
 			const data = await response.json();
 			setChats(data.chats);
 		}
-	}, [userData?.role, userData?.owner?.id, userData?.caregiver?.id]);
+	}, [userData?.role, userData?.owner?.id, userData?.caregiver?.id,]);
 
 	//obetener todos los mensajes
 	useEffect(() => {
@@ -94,7 +94,7 @@ const Chat = ({ userData }) => {
 				}
 			};
 		}
-	}, [wsCaregiver, wsOwner]);
+	}, [wsCaregiver, wsOwner, newChats, dispatch]);
 
 	const msgTotal = useSelector((state) => state?.chatReducer?.msgtotal);
 

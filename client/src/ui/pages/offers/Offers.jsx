@@ -27,6 +27,8 @@ const Offers = () => {
 											image={post.pet.imageUrl}
 											key={index}
 											postId={post.id}
+											ownerId={post?.owner?.id}
+											caregiverId={post?.caregiver?.id}
 										/>
 									)
 							)}

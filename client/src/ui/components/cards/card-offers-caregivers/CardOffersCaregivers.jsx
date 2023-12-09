@@ -38,7 +38,7 @@ const CardOffersCaregivers = ({
 					<h2>{data.name}</h2>
 					<h5>{rango}</h5>
 					<h4>{data.address}</h4>
-					<h3>{data.price} $ por día</h3>
+					<h3>{data.price} $ </h3>
 				</div>
 				<div className={styles.containerReview}>
 					<img src={starReview} alt='star' />

@@ -1,9 +1,9 @@
-import { API_URL_DEPLOY } from "./envs";
+import { API_URL_DEPLOY, WS_URL_LOCAL } from "./envs";
 
 const apiUrlLocal = "http://localhost:3001";
 const wsUrlLocal = "wss://wof-server.up.railway.app";
 
-export const WS_URL = wsUrlLocal;
+export const WS_URL = WS_URL_LOCAL  || wsUrlLocal;
 
 export const API = API_URL_DEPLOY || apiUrlLocal;
 export const API_URL = API + "/api";
