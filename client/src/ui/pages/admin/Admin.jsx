@@ -7,8 +7,8 @@ Outlet;
 const Admin = () => {
   return (
     <div className={styles.container}>
-      <NavBar userData={{ role: "admin" }}></NavBar>
-      <Outlet></Outlet>
+      <NavBar userData={{ role: "admin" }} />
+      <Outlet />
     </div>
   );
 };

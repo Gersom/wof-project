@@ -1,0 +1,21 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  max-width: 870px;
+  align-items: center;
+  padding: 10px 20px;
+  margin: auto;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: solid 1px #717171;
+}
+
+.notiImg {
+  background-repeat: no-repeat;
+  border-radius: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+  background-size: cover;
+  background-position: center center;
+}

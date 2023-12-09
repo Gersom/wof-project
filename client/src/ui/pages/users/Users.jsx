@@ -6,8 +6,8 @@ const Users = () => {
   return (
     <div className={styles.containerUsers}>
       <h1 className={styles.usuarios}>Usuarios</h1>
-      <UserStats></UserStats>
-      <UserInfo></UserInfo>
+      <UserStats />
+      <UserInfo />
     </div>
   );
 };

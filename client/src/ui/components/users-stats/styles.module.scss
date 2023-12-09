@@ -1,0 +1,31 @@
+.container {
+  margin: auto;
+}
+.cards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 37px;
+
+  p {
+    color: #000;
+    font-size: 20px;
+  }
+}
+
+.card {
+  display: flex;
+  background: #fff;
+  width: 150px;
+  height: 60px;
+  border: solid 1px black;
+
+  span {
+    font-size: 25px;
+  }
+}
+
+.logo {
+  margin: auto;
+}

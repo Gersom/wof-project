@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./styles.modules.scss";
+import styles from "./styles.module.scss";
 import { API_URL_ADMIN_STATS } from "@src/common/constants/api";
 
 const UserStats = () => {
@@ -21,17 +21,41 @@ const UserStats = () => {
   }, []);
 
   return (
-    <div className={styles.cards}>
-      <section className={styles.cardss}>
-        <h4>🧑‍🎄 {userData && userData.usersCount}</h4>
-        <h4>
-          🐶 {userData && userData.roleCounts && userData.roleCounts.owner}
-        </h4>
-        <h4>
-          🐕 {userData && userData.roleCounts && userData.roleCounts.caregiver}
-        </h4>
-        <h4>🐾 {userData && userData.petsCount}</h4>
-      </section>
+    <div className={styles.container}>
+      <div className={styles.cards}>
+        <div className={styles.card}>
+          <span>🧑‍🎄</span>
+          <div className={styles.logo}>
+            <h4>Usuarios:</h4>
+            <p> {userData && userData.usersCount}</p>
+          </div>
+        </div>
+        <div className={styles.card}>
+          <span>🐶</span>
+          <div className={styles.logo}>
+            <h4>Dueños:</h4>
+            <p>
+              {userData && userData.roleCounts && userData.roleCounts.owner}
+            </p>
+          </div>
+        </div>
+        <div className={styles.card}>
+          <span>🐕</span>
+          <div className={styles.logo}>
+            <h4>Cuidadores:</h4>
+            <p>
+              {userData && userData.roleCounts && userData.roleCounts.caregiver}
+            </p>
+          </div>
+        </div>
+        <div className={styles.card}>
+          <span>🐾</span>
+          <div className={styles.logo}>
+            <h4> Mascotas: </h4>
+            <p>{userData && userData.petsCount}</p>
+          </div>
+        </div>
+      </div>
       {userData && (
         <div>
           <p>Total de usuarios: {userData.usersCount}</p>
