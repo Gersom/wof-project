@@ -33,7 +33,6 @@ import Register from "./pages/register/Register";
 
 //import useAlert
 import useAlert from "@src/common/hooks/use-alert/useAlert";
-import MyClients from "./pages/my-clients/MyClients";
 import NotificatioPanel from "./components/notification/NotificatioPanel";
 import { useEffect } from "react";
 import Admin from "./pages/admin/admin";
