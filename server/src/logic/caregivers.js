@@ -59,7 +59,7 @@ return CaredPetsMap
 
 const getWalletLogic = async (id) => {
   const wallet = CaregiversModel.findWallet(id)
-
+  if (!wallet) throw Error("User not found")
   return wallet
 }
 

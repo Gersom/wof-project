@@ -5,23 +5,24 @@ import routerNames from "@common/constants/routes";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 // Imports Pages
-import Home from "./pages/home/Home";
-import NotFound from "./pages/not-found/NotFound";
-import Landing from "./pages/landing/Landing";
-import Dashboard from "./pages/dashboard/Dashboard";
-import Offers from "./pages/offers/Offers";
-import Details from "./pages/details/Details";
-import Login from "./pages/login/Login";
-import FormReview from "./components/reviews/FormReview";
-import MyPets from "./pages/my-pets/MyPets";
-import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
-import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
-import VerifyingLogin from "./pages/verifying-login/VerifyingLogin";
-import DetailsCaregivers from "./pages/details/DetailsCaregivers";
-import OffersCaregivers from "./components/offers/offers-caregivers/OffersCaregivers";
-import { useAuth } from "@common/context/authProvider";
-import { Navigate } from "react-router-dom";
-import MyHome from "./pages/my-home/MyHome";
+import Home from './pages/home/Home';
+import NotFound from './pages/not-found/NotFound';
+import Landing from './pages/landing/Landing';
+import Dashboard from './pages/dashboard/Dashboard';
+import Offers from './pages/offers/Offers';
+import Details from './pages/details/Details';
+import Login from './pages/login/Login';
+import FormReview from './components/reviews/FormReview';
+import MyPets from './pages/my-pets/MyPets';
+import MyPetsEdit from './pages/my-pets/my-pets-edit/MyPetsEdit';
+import ProtectedRoute from './pages/protected-route/ProtectedRoute';
+import VerifyingLogin from './pages/verifying-login/VerifyingLogin';
+import DetailsCaregivers from './pages/details/DetailsCaregivers';
+import OffersCaregivers from './components/offers/offers-caregivers/OffersCaregivers';
+import MyWallet from './pages/my-wallet/MyWallet';
+import { useAuth } from '@common/context/authProvider';
+import { Navigate } from 'react-router-dom';
+import MyHome from './pages/my-home/MyHome';
 import {
   saveToLocalStorage,
   getFromLocalStorage,
@@ -84,44 +85,45 @@ function App() {
         <Route path={routerNames["register"]} element={<Register />} />
         <Route path={routerNames["loading"]} element={<VerifyingLogin />} />
 
-        {/* dashboard */}
-        <Route path={"/"} element={<ProtectedRoute />}>
-          <Route
-            path={routerNames["dashboard"]}
-            element={
-              tokenExist() ? (
-                <Dashboard />
-              ) : (
-                <Navigate to={routerNames["login"]} />
-              )
-            }
-          >
-            <Route
-              index
-              path={routerNames["offersCaregivers"]}
-              element={<Offers />}
-            />
-            <Route
-              path={routerNames["detailsCaregivers"] + ":id"}
-              element={<Details />}
-            />
-            <Route path={routerNames["profile"]} element={<FormProfile />} />
-            <Route
-              path={routerNames["offersOwners"]}
-              element={<OffersCaregivers />}
-            />
-            <Route
-              path={routerNames["offersOwners"] + ":id"}
-              element={<Offers />}
-            />
-            <Route
-              path={routerNames["alerts"]}
-              element={<NotificatioPanel />}
-            />
-            <Route
-              path={routerNames["detailsOwners"] + ":id"}
-              element={<DetailsCaregivers />}
-            />
+				{/* dashboard */}
+				<Route path={'/'} element={<ProtectedRoute />}>
+					<Route
+						path={routerNames['dashboard']}
+						element={
+							tokenExist() ? (
+								<Dashboard />
+							) : (
+								<Navigate to={routerNames['login']} />
+							)
+						}
+					>
+						<Route
+							index
+							path={routerNames['offersCaregivers']}
+							element={<Offers />}
+						/>
+						<Route
+							path={routerNames['detailsCaregivers'] + ':id'}
+							element={<Details />}
+						/>
+						<Route path={routerNames['profile']} element={<FormProfile />} />
+						<Route
+							path={routerNames['offersOwners']}
+							element={<OffersCaregivers />}
+						/>
+						<Route
+							path={routerNames['offersOwners'] + ':id'}
+							element={<Offers />}
+						/>
+						<Route
+							path={routerNames['alerts']}
+							element={<NotificatioPanel />}
+						/>
+            <Route path={routerNames['MyWallet']} element={<MyWallet/>}/>
+						<Route
+							path={routerNames['detailsOwners'] + ':id'}
+							element={<DetailsCaregivers />}
+						/>
 
             <Route path={routerNames["formReview"]} element={<FormReview />} />
 
