@@ -2,13 +2,19 @@
   display: flex;
   flex-direction: row;
   background-color: white;
-  max-width: 870px;
+  max-width: 800px;
   align-items: center;
   padding: 10px 20px;
   margin: auto;
   border-radius: 12px;
   margin-bottom: 20px;
   border: solid 1px #717171;
+  gap: 30px;
+
+  p {
+    font-size: 14px;
+    color: black;
+  }
 }
 
 .notiImg {
@@ -18,4 +24,45 @@
   flex: 0 0 60px;
   background-size: cover;
   background-position: center center;
+}
+
+.pago {
+  color: #6e88ad;
+}
+
+.button {
+  margin: 1px;
+  margin-left: auto;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  cursor: pointer;
+  gap: 30px;
+}
+
+.notiButton1 {
+  background: #52c1e4;
+  width: 100px;
+  height: 35px;
+  text-align: center;
+  border-radius: 9px;
+}
+
+.notiButton1:hover {
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.notiButton2 {
+  background-color: #ce4b4b;
+  width: 100px;
+  height: 35px;
+  text-align: center;
+  border-radius: 9px;
+}
+
+.notiButton2:hover {
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
