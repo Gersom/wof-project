@@ -24,7 +24,7 @@ const routerNames = {
   myPetsEdit: "/app/my-pets/",
 
   myHome: "/app/my-home",
-  myClients: "/app/my-clients",
+  lastsCaregivers: "/app/my-caregivers",
   alerts: "/app/my-notifications",
   admin: "/admin",
   users: "/admin/users",
