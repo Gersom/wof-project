@@ -37,11 +37,14 @@ const ModalMessages = ({
 	const { sendMessageOwner } = useWsOwner(role);
 	const { sendMessageCaregiver } = useWsCaregiver(role);
 
+  const convertMsg = (msg) => msg.replace(/\n/g, "<br>")
+
 	const handleSendMessage = useCallback( async () => {
 		if(message.message.length <= 0) return ;
 		if (role === 'owner') {
 			await sendMessageOwner({
 				...message,
+        message: convertMsg(message.message),
 				role: role,
 				isOwner: true,
         isCaregiver: false,
@@ -52,6 +55,7 @@ const ModalMessages = ({
 		} else if (role === 'caregiver') {
 			await sendMessageCaregiver({
 				...message,
+        message: convertMsg(message.message),
 				role: role,
 				isCaregiver: true,
         isOwner: false,

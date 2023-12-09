@@ -51,13 +51,18 @@ const OffersCaregivers = () => {
 			}),
 		};
 		await fetch(`${API_URL_CHAT}`, options);
-		
+
 		const petSelect = myPets.find((pet) => pet.id == offerData.id);
 
 		sendMessageOwner({
 			type: 'payment_complete',
 			petName: petSelect?.pet?.name,
 			ownerName: petSelect?.owner?.name,
+			caregiverId: offerData.caregiverId,
+		});
+		sendMessageOwner({
+			type: 'update_message',
+			ownerId: ownerId,
 			caregiverId: offerData.caregiverId,
 		});
 		setOfferData({

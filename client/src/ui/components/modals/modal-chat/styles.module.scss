@@ -32,6 +32,12 @@
 		border-radius: 0.5rem;
 		gap: 1rem;
 
+		h2{
+			font-size: 1.4rem;
+			color: var(--color-text-grey);
+			letter-spacing: 3px;
+		}
+
 		&::-webkit-scrollbar {
 			width: 0.4rem;
 			background-color: transparent;
@@ -102,4 +108,9 @@
 			border-radius: 0.5rem;
 		}
 	}
+}
+.messageNotChats {
+  font-size: 14px;
+  color: var(--color-primary);
+  margin: 50% 0;
 }

@@ -8,3 +8,7 @@ export const API_URL_DEPLOY = import.meta.env.VITE_API_URL;
 
 // PAYPAL
 export const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
+
+//WS
+export const WS_URL_DEPLOY = import.meta.env.VITE_WS_URL;
+

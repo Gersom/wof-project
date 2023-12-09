@@ -23,7 +23,7 @@ const CardMessage = ({
 						<h4>{date}</h4>
 						<h3>🦮{ownerName} :</h3>
 					</section>
-					<p>{data.message}</p>
+					<p dangerouslySetInnerHTML={{__html: data.message}}></p>
 				</div>
 			);
 		} else if ((role === 'owner') & data.isCaregiver) {
@@ -33,7 +33,7 @@ const CardMessage = ({
 						<h3>🤝{caregiverName} :</h3>
 						<h4>{date}</h4>
 					</section>
-					<p>{data.message}</p>
+					<p dangerouslySetInnerHTML={{__html: data.message}}></p>
 				</div>
 			);
 		} else if ((role === 'caregiver') & data.isCaregiver) {
@@ -43,7 +43,7 @@ const CardMessage = ({
 						<h4>{date}</h4>
 						<h3> 🤝{caregiverName} :</h3>
 					</section>
-					<p>{data.message}</p>
+					<p dangerouslySetInnerHTML={{__html: data.message}}></p>
 				</div>
 			);
 		} else if ((role === 'caregiver') & data.isOwner) {
@@ -53,7 +53,7 @@ const CardMessage = ({
 						<h3>🦮{ownerName} :</h3>
 						<h4>{date}</h4>
 					</section>
-					<p>{data.message}</p>
+					<p dangerouslySetInnerHTML={{__html: data.message}}></p>
 				</div>
 			);
 		}

@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import mail from "@icons/mail.svg";
 import { useState } from "react";
 
-const ModalVerifyEmail = ({ message, email, onSubmit}) => {
+const ModalVerifyEmail = ({ email, onSubmit}) => {
   const [code, setCode] = useState("");
 
   return (
@@ -12,7 +12,7 @@ const ModalVerifyEmail = ({ message, email, onSubmit}) => {
       <section>
         <p className={styles.subtitulo}>
           <img src={mail} alt="mail" className={styles.mail} />
-          CODE :
+          Code :
         </p>
         <input
           placeholder="Código de email..."

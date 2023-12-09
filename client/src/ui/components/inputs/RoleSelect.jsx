@@ -17,21 +17,27 @@ const RoleSelect = ({
   const [stylesInput, setStylesInput] = useState("")
   const [valueInput, setValueInput] = useState({id:0,name:'¿?'})
   const [showOptions, setShowOptions] = useState(false)
+  const [blurActive, setBlurActive] = useState(true)
   
   const handleChange = (value) => {
     setShowOptions(false)
-    console.log(value)
     setValueInput(value)
     onSelected(value.id)
   }
 
   const ToggleOptions = () => {
+    if (!blurActive) {
+      setBlurActive(true)
+    }
     setShowOptions(!showOptions)
   }
 
-  // const closeOptions = () => {
-  //   setTimeout(()=>setShowOptions(false), 200)
-  // }
+  const closeOptions = () => {
+    if(blurActive) {
+      setTimeout(()=>setShowOptions(false), 300)
+      setBlurActive(false)
+    }
+  }
 
   useEffect(()=>{
     let styles = `${style.defaultInput}`
@@ -53,7 +59,7 @@ const RoleSelect = ({
         <ShapesIcon/>
         <label>{label} :</label>
       </div>
-      <div className={style.DropDownRoleSelect} onBlur={()=>setShowOptions(false)}>
+      <div className={style.DropDownRoleSelect} onBlur={closeOptions}>
         <button className={style.selectedRoleSelect} 
         type="button" onClick={ToggleOptions}>
           {valueInput.name}

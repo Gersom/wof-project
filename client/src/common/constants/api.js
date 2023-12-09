@@ -1,7 +1,7 @@
 import { API_URL_DEPLOY } from "./envs";
 
 const apiUrlLocal = "http://localhost:3001";
-const wsUrlLocal = "ws://localhost:3001";
+const wsUrlLocal = "wss://wof-server.up.railway.app";
 
 export const WS_URL = wsUrlLocal;
 
