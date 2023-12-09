@@ -87,7 +87,7 @@ CaregiversModel["findWallet"] = async (id) => {
         model: RequestsModel, attributes: ["id", "price"], include: [
           {
             model: PostsModel, attributes: ["endDate"], include: [
-              { model: OwnersModel, include: { model: UsersModel, attributes: ["name"] } },
+              { model: OwnersModel, include: { model: UsersModel, attributes: ["name","profilePicture"] } },
               { model: PetsModel, attributes: ["name"], include: { model: SpeciesModel, attributes: ["name"] } }
             ]
           }
@@ -96,11 +96,12 @@ CaregiversModel["findWallet"] = async (id) => {
     ]
   })
 
-  const clients = wallet.serviceRequests?.map(c => {
+  const clients = wallet?.serviceRequests?.map(c => {
     return {
       price     : c.price,
       endDate   : c.servicePosting?.endDate,
       client    : c.servicePosting?.owner?.user?.name,
+      imgClient : c.servicePosting?.owner?.user?.profilePicture,
       petName   : c.servicePosting?.pet?.name,
       petSpecie : c.servicePosting?.pet?.species?.name,
     }

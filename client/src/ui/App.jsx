@@ -19,6 +19,7 @@ import ProtectedRoute from './pages/protected-route/ProtectedRoute';
 import VerifyingLogin from './pages/verifying-login/VerifyingLogin';
 import DetailsCaregivers from './pages/details/DetailsCaregivers';
 import OffersCaregivers from './components/offers/offers-caregivers/OffersCaregivers';
+import MyWallet from './pages/my-wallet/MyWallet';
 import { useAuth } from '@common/context/authProvider';
 import { Navigate } from 'react-router-dom';
 import MyHome from './pages/my-home/MyHome';
@@ -118,6 +119,7 @@ function App() {
 							path={routerNames['alerts']}
 							element={<NotificatioPanel />}
 						/>
+						<Route path={routerNames['MyWallet']} element={<MyWallet/>}/>
 						<Route
 							path={routerNames['detailsOwners'] + ':id'}
 							element={<DetailsCaregivers />}

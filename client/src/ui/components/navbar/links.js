@@ -5,7 +5,7 @@ import arrows from '@icons/nav/arrows.svg';
 import house from '@icons/nav/house.svg';
 import star from '@icons/nav/star.svg';
 import points from '@icons/nav/points.svg';
-
+import wallet from '@icons/nav/myWallet.svg'
 
 export const LINKS = [
 	{ to: routerNames['alerts'], imgSrc: alerts, label: 'Mis notificaciones' },
@@ -18,6 +18,7 @@ const LINKS_CAREGIVER= [
 	{to: routerNames['myHome'], imgSrc: house, label: 'Mi hogar'},
 	{to: routerNames['myClients'], imgSrc: star, label: 'Mis Clientes'},
 	{ to: routerNames['profile'], imgSrc: user, label: 'Perfil' },
+	{to : routerNames['MyWallet'], imgSrc: wallet, label:'Mi billetera'}
 ];
  const LINKS_OWNER = [
 	{ to: routerNames['alerts'], imgSrc: alerts, label: 'Mis notificaciones' },

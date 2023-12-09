@@ -1,0 +1,184 @@
+.cardsContent {
+  display: flex;
+  // justify-content: space-between;
+  // flex-direction: row;
+  padding-top: 2rem
+}
+
+.walletContainer {
+  padding: 2rem 8rem;
+}
+
+.walletContainer h1 {
+  color: #6E88AD;
+  // margin-top: 50px;
+  font-size: 5rem;
+
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: row;
+  width: 185px;
+  height: 70px;
+  left: 355px;
+  top: 98px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-right: 1.3rem;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  // left: 375px;
+  // top: 113px;
+
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 40px;
+  /* identical to box height, or 100% */
+
+  color: #717171;
+}
+
+.paypalContent {
+
+  box-sizing: border-box;
+  width: 390px;
+  height: 209px;
+  left: 355px;
+  top: 198px;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #CCCCCC;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contentSecond {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-top: 4rem;
+}
+
+.amountContent {
+  width: 390px;
+  height: 323px;
+  left: 355px;
+  top: 443px;
+  margin-top: 3rem;
+  background: #FFFFFF;
+  border-radius: 10px;
+}
+
+.dataPaypal {
+  color: #AAAAAA
+}
+
+.emailContent {
+
+  display: flex;
+
+}
+
+.paypalText {
+  padding-left: 1rem;
+  color: #282C34;
+}
+
+
+.inputText {
+  display: block;
+  /* Rectangle 17 */
+  width: 350px;
+  height: 40px;
+  left: 375px;
+  top: 279px;
+
+  background: #FFFFFF;
+  border-radius: 10px;
+  font-size: 16px;
+
+
+
+}
+
+.inputButton {
+  display: block;
+  width: 350px;
+  height: 46px;
+  left: 375px;
+  top: 339px;
+  font-size: 16px;
+  background: #52C1E4;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.inputButton:hover {
+  box-shadow: 2px 4px 6px #282C34;
+}
+
+.clientCardContent {
+  display: flex;
+  width: 536px;
+  height: 101px;
+  margin-bottom: 1rem;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 0px 1px #282C34;
+  padding: 1rem 2rem;
+  align-items: center;
+
+}
+
+.ClientCardsContent{
+  padding-left: 5rem;
+}
+
+.imgClient {
+
+  width: 70px;
+  height: 70px;
+  left: 795px;
+  top: 218px;
+
+  background: #CE4B4B;
+  border-radius: 1000px;
+
+}
+
+.clientData {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 1.5rem;
+  width: 300px;
+}
+
+.clientName {
+  color: #1E1E1E;
+}
+
+.clientDate {
+  font-size: 14px;
+  color: #6E88AD;
+}
+
+.clientPet {
+  font-size: 14px;
+  color: #717171;
+}
+
+.clientPrice{
+  color: #1E1E1E;
+}
