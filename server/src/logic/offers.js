@@ -17,7 +17,7 @@ const getAllOffersLogic = async () => {
       }
       return {
         ...offer,
-        rating: String((Math.random() * (5 - 3) + 3).toFixed(2)),
+        rating: offer.owner.rating,
         owner: {
           id: offer.owner.id,
           userId: offer.owner.userId,

@@ -100,7 +100,7 @@ RequestsModel['findRequestsByPost'] = async (servicePostingId) => {
     include: [
       { 
         model: CaregiversModel,
-        attributes: ["id"],
+        attributes: ["id","rating"],
         include: [
           {
             model: UsersModel, 

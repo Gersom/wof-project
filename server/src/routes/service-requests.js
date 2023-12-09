@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 			name: req.caregiver.user.name,
 			address: req.caregiver.user.address,
 			profilePicture: req.caregiver.user.profilePicture,
-			rating: String((Math.random() * (5 - 2) + 2).toFixed(2)),
+			rating: req.caregiver?.rating,
 		}));
 		res.status(200).json(requestFormated);
 	} else res.status(200).json({ error: 'request not found' });
@@ -55,7 +55,7 @@ router.put('/all', async (req, res) => {
 									name: req.caregiver.user.name,
 									address: req.caregiver.user.address,
 									profilePicture: req.caregiver.user.profilePicture,
-									rating: String((Math.random() * (5 - 2) + 2).toFixed(2)),
+									rating: req.caregiver.rating,
 							}));
 							requestsFormated = [...requestsFormated, ...formattedRequests];
 					} 

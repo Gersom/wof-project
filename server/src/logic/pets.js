@@ -35,7 +35,7 @@ const getAllPetsLogic = async (ownerId) => {
         id: pet?.owner?.id,
         userId: pet?.owner?.userId,
         name: pet?.owner?.user?.name,
-        rating: String((Math.random() * (5 - 3) + 3).toFixed(2)),
+        rating: pet?.owner?.rating,
       },
       caregiver: {
         id: postObj?.caregiver?.id,
@@ -48,7 +48,7 @@ const getAllPetsLogic = async (ownerId) => {
         lastName: postObj?.caregiver?.user?.lastName,
         profilePicture: postObj?.caregiver?.user?.profilePicture,
         address: postObj?.caregiver?.user?.address,
-        rating: String((Math.random() * (5 - 3) + 3).toFixed(2)),
+        rating: postObj?.caregiver?.rating,
       },
     };
   });
