@@ -1,5 +1,8 @@
 const WebSocket = require('ws');
 
+const { ChatModel } = require('../models');
+const { MessagesChatModel } = require('../models');
+
 const configureWebSocket = (server) => {
 	const wss = new WebSocket.Server({ server });
 	const clients = new Set(); // Keep track of clients
@@ -30,6 +33,15 @@ const configureWebSocket = (server) => {
 			}
 		});
 	};
+	const sendToBothById = (message, caregiverId, ownerId) => {
+		clients.forEach((client) => {
+			if (client.role === 'caregiver' && client.caregiverId === caregiverId) {
+				client.ws.send(message);
+			} else if (client.role === 'owner' && client.ownerId === ownerId) {
+				client.ws.send(message);
+			}
+		})}
+
 	// Event listeners
 
 	wss.on('listening', () => {
@@ -37,7 +49,7 @@ const configureWebSocket = (server) => {
 	});
 
 	wss.on('connection', (ws) => {
-		ws.on('message', (message) => {
+		ws.on('message', async (message) => {
 			if (typeof message === 'string') {
 				console.log('Mensaje recibido (string):', message);
 
@@ -76,13 +88,35 @@ const configureWebSocket = (server) => {
 							sendToCaregiver(bufferText, parsedMessage.caregiverId);
 						} else if (parsedMessage.type === 'request_update') {
 							sendToOwner(bufferText, parsedMessage.ownerId);
+						} else if (parsedMessage.type === 'message' && parsedMessage.role === 'caregiver') {
+							const msg =  await ChatModel.createMessageCaregiver(
+								parsedMessage.message,
+								parsedMessage.caregiverId,
+								parsedMessage.ownerId
+							);
+							const msgToJson = JSON.stringify({...msg.dataValues, type: 'message'})
+
+							sendToBothById(msgToJson, parsedMessage.caregiverId, parsedMessage.ownerId)
+
+						} else if (parsedMessage.type === 'message' && parsedMessage.role === 'owner') {
+							const msg =  await ChatModel.createMessageOwner(
+								parsedMessage.message,
+								parsedMessage.caregiverId,
+								parsedMessage.ownerId
+							);
+							
+							const msgToJson = JSON.stringify({...msg.dataValues, type: 'message'})
+
+							sendToBothById(msgToJson, parsedMessage.caregiverId, parsedMessage.ownerId)
+
+						} else if(parsedMessage.type === 'update_message'){
+							sendToBothById(bufferText, parsedMessage.caregiverId, parsedMessage.ownerId)
 						}
 					}
 				} catch (error) {
 					console.error('Error al analizar el mensaje JSON:', error);
 				}
-
-				// Realiza acciones con el contenido del Buffer
+				
 			}
 		});
 

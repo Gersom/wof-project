@@ -62,7 +62,7 @@ const Register = () => {
     <div className="Register" style={{ height: "100%"}}>
       <FormRegister onSubmitValidated={sendVerifyEmail} />
       <ModalCustom state={modal} toggleModal={() => setModal(!modal)} isWarning={false}>
-        <ModalVerifyEmail onSubmit={handleVerifyEmail} form={form} />
+        <ModalVerifyEmail onSubmit={handleVerifyEmail} email={form.email}/>
       </ModalCustom>
     </div>
   );

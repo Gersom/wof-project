@@ -26,7 +26,8 @@ const routerNames = {
   myHome: "/app/my-home",
   myClients: "/app/my-clients",
   alerts: "/app/my-notifications",
-
+  admin: "/admin",
+  users: "/admin/users",
   MyWallet: "/app/my-wallet",
 };
 

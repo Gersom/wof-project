@@ -5,7 +5,7 @@ const PostsModel = require("./servicePostings")
 const CaregiversModel = require("./caregivers")
 const addMethods = require("../utils/addStaticMethods")
 
-const name = 'transactions'
+const name = 'caregiverTransactions'
 const config = { 
   timestamps: true, // createAt, updateAt
   freezeTableName: true
@@ -16,7 +16,7 @@ const schema = {
     primaryKey: true,
     autoIncrement: true,
   },
-  transactionId: {
+  paymentId: {
     type: DataTypes.STRING, allowNull: false,
   },
   currencyCode: {
@@ -51,20 +51,20 @@ const schema = {
   },  
 }
 
-const caregiverTransactions = sequelize.define(name, schema, config)
+const CaregiverTransactionsModel = sequelize.define(name, schema, config)
 
 
 // add static methods (functions) to model
-addMethods(caregiverTransactions)
+addMethods(CaregiverTransactionsModel)
 
 // Add relationship
-TransactionsModel.hasOne(caregiverTransactions)
-caregiverTransactions.belongsTo(TransactionsModel)
+TransactionsModel.hasOne(CaregiverTransactionsModel)
+CaregiverTransactionsModel.belongsTo(TransactionsModel)
 
-PostsModel.hasMany(caregiverTransactions)
-caregiverTransactions.belongsTo(PostsModel)
+PostsModel.hasMany(CaregiverTransactionsModel)
+CaregiverTransactionsModel.belongsTo(PostsModel)
 
-CaregiversModel.hasMany(caregiverTransactions)
-caregiverTransactions.belongsTo(CaregiversModel)
+CaregiversModel.hasMany(CaregiverTransactionsModel)
+CaregiverTransactionsModel.belongsTo(CaregiversModel)
 
-module.exports = caregiverTransactions
+module.exports = CaregiverTransactionsModel

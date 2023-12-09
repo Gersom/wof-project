@@ -1,12 +1,12 @@
 import { emailValidation } from "./validations"
 import { useState, useEffect } from "react";
-import EmailIcon from "@icons/email.svg?react";
+import EmailIcon from "@icons/form/email.svg?react";
 import style from "./styles.module.scss"
 
 const EmailInput = ({
   name="email",
   label="Correo electrónico",
-  background="gray",
+  background="white",
   validation=true,
   dark=false,
   onValidated=()=>null
@@ -55,7 +55,7 @@ const EmailInput = ({
 
     setStylesInput(styles)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stateInput])
+  }, [background, dark, stateInput])
   
   return (
     <div className={stylesInput}>
@@ -71,9 +71,7 @@ const EmailInput = ({
         autoComplete='on'
         placeholder='¿@gmail.com?'
       />
-      <span className="EmailInputError">
-        {errorLabel}
-      </span>
+      <span>{errorLabel}</span>
     </div>
   );
 };

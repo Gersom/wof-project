@@ -1,5 +1,6 @@
 .defaultInput {
-  input {
+  input,
+  button[class*="_selectedRoleSelect"] {
     font-family: "Lexend-Regular";
     width: 100%;
     height: 34px;
@@ -9,9 +10,13 @@
     border-radius: 10px;
     border: 2px solid transparent;
     font-size: 14px;
-  
+    text-align: left;
     color: var(--color-background-dark2);
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
   }
   input::placeholder{
     opacity: 0.7;
@@ -27,13 +32,16 @@
     font-size: 14px;
     color: var(--color-background-dark2)
   }
+  [class*="_notStroke"] {
+    path { stroke: none; }
+  }
 }
 .titleInput {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 5px;
   svg {
-    height: 18px;
+    height: 16px;
     width: auto;
     margin-right: 10px;
   }
@@ -41,8 +49,10 @@
     stroke: var(--color-background-dark2)
   }
 }
+.notStroke{opacity: 1;}
 .grayBG {
-  input {
+  input,
+  button[class^="_selectedRoleSelect"] {
     background-color: var(--color-background-light);
   }
   input:focus {
@@ -50,11 +60,14 @@
   }
 }
 .darkInput {
-  [class^="_titleInput"] {
+  [class*="_titleInput"] {
     label { color: #fff; }
     path {
       stroke: #fff;
     }
+  }
+  [class*="_notStroke"] {
+    path { stroke: none; }
   }
 }
 
@@ -90,7 +103,71 @@
     padding: 0 5px;
     margin: 0;
   }
-  svg path {
-    stroke: var(--color-text-grey);
+  svg {
+    height: 18px;
+    path {
+      stroke: var(--color-text-grey);
+    }
   }
+}
+.DropDownRoleSelect {
+  position: relative;
+}
+.selectedRoleSelect {
+  position: relative;
+  line-height: 1;
+  padding-left: 25px !important;
+  svg {
+    position: absolute;
+    height: 8px;
+    width: auto;
+    top: calc(50% - 2px);
+    right: 10px;
+  }
+}
+.optionRoleSelect {
+  position: absolute;
+  z-index: 2;
+  background: var(--color-background-light);
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  max-height: 0px;
+  overflow-y: hidden;
+  transition: 0.3s ease all;
+  top: calc(100% + 7px);
+  button {
+    background: transparent;
+    width: 100%;
+    height: 30px;
+    margin: 0;
+    border-radius: 5px;
+    padding: 5px 20px;
+    text-align: left;
+    line-height: 1;
+    border: none;
+    color: var(--color-background-dark2);
+  }
+  button:hover {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  &::-webkit-scrollbar {
+    background: var(--color-background-light);
+    width: 10px;
+    position: relative;
+    padding: 5px;
+    margin: 3px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-text-grey2);
+    border-radius: 10px;
+  }
+}
+.optionOpenRoleSelect {
+  height: initial;
+  max-height: calc(30px * 5);
+  overflow-y: auto;
 }

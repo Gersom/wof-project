@@ -1,0 +1,19 @@
+.mainContChat {
+	position: absolute;
+	width: max-content;
+	height: max-content;
+	display: flex;
+	z-index: 100;
+	
+	/* Otros estilos necesarios para el contenedor principal */
+
+	.contChat {
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		margin: 2rem 5rem;
+		width: max-content;
+		display: flex;
+		flex-direction: row;
+	}
+}

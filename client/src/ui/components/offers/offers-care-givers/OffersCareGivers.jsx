@@ -19,7 +19,7 @@ import useWsOwner from '@src/common/utils/websocket/useWsOwner';
 
 const OffersCareGivers = () => {
 	const dispatch = useDispatch();
-	const { sendMessage } = useWsOwner('owner');
+	const { sendMessageOwner } = useWsOwner('owner');
 	const { id } = useParams();
 	const { isLoading, details } = useGetPetId(id);
 	const { isLoadingOffers, offersCareGivers } = useOffersCaregivers(details?.id || null);
@@ -54,7 +54,8 @@ const OffersCareGivers = () => {
 		dispatch(
 			setAlert({ message: 'Pago realizado con exito 👌', type: 'success' })
 		);
-		sendMessage({ type: 'payment_complete', petName: details?.pet?.name , ownerName: details?.owner?.name, caregiverId : offerData.caregiverId});
+		sendMessageOwner({ type: 'payment_complete', petName: details?.pet?.name , ownerName: details?.owner?.name, caregiverId : offerData.caregiverId});
+		
 	};
 
 	const onClickAccept = (data) => {

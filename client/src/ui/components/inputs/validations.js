@@ -42,15 +42,15 @@ export const nameValidation = (value) => {
 
   if (value.length < 3) return {
     state: "error", char: "❌",
-    message: 'El nombre debe tener al menos 3 caracteres'
+    message: 'Debe tener al menos 3 caracteres'
   }
   else if (value.length > 30) return {
     state: "error", char: "❌",
-    message: 'El nombre debe tener menos de 30 caracteres'
+    message: 'No debe tener más de 30 caracteres'
   }
   else return {
     state: "validated", char: "✅",
-    message: 'Nombre válido'
+    message: 'El Nombre es válido'
   }
 }
 
@@ -59,14 +59,14 @@ export const lastNameValidation = (value) => {
 
   if (value.length < 4) return {
     state: "error", char: "❌",
-    message: 'El apellido debe contener al menos 4 caracteres'
+    message: 'Debe contener al menos 4 caracteres'
   }
   else if (value.length > 40) return {
     state: "error", char: "❌",
-    message: 'El apellido no puede superar los 40 caracteres'
+    message: 'No puede superar los 40 caracteres'
   }
   else return {
     state: "validated", char: "✅",
-    message: 'El apellido es correcto'
+    message: 'Los apellidos son correcto'
   }
 }
