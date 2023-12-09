@@ -78,6 +78,14 @@
 .profile_input {
   margin-bottom: 15px;
   position: relative;
+  input[type='date']::-webkit-calendar-picker-indicator {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    margin: 0.4rem;
+    cursor: pointer;
+    content: url('@icons/DateGrey.svg');
+  }
 }
 
 input.input_file_hidden {
