@@ -5,10 +5,11 @@ const catchedAsync = require("../utils/catchedAsync");
 const getUserStats = catchedAsync(async(req, res) => {
     const stats = await getAllUsersStatsLogic();
     res.status(200).json(stats)
-}, getUsersStatsErrorhandler)
+}, getUsersStatsErrorhandler);
 
 const getUsersInfo = catchedAsync(async(req, res) => {
-    const stats = await getUsersInfoLogic();
+    const { page = 1, pageSize = 10 } = req.query;
+    const stats = await getUsersInfoLogic(Number(page), Number(pageSize));
     res.status(200).json(stats)
 }, getUsersStatsErrorhandler)
 

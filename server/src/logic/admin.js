@@ -1,3 +1,18 @@
+require('dotenv').config()
+
+const SERVER_HOST = process.env.HOST || "localhost"
+const SERVER_PORT = process.env.PORT || "3000"
+const MODE = process.env.MODE
+
+let urlHost;
+
+if(MODE){
+  urlHost = SERVER_HOST;
+}
+else{
+  urlHost = `${SERVER_HOST}:${SERVER_PORT}`;
+}
+
 const {
   UsersModel,
   PetsModel,
@@ -28,14 +43,17 @@ const getAllUsersStatsLogic = async () => {
 const getUsersInfoLogic = async (page = 1, pageSize = 10) => {
   const offset = (page - 1) * pageSize;
 
-  const users = await UsersModel.findAll({
+  const users = await UsersModel.findAndCountAll({
     attributes: ["profilePicture", "role", "email", "name"],
     offset,
     limit: pageSize,
   });
 
+  const totalCount = users.count;
+  const totalPages = Math.ceil(totalCount / pageSize);
+
   const usersWithTransactions = await Promise.all(
-    users.map(async (user) => {
+    users.rows.map(async (user) => {
       let totalTransactions = 0;
 
       if (user.role === "caregiver") {
@@ -67,15 +85,22 @@ const getUsersInfoLogic = async (page = 1, pageSize = 10) => {
       return {
         profilePicture: user.profilePicture,
         role: user.role,
-
         email: user.email,
         name: user.name,
-
         totalTransactions: totalTransactions || 0,
       };
     })
   );
-  return usersWithTransactions;
+
+  const nextPage = page < totalPages ? page + 1 : null;
+  const prevPage = page > 1 ? page - 1 : null;
+
+  return {
+    count: totalCount,
+    next: nextPage ? `${urlHost}/api/admin/users-info?page=${nextPage}&pageSize=${pageSize}` : null,
+    previous: prevPage ? `${urlHost}/api/admin/users-info?page=${prevPage}&pageSize=${pageSize}` : null,
+    results: usersWithTransactions,
+  };
 };
 
 module.exports = {
