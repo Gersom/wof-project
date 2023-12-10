@@ -44,6 +44,8 @@ const FormProfile = () => {
   const [phonePasswordShow, setPhonePasswordShow] = useState(false);
   const [contrasenaPasswordShow, setContrasenaPasswordShow] = useState(false);
 
+
+  console.log(userData?.birthdate)
   const [dataForm, setDataForm] = useState({
     name: userData?.name,
     lastName: userData?.lastName,
@@ -141,33 +143,13 @@ const FormProfile = () => {
     }
   };
 
-  function convertirDate(date) {
-    const fecha = new Date(date);
-
-    // Obtener componentes de la fecha
-    const dia = fecha.getDate();
-    const mes = fecha.getMonth() + 1; // Nota: los meses comienzan desde 0
-    const año = fecha.getFullYear();
-
-    // Asegurarse de que el día tenga dos dígitos
-    const diaFormateado = dia < 10 ? `0${dia}` : dia;
-
-    // Asegurarse de que el mes tenga dos dígitos
-    const mesFormateado = mes < 10 ? `0${mes}` : mes;
-
-    // Formatear la fecha como año-mes-día
-    const fechaFormateada = `${año}-${mesFormateado}-${diaFormateado}`;
-
-    return fechaFormateada;
-  }
-
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
+    
     setDataForm((prevDataForm) => ({ ...prevDataForm, [name]: value }));
     handleValidation({ ...dataForm, [name]: value }, setErrors);
     console.log(userData);
@@ -296,7 +278,6 @@ const FormProfile = () => {
                       onChange={handleCountryChange}
                     >
                       <option disabled>{userData?.countries}</option>
-                      {console.log(countries)}
                       {countries.map((countries) => (
                         <option key={countries.id} value={countries.id}>
                           {countries.name}
@@ -420,7 +401,7 @@ const FormProfile = () => {
                   <input
                     name="birthdate"
                     type="date"
-                    value={convertirDate(dataForm.birthdate)}
+                    value={dataForm.birthdate.split('T')[0]}
                     max={new Date().toISOString().split("T")[0]} // Establece el máximo a la fecha actual
                     onChange={handleInputChange}
                   />

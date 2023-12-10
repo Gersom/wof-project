@@ -37,7 +37,7 @@ const CardPetPublic = ({
 
 	return (
 		<>
-			<article className={styles.article}>
+			<article className={styles.articlePublic}>
 				<PetImage data={data} isEditable={true} />
 				{handleRenderSection()}
 			</article>

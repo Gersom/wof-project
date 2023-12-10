@@ -52,6 +52,22 @@ router.put("/:id", async (req, res) => {
   } else res.status(200).json({ error: "Posts not found" });
 });
 
+router.delete('/:id', async (req,res ) => {
+	const postId = req.params.id;
+
+	if(!postId) return res.status(403).json({error : 'Need a postId'})
+
+	try {
+		const postDelete = await PostsModel.removeData(postId)
+		
+		if(postDelete === 0) return res.status(303).json({message : 'The post dosent exist '})
+		res.status(200).json({message : 'PostDelete succesfully'})
+	} catch (error) {
+		return res.status(405).json({error : 'Error ocurred triying delete post'})
+	}
+
+})
+
 router.put("/", async (req, res) => {
   const id = req.query.postId;
   const { ownerVerified, caregiverVerified } = req.body;

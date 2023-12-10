@@ -1,10 +1,11 @@
 import styles from './styles.module.scss';
 import ChatButton from '../../buttons/ChatButton';
 import CardMessage from '../../cards/card-chats/CardMessage';
-import { useState , useRef , useEffect , useCallback} from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import useWsCaregiver from '@src/common/utils/websocket/useWsCaregiver';
 import useWsOwner from '@src/common/utils/websocket/useWsOwner';
 import CardInput from '../../cards/card-chats/CardInput';
+import Cross from '@icons/cross.svg?react';
 
 const ModalMessages = ({
 	imgSrc,
@@ -25,50 +26,67 @@ const ModalMessages = ({
 	const [message, setMessage] = useState({
 		type: 'message',
 		message: '',
+		image: '',
 		isOwner: false,
 		isCaregiver: false,
 		createdAt: '',
 	});
+	const [imageFile, setImageFile] = useState(null);
+	const [imageLocal, setImageLocal] = useState(null);
 
-	const chatContainerRef = useRef(null)
-
-
+	const chatContainerRef = useRef(null);
 
 	const { sendMessageOwner } = useWsOwner(role);
 	const { sendMessageCaregiver } = useWsCaregiver(role);
 
-  const convertMsg = (msg) => msg.replace(/\n/g, "<br>")
+	const convertMsg = (msg) => msg.replace(/\n/g, '<br>');
 
-	const handleSendMessage = useCallback( async () => {
-		if(message.message.length <= 0) return ;
+	const handleSendMessage = useCallback(async () => {
+		if (message.message.length <= 0) return;
 		if (role === 'owner') {
 			await sendMessageOwner({
 				...message,
-        message: convertMsg(message.message),
+				message: convertMsg(message.message),
 				role: role,
 				isOwner: true,
-        isCaregiver: false,
+				isCaregiver: false,
 				caregiverId: data.caregiverId,
 				ownerId: data.ownerId,
 			});
-      setMessage({ ...message, message: '' });
+			setMessage({ ...message, message: '' });
 		} else if (role === 'caregiver') {
 			await sendMessageCaregiver({
 				...message,
-        message: convertMsg(message.message),
+				message: convertMsg(message.message),
 				role: role,
 				isCaregiver: true,
-        isOwner: false,
+				isOwner: false,
 				caregiverId: data.caregiverId,
 				ownerId: data.ownerId,
 			});
-      setMessage({ ...message, message: '' });
+			setMessage({ ...message, message: '' });
 		}
-	}, [message, role, data.caregiverId, data.ownerId, sendMessageOwner, sendMessageCaregiver] );
+	}, [
+		message,
+		role,
+		data.caregiverId,
+		data.ownerId,
+		sendMessageOwner,
+		sendMessageCaregiver,
+	]);
 
 	useEffect(() => {
 		chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-	},[handleSendMessage])
+	}, [handleSendMessage]);
+
+	const handleSetImage = (image) => {
+		setImageLocal(image);
+		console.log(image);
+	};
+	const handleDeleteImage = () => {
+		setImageFile(null)
+		setImageLocal(null)
+	}
 
 	return (
 		<div className={styles.mainContainerChat}>
@@ -93,12 +111,24 @@ const ModalMessages = ({
 						/>
 					);
 				})}
+				{imageLocal && (
+					<div className={styles.containerImgLocal}>
+						<Cross onClick={handleDeleteImage} />
+						<img
+							src={imageLocal}
+							alt='image'
+							className={styles.imgLocal}
+						/>{' '}
+					</div>
+				)}
 			</div>
-      <CardInput
-        value={message.message}
-        setValue={(value) => setMessage({...message, message: value})}
-        sendMessage={handleSendMessage}
-      />
+			<CardInput
+				value={message.message}
+				setValue={(value) => setMessage({ ...message, message: value })}
+				sendMessage={handleSendMessage}
+				setImageLocal={setImageLocal}
+				setImageFile={setImageFile}
+			/>
 		</div>
 	);
 };

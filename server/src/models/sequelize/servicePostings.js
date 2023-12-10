@@ -88,7 +88,7 @@ PostsModel['findAllOffers'] = () => {
       },
       { 
         model: OwnersModel,
-        attributes: [ "id", "userId" ],
+        attributes: [ "id", "userId", "rating"],
         include: [{
           model: UsersModel,
           attributes: [ "id", "name" ],

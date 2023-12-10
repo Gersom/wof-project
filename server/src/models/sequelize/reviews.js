@@ -49,12 +49,29 @@ addMethods(ReviewsModel)
 
 ReviewsModel['findByOwner'] = (ownerId) => {
   return ReviewsModel.findAll({
-    where: { ownerId },
+    where: { ownerId, to:'owner' },
     attributes: [ 
       "id", "comment", ["createdAt", "date"] 
     ],
     include: [{
       model: CaregiversModel,
+      attributes: ["id"],
+      include: [{
+        model: UsersModel,
+        attributes: ["name", "profilePicture"]
+      }]
+    }]
+  })
+}
+
+ReviewsModel['findByCaregiver'] = (caregiverId) => {
+  return ReviewsModel.findAll({
+    where: { caregiverId, to:'caregiver' },
+    attributes: [ 
+      "id", "comment", ["createdAt", "date"] 
+    ],
+    include: [{
+      model: OwnersModel,
       attributes: ["id"],
       include: [{
         model: UsersModel,

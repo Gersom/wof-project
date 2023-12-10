@@ -74,7 +74,7 @@ const OffersCaregiversDetail = () => {
 		sendMessageOwner({
 			type: 'update_message',
 			ownerId: details?.owner?.id,
-			caregiverId: offerData.caregiverId,
+			caregiverId: offerData?.caregiverId,
 		});
 		
 		setOfferData({
@@ -102,7 +102,7 @@ const OffersCaregiversDetail = () => {
 		return (
 			<>
 				{!isLoading && !isLoadingOffers && offersCareGivers.length === 0 ? (
-					<h1>Aun no has recibido ofertas</h1>
+					<h3 className={styles.h3NoOffers}><span>¡Ups!</span> <br/>Todavía no has recibido ofertas de cuidadores para esta mascota</h3>
 				) : (
 					offersCareGivers.map((offer) => (
 						<CardOffersCaregivers
@@ -145,7 +145,10 @@ const OffersCaregiversDetail = () => {
 						endDate={details?.endDate}
 						startDate={details?.startDate}
 						image={details?.pet.imageUrl}
+						petName={details?.pet.name}
 						postId={id}
+						caregiverId={details?.caregiver.id}
+						ownerId={details?.owner?.id}
 					/>
 					<div className={styles.containerInfoCaregiver}>
 						<CardUser
