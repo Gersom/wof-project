@@ -30,7 +30,7 @@ const Dashboard = () => {
 		} else {
 			navigate(routerNames['login']);
 		}
-	}, [dispatch, navigate]);
+	}, [dispatch]);
 
 	return (
 		<>
