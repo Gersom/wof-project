@@ -3,7 +3,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@common/context/authProvider";
 import { useAuth0 } from "@auth0/auth0-react";
-import { API_URL_LOGIN, API_URL_REGISTER, API_URL_USER, API_URL_EXIST_USER_WHIT_EMAIL } from "@src/common/constants/api";
+import {
+  API_URL_LOGIN,
+  API_URL_REGISTER,
+  API_URL_USER,
+  API_URL_EXIST_USER_WHIT_EMAIL,
+} from "@src/common/constants/api";
 import {
   saveToLocalStorage,
   getFromLocalStorage,
@@ -12,14 +17,18 @@ import routerNames from "@src/common/constants/routes";
 import styles from "./styles.module.scss";
 import logo from "@icons/nav/logo.svg";
 
-
 // ... (imports)
 
 const VerifyingLogin = () => {
   const apiUrlRegister = API_URL_REGISTER;
   const apiUrlCheckUserExistence = API_URL_EXIST_USER_WHIT_EMAIL;
   const navigate = useNavigate();
-  const { isAuthenticated: isAuth0enticated, user, getAccessTokenSilently, isLoading } = useAuth0();
+  const {
+    isAuthenticated: isAuth0enticated,
+    user,
+    getAccessTokenSilently,
+    isLoading,
+  } = useAuth0();
   const { isAuthenticated, setAuthenticated } = useAuth();
 
   const handleSilentLogin = async () => {
@@ -36,13 +45,10 @@ const VerifyingLogin = () => {
 
   const manageSpecialLogin = async () => {
     const token = await handleSilentLogin();
-    const response = await axios.post(
-      API_URL_LOGIN,
-      {
-        email: user.email,
-        password: token,
-      }
-    );
+    const response = await axios.post(API_URL_LOGIN, {
+      email: user.email,
+      password: token,
+    });
     console.log("LOGIN USER", response, user.email, token);
 
     saveToLocalStorage("session", {
@@ -50,7 +56,7 @@ const VerifyingLogin = () => {
       token: response.data.token,
     });
     manageRedirection();
-  }
+  };
 
   const handleAuth0Register = async () => {
     const token = await handleSilentLogin();
@@ -64,10 +70,12 @@ const VerifyingLogin = () => {
       role: "",
     };
 
-    console.log('regiter TOKEN: ', token);
+    console.log("regiter TOKEN: ", token);
 
     try {
-      const { data } = await axios.get(apiUrlCheckUserExistence + `${userData.email}`);
+      const { data } = await axios.get(
+        apiUrlCheckUserExistence + `${userData.email}`
+      );
       const exist = data;
 
       if (!exist) {
@@ -79,20 +87,15 @@ const VerifyingLogin = () => {
             await manageSpecialLogin();
             manageRedirection();
           }
-
         } catch (error) {
           console.error(`Error creating new user): ${error.message}`);
         }
-      }
-      else {
+      } else {
         //console.log("LOGIN USER");
-        const response = await axios.post(
-          API_URL_LOGIN,
-          {
-            email: user.email,
-            password: token,
-          }
-        );
+        const response = await axios.post(API_URL_LOGIN, {
+          email: user.email,
+          password: token,
+        });
         console.log("LOGIN USER", user.email, token);
 
         saveToLocalStorage("session", {
@@ -102,7 +105,6 @@ const VerifyingLogin = () => {
         manageRedirection();
       }
       //console.log("DATA REGISTER AUTH0" ,data);
-
     } catch (error) {
       console.error(`Error verifing email existence): ${error.message}`);
     }
@@ -148,28 +150,31 @@ const VerifyingLogin = () => {
   //     });
   //     manageRedirection();
   //     if (response.data.token) {
-  //       console.warn("Inicio de sesión completado");
+  //       console.warn("Inicio de sesi贸n completado");
   //       manageRedirection();
   //     }
   //   } catch (error) {
-  //     console.warn("Error en correo o contraseña");
-  //     console.error(`Error al iniciar sesión: ${error.message}`);
+  //     console.warn("Error en correo o contrase帽a");
+  //     console.error(`Error al iniciar sesi贸n: ${error.message}`);
   //   }
   // };
 
   const integrateLogin = async () => {
     try {
       await Promise.all([handleAuth0Register()]);
-
     } catch (error) {
-      console.error("Error durante la integración del inicio de sesión:", error);
+      console.error(
+        "Error durante la integraci贸n del inicio de sesi贸n:",
+        error
+      );
     }
   };
 
   const manageRedirection = async () => {
     const storage = await getFromLocalStorage("session");
 
-    const { data } = await axios.get(`${API_URL_USER}/${storage?.userId}`) || {};
+    const { data } =
+      (await axios.get(`${API_URL_USER}/${storage?.userId}`)) || {};
     const { role } = data || {};
 
     if (!data) return;
@@ -177,7 +182,11 @@ const VerifyingLogin = () => {
     setAuthenticated(true);
 
     const redirectTo = (path) => {
-      if (storage?.history && storage?.history !== routerNames['loading']) {
+      if (
+        storage?.history &&
+        storage?.history !== routerNames["loading"] &&
+        storage?.history !== routerNames["landing"]
+      ) {
         navigate(storage.history);
       } else {
         navigate(path);
@@ -227,7 +236,10 @@ const VerifyingLogin = () => {
           <form>
             <div className={styles["input_container"]}>
               <label htmlFor="email">
-                <span>Estamos verificando su inicio de sesión, no nos tomará mucho tiempo, gracias por confiar en nosotros 💖</span>
+                <span>
+                  Estamos verificando su inicio de sesi贸n, no nos tomar谩 mucho
+                  tiempo, gracias por confiar en nosotros 馃挅
+                </span>
               </label>
             </div>
           </form>
@@ -237,7 +249,10 @@ const VerifyingLogin = () => {
           <form>
             <div className={styles["input_container"]}>
               <label htmlFor="email">
-                <span>Si no le redireccionamos en unos 10 segundos, puedes volver a intentarlo.</span>
+                <span>
+                  Si no le redireccionamos en unos 10 segundos, puedes volver a
+                  intentarlo.
+                </span>
               </label>
               <button className={styles.buttonBlue} onClick={resetLocal}>
                 Volver a intentar

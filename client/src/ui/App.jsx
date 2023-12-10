@@ -47,8 +47,9 @@ function App() {
   useAuth();
 
   const storeCurrentRouteInSession = (newRoute) => {
-    const storage = getFromLocalStorage("session");
-
+    let  storage = getFromLocalStorage("session");
+    storage = storage || {};
+    
     if (newRoute !== "/verificando" && newRoute !== "/iniciar-sesion") {
       if (storage?.token && storage?.userId) {
         const updatedstorage = {

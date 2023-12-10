@@ -74,6 +74,7 @@
 		text-align: right;
 		padding: 0.6rem 1rem;
 		border-radius: 0.5rem;
+		
 	}
 	p::after {
 		content: '';
@@ -239,10 +240,17 @@
 			border: 0.15rem solid var(--color-blue-light);
 			background-color: var(--color-text-primary);
 			color: var(--color-blue-light);
+			
+			cursor: pointer;
 			&:hover {
-				cursor: pointer;
 				background-color: var(--color-blue-light);
 				color: var(--color-text-primary);
+			}
+			&:disabled{
+				background-color: #cccccc;
+				border-color: var(--color-text-primary);
+				color: var(--color-text-primary);
+				cursor: progress;
 			}
 		}
     .btnImg{
@@ -276,4 +284,27 @@
       color: transparent;
     }
 	}
+}
+
+.pImg {
+	display: flex;
+	flex-direction: column;
+	img{
+		width: 15rem;
+		height: 15rem;
+		object-fit: cover;
+		border-radius: 0.5rem;
+		border: 0.2rem solid #cccccc;
+		cursor: pointer;
+	}
+}
+
+.imgModal{
+	width: min-content;
+	height: max-content;
+	max-width: 35rem;
+	max-height: 35rem;
+	border: 0.2rem solid #cccccc;
+	border-radius: 0.5rem;
+	object-fit: contain;
 }

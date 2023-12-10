@@ -20,6 +20,10 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  image: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   isCaregiver: {
     type: DataTypes.BOOLEAN,
     allowNull: true,
