@@ -1,13 +1,23 @@
 const { ReviewsModel, UsersModel, NotificationsModel } = require("../models");
 const { createdReview } = require("../data/notifications");
 
-const getAllReviewsLogic = async (ownerid) => {
+const getAllReviewsLogic = async () => {
   const reviews = await ReviewsModel.findAllData();
-  if (ownerid) {
-    return await ReviewsModel.findByOwner(ownerid);
-  }
   return reviews;
 };
+
+const getReviewsByOwnerLogic = async (ownerId) => {
+  if(!ownerId) throw Error("missing ownerId") 
+  const reviews = await ReviewsModel.findByOwner(ownerId)
+  if(reviews.length > 3) return reviews.slice(0,3);
+  return reviews
+}
+const getReviewsByCaregiverLogic = async (caregiverId) => {
+  if(!caregiverId) throw Error("missing caregiverId")
+  const reviews = await ReviewsModel.findByCaregiver(caregiverId)
+  if(reviews.length > 3) return reviews.slice(0,3);
+  return reviews
+}
 
 const getReviewLogic = async (id) => {
   const review = await ReviewsModel.findDataById(id);
@@ -53,6 +63,8 @@ const deleteReviewLogic = async (id, data) => {
 
 module.exports = {
   getAllReviewsLogic,
+  getReviewsByOwnerLogic,
+  getReviewsByCaregiverLogic,
   getReviewLogic,
   postReviewLogic,
   updateReviewLogic,

@@ -4,6 +4,18 @@ const getAllReviewsErrorHandler = (error, req, res, next) => {
     res.status(500).json({ error: "An error occurred while retrieving the reviews." });
 };
 
+const getReviewsByOwnerErrorHandler = (error, req, res, next) => {
+
+    console.error("Error in getReviewsByOwnerErrorHandler:", error);
+    res.status(500).json({ error: "An error occurred while retrieving the owner reviews ." });
+};
+
+const getReviewsByCaregiverErrorHandler = (error, req, res, next) => {
+
+    console.error("Error in getReviewsByCaregiverErrorHandler:", error);
+    res.status(500).json({ error: "An error occurred while retrieving the caregiver reviews ." });
+};
+
 const getReviewErrorHandler = (error, req, res, next) => {
 
     console.error("Error in getReview:", error);
@@ -31,6 +43,8 @@ const deleteReviewErrorHandler = (error, req, res, next) => {
 
 module.exports = {
     getAllReviewsErrorHandler,
+    getReviewsByOwnerErrorHandler,
+    getReviewsByCaregiverErrorHandler,
     getReviewErrorHandler,
     createReviewErrorHandler,
     updateReviewErrorHandler,

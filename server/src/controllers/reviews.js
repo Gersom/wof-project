@@ -2,6 +2,8 @@ const ErrorHandler = require("../handlers/reviews")
 const {
   getAllReviewsLogic,
   getReviewLogic,
+  getReviewsByOwnerLogic,
+  getReviewsByCaregiverLogic,
   postReviewLogic,
   updateReviewLogic,
   deleteReviewLogic
@@ -10,10 +12,21 @@ const catchedAsync = require("../utils/catchedAsync")
 
 // READ ITEMS
 const getAllReviews =catchedAsync( async (req, res) => {
-    const { ownerid } = req.query
-    const reviews = await getAllReviewsLogic(ownerid)
+    const reviews = await getAllReviewsLogic()
     res.status(200).json(reviews)
 }, ErrorHandler.getAllReviewsErrorHandler)
+
+const getReviewsByOwner = catchedAsync( async (req,res) => {
+    const { ownerId } = req.query
+    const reviews = await getReviewsByOwnerLogic(ownerId)
+    res.status(200).json(reviews)
+}, ErrorHandler.getReviewsByOwnerErrorHandler)
+
+const getReviewsByCaregiver = catchedAsync( async (req,res) => {
+    const { caregiverId } = req.query
+    const reviews = await getReviewsByCaregiverLogic(caregiverId)
+    res.status(200).json(reviews)
+}, ErrorHandler.getReviewsByCaregiverErrorHandler)
 
 // DETAIL ITEM
 const getReview =catchedAsync( async (req, res) => {
@@ -48,6 +61,8 @@ const deleteReview =catchedAsync(async (req, res) => {
 
 module.exports = {
   getAllReviews,
+  getReviewsByOwner,
+  getReviewsByCaregiver,
   getReview,
   createReview,
   updateReview,

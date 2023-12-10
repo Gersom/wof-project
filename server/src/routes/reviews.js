@@ -6,6 +6,10 @@ const controllers = require("../controllers/reviews");
 
 router.get("/", controllers.getAllReviews);
 
+router.get("/owner-review", controllers.getReviewsByOwner);
+
+router.get("/caregiver-review", controllers.getReviewsByCaregiver);
+
 router.get("/:id", controllers.getReview);
 
 router.post("/", controllers.createReview);
