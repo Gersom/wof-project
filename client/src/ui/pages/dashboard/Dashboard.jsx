@@ -22,7 +22,7 @@ const Dashboard = () => {
 
 	useWsCaregiver(userData?.role || null);
 	useWsOwner(userData?.role || null);
-
+  
 	useEffect(() => {
 		const { userId } = getFromLocalStorage('session');
 		if (userId) {
@@ -30,7 +30,7 @@ const Dashboard = () => {
 		} else {
 			navigate(routerNames['login']);
 		}
-	}, [dispatch, navigate]);
+	}, [dispatch]);
 
 	return (
 		<>

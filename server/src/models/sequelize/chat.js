@@ -108,7 +108,7 @@ ChatModel['getAllMessagesByBothId'] = async function (caregiverId, ownerId) {
   return messages
 }
 
-ChatModel['createMessageOwner'] = async function (message, caregiverId, ownerId) {
+ChatModel['createMessageOwner'] = async function (message, caregiverId, ownerId, imageUrl) {
   const chat = await ChatModel.findOne({
     where: {
       caregiverId,
@@ -120,13 +120,14 @@ ChatModel['createMessageOwner'] = async function (message, caregiverId, ownerId)
   const messageChat = await MessagesChatModel.create({
     message : message,
     isOwner: true,
-    chatId: chat.id
+    chatId: chat.id,
+    image: imageUrl,
   })
 
   return messageChat
 }
 
-ChatModel['createMessageCaregiver'] = async function (message, caregiverId, ownerId) {
+ChatModel['createMessageCaregiver'] = async function (message, caregiverId, ownerId, imageUrl) {
   const chat = await ChatModel.findOne({
     where: {
       caregiverId,
@@ -137,7 +138,8 @@ ChatModel['createMessageCaregiver'] = async function (message, caregiverId, owne
   const messageChat = await MessagesChatModel.create({
     message : message,
     isCaregiver: true,
-    chatId: chat.id
+    chatId: chat.id,
+    image: imageUrl,
   })
   return messageChat
 }
