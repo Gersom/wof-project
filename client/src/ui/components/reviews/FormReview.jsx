@@ -56,21 +56,29 @@ const FormReview = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let response;
     try {
-      const dataToSend = {
-        rating: state.rating.toString(), // Convertir rating a cadena si es necesario
-        comment: state.review,
-        from: "caregiver",
-        to: "owner",
-        userInfo: {
-          id: user.id,
-          role: user.role,
-          ownerId: "",
-          caregiverId: "",
-        },
-      };
-      const response = await axios.post(API_URL_REVIEWS, dataToSend);
-
+      let dataToSend;
+      if (user.role === "caregiver") {
+        dataToSend = {
+          rating: state.rating.toString(),
+          comment: state.review,
+          from: "caregiver",
+          to: "owner",
+          ownerId: 2,
+          caregiverId: user.caregiver.id,
+        };
+      } else if (user.role === "owner") {
+        dataToSend = {
+          rating: state.rating.toString(),
+          comment: state.review,
+          from: "owner",
+          to: "caregiver",
+          ownerId: user.owner.id,
+          caregiverId: 2,
+        };
+      }
+      response = await axios.post(API_URL_REVIEWS, dataToSend);
       if (response.status === 200) {
         alert("¡Reseña enviada correctamente!");
       } else {
@@ -83,6 +91,7 @@ const FormReview = () => {
       );
     }
   };
+
   const isSubmitDisabled =
     Object.values(errors).some((error) => error !== "") || state.review === "";
 
