@@ -401,7 +401,7 @@ const FormProfile = () => {
                   <input
                     name="birthdate"
                     type="date"
-                    value={dataForm.birthdate.split('T')[0]}
+                    value={dataForm?.birthdate?.split('T')[0] || ""}
                     max={new Date().toISOString().split("T")[0]} // Establece el máximo a la fecha actual
                     onChange={handleInputChange}
                   />

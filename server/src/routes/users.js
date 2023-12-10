@@ -8,6 +8,8 @@ router.get("/", controllers.getAllUsers);
 
 router.get("/:id", controllers.getUser);
 
+router.get("/email/:email", controllers.existUserWhitEmail);
+
 router.post("/", controllers.createUser);
 
 router.put("/:id", controllers.updateUser);

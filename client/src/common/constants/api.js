@@ -25,6 +25,7 @@ export const API_URL_REGISTER = API_URL_USER;
 export const API_URL_UPDATE_USER = API_URL + "/users";
 export const API_URL_TRANSACTIONS = API_URL + "/transactions";
 export const API_URL_NOTIFICATIONS = API_URL + "/notifications?userId=";
+export const API_URL_EXIST_USER_WHIT_EMAIL = API_URL_USER+"/email/";
 
 export const API_URL_VERIFY_EMAIL = API_URL + "/verify_email";
 
@@ -41,3 +42,5 @@ export const API_URL_CHAT_CAREGIVER = API_URL_CHAT + "/caregiver/";
 
 export const API_URL_ADMIN_STATS = API_URL + "/admin/users-stats";
 export const API_URL_ADMIN_INFO = API_URL + "/admin/users-info";
+
+export const API_URL_EMAIL_PAYPAL = API_URL + "/email-paypal";

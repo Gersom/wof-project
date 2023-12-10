@@ -31,6 +31,18 @@ const getAllUsersLogic = async () => {
   });
 };
 
+const getUserByEmail= async (email)=>{
+
+    const user = await UsersModel.findOne({
+      where: { email: email },
+    });
+
+    if(!user) return false;
+    
+    return !!user;
+  
+}
+
 const getUserLogic = async (id) => {
   const User = await UsersModel.findUserById(id);
   if (!User) throw Error("User not found");
@@ -150,4 +162,5 @@ module.exports = {
   updateUserLogic,
   deleteUserLogic,
   postNewRoleLogic,
+  getUserByEmail,
 };

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@common/context/authProvider";
 import { useAuth0 } from "@auth0/auth0-react";
-import { API_URL_LOGIN, API_URL_REGISTER, API_URL_USER } from "@src/common/constants/api";
+import { API_URL_LOGIN, API_URL_REGISTER, API_URL_USER, API_URL_EXIST_USER_WHIT_EMAIL } from "@src/common/constants/api";
 import {
   saveToLocalStorage,
   getFromLocalStorage,
@@ -16,11 +16,11 @@ import logo from "@icons/nav/logo.svg";
 // ... (imports)
 
 const VerifyingLogin = () => {
-  const apiUrl = API_URL_REGISTER;
+  const apiUrlRegister = API_URL_REGISTER;
+  const apiUrlCheckUserExistence = API_URL_EXIST_USER_WHIT_EMAIL;
   const navigate = useNavigate();
   const { isAuthenticated: isAuth0enticated, user, getAccessTokenSilently, isLoading } = useAuth0();
   const { isAuthenticated, setAuthenticated } = useAuth();
- 
 
   const handleSilentLogin = async () => {
     try {
@@ -34,10 +34,26 @@ const VerifyingLogin = () => {
 
   const getAuthToken = async () => await handleSilentLogin();
 
-  const handleAuth0LoginWhitRegister = async () => {
+  const manageSpecialLogin = async () => {
     const token = await handleSilentLogin();
+    const response = await axios.post(
+      API_URL_LOGIN,
+      {
+        email: user.email,
+        password: token,
+      }
+    );
+    console.log("LOGIN USER", response, user.email, token);
 
-    setAuthenticated(true);
+    saveToLocalStorage("session", {
+      userId: response.data.userId,
+      token: response.data.token,
+    });
+    manageRedirection();
+  }
+
+  const handleAuth0Register = async () => {
+    const token = await handleSilentLogin();
 
     const userData = {
       name: user.given_name,
@@ -48,44 +64,103 @@ const VerifyingLogin = () => {
       role: "",
     };
 
-    try {
-      await axios.post(apiUrl, userData);
-      // window.alert("Usuario creado correctamente");
-    } catch (error) {
-      console.error(`Error al realizar la solicitud POST: ${error.message}`);
-      // window.alert("Error al crear usuario");
-    }
-  };
+    console.log('regiter TOKEN: ', token);
 
-  const handleAuth0LoginLogin = async () => {
     try {
-      const token = await getAuthToken();
-      const response = await axios.post(
-        API_URL_LOGIN,
-        {
-          email: user.email,
-          password: token,
+      const { data } = await axios.get(apiUrlCheckUserExistence + `${userData.email}`);
+      const exist = data;
+
+      if (!exist) {
+        //console.log("REGISTER NEW USER");
+        try {
+          const info = await axios.post(apiUrlRegister, userData);
+          console.log("REGISTER NEW USER", info);
+          if (info.statusText === "Created") {
+            await manageSpecialLogin();
+            manageRedirection();
+          }
+
+        } catch (error) {
+          console.error(`Error creating new user): ${error.message}`);
         }
-      );
-
-      saveToLocalStorage("session", {
-        userId: response.data.userId,
-        token: response.data.token,
-      });
-      manageRedirection();
-      if (response.data.token) {
-        console.warn("Inicio de sesión completado");
       }
+      else {
+        //console.log("LOGIN USER");
+        const response = await axios.post(
+          API_URL_LOGIN,
+          {
+            email: user.email,
+            password: token,
+          }
+        );
+        console.log("LOGIN USER", user.email, token);
+
+        saveToLocalStorage("session", {
+          userId: response.data.userId,
+          token: response.data.token,
+        });
+        manageRedirection();
+      }
+      //console.log("DATA REGISTER AUTH0" ,data);
+
     } catch (error) {
-      console.warn("Error en correo o contraseña");
-      console.error(`Error al iniciar sesión: ${error.message}`);
+      console.error(`Error verifing email existence): ${error.message}`);
     }
   };
+
+  // const handleAuth0Register = async () => {
+  //   const token = await handleSilentLogin();
+
+  //   setAuthenticated(true);
+
+  //   const userData = {
+  //     name: user.given_name,
+  //     lastname: user.family_name,
+  //     email: user.email,
+  //     password: `${token}`,
+  //     profilePicture: user.picture,
+  //     role: "",
+  //   };
+
+  //   try {
+  //     await axios.post(apiUrl, userData);
+  //     // window.alert("Usuario creado correctamente");
+  //   } catch (error) {
+  //     console.error(`Error al realizar la solicitud POST: ${error.message}`);
+  //     // window.alert("Error al crear usuario");
+  //   }
+  // };
+
+  // const handleAuth0LoginLogin = async () => {
+  //   try {
+  //     const token = await getAuthToken();
+  //     const response = await axios.post(
+  //       API_URL_LOGIN,
+  //       {
+  //         email: user.email,
+  //         password: token,
+  //       }
+  //     );
+
+  //     saveToLocalStorage("session", {
+  //       userId: response.data.userId,
+  //       token: response.data.token,
+  //     });
+  //     manageRedirection();
+  //     if (response.data.token) {
+  //       console.warn("Inicio de sesión completado");
+  //       manageRedirection();
+  //     }
+  //   } catch (error) {
+  //     console.warn("Error en correo o contraseña");
+  //     console.error(`Error al iniciar sesión: ${error.message}`);
+  //   }
+  // };
 
   const integrateLogin = async () => {
     try {
-      await Promise.all([handleAuth0LoginWhitRegister(), handleAuth0LoginLogin()]);
-      
+      await Promise.all([handleAuth0Register()]);
+
     } catch (error) {
       console.error("Error durante la integración del inicio de sesión:", error);
     }
@@ -95,7 +170,7 @@ const VerifyingLogin = () => {
     const storage = await getFromLocalStorage("session");
 
     const { data } = await axios.get(`${API_URL_USER}/${storage?.userId}`) || {};
-    const { role = '' } = data || {};
+    const { role } = data || {};
 
     if (!data) return;
 
@@ -111,13 +186,11 @@ const VerifyingLogin = () => {
 
     switch (role) {
       case "caregiver":
-        redirectTo(routerNames["offersCaregivers"]);
-        break;
+        return redirectTo(routerNames["offersCaregivers"]);
       case "owner":
-        redirectTo(routerNames["myPets"]);
-        break;
+        return redirectTo(routerNames["myPets"]);
       default:
-        redirectTo(routerNames["profile"]);
+        return redirectTo(routerNames["profile"]);
     }
   };
 
@@ -129,7 +202,7 @@ const VerifyingLogin = () => {
   }, [isLoading]);
 
   useEffect(() => {
-    if (isAuthenticated ) {
+    if (isAuthenticated) {
       manageRedirection();
     }
   }, [isAuthenticated, navigate]);

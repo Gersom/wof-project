@@ -1,7 +1,7 @@
-import { getWallet } from '@src/common/utils/helpers-redux/getWallet';
+import { getWallet, ChangeEmailPaypal } from '@src/common/utils/helpers-redux/getWallet';
 
 
-const actionGetWallet = (id) => async (dispatch) =>{
+export const actionGetWallet = (id) => async (dispatch) =>{
   const wallet = await getWallet(id);
 	return dispatch({
 		type: 'GET_WALLET',
@@ -9,4 +9,11 @@ const actionGetWallet = (id) => async (dispatch) =>{
 	});
 }
 
-export default actionGetWallet
+export const actionsEmailPaypal = (obj) => async () => {
+	try {
+		await ChangeEmailPaypal(obj)
+	} catch (error) {
+		console.log(error);
+	}
+}
+

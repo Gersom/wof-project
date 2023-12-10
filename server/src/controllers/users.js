@@ -6,6 +6,7 @@ const {
   updateUserLogic,
   deleteUserLogic,
   postNewRoleLogic,
+  getUserByEmail,
 } = require("../logic/users");
 const catchedAsync = require("../utils/catchedAsync");
 const createUserMail = require("../config/mailing/createUserMail.js");
@@ -38,6 +39,13 @@ const getUser = catchedAsync(async (req, res) => {
   const user = await getUserLogic(id);
   res.status(200).json(user);
 }, ErrorHandler.getUserErrorHandler);
+
+const existUserWhitEmail = catchedAsync(async(req, res)=>{
+  const {email} = req.params;
+  const exist = await getUserByEmail(email);
+
+ res.status(200).json(exist);
+});
 
 // CREATE ITEM
 const createUser = catchedAsync(async (req, res) => {
@@ -84,6 +92,7 @@ const newRole = catchedAsync(async (req, res) => {
 }, ErrorHandler.postNewRoleErrorHandler);
 
 module.exports = {
+  existUserWhitEmail,
   getAllUsers,
   getUser,
   createUser,
