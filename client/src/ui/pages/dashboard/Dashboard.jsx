@@ -22,7 +22,7 @@ const Dashboard = () => {
 
 	useWsCaregiver(userData?.role || null);
 	useWsOwner(userData?.role || null);
-
+  
 	useEffect(() => {
 		const { userId } = getFromLocalStorage('session');
 		if (userId) {
