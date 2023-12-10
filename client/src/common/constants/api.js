@@ -41,3 +41,5 @@ export const API_URL_CHAT_CAREGIVER = API_URL_CHAT + "/caregiver/";
 
 export const API_URL_ADMIN_STATS = API_URL + "/admin/users-stats";
 export const API_URL_ADMIN_INFO = API_URL + "/admin/users-info";
+
+export const API_URL_EMAIL_PAYPAL = API_URL + "/email-paypal";
