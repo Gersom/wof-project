@@ -11,7 +11,7 @@ import useWsCaregiver from "@src/common/utils/websocket/useWsCaregiver";
 
 const ModalPrice = ({ data, toggleModal, setSuccess }) => {
   const dispatch = useDispatch();
-  const { sendMessageCaregiver } = useWsCaregiver("caregiver");
+  const { sendMessageCaregiver } = useWsCaregiver();
 
   const dataUser = useSelector((state) => state.userReducer?.user);
 

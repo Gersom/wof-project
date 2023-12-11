@@ -15,21 +15,11 @@ import { useDispatch, useSelector } from 'react-redux';
 const Chat = ({ userData }) => {
 	const dispatch = useDispatch();
 	const [modalChats, setModalChats] = useState(false);
-	const { wsCaregiver } = useWsCaregiver(userData?.role || null);
-	const { wsOwner } = useWsOwner(userData?.role || null);
+	const { wsCaregiver } = useWsCaregiver();
+	const { wsOwner } = useWsOwner();
 	const [newChats, setNewChats] = useState(false);
-	const [chats, setChats] = useState([
-		{
-			id: 0,
-			caregiverId: 0,
-			ownerId: 0,
-			messageChats: [],
-			caregiverName: '',
-			ownerName: '',
-			caregiverAvatar: '',
-			ownerAvatar: '',
-		},
-	]);
+	const [chats, setChats] = useState([]);
+
 
 	const getChats = useCallback(async () => {
 		if (userData?.role == 'owner') {
@@ -53,7 +43,7 @@ const Chat = ({ userData }) => {
 	//websocket
 
 	useEffect(() => {
-		if (wsOwner) {
+		if (wsOwner && userData?.role == 'owner') {
 			wsOwner.onmessage = (event) => {
 				const receivedMessage = JSON.parse(event.data);
 				if (receivedMessage.type === 'message') {
@@ -61,19 +51,19 @@ const Chat = ({ userData }) => {
 						const newChats = prev.map((chat) => {
 							if (chat.id === receivedMessage.chatId) {
 								chat.messageChats.push(receivedMessage);
-								if (receivedMessage.isCaregiver) {
-									dispatch(setChat({ id: chat.id }));
-								}
 							}
 							return chat;
 						});
 						return newChats;
 					});
+					if (receivedMessage.isCaregiver) {
+						dispatch(setChat({ id: receivedMessage.chatId }));
+					}
 				} else if (receivedMessage.type === 'update_message') {
 					setNewChats(!newChats);
 				}
 			};
-		} else if (wsCaregiver) {
+		} else if (wsCaregiver && userData?.role == 'caregiver') {
 			wsCaregiver.onmessage = (event) => {
 				const receivedMessage = JSON.parse(event.data);
 				if (receivedMessage.type === 'message') {
@@ -81,14 +71,14 @@ const Chat = ({ userData }) => {
 						const newChats = prev.map((chat) => {
 							if (chat.id === receivedMessage.chatId) {
 								chat.messageChats.push(receivedMessage);
-								if (receivedMessage.isOwner) {
-									dispatch(setChat({ id: chat.id }));
-								}
 							}
 							return chat;
 						});
 						return newChats;
 					});
+					if (receivedMessage.isOwner) {
+						dispatch(setChat({ id: receivedMessage.chatId }));
+					}
 				} else if (receivedMessage.type === 'update_message') {
 					setNewChats(!newChats);
 				}

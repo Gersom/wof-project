@@ -1,17 +1,24 @@
 import { WS_URL } from '@src/common/constants/api';
-
 import  { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAlert } from '@src/common/store/slices/alertSlice';
+import { setWs } from '@src/common/store/slices/wsSlice';
+import routerNames from '@src/common/constants/routes';
+import { useLocation } from 'react-router-dom';
 
-const useWsOwner = (role) => {
+const useWsOwner = () => {
 	const dispatch = useDispatch();
+  const location = useLocation();
+
   const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
-	const [wsOwner, setWsOwner] = useState(null);
+
   const ownerId = useSelector((state) => state.userReducer.user?.owner?.id)
+  const ROLE = useSelector((state) => state?.userReducer?.user?.role)
+  const wsOwner = useSelector((state) => state.wsReducer.ws);
 
 	useEffect(() => {
-    if(role !== 'owner') return;
+    if(ROLE !== 'owner') return;
+
 		if (!wsOwner) {
 			const newWs = new WebSocket(WS_URL);
 
@@ -49,18 +56,18 @@ const useWsOwner = (role) => {
 
 			newWs.onclose = () => {
 				console.log('Connection closed');
-				setWsOwner(null); // Reiniciar la conexión WebSocket si se cierra
+				dispatch(setWs(null)); // Reiniciar la conexión WebSocket si se cierra
 			};
 
-			setWsOwner(newWs);
+			dispatch(setWs(newWs));
 		}
 
 		return () => {
-			if (wsOwner) {
+			if (wsOwner && routerNames['landing'] === location.pathname) {
 				wsOwner.close(); // Cerrar la conexión al desmontar el componente
 			}
 		};
-	}, [wsOwner , dispatch, role,lastProcessedMessage]);
+	}, [ dispatch, ROLE,lastProcessedMessage, location.pathname, ownerId, wsOwner]);
 
   const sendMessageOwner = (message) => {
     if (wsOwner && wsOwner.readyState === WebSocket.OPEN) {
