@@ -8,21 +8,28 @@ import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import CardUser from "../cards/card-user/CardUser";
 import ModalCustom from "../modals/modal-custom/ModalCustom";
+
+//?import icons
 import ArrowLeft from "@icons/arrowLeft.svg?react";
 import ArrowRight from "@icons/arrowRight.svg?react";
 import DoubleArrowLeft from "@icons/doubleArrowLeft.svg?react";
 import DoubleArrowRight from "@icons/doubleArrowRight.svg?react";
+import ArrowLeftGrey from "@icons/arrowLeftGrey.svg?react";
+import ArrowRightGrey from "@icons/arrowRightGrey.svg?react";
+import DoubleArrowLeftGrey from "@icons/doubleArrowLeftGrey.svg?react";
+import DoubleArrowRightGrey from "@icons/doubleArrowRightGrey.svg?react";
 
 const UserInfo = () => {
   const [userData, setUserData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [selectUser, setSelectUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
   const getPaginate = async (url) => {
     try {
       const response = await axios.get(url);
-      console.log("API Response (Success):", response);
+      setTotalPages(Math.ceil(response.data.count / 10));
       return response;
     } catch (error) {
       console.log(error);
@@ -34,7 +41,6 @@ const UserInfo = () => {
         API_URL_ADMIN_INFO + "?page=" + currentPage
       );
       setUserData(pagination?.data);
-      console.log(pagination);
     };
     getPages();
   }, [currentPage]);
@@ -67,21 +73,45 @@ const UserInfo = () => {
       <div className={styles.containerMainUsers}>
         <div className={styles.containerPaginate}>
           <section>
-            <button>
-              <DoubleArrowLeft />
+            <button
+              onClick={() => setCurrentPage(1)}
+              disabled={userData.previous === null}
+            >
+              {userData.previous === null ? (
+                <DoubleArrowLeftGrey />
+              ) : (
+                <DoubleArrowLeft />
+              )}
             </button>
             <div />
-            <button>
-              <ArrowLeft />
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={userData.previous === null}
+            >
+              {userData.previous === null ? <ArrowLeftGrey /> : <ArrowLeft />}
             </button>
           </section>
-          <h3>Pagina {currentPage} de 42</h3>
+          <h3>
+            Pagina {currentPage < 10 ? "0" + currentPage : currentPage} de{" "}
+            {totalPages}
+          </h3>
           <section>
-            <button>
-              <ArrowRight />
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={userData.next === null}
+            >
+              {userData.next === null ? <ArrowRightGrey /> : <ArrowRight />}
             </button>
-            <button>
-              <DoubleArrowRight />
+            <div />
+            <button
+              onClick={() => setCurrentPage(totalPages)}
+              disabled={userData.next === null}
+            >
+              {userData.next === null ? (
+                <DoubleArrowRightGrey />
+              ) : (
+                <DoubleArrowRight />
+              )}
             </button>
           </section>
         </div>
@@ -89,53 +119,34 @@ const UserInfo = () => {
           <>
             {userData.results.map((user) => (
               <div key={user.email} className={styles.card}>
-                <div
-                  className={styles.notiImg}
-                  style={{
-                    backgroundImage: "url('" + user.profilePicture + "')",
-                  }}
-                ></div>
-                <div>
-                  <p>
-                    {user.name} ({user.role})
-                  </p>
-                  <p>
-                    <span className={styles.pago}>Pago Total:</span> $
-                    {user.totalTransactions}
-                  </p>
-                  <p>Argentina</p>
+                <div className={styles.containerUserInfo}>
+                  <img src={user.profilePicture} alt="image" />
+                  <div className={styles.containerChildInfo}>
+                    <p>
+                      {user.name} ({user.role})
+                    </p>
+                    <p>
+                      <span>Pago Total:</span> ${user.totalTransactions}
+                    </p>
+                    <p>Argentina</p>
+                  </div>
                 </div>
-                <div className={styles.button}>
-                  <div
+                <div className={styles.containerButton}>
+                  <button
                     onClick={() => viewProfile(user)}
                     className={styles.notiButton1}
                   >
                     Perfil
-                  </div>
-                  <div
+                  </button>
+                  <button
                     // onClick={() => handleBanClick(user.id)}
                     className={styles.notiButton2}
                   >
                     Banear
-                  </div>
+                  </button>
                 </div>
               </div>
             ))}
-            <div>
-              <button
-                onClick={() => setCurrentPage(currentPage - 1)}
-                disabled={userData.previous === null}
-              >
-                Anterior
-              </button>
-
-              <button
-                onClick={() => setCurrentPage(currentPage + 1)}
-                disabled={userData.next === null}
-              >
-                Siguiente
-              </button>
-            </div>
           </>
         ) : (
           <p>No hay datos de usuario disponibles</p>
