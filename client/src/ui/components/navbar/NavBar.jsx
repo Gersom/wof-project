@@ -12,7 +12,7 @@ import LogOutIcon from "@icons/login/log-out.svg?react"
 
 const NavBar = ({ userData }) => {
 	const location = useLocation();
-	const {logout} = useAuth0();
+	const { logout } = useAuth0();
 
 	const [show, setShow] = useState(true);
 	const [links, setLinks] = useState([]);
@@ -48,14 +48,28 @@ const NavBar = ({ userData }) => {
 					</span>
 				</>
 			);
+		} else if (userData.role === 'admin') {
+			return (
+				<>
+					<span>
+						<span>🎫</span> Administrador
+					</span>
+				</>
+			);
 		} else {
-			return <>Indefinido</>;
+			return (
+				<>
+					<span>
+						<span>❓</span> Indefinido
+					</span>
+				</>
+			);
 		}
 	};
 
 	const closeSession = () => {
 		saveToLocalStorage('session', '');
-		logout({logoutParams: { returnTo: window.location.origin }});
+		logout({ logoutParams: { returnTo: window.location.origin } });
 		// navigate(routerNames['login']);
 	};
 
@@ -109,10 +123,10 @@ const NavBar = ({ userData }) => {
 						<button
 							className={`${styles.linkContainer}`}
 							onClick={closeSession}
-						> 
-              <div className={styles.LogOutIcon}>
-                  <LogOutIcon />
-              </div>
+						>
+							<div className={styles.LogOutIcon}>
+								<LogOutIcon />
+							</div>
 							{show && <li>Cerrar sesión</li>}
 						</button>
 					</ul>

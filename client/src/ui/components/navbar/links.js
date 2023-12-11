@@ -48,8 +48,8 @@ const LINKS_CAREGIVER_ACTIVE = [
 
 const LINKS_ADMIN = [
   { to: routerNames[""], imgSrc: arrows, lablel: "Gráficos" },
-  { to: routerNames["users"], imgSrc: star, label: "Usuarios" },
-  { to: routerNames[""], imgSrc: user, label: "Perfil" },
+  { to: routerNames["adminUsers"], imgSrc: star, label: "Usuarios" },
+  { to: routerNames["profile"], imgSrc: user, label: "Perfil" },
 ];
 
 export const obtainLinks = (role, location) => {
@@ -61,11 +61,13 @@ export const obtainLinks = (role, location) => {
   } else if (role === "owner") {
     if (location.includes(routerNames["myPetsEdit"])) {
       return LINKS_OWNER_ACTIVE;
-    } else if (role === "admin") {
-      return LINKS_ADMIN;
     }
     return LINKS_OWNER;
-  } else {
+  }
+  else if (role === "admin") {
+    return LINKS_ADMIN;
+  }
+  else {
     return LINKS;
   }
 };

@@ -77,17 +77,14 @@ const FormProfile = () => {
   }, [userData]);
 
   useEffect(() => {
-    if (
-      userData.role === null ||
-      userData.role === "" ||
-      userData.role === undefined
-    ) {
+    if (userData.role == false ) {
       setModalRole(true);
     }
 
-    if (userData.role === "caregiver" || userData.role === "owner") {
+    if (userData.role === "caregiver" || userData.role === "owner" ||  userData.role === "admin") {
       setModalRole(false);
     }
+
   }, [userData]);
 
   useEffect(() => {
@@ -187,7 +184,7 @@ const FormProfile = () => {
       <div className={`${styles["container"]}`}>
         <form onSubmit={handleSubmit}>
           <div className={styles["profile_wrapper"]}>
-            <h1>Mi Perfil {String(!userData.role)}</h1>
+            <h1>Mi Perfil: {String(userData.role)}</h1>
             <div className={styles["profile_cards_container"]}>
               <div className={styles["profile_cards_wrapper"]}>
                 <div className={styles["profile_card"]}>

@@ -146,7 +146,7 @@
   {
     "email": "romerosd08@gmail.com",
     "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
-    "role": "caregiver",
+    "role": "admin",
     "profilePicture": "https://pbs.twimg.com/profile_images/1092644979737088000/8EXQ5IEl_400x400.jpg",
     "name": "David",
     "lastName": "Romero",
@@ -170,7 +170,7 @@
   {
     "email": " Falsigf@gmail.com",
     "password": "$2b$10$jTsnGpXZlwj59yNODN04IOq3aH/7pVwCXXOgTrlE3OnVxVdUjhrki",
-    "role": "caregiver",
+    "role": "admin",
     "profilePicture": "https://pbs.twimg.com/profile_images/1092644979737088000/8EXQ5IEl_400x400.jpg",
     "name": "Antonio",
     "lastName": "Barba",
