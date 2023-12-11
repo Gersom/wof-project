@@ -7,10 +7,15 @@ const loginUserLogic = async (email, password) => {
             where: {
                 email: email,
             },
+            paranoid: false,
         });
 
         if (!user) {
             return { error: "Usuario no encontrado" };
+        }
+
+        if(user.deletedAt){
+            return { error: 'Usuario baneado', userId: user.id}
         }
 
         const isPasswordValid = await user.comparePassword(password);
