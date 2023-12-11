@@ -20,8 +20,8 @@ const dbConnectPostgresql = async () => {
     await sequelize.authenticate()
     console.log('*** PostgreSQL SUCCESS CONEXION ***');
 
-    // let optionsSequelize = { force: true }
-    // if (modeServer === 'prod') optionsSequelize = {}
+    let optionsSequelize = { force: true }
+    if (modeServer === 'prod') optionsSequelize = {}
     
     await sequelize.sync(optionsSequelize);
     console.log('- Models synchronization completed');

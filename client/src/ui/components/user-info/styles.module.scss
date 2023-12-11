@@ -2,13 +2,12 @@
   display: flex;
   flex-direction: row;
   background-color: white;
+  width: 100%;
   max-width: 800px;
   align-items: center;
   padding: 10px 20px;
   margin: auto;
   border-radius: 12px;
-  margin-bottom: 20px;
-  border: solid 1px #717171;
   gap: 30px;
 
   p {
@@ -65,4 +64,42 @@
 .notiButton2:hover {
   color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.containerMainUsers{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 0rem 2rem;
+}
+.containerPaginate{
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  width: max-content;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  border: 0.2rem solid #cccccc;
+  padding: 0.5rem 1.25rem;
+  border-radius: 1.5rem;
+  section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    button{
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  h3{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-text-dark);
+  }
 }

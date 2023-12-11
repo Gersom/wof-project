@@ -66,6 +66,20 @@
       }
     }
   }
+  p{
+    color: var(--color-text-dark);
+    font-family: "Lexend-SemiBold";
+    font-size: 1.1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    span {
+      margin-bottom: 0.5rem;
+      color: var(--color-text-grey);
+      font-family: "Lexend-SemiBold";
+      font-size: 1.1rem;
+    }
+  }
 }
 
 .bar {
