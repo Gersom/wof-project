@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import CardUser from "../../cards/card-user/CardUser";
-import FormReview from "../../reviews/FormReview";
+import FormReview from "../../forms/form-review/FormReview";
 import styles from "./styles.module.scss";
 import cross from "@icons/cross.svg";
 

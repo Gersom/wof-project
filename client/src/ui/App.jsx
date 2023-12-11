@@ -12,7 +12,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
 import Details from "./pages/details/Details";
 import Login from "./pages/login/Login";
-import FormReview from "./components/reviews/FormReview";
+import FormReview from "./components/forms/form-review/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
 import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
 import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
@@ -47,9 +47,9 @@ function App() {
   useAuth();
 
   const storeCurrentRouteInSession = (newRoute) => {
-    let  storage = getFromLocalStorage("session");
+    let storage = getFromLocalStorage("session");
     storage = storage || {};
-    
+
     if (newRoute !== "/verificando" && newRoute !== "/iniciar-sesion") {
       if (storage?.token && storage?.userId) {
         const updatedstorage = {

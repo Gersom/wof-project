@@ -3,12 +3,10 @@ import styles from "./styles.module.scss";
 import FilterSortLocationBar from "@src/ui/components/filter-sort-location-bar/FilterSortLocationBar";
 import { useSelector } from "react-redux";
 import { getCaredPets } from "@src/common/utils/helpers-redux/getCaredPets";
-import CustomerList from "@src/ui/components/cards/card-caregivers/caregiver-list/CostumerLis";
+import CaregiverList from "@src/ui/components/cards/card-caregivers/caregiver-list/CaregiverList";
 
 const MyCaregivers = () => {
-  const caregiverId = useSelector(
-    (state) => state?.userReducer?.user?.caregiver?.id
-  );
+  const ownerId = useSelector((state) => state?.userReducer?.user?.owner?.id);
 
   const [caredPets, setCaredPets] = useState([]);
   const [loading, setLoading] = useState(true); //Limpiar remanentes
@@ -17,8 +15,8 @@ const MyCaregivers = () => {
   useEffect(() => {
     setLoading(true);
 
-    if (caregiverId) {
-      getCaredPets(caregiverId)
+    if (ownerId) {
+      getCaredPets(ownerId)
         .then((response) => {
           console.log("Cared Pets Response:", response);
           setCaredPets(response);
@@ -30,24 +28,25 @@ const MyCaregivers = () => {
           setLoading(false);
         });
     }
-  }, [caregiverId]);
+  }, [ownerId]);
 
   console.log("Cantidad de elementos del array:", caredPets.length);
 
-  if (role === "caregiver") {
+  if (role === "owner") {
     return (
       <div className={styles.mainContainerl}>
-        <h1 className={styles.myClients}>Mis Clientes</h1>
+        <h1 className={styles.myClients}>Mis Cuidadores</h1>
         <FilterSortLocationBar role={role} />
 
         {loading ? (
           <p>Cargando...</p>
         ) : caredPets.length === 0 ? (
           <h1 className={styles.noClients}>
-            ¿Sin Clientes? Revisa el apartado de ofertas
+            ¡Publica una oferta y encuentra al cuidador adecuado para tu
+            mascota!
           </h1>
         ) : (
-          <CustomerList customers={caredPets} />
+          <CaregiverList customers={caredPets} />
         )}
       </div>
     );
