@@ -164,29 +164,25 @@ const UserInfo = () => {
                   >
                     Perfil
                   </button>
+                  {user.banned ?
+                  (
                   <button
-                    // onClick={() => handleBanClick(user.id)}
+                    onClick={() => handleUnBanClick(user.userId)}
+                    className={styles.notiButton3}
+                  >
+                    Desbloquear
+                  </button>
+                  ):(
+                  <button
+                     onClick={() => handleBanClick(user.userId)}
                     className={styles.notiButton2}
                   >
-                    Banear
+                    Bloquear
                   </button>
+                  )}
                 </div>
               </div>
             ))}
-            <div>
-              <button
-                onClick={() => setCurrentPage(currentPage - 1)}
-                disabled={userData.previous === null}
-              >
-                Anterior
-              </button>
-              <button
-                onClick={() => setCurrentPage(currentPage + 1)}
-                disabled={userData.next === null}
-              >
-                Siguiente
-              </button>
-            </div>
           </>
         ) : (
           <p>No hay datos de usuario disponibles</p>
