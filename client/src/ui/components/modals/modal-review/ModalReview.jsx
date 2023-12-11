@@ -25,7 +25,7 @@ const ModalReview = ({ ownerId, caregiverId, role, closeModal }) => {
             imgSrc={user.profilePicture}
           />
 
-          <FormReview className={styles.formReview} />
+          <FormReview className={styles.formReview} ownerId={ownerId} caregiverId={caregiverId}/>
         </div>
       </div>
     </div>
