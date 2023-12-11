@@ -187,8 +187,8 @@ const VerifyingLogin = () => {
             <div className={styles["input_container"]}>
               <label htmlFor="email">
                 <span>
-                  Estamos verificando su inicio de sesi贸n, no nos tomar谩 mucho
-                  tiempo, gracias por confiar en nosotros 馃挅
+                  Estamos verificando su inicio de sesión, no nos tomará mucho
+                  tiempo, gracias por confiar en nosotros.
                 </span>
               </label>
             </div>
