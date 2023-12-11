@@ -44,7 +44,7 @@ const getUsersInfoLogic = async (page = 1, pageSize = 10) => {
   const offset = (page - 1) * pageSize;
 
   const users = await UsersModel.findAndCountAll({
-    attributes: ["profilePicture", "role", "email", "name"],
+    attributes: ["profilePicture", "role", "email", "name", "id"],
     offset,
     limit: pageSize,
   });
@@ -83,6 +83,7 @@ const getUsersInfoLogic = async (page = 1, pageSize = 10) => {
       }
 
       return {
+        userId: user.id,
         profilePicture: user.profilePicture,
         role: user.role,
         email: user.email,
