@@ -140,10 +140,22 @@ UsersModel["restoreUser"] = async (userId) => {
   if (!userToRestore) {
     throw new Error("User not found");
   }
-  
+
   await userToRestore.restore();
 
   return userToRestore;
+};
+
+UsersModel["adminFindAllUsers"] = async () => {
+  const allUsers = await UsersModel.findAll({
+    paranoid: false, // Incluye los registros marcados como borrados
+    include: [
+      { model: CountriesModel, attributes: ["name"] },
+      { model: ProvincesModel, attributes: ["name"] },
+    ],
+  });
+
+  return allUsers;
 };
 
 
