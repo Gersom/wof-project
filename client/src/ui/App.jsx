@@ -35,8 +35,8 @@ import Register from "./pages/register/Register";
 import useAlert from "@src/common/hooks/use-alert/useAlert";
 import NotificatioPanel from "./components/notification/NotificatioPanel";
 import { useEffect } from "react";
-import Admin from "./pages/admin/admin";
-import Users from "./pages/users/users";
+import Admin from "./pages/admin/Admin";
+import Users from "./pages/users/Users";
 import MyCaregivers from "./pages/my-caregivers/MyCaregivers";
 
 // Imports Components
