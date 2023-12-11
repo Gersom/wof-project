@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
 
-router.post("/", async (req, res) => {
-  res.status(200).json([
+router.get("/", async (req, res) => {
+  res.status(200).send([
     {
       date: "2023-12-11 16:01:58.523-05",
       currencyCode: "USD",
