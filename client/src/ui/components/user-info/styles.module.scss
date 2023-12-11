@@ -76,6 +76,18 @@
   }
 }
 
+.notiButton3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ccce4b;
+  &:hover{
+    background-color: transparent;
+    border-color:  #ccce4b;
+    color:  #ccce4b;
+  }
+}
+
 
 .containerMainUsers{
   display: flex;
