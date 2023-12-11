@@ -26,7 +26,7 @@ const DatePublicSelect = ({
 	toggleModal,
 }) => {
 	const dispatch = useDispatch();
-	const { sendMessageOwner } = useWsOwner('owner');
+	const { sendMessageOwner } = useWsOwner();
 
 	const [startDate, setStartDate] = useState(
 		data.status === 'completed' ? '' : data.startDate?.split('T')[0]

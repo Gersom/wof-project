@@ -28,7 +28,7 @@ const OffersCaregivers = () => {
 	});
 	const myPets = useSelector((state) => state?.myPetsReducer?.myPets);
 	const ownerId = useSelector((state) => state?.userReducer?.user?.owner?.id);
-	const { sendMessageOwner } = useWsOwner('owner');
+	const { sendMessageOwner } = useWsOwner();
 
 	const successPaid = async () => {
 		setModalState(false);

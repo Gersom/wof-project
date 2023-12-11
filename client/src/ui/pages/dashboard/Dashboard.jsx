@@ -20,8 +20,8 @@ const Dashboard = () => {
 	userReducer;
 	const userData = useSelector((state) => state?.userReducer?.user);
 
-	useWsCaregiver(userData?.role || null);
-	useWsOwner(userData?.role || null);
+	useWsCaregiver();
+	useWsOwner();
   
 	useEffect(() => {
 		const { userId } = getFromLocalStorage('session');
