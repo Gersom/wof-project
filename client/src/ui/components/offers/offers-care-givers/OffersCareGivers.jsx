@@ -19,7 +19,7 @@ import useWsOwner from '@src/common/utils/websocket/useWsOwner';
 
 const OffersCareGivers = () => {
 	const dispatch = useDispatch();
-	const { sendMessageOwner } = useWsOwner('owner');
+	const { sendMessageOwner } = useWsOwner();
 	const { id } = useParams();
 	const { isLoading, details } = useGetPetId(id);
 	const { isLoadingOffers, offersCareGivers } = useOffersCaregivers(details?.id || null);

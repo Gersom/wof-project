@@ -24,7 +24,7 @@ import { API_URL_CHAT } from '@src/common/constants/api';
 
 const OffersCaregiversDetail = () => {
 	const dispatch = useDispatch();
-	const { sendMessageOwner } = useWsOwner('owner');
+	const { sendMessageOwner } = useWsOwner();
 	const { id } = useParams();
 	const { isLoading, details } = useGetPetId(id);
 	const { isLoadingOffers, offersCareGivers } = useOffersCaregivers(
