@@ -29,6 +29,7 @@ import {
 
 import FormProfile from "./components/forms/form-profile/FormProfile";
 import Register from "./pages/register/Register";
+import Statistics from "./pages/statistics/Statistics";
 
 //import useAlert
 import useAlert from "@src/common/hooks/use-alert/useAlert";
@@ -139,6 +140,7 @@ function App() {
           </Route>
         </Route>
         <Route path={routerNames["admin"]} element={<Admin />}>
+          <Route path={routerNames["statistics"]} element={<Statistics />}></Route>
           <Route path={routerNames["users"]} element={<Users />}></Route>
         </Route>
 

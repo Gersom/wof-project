@@ -29,6 +29,8 @@ const routerNames = {
 
   admin: "/admin",
   users: "/admin/users",
+  statistics: "/admin/statistics"
+
 };
 
 export default routerNames;
