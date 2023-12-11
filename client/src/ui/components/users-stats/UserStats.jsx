@@ -24,7 +24,7 @@ const UserStats = () => {
     <div className={styles.container}>
       <div className={styles.cards}>
         <div className={styles.card}>
-          <span>🧑‍🎄</span>
+          <span>🧑</span>
           <div className={styles.logo}>
             <h4>Usuarios</h4>
             <p> {userData && userData.usersCount}</p>

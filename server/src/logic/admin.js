@@ -44,10 +44,11 @@ const getUsersInfoLogic = async (page = 1, pageSize = 10) => {
   const offset = (page - 1) * pageSize;
 
   const users = await UsersModel.findAndCountAll({
-    attributes: ["profilePicture", "role", "email", "name", "id"],
+    attributes: ["profilePicture", "role", "email", "name", "id", "deletedAt"],
     offset,
     limit: pageSize,
     paranoid: false,
+    order: [['id', 'ASC']],
   });
 
   const totalCount = users.count;
@@ -90,6 +91,7 @@ const getUsersInfoLogic = async (page = 1, pageSize = 10) => {
         email: user.email,
         name: user.name,
         totalTransactions: totalTransactions || 0,
+        banned:user.deletedAt?true:false,
       };
     })
   );

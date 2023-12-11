@@ -46,9 +46,15 @@
   height: 35px;
   text-align: center;
   border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.notiButton1:hover {
+.notiButton1:hover,
+.notiButton2:hover,
+.notiButton3:hover {
   color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -59,11 +65,22 @@
   height: 35px;
   text-align: center;
   border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.notiButton2:hover {
-  color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+.notiButton3{
+  background-color: #c1ce4b;
+  width: 100px;
+  height: 35px;
+  text-align: center;
+  border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .containerMainUsers{

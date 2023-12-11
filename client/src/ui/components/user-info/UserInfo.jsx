@@ -1,6 +1,7 @@
 import {
   API_URL_ADMIN_INFO,
-  // API_URL_BAN_USER,
+  API_URL_BAN_USER,
+  API_URL_UNBAN_USER,
   API_URL_USER,
 } from "@src/common/constants/api";
 import axios from "axios";
@@ -39,16 +40,41 @@ const UserInfo = () => {
     getPages();
   }, [currentPage]);
 
-  // const handleBanClick = async (userId) => {
-  //   try {
-  //     await axios.post(API_URL_BAN_USER, { userId });
-  //     setUserData((prevUserData) =>
-  //       prevUserData.filter((user) => user.id !== userId)
-  //     );
-  //   } catch (error) {
-  //     console.error("Error al banear al usuario:", error);
-  //   }
-  // };
+  const handleBanClick = async (userId) => {
+    try {
+      console.log(userData);
+      await axios.put(API_URL_BAN_USER + userId);
+      setUserData((prevUserData) => {
+        if (prevUserData && prevUserData.results) {
+          const updatedResults = prevUserData.results.map((user) =>
+            user.userId === userId ? { ...user, banned: true } : user
+          );
+          return { ...prevUserData, results: updatedResults };
+        }
+        return prevUserData;
+      });
+    } catch (error) {
+      console.error("Error al banear al usuario:", error);
+    }
+  };
+
+  const handleUnBanClick = async (userId) => {
+    try {
+      console.log(userData);
+      await axios.put(API_URL_UNBAN_USER + userId);
+      setUserData((prevUserData) => {
+        if (prevUserData && prevUserData.results) {
+          const updatedResults = prevUserData.results.map((user) =>
+            user.userId === userId ? { ...user, banned: false } : user
+          );
+          return { ...prevUserData, results: updatedResults };
+        }
+        return prevUserData;
+      });
+    } catch (error) {
+      console.error("Error al 'des-banear' al usuario:", error);
+    }
+  };
 
   const viewProfile = async (userData) => {
     if (userData.role === "owner") {
@@ -100,8 +126,7 @@ const UserInfo = () => {
                     {user.name} ({user.role})
                   </p>
                   <p>
-                    <span className={styles.pago}>Pago Total:</span> $
-                    {user.totalTransactions}
+                    <span className={styles.pago}>Pago Total:</span> ${user.totalTransactions}
                   </p>
                   <p>Argentina</p>
                 </div>
@@ -112,12 +137,20 @@ const UserInfo = () => {
                   >
                     Perfil
                   </div>
-                  <div
-                    // onClick={() => handleBanClick(user.id)}
-                    className={styles.notiButton2}
-                  >
-                    Banear
-                  </div>
+                  {user.banned ? (
+                    <div className={styles.notiButton3}
+                      onClick={() => handleUnBanClick(user.userId)}
+                    >
+                      Recuperar
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => handleBanClick(user.userId)}
+                      className={styles.notiButton2}
+                    >
+                      Banear
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -128,7 +161,6 @@ const UserInfo = () => {
               >
                 Anterior
               </button>
-
               <button
                 onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={userData.next === null}
