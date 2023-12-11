@@ -16,12 +16,12 @@ const insertRequests = async () => {
     requestsFormated[0] = {
       ...requestsFormated[0],
       caregiverId: jhonCaregiverId,
-      postId: 1 
+      servicePostingId: 1 
     }
     requestsFormated[1] = {
       ...requestsFormated[1],
       caregiverId: gabyCaregiverId,
-      postId: 1 
+      servicePostingId: 1 
     }
 
     insertRecords({
