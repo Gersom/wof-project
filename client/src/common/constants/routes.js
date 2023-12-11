@@ -16,6 +16,10 @@ const routerNames = {
   offersOwners: "/app/owners/offers/",
   detailsOwners: "/app/owners/offers/details/",
 
+  adminUsers: "/app/admin/users",
+  adminStatistics: "/app/admin/statistics",
+
+
   formReview: "/app/form",
   profile: "/app/profile",
 
@@ -26,9 +30,7 @@ const routerNames = {
   myHome: "/app/my-home",
   lastsCaregivers: "/app/my-caregivers",
   alerts: "/app/my-notifications",
-  admin: "/admin",
   users: "/admin/users",
-  MyWallet: "/app/my-wallet",
 };
 
 export default routerNames;

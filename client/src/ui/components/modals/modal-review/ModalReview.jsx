@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import CardUser from "../../cards/card-user/CardUser";
-import FormReview from "../../reviews/FormReview";
+import FormReview from "../../forms/form-review/FormReview";
 import styles from "./styles.module.scss";
 import cross from "@icons/cross.svg";
 
@@ -25,7 +25,7 @@ const ModalReview = ({ ownerId, caregiverId, role, closeModal }) => {
             imgSrc={user.profilePicture}
           />
 
-          <FormReview className={styles.formReview} />
+          <FormReview className={styles.formReview} ownerId={ownerId} caregiverId={caregiverId}/>
         </div>
       </div>
     </div>

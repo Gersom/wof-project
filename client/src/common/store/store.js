@@ -9,6 +9,7 @@ import myPetsSlice from './slices/myPetsSlice';
 import alertSlice from './slices/alertSlice';
 import chatSlice from './slices/chatSlice';
 import walletReducer from './reducers/walletReducer';
+import wsSlice from './slices/wsSlice';
 // combinaed Reducers
 const rootReducerCombined = combineReducers({
 	reducer: reducer,
@@ -18,7 +19,8 @@ const rootReducerCombined = combineReducers({
 	myPetsReducer: myPetsSlice,
 	alertReducer: alertSlice,
 	myWallet: walletReducer,
-	chatReducer : chatSlice
+	chatReducer : chatSlice,
+	wsReducer : wsSlice
 });
 
 // configured store

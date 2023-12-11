@@ -24,8 +24,8 @@ const CareInProgress = ({
 	const role = useSelector((state) => state?.userReducer?.user?.role);
 	const userId = useSelector((state) => state?.userReducer?.user?.id);
 
-	const { sendMessageCaregiver } = useWsCaregiver(role);
-	const { sendMessageOwner } = useWsOwner(role);
+	const { sendMessageCaregiver } = useWsCaregiver();
+	const { sendMessageOwner } = useWsOwner();
 
 	useEffect(() => {
 		const currentDate = new Date();

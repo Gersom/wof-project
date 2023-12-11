@@ -12,9 +12,11 @@ const name = "users";
 const config = {
   timestamps: true, // createAt, updateAt
   freezeTableName: true,
+  paranoid: true,
 };
 const schema = {
   id: {
+    
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
@@ -64,6 +66,7 @@ const schema = {
     type: DataTypes.DATE,
     allowNull: true,
   },
+ 
 };
 
 const UsersModel = sequelize.define(name, schema, config);
@@ -117,6 +120,42 @@ UsersModel["findUserById"] = async (userId) => {
     ]
   })
   return newUser;
+};
+
+UsersModel["deleteUser"] = async (userId) => {
+  const userToDelete = await UsersModel.findByPk(userId);
+  
+  if (!userToDelete) {
+    throw new Error("User not found");
+  }
+
+  await userToDelete.destroy();
+
+  return userToDelete;
+};
+
+UsersModel["restoreUser"] = async (userId) => {
+  const userToRestore = await UsersModel.findByPk(userId, { paranoid: false });
+
+  if (!userToRestore) {
+    throw new Error("User not found");
+  }
+
+  await userToRestore.restore();
+
+  return userToRestore;
+};
+
+UsersModel["adminFindAllUsers"] = async () => {
+  const allUsers = await UsersModel.findAll({
+    paranoid: false, // Incluye los registros marcados como borrados
+    include: [
+      { model: CountriesModel, attributes: ["name"] },
+      { model: ProvincesModel, attributes: ["name"] },
+    ],
+  });
+
+  return allUsers;
 };
 
 

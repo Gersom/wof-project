@@ -6,10 +6,10 @@ const MODE = process.env.MODE
 
 let urlHost;
 
-if(MODE){
+if (MODE) {
   urlHost = SERVER_HOST;
 }
-else{
+else {
   urlHost = `${SERVER_HOST}:${SERVER_PORT}`;
 }
 
@@ -44,9 +44,11 @@ const getUsersInfoLogic = async (page = 1, pageSize = 10) => {
   const offset = (page - 1) * pageSize;
 
   const users = await UsersModel.findAndCountAll({
-    attributes: ["profilePicture", "role", "email", "name"],
+    attributes: ["profilePicture", "role", "email", "name", "id", "deletedAt"],
     offset,
     limit: pageSize,
+    paranoid: false,
+    order: [['id', 'ASC']],
   });
 
   const totalCount = users.count;
@@ -83,11 +85,13 @@ const getUsersInfoLogic = async (page = 1, pageSize = 10) => {
       }
 
       return {
+        userId: user.id,
         profilePicture: user.profilePicture,
         role: user.role,
         email: user.email,
         name: user.name,
         totalTransactions: totalTransactions || 0,
+        banned:user.deletedAt?true:false,
       };
     })
   );
@@ -103,7 +107,33 @@ const getUsersInfoLogic = async (page = 1, pageSize = 10) => {
   };
 };
 
+const deleteUserLogic = async (userId) => {
+  try {
+    const deletedUser = await UsersModel.deleteUser(userId);
+    console.log('User logically deleted:', deletedUser);
+    return deletedUser;
+  } catch (error) {
+    console.error('Error deleting user logically:', error.message);
+    throw error;
+  }
+};
+
+const restoreUserLogic = async (userId) => {
+  try {
+    const restoredUser = await UsersModel.restoreUser(userId);
+    console.log('User logically restored:', restoredUser);
+    return restoredUser;
+  } catch (error) {
+    console.error('Error restoring user logically:', error.message);
+    throw error;
+  }
+};
+
+
+
 module.exports = {
   getAllUsersStatsLogic,
   getUsersInfoLogic,
+  deleteUserLogic,
+  restoreUserLogic,
 };

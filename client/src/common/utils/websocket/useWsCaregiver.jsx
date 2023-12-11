@@ -1,26 +1,30 @@
 import { WS_URL } from '@src/common/constants/api';
-
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionGetOffersOwner } from '@src/common/store/actions/offersActions';
 import { setAlert } from '@src/common/store/slices/alertSlice';
+import { setWs } from '@src/common/store/slices/wsSlice';
+import routerNames from '@src/common/constants/routes';
+import { useLocation } from 'react-router-dom';
 
-const useWsCaregiver = (role) => {
+const useWsCaregiver = () => {
 	const dispatch = useDispatch();
+	const location = useLocation();
 	
 	const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
-	const [wsCaregiver, setWsCaregiver] = useState(null);
 
 	const caregiverId = useSelector((state) => state.userReducer.user?.caregiver?.id);
+	const wsCaregiver = useSelector((state) => state.wsReducer.ws);
+	const ROLE = useSelector((state) => state?.userReducer?.user?.role);
 
 	useEffect(() => {
-		if (role !== 'caregiver') return;
+
+		if (ROLE !== 'caregiver') return;
 
 		if (!wsCaregiver) {
 			const newWs = new WebSocket(WS_URL);
 
 			newWs.onopen = () => {
-				console.log('connected');
 				newWs.send(
 					JSON.stringify({
 						type: 'register',
@@ -49,7 +53,6 @@ const useWsCaregiver = (role) => {
 						setLastProcessedMessage(null);
 					}
 
-					//
 					if(data.type === 'payment_complete'){
 						if (lastProcessedMessage === data.type) return;
 						setLastProcessedMessage(data.type);
@@ -69,18 +72,18 @@ const useWsCaregiver = (role) => {
 
 			newWs.onclose = () => {
 				console.log('Connection closed');
-				setWsCaregiver(null); // Reiniciar la conexión WebSocket si se cierra
+				dispatch(setWs(null)); // Reiniciar la conexión WebSocket si se cierra
 			};
 
-			setWsCaregiver(newWs);
+			dispatch(setWs(newWs));
 		}
 
 		return () => {
-			if (wsCaregiver) {
-				wsCaregiver.close(); // Cerrar la conexión al desmontar el componente
+			if (wsCaregiver  && routerNames['landing'] === location.pathname ) {
+				wsCaregiver.close(); 
 			}
 		};
-	}, [wsCaregiver, dispatch, role, lastProcessedMessage]);
+	}, [ dispatch, ROLE, lastProcessedMessage, location.pathname, wsCaregiver, caregiverId]);
 
 	const sendMessageCaregiver = (message) => {
 		if (wsCaregiver && wsCaregiver.readyState === WebSocket.OPEN) {

@@ -38,8 +38,8 @@ const ModalMessages = ({
 
   const chatContainerRef = useRef(null);
 
-  const { sendMessageOwner } = useWsOwner(role);
-  const { sendMessageCaregiver } = useWsCaregiver(role);
+  const { sendMessageOwner } = useWsOwner();
+  const { sendMessageCaregiver } = useWsCaregiver();
 
   const convertMsg = (msg) => msg.replace(/\n/g, "<br>");
 

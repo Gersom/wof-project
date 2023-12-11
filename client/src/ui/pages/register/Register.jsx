@@ -22,7 +22,7 @@ const Register = () => {
       await axios.post(API_URL_REGISTER, dataForm);
       dispatch(setAlert({ message: "Usuario creado correctamente", type: "success" }))
       // console.log("Respuesta del servidor:", response.data);
-      navigate(routerNames["login"]);
+      navigate(routerNames["login"]); 
     } catch (error) {
       console.error("Error al realizar la solicitud POST:", error.message);
       dispatch(setAlert({ message: "Error al crear el usuario", type: "error" }))

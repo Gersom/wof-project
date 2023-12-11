@@ -12,7 +12,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
 import Details from "./pages/details/Details";
 import Login from "./pages/login/Login";
-import FormReview from "./components/reviews/FormReview";
+import FormReview from "./components/forms/form-review/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
 import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
 import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
@@ -35,7 +35,7 @@ import Register from "./pages/register/Register";
 import useAlert from "@src/common/hooks/use-alert/useAlert";
 import NotificatioPanel from "./components/notification/NotificatioPanel";
 import { useEffect } from "react";
-import Admin from "./pages/admin/Admin";
+//import Admin from "./pages/admin/Admin";
 import Users from "./pages/users/Users";
 import MyCaregivers from "./pages/my-caregivers/MyCaregivers";
 
@@ -47,9 +47,9 @@ function App() {
   useAuth();
 
   const storeCurrentRouteInSession = (newRoute) => {
-    let  storage = getFromLocalStorage("session");
+    let storage = getFromLocalStorage("session");
     storage = storage || {};
-    
+
     if (newRoute !== "/verificando" && newRoute !== "/iniciar-sesion") {
       if (storage?.token && storage?.userId) {
         const updatedstorage = {
@@ -125,6 +125,15 @@ function App() {
               path={routerNames["detailsOwners"] + ":id"}
               element={<DetailsCaregivers />}
             />
+            <Route
+              path={routerNames["detailsOwners"] + ":id"}
+              element={<DetailsCaregivers />}
+            />
+            <Route
+              path={routerNames["adminUsers"]}
+              element={<Users />}
+            />
+           
 
             <Route path={routerNames["formReview"]} element={<FormReview />} />
 
@@ -143,10 +152,7 @@ function App() {
               element={<MyCaregivers />}
             />
           </Route>
-        </Route>
-        <Route path={routerNames["admin"]} element={<Admin />}>
-          <Route path={routerNames["users"]} element={<Users />}></Route>
-        </Route>
+        </Route> 
 
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />

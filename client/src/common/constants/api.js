@@ -3,7 +3,7 @@ import { API_URL_DEPLOY, WS_URL_LOCAL } from "./envs";
 const apiUrlLocal = "http://localhost:3001";
 const wsUrlLocal = "wss://wof-server.up.railway.app";
 
-export const WS_URL = WS_URL_LOCAL  || wsUrlLocal;
+export const WS_URL = WS_URL_LOCAL || wsUrlLocal;
 
 export const API = API_URL_DEPLOY || apiUrlLocal;
 export const API_URL = API + "/api";
@@ -25,8 +25,7 @@ export const API_URL_REGISTER = API_URL_USER;
 export const API_URL_UPDATE_USER = API_URL + "/users";
 export const API_URL_TRANSACTIONS = API_URL + "/transactions";
 export const API_URL_NOTIFICATIONS = API_URL + "/notifications?userId=";
-export const API_URL_EXIST_USER_WHIT_EMAIL = API_URL_USER+"/email/";
-
+export const API_URL_EXIST_USER_WHIT_EMAIL = API_URL_USER + "/email/";
 export const API_URL_VERIFY_EMAIL = API_URL + "/verify_email";
 
 export const API_URL_MY_PETS = API_URL + "/pets";
@@ -42,5 +41,9 @@ export const API_URL_CHAT_CAREGIVER = API_URL_CHAT + "/caregiver/";
 
 export const API_URL_ADMIN_STATS = API_URL + "/admin/users-stats";
 export const API_URL_ADMIN_INFO = API_URL + "/admin/users-info";
+
+export const API_URL_BAN_USER=API_URL+"/admin/delete-user/";
+export const API_URL_UNBAN_USER=API_URL+"/admin/restore-user/";
+
 
 export const API_URL_EMAIL_PAYPAL = API_URL + "/email-paypal";

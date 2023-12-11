@@ -110,55 +110,6 @@ const VerifyingLogin = () => {
     }
   };
 
-  // const handleAuth0Register = async () => {
-  //   const token = await handleSilentLogin();
-
-  //   setAuthenticated(true);
-
-  //   const userData = {
-  //     name: user.given_name,
-  //     lastname: user.family_name,
-  //     email: user.email,
-  //     password: `${token}`,
-  //     profilePicture: user.picture,
-  //     role: "",
-  //   };
-
-  //   try {
-  //     await axios.post(apiUrl, userData);
-  //     // window.alert("Usuario creado correctamente");
-  //   } catch (error) {
-  //     console.error(`Error al realizar la solicitud POST: ${error.message}`);
-  //     // window.alert("Error al crear usuario");
-  //   }
-  // };
-
-  // const handleAuth0LoginLogin = async () => {
-  //   try {
-  //     const token = await getAuthToken();
-  //     const response = await axios.post(
-  //       API_URL_LOGIN,
-  //       {
-  //         email: user.email,
-  //         password: token,
-  //       }
-  //     );
-
-  //     saveToLocalStorage("session", {
-  //       userId: response.data.userId,
-  //       token: response.data.token,
-  //     });
-  //     manageRedirection();
-  //     if (response.data.token) {
-  //       console.warn("Inicio de sesi贸n completado");
-  //       manageRedirection();
-  //     }
-  //   } catch (error) {
-  //     console.warn("Error en correo o contrase帽a");
-  //     console.error(`Error al iniciar sesi贸n: ${error.message}`);
-  //   }
-  // };
-
   const integrateLogin = async () => {
     try {
       await Promise.all([handleAuth0Register()]);
@@ -204,7 +155,6 @@ const VerifyingLogin = () => {
   };
 
   useEffect(() => {
-    // console.log("LOGIN COMPONENT IS AUTH0", isAuth0enticated, user);
     if (isAuth0enticated) {
       integrateLogin();
     }
@@ -237,8 +187,8 @@ const VerifyingLogin = () => {
             <div className={styles["input_container"]}>
               <label htmlFor="email">
                 <span>
-                  Estamos verificando su inicio de sesi贸n, no nos tomar谩 mucho
-                  tiempo, gracias por confiar en nosotros 馃挅
+                  Estamos verificando su inicio de sesión, no nos tomará mucho
+                  tiempo, gracias por confiar en nosotros.
                 </span>
               </label>
             </div>
