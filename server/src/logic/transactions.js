@@ -42,6 +42,8 @@ const postTransactionLogic = async (data) => {
   if (!requestId) throw Error("the request does not exist");
   await RequestsModel.updateData(requestId, { state: "accepted" });
 
+  await CaregiversModel.updateData(data.caregiverId,{dueBalance: data.amount})
+
   return {
     success: "The new Transaction was created successfully.",
     data: newTransaction,
