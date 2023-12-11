@@ -12,14 +12,13 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Offers from "./pages/offers/Offers";
 import Details from "./pages/details/Details";
 import Login from "./pages/login/Login";
-import FormReview from "./components/forms/form-review/FormReview";
+import FormReview from "./components/reviews/FormReview";
 import MyPets from "./pages/my-pets/MyPets";
 import MyPetsEdit from "./pages/my-pets/my-pets-edit/MyPetsEdit";
 import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
 import VerifyingLogin from "./pages/verifying-login/VerifyingLogin";
 import DetailsCaregivers from "./pages/details/DetailsCaregivers";
 import OffersCaregivers from "./components/offers/offers-caregivers/OffersCaregivers";
-import MyWallet from "./pages/my-wallet/MyWallet";
 import { useAuth } from "@common/context/authProvider";
 import { Navigate } from "react-router-dom";
 import MyHome from "./pages/my-home/MyHome";
@@ -33,11 +32,11 @@ import Register from "./pages/register/Register";
 
 //import useAlert
 import useAlert from "@src/common/hooks/use-alert/useAlert";
+import MyClients from "./pages/my-clients/MyClients";
 import NotificatioPanel from "./components/notification/NotificatioPanel";
 import { useEffect } from "react";
-//import Admin from "./pages/admin/Admin";
-import Users from "./pages/users/Users";
-import MyCaregivers from "./pages/my-caregivers/MyCaregivers";
+import Admin from "./pages/admin/admin";
+import Users from "./pages/users/users";
 
 // Imports Components
 
@@ -47,8 +46,7 @@ function App() {
   useAuth();
 
   const storeCurrentRouteInSession = (newRoute) => {
-    let storage = getFromLocalStorage("session");
-    storage = storage || {};
+    const storage = getFromLocalStorage("session");
 
     if (newRoute !== "/verificando" && newRoute !== "/iniciar-sesion") {
       if (storage?.token && storage?.userId) {
@@ -120,20 +118,10 @@ function App() {
               path={routerNames["alerts"]}
               element={<NotificatioPanel />}
             />
-            <Route path={routerNames["MyWallet"]} element={<MyWallet />} />
             <Route
               path={routerNames["detailsOwners"] + ":id"}
               element={<DetailsCaregivers />}
             />
-            <Route
-              path={routerNames["detailsOwners"] + ":id"}
-              element={<DetailsCaregivers />}
-            />
-            <Route
-              path={routerNames["adminUsers"]}
-              element={<Users />}
-            />
-           
 
             <Route path={routerNames["formReview"]} element={<FormReview />} />
 
@@ -147,12 +135,13 @@ function App() {
               element={<MyPetsEdit />}
             />
             <Route path={routerNames["myHome"]} element={<MyHome />} />
-            <Route
-              path={routerNames["lastsCaregivers"]}
-              element={<MyCaregivers />}
-            />
+            <Route path={routerNames["myClients"]} element={<MyClients />} />
           </Route>
-        </Route> 
+        </Route>
+        <Route path={routerNames["admin"]} element={<Admin />}>
+        <Route path={routerNames["statistics"]} element={<Statistics />}></Route>
+          <Route path={routerNames["users"]} element={<Users />}></Route>
+        </Route>
 
         {/* Not Found 404 */}
         <Route path={"*"} element={<NotFound />} />

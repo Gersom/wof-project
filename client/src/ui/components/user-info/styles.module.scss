@@ -1,7 +1,7 @@
 .card {
   display: flex;
   flex-direction: row;
-  background-color: white;
+  background-color: var(--color-text-primary);
   width: 100%;
   max-width: 800px;
   align-items: center;
@@ -9,86 +9,80 @@
   margin: auto;
   border-radius: 12px;
   gap: 30px;
+  justify-content: space-between;
 
-  p {
-    font-size: 14px;
-    color: black;
+  .containerUserInfo{
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    gap: 0rem;
+    align-items: center;
+    justify-content: start;
+    img{
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .containerChildInfo{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 15rem;
+      p {
+        font-size: 14px;
+        color: black;
+        span{
+          color: #6e88ad;
+        }
+      }
+    }
   }
+
+
+  .containerButton {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 2.5rem;
+    button{
+      width: 13rem;
+      padding: 1rem 3rem;
+      font-size: 1.5rem;
+      font-family: 'Lexend-Regular';
+      border: 0.15rem solid transparent;
+      border-radius: 1.5rem;
+    }
+  }
+
 }
 
-.notiImg {
-  background-repeat: no-repeat;
-  border-radius: 60px;
-  height: 60px;
-  flex: 0 0 60px;
-  background-size: cover;
-  background-position: center center;
-}
-
-.pago {
-  color: #6e88ad;
-}
-
-.button {
-  margin: 1px;
-  margin-left: auto;
-  padding: 10px 20px;
-  border-radius: 10px;
-  color: white;
-  display: flex;
-  cursor: pointer;
-  gap: 30px;
-}
 
 .notiButton1 {
-  background: #52c1e4;
-  width: 100px;
-  height: 35px;
-  text-align: center;
-  border-radius: 9px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.notiButton1:hover,
-.notiButton2:hover,
-.notiButton3:hover {
-  color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background-color: var(--color-blue-light);
+  &:hover{
+    background-color: transparent;
+    border-color: var(--color-blue-light);
+    color: var(--color-blue-light);
+  }
 }
 
 .notiButton2 {
   background-color: #ce4b4b;
-  width: 100px;
-  height: 35px;
-  text-align: center;
-  border-radius: 9px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  &:hover{
+    background-color: transparent;
+    border-color: #ce4b4b;
+    color: #ce4b4b;
+  }
 }
 
-.notiButton3{
-  background-color: #c1ce4b;
-  width: 100px;
-  height: 35px;
-  text-align: center;
-  border-radius: 9px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .containerMainUsers{
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
-  padding: 0rem 2rem;
+  padding: 0rem 2rem 6rem 2rem;
 }
 .containerPaginate{
   display: flex;
@@ -99,24 +93,36 @@
   align-items: center;
   gap: 3rem;
   border: 0.2rem solid #cccccc;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 1.5rem;
   border-radius: 1.5rem;
+  margin-bottom: 1rem;
   section{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 0.9rem;
     height: 100%;
+    div{
+      width: 0.5rem;
+      height: 1.75rem;
+      background-color: #cccccc;
+    }
     button{
       background-color: transparent;
       border: none;
       cursor: pointer;
+      &:disabled{
+        cursor: default;
+      }
     }
   }
   h3{
+    margin: 0;
+    padding: 0;
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--color-text-dark);
+    font-family: 'Lexend-Medium';
   }
 }
