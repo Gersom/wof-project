@@ -134,4 +134,17 @@ UsersModel["deleteUser"] = async (userId) => {
   return userToDelete;
 };
 
+UsersModel["restoreUser"] = async (userId) => {
+  const userToRestore = await UsersModel.findByPk(userId, { paranoid: false });
+
+  if (!userToRestore) {
+    throw new Error("User not found");
+  }
+  
+  await userToRestore.restore();
+
+  return userToRestore;
+};
+
+
 module.exports = UsersModel;
