@@ -26,6 +26,10 @@ const loginUser = catchedAsync(async (req, res) => {
 
   const loginResult = await loginUserLogic(email, password);
 
+  if(loginResult.error === "Usuario baneado") {
+    return res.status(403).json({ error: loginResult.error})
+  }
+  
   if (loginResult.error) {
     return res.status(401).json({ error: loginResult.error });
   }
