@@ -71,14 +71,14 @@ const NotificationPanel = () => {
                 {notification.action}
               </div>
             )}
+            {switchModalReview && (
+              <ModalReview ownerId={notification?.ownerId} caregiverId={notification?.caregiverId} closeModal={() => setSwitchModalReview(false)} />
+            )}
           </div>
         ))}
       </div>
       {switchModal && (
         <ModalAcceptPayed closeModal={() => setSwitchModal(false)} />
-      )}
-      {switchModalReview && (
-        <ModalReview closeModal={() => setSwitchModalReview(false)} />
       )}
     </>
   );
