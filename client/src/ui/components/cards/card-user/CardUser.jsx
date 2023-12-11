@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import starReview from '@icons/starReview.svg';
 
 function CardUser({ 
-  name, role, address, rating, imgSrc, cellPhone, success
+  name, role, address, rating, imgSrc, cellPhone, success, createdAt, email
 }) {
 	const rol = role === 'owner' ? '🐶 Dueño' : '🤝 Cuidador';
 
@@ -37,6 +37,8 @@ function CardUser({
         }
         
 			</footer>
+			{email && <p>Email<span>{email}</span></p>}
+			{createdAt && <p>Fecha de registro<span>{createdAt.split('T')[0]}</span></p> }
 		</article>
 	);
 }
