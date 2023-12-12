@@ -12,16 +12,17 @@ const routerNames = {
 
   offersCaregivers: "/app/caregivers/offers",
   detailsCaregivers: "/app/caregivers/offers/details/",
-
+  
   offersOwners: "/app/owners/offers/",
   detailsOwners: "/app/owners/offers/details/",
-
+  
   adminUsers: "/app/admin/users",
   adminProfits: "/app/admin/profits",
-
-
+  
+  
   formReview: "/app/form",
   profile: "/app/profile",
+  myWallet: "/app/my-wallet",
 
   myPets: "/app/my-pets",
   myPetsCreate: "/app/my-pets/create",
