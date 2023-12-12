@@ -54,7 +54,7 @@ const UserStats = () => {
           </div>
         </div>
         <div className={styles.card}>
-          <span>🐕</span>
+          <span>🤝</span>
           <div className={styles.logo}>
             <h4>Cuidadores</h4>
             <p>
@@ -63,7 +63,7 @@ const UserStats = () => {
           </div>
         </div>
         <div className={styles.card}>
-          <span>🐾</span>
+          <span>🦮</span>
           <div className={styles.logo}>
             <h4> Mascotas </h4>
             <p>{userData && userData.petsCount}</p>
