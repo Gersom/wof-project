@@ -16,6 +16,7 @@ const useWsOwner = () => {
 
   const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
 
+  const userId = useSelector((state) => state.userReducer.user?.id);
   const ownerId = useSelector((state) => state.userReducer.user?.owner?.id);
   const wsOwner = useSelector((state) => state.wsReducer.ws);
   const ROLE = useSelector((state) => state?.userReducer?.user?.role);
@@ -35,6 +36,7 @@ const useWsOwner = () => {
               type: "register",
               role: "owner",
               ownerId: ownerId,
+              userId: userId,
             })
           );
         };

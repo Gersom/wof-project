@@ -21,6 +21,7 @@ const useWsCaregiver = () => {
   const caregiverId = useSelector(
     (state) => state.userReducer.user?.caregiver?.id
   );
+  const userId = useSelector((state) => state.userReducer.user?.id);
   const wsCaregiver = useSelector((state) => state.wsReducer.ws);
   const ROLE = useSelector((state) => state?.userReducer?.user?.role);
   const tryReconnect = useSelector((state) => state.wsReducer.tryReconnect);
@@ -43,6 +44,7 @@ const useWsCaregiver = () => {
               type: "register",
               role: "caregiver",
               caregiverId: caregiverId,
+              userId : userId
             })
           );
         };
