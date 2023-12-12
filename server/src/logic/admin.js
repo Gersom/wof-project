@@ -61,7 +61,7 @@ const getUsersInfoLogic = async (page = 1, pageSize = 10) => {
       if (user.role === "caregiver") {
         const caregiverTransactions = await CaregiverTransactionsModel.findAll({
           where: { email: user.email },
-          attributes: ["amount"],
+          attributes: ["amountPaid"],
         });
 
         if (caregiverTransactions.length > 0) {
