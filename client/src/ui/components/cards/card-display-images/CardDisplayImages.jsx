@@ -4,8 +4,8 @@ import ButtonAgree from './atoms/ButtonAgree';
 import imageWhite from '@icons/imageWhite.svg';
 import deleteWhite from '@icons/deleteWhite.svg';
 import ModalCustom from '../../modals/modal-custom/ModalCustom';
-
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const CardDisplayImages = ({
 	data = [''],
@@ -16,16 +16,19 @@ const CardDisplayImages = ({
 }) => {
 	const [modal, setModal] = useState(false);
 	const [imageSelected, setImageSelected] = useState('');
+	const role = useSelector((state) => state.userReducer.user.role);
 
 	const handleViewImage = (image) => {
 		setImageSelected(image);
 		setModal(!modal);
 	};
 
+	const msg = role === 'owner' ? 'Fotos de la mascota' : 'Fotos de tu Hogar';
+
 	return (
 		<>
 			<div className={styles.mainContainer}>
-				<h4>Fotos de la masconta</h4>
+				<h4>{msg}</h4>
 				<header>
 					<img src={imageIcon} alt='pet' />
 					<h3>Fotos :</h3>

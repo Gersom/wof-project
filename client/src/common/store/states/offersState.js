@@ -41,52 +41,32 @@ const offersState = {
 	},
 	sortOffersOwner: [
 		{
-			name: 'Ubicación',
-			value: true,
-			key: 'location',
-			default: true,
-		},
-		{
 			name: 'Mejor puntuación',
 			value: false,
 			key: 'score',
 		},
 		{
 			name: 'Fecha de publicación',
-			value: false,
+			value: true,
 			key: 'date',
+			default: true,
 		},
 	],
 	filtersOffersCareGivers: {
-		['Genero:']: [
-			{
-				name: '♂️ Machos',
-				value: false,
-				key: 'male',
-			},
-			{
-				name: '♀️ Hembras',
-				value: false,
-				key: 'female',
-			},
+		['']: [
 		],
 	},
 	sortOffersCareGivers: [
 		{
-			name: 'Ubicación',
-			value: true,
-			key: 'location',
-			default: true,
-		},
-		{
 			name: 'Mejor puntuación',
 			value: false,
 			key: 'score',
 		},
 		{
 			name: 'Fecha de publicación',
-			value: false,
+			value: true,
 			key: 'date',
+			default: true,
 		},
 		{
 			name: 'Precio',

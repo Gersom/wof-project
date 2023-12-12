@@ -11,7 +11,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 1rem;
-    margin: 0 auto;
+    margin: 0 0;
     border-radius: 1rem;
     border: 1px solid #ccc;
   }
@@ -21,22 +21,26 @@
     font-family: "Lexend-Regular";
     color: gray;
     text-align: center;
+    margin: 0;
+    padding: 0;
   }
   h3 {
     font-size: 1rem;
-    margin-bottom: 1rem;
+    margin: 0rem;
+    margin-bottom: 0.1rem;
   }
   input,
   textarea {
     width: 100%;
     background: white;
     border-radius: 10px;
-    margin-top: 0.2rem;
     align-items: center;
     justify-content: center;
     border: none;
     color: black;
     padding: 0.3rem;
+    resize: none;
+    overflow: hidden;
   }
   textarea::placeholder {
     color: #808080;
@@ -83,13 +87,12 @@
   background: #52c1e4;
   width: 100%;
   border: none;
-  margin-top: 1.5rem;
 }
 .divider {
   border-top: 1px solid var(--color-text-primary);
   box-shadow: 0px 0px 10px rgba(238, 233, 233, 0.863);
   width: 20%;
-  margin: 0 auto;
+  margin: 0;
 }
 .stars {
   display: flex;
@@ -98,10 +101,8 @@
   align-items: center;
   font-size: 25px;
   gap: 1rem;
-  margin-bottom: 0.3rem;
 }
 .errorReview {
-  margin-bottom: 0.3rem;
   color: red;
   font-size: 11px;
   text-align: left;
