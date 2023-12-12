@@ -166,14 +166,13 @@ const CareInProgress = ({
 				)}
 
 				<div className={styles.buttonsCont}>
-					<button className={styles.supportBtn}>Soporte</button>
-					{
-						<button
-							onClick={handleFinishService}
+					{/* <button className={styles.supportBtn}>Soporte</button> */}
+					<button
+            disabled={isServiceFinished}
+            onClick={handleFinishService}
 						>
-							Finalizar Servicio
-						</button>
-					}
+            Finalizar Servicio
+          </button>
 				</div>
 			</div>
 		</div>
