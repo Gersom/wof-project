@@ -28,23 +28,17 @@ const NotificationPanel = () => {
     }
   };
 
+  const getNotification = async () => {
+    try {
+      const { data } = await axios(`${API_URL_NOTIFICATIONS}${userData?.id}`);
+      setNotifications(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   useEffect(() => {
-    axios(`${API_URL_NOTIFICATIONS}${userData?.id}`)
-      .then(({ data }) => {
-        if (data) {
-          // Filtrar las notificaciones solo para el usuario actual
-          // const userNotifications = data.filter(
-          //   (notification) => notification.userId === userData.userId
-          // );
-          setNotifications(data);
-        } else {
-          window.alert("Error al obtener la data");
-        }
-        console.log(reviewsData);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+    getNotification();
   }, [userData.id]); // Asegúrate de incluir userData.id en la dependencia del useEffect
 
   return (
@@ -82,7 +76,7 @@ const NotificationPanel = () => {
         <ModalAcceptPayed closeModal={() => setSwitchModal(false)} />
         )}
         {switchModalReview && (
-          <ModalReview reviewsData={reviewsData} closeModal={() => setSwitchModalReview(false)} />
+          <ModalReview reviewsData={reviewsData} closeModal={() => setSwitchModalReview(false)} setNotification={getNotification} />
         )}
     </>
   );

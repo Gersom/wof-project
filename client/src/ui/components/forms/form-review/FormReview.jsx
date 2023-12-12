@@ -7,9 +7,12 @@ import axios from "axios";
 import { API_URL_REVIEWS } from "@src/common/constants/api";
 import { useSelector, useDispatch } from "react-redux";
 import { setAlert } from '@src/common/store/slices/alertSlice';
+import { useNavigate } from "react-router-dom";
+import routerNames from "@src/common/constants/routes";
 
-const FormReview = ({reviewsData}) => {
+const FormReview = ({reviewsData , closeModal, setNotification}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.userReducer.user);
 
   const [state, setState] = useState({
@@ -69,6 +72,7 @@ const FormReview = ({reviewsData}) => {
           to: "owner",
           ownerId: reviewsData.ownerId,
           caregiverId: user.caregiver.id,
+          id: reviewsData.id,
         };
       } else if (user.role === "owner") {
         dataToSend = {
@@ -78,6 +82,7 @@ const FormReview = ({reviewsData}) => {
           to: "caregiver",
           ownerId: user.owner.id,
           caregiverId: reviewsData.caregiverId,
+          id: reviewsData.id,
         };
       }
       response = await axios.post(API_URL_REVIEWS, dataToSend);
@@ -88,6 +93,8 @@ const FormReview = ({reviewsData}) => {
             type: 'success',
           })
         );
+        closeModal();
+        await setNotification()
       } else {
         dispatch(
           setAlert({
