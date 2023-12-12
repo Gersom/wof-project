@@ -104,10 +104,10 @@ const OffersCaregiversDetail = () => {
 				{!isLoading && !isLoadingOffers && offersCareGivers.length === 0 ? (
 					<h3 className={styles.h3NoOffers}><span>¡Ups!</span> <br/>Todavía no has recibido ofertas de cuidadores para esta mascota</h3>
 				) : (
-					offersCareGivers.map((offer) => (
+					offersCareGivers.map((offer, indx) => (
 						<CardOffersCaregivers
 							data={offer}
-							key={offer.id}
+							key={'' + offer.id + indx}
 							rango={'intermedio'}
 							setData={onClickAccept}
 							setIdPost={onClickDetails}

@@ -112,11 +112,11 @@ const OffersCaregivers = () => {
 					</figure>
 					<div className={styles.contOffers}>
 						{offersPet.length > 0 ? (
-							offersPet.map((offer) => {
+							offersPet.map((offer, indx) => {
 								return (
 									<CardOffersCaregivers
 										data={{ ...offer, id: offer.id.toString() }}
-										key={offer.caregiverId}
+										key={'' + offer.caregiverId + indx}
 										rango={'intermedio'}
 										setData={onClickAccept}
 									/>
