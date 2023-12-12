@@ -1,44 +1,60 @@
-.mainContainerGrid {
+.mainContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  gap: 2rem;
+  padding: 2rem 4rem;
+  h1{
+      color: var(--color-text-secondary)
+  }
+  .gridContainer{
     display: grid;
-    grid-template-columns: auto auto;
-    column-gap: 2rem;
-    padding: 2rem 1rem;  // Ajuste del padding para pantallas más estrechas
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
     width: 100%;
-    height: 100%;
-    background-size: cover;
-}
-
-.containerLeft {
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto auto;
-    row-gap: 1.5rem;
-    justify-content: center;
-    padding: 2rem 0rem;
-    align-items: flex-start;
-    justify-items: center;
-    width: 100%;
-}
-
-.containerRight {
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: min-content min-content min-content min-content;
-    row-gap: 1.5rem;
-    justify-content: center;
-    justify-items: center;
-
-    h1 {
-        color: var(--color-text-secondary);
-        font-size: 3rem;  // Ajuste del tamaño del título para pantallas pequeñas
+    height: max-content;
+    grid-template-rows: 1fr;
+    align-items: start
+  }
+  button {
+    width: max-content;
+    height: fit-content;
+    margin: 0;
+    padding: 1rem 10rem;
+    border-radius: 1rem;
+    border: 0.15rem solid transparent;
+    background-color: var(--color-blue-light);
+    color: var(--color-text-primary);
+    font-family: 'Lexend-Medium';
+    font-size: 1.3rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+        
+    &:hover {
+      background-color: var(--color-text-primary);
+      color: var(--color-blue-light);
+      border: 0.15rem solid var(--color-blue-light);
     }
+  }
 }
 
-.check {
-    display: flex;
-    gap: 0.5rem;
-
-    input {
-        margin-top: 7px;
+@media screen and (max-width: 800px) {
+  .mainContainer{
+    .gridContainer{
+      grid-gap: 0;
+      display: flex;
+      flex-direction: column;
+      & > *:nth-child(1){
+        margin-bottom: 20px;
+      }
     }
+  }
+}
+@media screen and (max-width: 650px) {
+	.mainContainer{
+    padding: 2rem 15px;
+  }
 }
