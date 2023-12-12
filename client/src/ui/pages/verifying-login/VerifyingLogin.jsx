@@ -85,7 +85,7 @@ const VerifyingLogin = () => {
           console.log("REGISTER NEW USER", info);
           if (info.statusText === "Created") {
             await manageSpecialLogin();
-            manageRedirection();
+            await manageRedirection();
           }
         } catch (error) {
           console.error(`Error creating new user): ${error.message}`);
@@ -102,7 +102,7 @@ const VerifyingLogin = () => {
           userId: response.data.userId,
           token: response.data.token,
         });
-        manageRedirection();
+        await manageRedirection();
       }
       //console.log("DATA REGISTER AUTH0" ,data);
     } catch (error) {

@@ -11,7 +11,7 @@ const Profits = () => {
         <ProfitsMoney />
       </div>
       <div className={styles.containerMainStatistics}>
-        <h3>Ganacia Usuarios :</h3>
+        <h3>Informacion de usuarios:</h3>
         <ProfitsUsers />
       </div>
     </div>

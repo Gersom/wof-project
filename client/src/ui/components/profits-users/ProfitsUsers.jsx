@@ -25,28 +25,33 @@ const ProfitsUsers = () => {
         <h2>AÑO 2023</h2>
         <div>
           <Pie
-            totalUsers={statistics?.usersCount}
+            totalUsers={statistics?.usersTotal}
             owners={statistics?.roleCounts?.owner}
             caregivers={statistics?.roleCounts?.caregiver}
+            banned={statistics?.usersBanned}
           />
         </div>
       </div>
       <div className={styles.contInfo}>
         <section>
-          <p>{statistics?.usersCount}</p>
           <h4>Usuarios nuevos</h4>
+          <p>{statistics?.usersNotBanned}</p>
         </section>
         <section>
-          <p>{statistics?.roleCounts?.caregiver}</p>
+          <h4>Usuarios bloqueados</h4>
+          <p>{statistics?.usersBanned}</p>
+        </section>
+        <section>
           <h4>Cuidadores nuevos</h4>
+          <p>{statistics?.roleCounts?.caregiver}</p>
         </section>
         <section>
-          <p>{statistics?.roleCounts?.owner}</p>
           <h4>Dueños nuevos</h4>
+          <p>{statistics?.roleCounts?.owner}</p>
         </section>
         <section>
-          <p>{statistics?.petsCount}</p>
           <h4>Mascotas nuevas</h4>
+          <p>{statistics?.petsCount}</p>
         </section>
       </div>
     </div>
