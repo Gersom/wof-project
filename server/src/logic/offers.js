@@ -53,7 +53,7 @@ const getOfferLogic = async (offerId) => {
       ...offer,
       owner: {
         id: offer.owner.id,
-        rating: "5.40",
+        rating: offer.owner?.rating?.toFixed(2),
         ...offer.owner.user,
         reviews: reviewsData.map((ele) => {
           const review = ele.toJSON();

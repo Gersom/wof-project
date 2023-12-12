@@ -52,7 +52,7 @@ const DetailsCaregivers = () => {
 						imgSrc={details.user.profilePicture}
 					/>
 				)}
-				{!isLoading && <CardReviewPets />}
+				{!isLoading && <CardReviewPets id={details.id} role={details.user?.role}/>}
 			</div>
 			<div className={styles.containerRight}>
 				<h1>Detalles del Cuidador</h1>
