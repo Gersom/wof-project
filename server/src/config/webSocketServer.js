@@ -4,7 +4,8 @@ const { ChatModel } = require("../models");
 
 const configureWebSocket = (server) => {
   const wss = new WebSocket.Server({ server });
-  const clients = new Set(); // Keep track of clients
+  // const clients = new Set(); // Keep track of clients
+  const clients = [];
 
   const sendToAllClients = (message) => {
     clients.forEach((client) => {
@@ -27,7 +28,7 @@ const configureWebSocket = (server) => {
   };
   const sendToOwner = (message, ownerId) => {
     clients.forEach((client) => {
-      if (client.role === "owner" && client.ownerId === ownerId) {
+      if (client.role == "owner" && client.ownerId == ownerId) {
         client.ws.send(message);
       }
     });
@@ -43,6 +44,30 @@ const configureWebSocket = (server) => {
   };
 
   // Event listeners
+
+
+
+  const clientAddOwner = (ws, role, ownerId) => {
+    let exist = false;
+    clients.forEach((client, index) => {
+      if (client.role === role && client.ownerId === ownerId) {
+        exist = true;
+      }
+    });
+    if (!exist) clients.push({ ws, role, ownerId }); // Agrega un nuevo elemento si no existe
+    console.log("New client connected", clients.length);
+  };
+
+  const clientAddCaregiver = (ws, role, caregiverId) => {
+    let exist = false;
+    clients.forEach((client, index) => {
+      if (client.role === role && client.caregiverId === caregiverId) {
+        exist = true;
+      }
+    });
+    if (!exist) clients.push({ ws, role, caregiverId }); // Agrega un nuevo elemento si no existe
+    console.log("New client connected", clients.length);
+  }
 
   wss.on("listening", () => {
     console.log("Websocket server running");
@@ -65,24 +90,16 @@ const configureWebSocket = (server) => {
         // Si es un Buffer, conviértelo a una cadena de texto
         const bufferText = message.toString("utf8");
         console.log("Mensaje recibido (Buffer):", bufferText);
-				
+
         try {
           const parsedMessage = JSON.parse(bufferText);
-          if (
-            parsedMessage.type === "register" &&
-            parsedMessage.role === "owner"
-          ) {
-            clients.add({ ws, role: "owner", ownerId: parsedMessage.ownerId });
-          } else if (
-            parsedMessage.type === "register" &&
-            parsedMessage.role === "caregiver"
-          ) {
-            clients.add({
-              ws,
-              role: "caregiver",
-              caregiverId: parsedMessage.caregiverId,
-            });
-          } else {
+          if (parsedMessage.type === "register" && parsedMessage.role === "owner") {
+              clientAddOwner(ws, parsedMessage.role, parsedMessage.ownerId);
+          } else if (parsedMessage.type === "register" && parsedMessage.role === "caregiver") {
+            clientAddCaregiver(ws, parsedMessage.role, parsedMessage.caregiverId); 
+          }
+          
+          else {
             if (parsedMessage.type === "offers_update") {
               sendToAllCaregivers(bufferText);
             } else if (parsedMessage.type === "payment_complete") {
@@ -145,15 +162,13 @@ const configureWebSocket = (server) => {
     });
 
     ws.on("close", () => {
-      clients.forEach((client) => {
-        if (client.ws == ws) {
-          clients.delete(client);
-        }
-      });
-      console.log("Client disconnected", clients.size);
+      const filteredClients = clients.filter((client) => client.ws !== ws);
+      clients.length = 0;
+      clients.push(...filteredClients);
+      console.log("Client disconnected", clients.length);
     });
 
-    console.log("New client connected", clients.size);
+    
   });
   // Función para enviar mensajes a todos los clientes conectados
 

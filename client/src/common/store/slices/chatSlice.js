@@ -8,6 +8,8 @@ const initialState = {
 		},
 	],
 	msgtotal: 0,
+	chatsTotal : [],
+	chatTrigger : false,
 };
 
 const chatSlice = createSlice({
@@ -42,9 +44,24 @@ const chatSlice = createSlice({
 			});
       state.msgtotal = state.msgtotal - numberNot
 		},
+		getChat : (state, action) => {
+			state.chatsTotal = action.payload
+		},
+		setMsgChat : (state, action) => {
+			state.chatsTotal = [...state.chatsTotal].map((chat) => {
+				if (chat.id === action.payload.chatId) {
+					chat.messageChats = [...chat.messageChats, action.payload]
+				}
+				return chat;
+			});
+			// setChat(state, action.payload.id)
+		} ,
+		setChatTrigger : (state, action) => {
+			state.chatTrigger = action.payload
+		}
 	},
 });
 
-export const { setChat, cleanChat } = chatSlice.actions;
+export const { setChat, cleanChat , getChat, setMsgChat , setChatTrigger} = chatSlice.actions;
 
 export default chatSlice.reducer;
