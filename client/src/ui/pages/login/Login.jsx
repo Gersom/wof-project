@@ -34,8 +34,13 @@ const Login = () => {
         setAuthenticated(true);
       }
     } catch (error) {
-      dispatch(setAlert({ message: "Error al iniciar sesión", type: "error" }));
-      
+      if(error?.response?.data?.error === "Usuario baneado"){
+        dispatch(setAlert({ message: "Usuario baneado", type: "error" }));
+      }
+      else{
+
+        dispatch(setAlert({ message: "Error al iniciar sesión", type: "error" }));
+      }
     }
   };
   
