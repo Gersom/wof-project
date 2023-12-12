@@ -1,4 +1,5 @@
 require('dotenv').config()
+const { Op } = require('sequelize');
 
 const SERVER_HOST = process.env.HOST || "localhost"
 const SERVER_PORT = process.env.PORT || "3000"
@@ -21,20 +22,23 @@ const {
 } = require("../models");
 
 const getAllUsersStatsLogic = async () => {
-  const allUsers = await UsersModel.findAllUsers();
+  const normalUsers = await UsersModel.findAllUsers({ where: { deletedAt: null } });
+  const bannedUsersCount = await UsersModel.count({paranoid:false, where: { deletedAt: { [Op.not]: null }}});
   const allPets = await PetsModel.findAllPets();
 
-  const roleCounts = allUsers.reduce((acc, user) => {
+  const roleCounts = normalUsers.reduce((acc, user) => {
     const role = user.role;
     acc[role] = (acc[role] || 0) + 1;
     return acc;
   }, {});
 
-  const totalUsers = allUsers.length;
   const totalPets = allPets.length;
+  const totalUsers = normalUsers.length;
 
   return {
-    usersCount: totalUsers,
+    usersBanned: bannedUsersCount,
+    usersNotBanned: totalUsers,
+    usersTotal: totalUsers+bannedUsersCount,
     roleCounts: roleCounts,
     petsCount: totalPets,
   };
