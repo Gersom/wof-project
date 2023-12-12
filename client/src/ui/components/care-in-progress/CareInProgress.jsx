@@ -118,6 +118,7 @@ const CareInProgress = ({
       }
 
       await axios.post(url,objPost);
+      setServiceFinished(true)
 
       dispatch(
         setAlert({
