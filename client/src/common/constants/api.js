@@ -41,6 +41,7 @@ export const API_URL_CHAT_CAREGIVER = API_URL_CHAT + "/caregiver/";
 
 export const API_URL_ADMIN_STATS = API_URL + "/admin/users-stats";
 export const API_URL_ADMIN_INFO = API_URL + "/admin/users-info";
+export const API_URL_ADIMIN_PROFITS = API_URL + "/profits";
 
 export const API_URL_BAN_USER=API_URL+"/admin/delete-user/";
 export const API_URL_UNBAN_USER=API_URL+"/admin/restore-user/";

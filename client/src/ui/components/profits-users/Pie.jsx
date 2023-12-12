@@ -19,7 +19,6 @@ const Pie = ({ totalUsers, owners, caregivers }) => {
       const newChartInstance = new Chart(pieProfit, {
         type: "pie",
         options: {
-          responsive: true,
           plugins: {
             legend: {
               position: 'top',
