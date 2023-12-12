@@ -26,11 +26,11 @@ const getReviewLogic = async (id) => {
 };
 
 const postReviewLogic = async (data) => {
-  const { rating, from, to, caregiverId, ownerId } = data;
+  const { rating, from, to, caregiverId, ownerId, id } = data;
   if (!rating || !from || !to || !caregiverId || !ownerId)
     throw Error("./missing data");
   if (from === to) throw Error(`'from' and 'to' cannot be equal`);
-
+  await NotificationsModel.destroy({ where: { id: id } });
   const newReview = await ReviewsModel.createReview(data);
   await NotificationsModel.create({
     ...createdReview,
