@@ -1,14 +1,15 @@
 import styles from "./styles.module.scss";
-import React from "react";
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
 import { validate } from "./validate";
 import comment from "@icons/comment.svg";
 import axios from "axios";
 import { API_URL_REVIEWS } from "@src/common/constants/api";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setAlert } from '@src/common/store/slices/alertSlice';
 
 const FormReview = ({reviewsData}) => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
 
   const [state, setState] = useState({
@@ -81,14 +82,27 @@ const FormReview = ({reviewsData}) => {
       }
       response = await axios.post(API_URL_REVIEWS, dataToSend);
       if (response.status === 200) {
-        alert("¡Reseña enviada correctamente!");
+        dispatch(
+          setAlert({
+            message: '¡Reseña se envio correctamente!',
+            type: 'success',
+          })
+        );
       } else {
-        alert("Hubo un problema al enviar la reseña.");
+        dispatch(
+          setAlert({
+            message: 'Hubo un problema al enviar la reseña.',
+            type: 'error',
+          })
+        );
       }
     } catch (error) {
       console.error("Error al enviar la reseña:", error);
-      alert(
-        "Hubo un error al enviar la reseña. Por favor, inténtelo de nuevo."
+      dispatch(
+        setAlert({
+          message: "Hubo un error al enviar la reseña. Por favor, inténtelo de nuevo.",
+          type: 'error',
+        })
       );
     }
   };
