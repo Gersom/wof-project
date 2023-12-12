@@ -48,3 +48,6 @@ export const API_URL_UNBAN_USER = API_URL + "/admin/restore-user/";
 
 export const API_URL_EMAIL_PAYPAL = API_URL + "/email-paypal";
 export const API_URL_OWNERS = API_URL + "/owners";
+
+export const API_URL_REVIEWS_BYOWNER      = API_URL_REVIEWS + "/owner-review?ownerId="
+export const API_URL_REVIEWS_BYCAREGIVER  = API_URL_REVIEWS + "/caregiver-review?caregiverId="
