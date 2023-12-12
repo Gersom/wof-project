@@ -3,12 +3,13 @@ import styles from "./styles.module.scss";
 import starReview from "@icons/starReview.svg";
 
 const CaregiverCard = ({ customerData }) => {
-  const { pet, owner, startDate, endDate, address } = customerData;
+  const { pet, caregiver, startDate, endDate, address } = customerData;
   const {
-    name: ownerName,
-    profilePicture: ownerPicture,
-    rating: ownerRating,
-  } = owner;
+    name: caregiverName,
+    profilePicture: caregiverPicture,
+    rating: caregiverRating,
+    price: caregiverPrice,
+  } = caregiver;
   const { name: petName, species: petSpecies, breed: petBreed } = pet;
 
   const [formattedServiceStartDate, setFormattedServiceStartDate] = useState(
@@ -38,16 +39,16 @@ const CaregiverCard = ({ customerData }) => {
   return (
     <div className={styles.article}>
       <figure>
-        <img src={ownerPicture} alt={`${ownerName} foto de perfil`} />
+        <img src={caregiverPicture} alt={`${caregiverName} foto de perfil`} />
         <figcaption>
-          <h3>{ownerName}</h3>
+          <h3>{caregiverName}</h3>
         </figcaption>
       </figure>
       <div className={styles.cont}>
         <div className={styles.contSec}>
           <h5>Puntuación :</h5>
           <img src={starReview} alt="starReview" />
-          <h4>{ownerRating}</h4>
+          <h4>{caregiverRating}</h4>
         </div>
         <hr className={styles.separator}></hr>
         <div>
@@ -69,6 +70,7 @@ const CaregiverCard = ({ customerData }) => {
                 <p className={styles.texts}>Hasta: </p>
                 {formattedServiceEndDate}
               </h5>
+              <h4>Total: {caregiverPrice}</h4>
             </div>
           </div>
         </div>

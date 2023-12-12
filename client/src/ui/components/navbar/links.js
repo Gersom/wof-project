@@ -1,24 +1,24 @@
-import routerNames from '@common/constants/routes';
-import alerts from '@icons/nav/alerts.svg';
-import user from '@icons/nav/user.svg';
-import arrows from '@icons/nav/arrows.svg';
-import house from '@icons/nav/house.svg';
-import star from '@icons/nav/star.svg';
-import points from '@icons/nav/points.svg';
-import wallet from '@icons/nav/myWallet.svg'
+import routerNames from "@common/constants/routes";
+import alerts from "@icons/nav/alerts.svg";
+import user from "@icons/nav/user.svg";
+import arrows from "@icons/nav/arrows.svg";
+import house from "@icons/nav/house.svg";
+import star from "@icons/nav/star.svg";
+import points from "@icons/nav/points.svg";
+import wallet from "@icons/nav/myWallet.svg";
 
 export const LINKS = [
   { to: routerNames["alerts"], imgSrc: alerts, label: "Mis notificaciones" },
   { to: routerNames["profile"], imgSrc: user, label: "Perfil" },
 ];
 
-const LINKS_CAREGIVER= [
-	{ to: routerNames['alerts'], imgSrc: alerts, label: 'Mis notificaciones' },
-	{ to: routerNames['offersCaregivers'], imgSrc: arrows, label: 'Ofertas' },
-	{to: routerNames['myHome'], imgSrc: house, label: 'Mi hogar'},
-	{to: routerNames['myClients'], imgSrc: star, label: 'Mis Clientes'},
-	{ to: routerNames['profile'], imgSrc: user, label: 'Perfil' },
-  {to : routerNames['MyWallet'], imgSrc: wallet, label:'Mi billetera'}
+const LINKS_CAREGIVER = [
+  { to: routerNames["alerts"], imgSrc: alerts, label: "Mis notificaciones" },
+  { to: routerNames["offersCaregivers"], imgSrc: arrows, label: "Ofertas" },
+  { to: routerNames["myHome"], imgSrc: house, label: "Mi hogar" },
+  // {to: routerNames['myClients'], imgSrc: star, label: 'Mis Clientes'},
+  { to: routerNames["profile"], imgSrc: user, label: "Perfil" },
+  { to: routerNames["MyWallet"], imgSrc: wallet, label: "Mi billetera" },
 ];
 const LINKS_OWNER = [
   { to: routerNames["alerts"], imgSrc: alerts, label: "Mis notificaciones" },
@@ -63,11 +63,9 @@ export const obtainLinks = (role, location) => {
       return LINKS_OWNER_ACTIVE;
     }
     return LINKS_OWNER;
-  }
-  else if (role === "admin") {
+  } else if (role === "admin") {
     return LINKS_ADMIN;
-  }
-  else {
+  } else {
     return LINKS;
   }
 };
