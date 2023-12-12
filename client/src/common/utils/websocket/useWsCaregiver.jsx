@@ -70,12 +70,12 @@ const useWsCaregiver = () => {
 				}
 			};
 
-			// newWs.onclose = () => {
-			// 	console.log('Connection closed');
-			// 	dispatch(setWs(null)); // Reiniciar la conexión WebSocket si se cierra
-			// };
+			newWs.onclose = () => {
+				console.log('Connection closed');
+				dispatch(setWs(null)); // Reiniciar la conexión WebSocket si se cierra
+			};
 
-			// dispatch(setWs(newWs));
+			dispatch(setWs(newWs));
 		}
 
 		return () => {
