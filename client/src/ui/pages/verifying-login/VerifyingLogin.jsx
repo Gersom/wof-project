@@ -164,7 +164,7 @@ const VerifyingLogin = () => {
     if (isAuthenticated) {
       manageRedirection();
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, navigate, isLoading]);
 
   const resetLocal = () => {
     saveToLocalStorage("session", "");
