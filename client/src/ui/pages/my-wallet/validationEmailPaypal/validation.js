@@ -1,6 +1,6 @@
 
 function validation({emailPaypal}){
-  const a = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
+  const a = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
   const errors = {}
 
   if(!a.test(emailPaypal)) errors.emailPaypal = 'Debe ser un correo válido'

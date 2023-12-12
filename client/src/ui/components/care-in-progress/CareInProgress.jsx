@@ -3,9 +3,10 @@ import styles from './styles.module.scss';
 import Timer from './timer/Timer';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAlert } from '@src/common/store/slices/alertSlice';
-import { API_URL_POST_UPDATE_STATUS } from '@src/common/constants/api';
+import { API_URL, API_URL_POST_UPDATE_STATUS } from '@src/common/constants/api';
 import useWsCaregiver from '@src/common/utils/websocket/useWsCaregiver';
 import useWsOwner from '@src/common/utils/websocket/useWsOwner';
+import axios from 'axios'
 
 const CareInProgress = ({
 	startDate = '2023-11-27T05:00:00.000Z',
@@ -21,18 +22,17 @@ const CareInProgress = ({
 	const [isTimerExpired, setTimerExpired] = useState(false);
 	const [isServiceFinished, setServiceFinished] = useState(false);
 	const [isBeforeStartDate, setIsBeforeStartDate] = useState(false);
-	const role = useSelector((state) => state?.userReducer?.user?.role);
-	const userId = useSelector((state) => state?.userReducer?.user?.id);
+	const userData = useSelector((state) => state?.userReducer?.user);
 
 	const { sendMessageCaregiver } = useWsCaregiver();
 	const { sendMessageOwner } = useWsOwner();
 
-	useEffect(() => {
-		const currentDate = new Date();
-		const startDateTime = new Date(startDate);
-		// Comparar fechas y actualizar el estado.
-		setIsBeforeStartDate(currentDate < startDateTime);
-	}, [startDate]);
+  const timerText =
+		isServiceFinished || isTimerExpired
+			? '¡SERVICIO FINALIZADO CON ÉXITO😊!'
+			: isBeforeStartDate
+			? 'RESTANTE PARA QUE INICIE EL CUIDADO DE LA MASCOTA'
+			: 'RESTANTE PARA QUE FINALICE EL CUIDADO DE LA MASCOTA';
 
 	const styleContainer =
 		style === 'small' ? styles.mainContainerSmall : styles.mainCont;
@@ -45,8 +45,8 @@ const CareInProgress = ({
 					'Content-Type': 'application/json',
 				},
 			};
-			if (role === 'owner') {
-				options.body = JSON.stringify({ ownerVerified: true, userId });
+			if (userData.role === 'owner') {
+				options.body = JSON.stringify({ ownerVerified: true, userId: userData.id });
 				const response = await fetch(
 					`${API_URL_POST_UPDATE_STATUS}${postId}`,
 					options
@@ -73,44 +73,70 @@ const CareInProgress = ({
 					);
 				}
 				setServiceFinished(true);
-			} else if (role === 'caregiver') {
-				options.body = JSON.stringify({ caregiverVerified: true, userId });
+			} else if (userData.role === 'caregiver') {
+				options.body = JSON.stringify({ caregiverVerified: true, userId: userData.id });
 				const response = await fetch(
 					`${API_URL_POST_UPDATE_STATUS}${postId}`,
 					options
 				);
+				// await response.json();
 				const data = await response.json();
 				if (data.doubleVerified) {
-					dispatch(
-						setAlert({
-							message: '¡Felicidades servicio Finalizado! 😊',
-							type: 'success',
-						})
-					);
+					// dispatch(
+					// 	setAlert({
+					// 		message: '¡Felicidades servicio Finalizado! 😊',
+					// 		type: 'success',
+					// 	})
+					// );
 					sendMessageCaregiver({
 						type: 'update_message',
 						ownerId: ownerId,
 						caregiverId: caregiverId,
 					})
 				} else {
-					dispatch(
-						setAlert({
-							message: '¡Falta el dueño por verificar! 😊',
-							type: 'warning',
-						})
-					);
+					// dispatch(
+					// 	setAlert({
+					// 		message: '¡Falta el dueño por verificar! 😊',
+					// 		type: 'warning',
+					// 	})
+					// );
 				}
 				setServiceFinished(true);
+        postPayCaregiver()
 			}
 		}
 	};
 
-	const timerText =
-		isServiceFinished || isTimerExpired
-			? '¡SERVICIO FINALIZADO CON ÉXITO😊!'
-			: isBeforeStartDate
-			? 'RESTANTE PARA QUE INICIE EL CUIDADO DE LA MASCOTA'
-			: 'RESTANTE PARA QUE FINALICE EL CUIDADO DE LA MASCOTA';
+  const postPayCaregiver = async () => {
+    try {
+      const url =`${API_URL}/pay-client`
+      const objPost = {
+        userId: userData.id,
+        caregiverId: userData?.caregiver.id, 
+        postId, 
+        petName
+      }
+
+      await axios.post(url,objPost);
+
+      dispatch(
+        setAlert({
+          message: '¡Felicidades Pago enviado!, revisa las notificaciones',
+          type: 'success',
+        })
+      );
+      // console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+		const currentDate = new Date();
+		const startDateTime = new Date(startDate);
+		// Comparar fechas y actualizar el estado.
+		setIsBeforeStartDate(currentDate < startDateTime);
+	}, [startDate]);
 
 	return (
 		<div className={styleContainer}>
@@ -143,9 +169,6 @@ const CareInProgress = ({
 					<button className={styles.supportBtn}>Soporte</button>
 					{
 						<button
-							disabled={
-								!isTimerExpired || isServiceFinished || isBeforeStartDate
-							}
 							onClick={handleFinishService}
 						>
 							Finalizar Servicio

@@ -11,7 +11,9 @@ const getTransactionByPostLogic = async (postId) => {
 };
 
 const postTransactionLogic = async (data) => {
-  data.servicePostingId = data.postId;
+  if (!data.servicePostingId) {
+    data.servicePostingId = data.postId;
+  }
 
   const newTransaction = await TransactionsModel.create(data);
   await PostsModel.updateData(data.servicePostingId, {

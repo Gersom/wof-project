@@ -161,4 +161,17 @@ PostsModel['updateStatus'] = (id, status) => {
   const data = PostsModel.update({ status }, { where: { id } })
 }
 
+PostsModel['findTransactionById'] = async (postId) => {
+  const TransactionsModel = require('./transactions')
+  const data = await PostsModel.findOne({
+    where: { id: postId },
+    include: [
+      { 
+        model: TransactionsModel
+      }
+    ]
+  })
+  return data
+}
+
 module.exports = PostsModel

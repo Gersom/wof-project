@@ -16,39 +16,27 @@ const schema = {
     primaryKey: true,
     autoIncrement: true,
   },
-  paymentId: {
+  email: {
+    type: DataTypes.STRING, allowNull: false,
+  },
+  productId: {
     type: DataTypes.STRING, allowNull: false,
   },
   currencyCode: {
     type: DataTypes.STRING, allowNull: false,
   },
-  amount: {
+  originalAmount: {
     type: DataTypes.STRING, allowNull: false,
   },
-  name: {
+  amountPaid: {
     type: DataTypes.STRING, allowNull: false,
   },
-  lastName: {
+  percentage: {
     type: DataTypes.STRING, allowNull: false,
   },
-  email: {
+  revenue: {
     type: DataTypes.STRING, allowNull: false,
   },
-  addressLine: {
-    type: DataTypes.STRING, allowNull: false,
-  },
-  addressArea1: {
-    type: DataTypes.STRING, allowNull: false,
-  },
-  addressArea2: {
-    type: DataTypes.STRING, allowNull: false,
-  },
-  countryCode: {
-    type: DataTypes.STRING, allowNull: false,
-  },
-  postalCode: {
-    type: DataTypes.STRING, allowNull: false,
-  },  
 }
 
 const CaregiverTransactionsModel = sequelize.define(name, schema, config)
