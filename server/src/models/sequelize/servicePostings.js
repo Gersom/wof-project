@@ -124,7 +124,7 @@ PostsModel['findOfferById'] = (id) => {
       },
       {
         model: OwnersModel,
-        attributes: [ "id" ],
+        attributes: [ "id" ,"rating"],
         include: [{
           model: UsersModel,
           attributes: [

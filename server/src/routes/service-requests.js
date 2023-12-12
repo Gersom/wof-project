@@ -55,7 +55,7 @@ router.put('/all', async (req, res) => {
 									name: req.caregiver.user.name,
 									address: req.caregiver.user.address,
 									profilePicture: req.caregiver.user.profilePicture,
-									rating: req.caregiver.rating,
+									rating: req.caregiver.rating?.toFixed(2),
 							}));
 							requestsFormated = [...requestsFormated, ...formattedRequests];
 					} 
