@@ -11,13 +11,14 @@ const NotificationPanel = () => {
   const [notifications, setNotifications] = useState([]);
   const [switchModal, setSwitchModal] = useState(false);
   const [switchModalReview, setSwitchModalReview] = useState(false);
-
-  const handleAction = (action) => {
-    switch (action) {
+  const [reviewsData, setReviewData] = useState({})
+  const handleAction = (notification) => {
+    switch (notification.action) {
       case "Ver":
         setSwitchModal(true);
         break;
       case "Reseña":
+        setReviewData(notification)
         setSwitchModalReview(true);
         break;
       default:
@@ -37,6 +38,7 @@ const NotificationPanel = () => {
         } else {
           window.alert("Error al obtener la data");
         }
+        console.log(reviewsData);
       })
       .catch((error) => {
         console.log(error.message);
@@ -65,21 +67,21 @@ const NotificationPanel = () => {
             </div>
             {notification.action && (
               <div
-                onClick={() => handleAction(notification.action)}
+                onClick={() => handleAction(notification)}
                 className={styles.notiButton}
               >
                 {notification.action}
               </div>
-            )}
-            {switchModalReview && (
-              <ModalReview ownerId={notification?.ownerId} caregiverId={notification?.caregiverId} closeModal={() => setSwitchModalReview(false)} />
             )}
           </div>
         ))}
       </div>
       {switchModal && (
         <ModalAcceptPayed closeModal={() => setSwitchModal(false)} />
-      )}
+        )}
+        {switchModalReview && (
+          <ModalReview reviewsData={reviewsData} closeModal={() => setSwitchModalReview(false)} />
+        )}
     </>
   );
 };

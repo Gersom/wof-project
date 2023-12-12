@@ -4,7 +4,7 @@ import FormReview from "../../forms/form-review/FormReview";
 import styles from "./styles.module.scss";
 import cross from "@icons/cross.svg";
 
-const ModalReview = ({ ownerId, caregiverId, role, closeModal }) => {
+const ModalReview = ({ reviewsData, role, closeModal }) => {
   const user = useSelector((state) => state.userReducer.user);
   return (
     <div className={styles.containerFlex}>
@@ -25,7 +25,7 @@ const ModalReview = ({ ownerId, caregiverId, role, closeModal }) => {
             imgSrc={user.profilePicture}
           />
 
-          <FormReview className={styles.formReview} ownerId={ownerId} caregiverId={caregiverId}/>
+          <FormReview className={styles.formReview} reviewsData={reviewsData}/>
         </div>
       </div>
     </div>
