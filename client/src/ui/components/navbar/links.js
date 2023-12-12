@@ -18,7 +18,7 @@ const LINKS_CAREGIVER = [
   { to: routerNames["myHome"], imgSrc: house, label: "Mi hogar" },
   // {to: routerNames['myClients'], imgSrc: star, label: 'Mis Clientes'},
   { to: routerNames["profile"], imgSrc: user, label: "Perfil" },
-  { to: routerNames["MyWallet"], imgSrc: wallet, label: "Mi billetera" },
+  { to: routerNames["myWallet"], imgSrc: wallet, label: "Mi billetera" },
 ];
 const LINKS_OWNER = [
   { to: routerNames["alerts"], imgSrc: alerts, label: "Mis notificaciones" },

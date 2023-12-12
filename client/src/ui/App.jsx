@@ -120,7 +120,7 @@ function App() {
               path={routerNames["alerts"]}
               element={<NotificatioPanel />}
             />
-            <Route path={routerNames["MyWallet"]} element={<MyWallet />} />
+            <Route path={routerNames["myWallet"]} element={<MyWallet />} />
             <Route
               path={routerNames["detailsOwners"] + ":id"}
               element={<DetailsCaregivers />}

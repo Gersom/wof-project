@@ -85,7 +85,7 @@ const MyWallet = () => {
 							
 						</div>
 					</div>
-					<div className={styles.amountContent}>Ganancias:</div>
+					{/* <div className={styles.amountContent}>Ganancias:</div> */}
 				</div>
 				<ClientCards clients={myWallet?.clients}/>
 			</div>
