@@ -38,50 +38,6 @@ const Chat = ({ userData }) => {
 
 	//websocket
 
-	// useEffect(() => {
-	// 	if (ws && userData?.role == 'owner') {
-	// 		ws.onmessage = (event) => {
-	// 			const receivedMessage = JSON.parse(event.data);
-	// 			if (receivedMessage.type === 'message') {
-	// 				setChats((prev) => {
-	// 					const newChats = prev.map((chat) => {
-	// 						if (chat.id === receivedMessage.chatId) {
-	// 							chat.messageChats.push(receivedMessage);
-	// 						}
-	// 						return chat;
-	// 					});
-	// 					return newChats;
-	// 				});
-	// 				if (receivedMessage.isCaregiver) {
-	// 					dispatch(setChat({ id: receivedMessage.chatId }));
-	// 				}
-	// 			} else if (receivedMessage.type === 'update_message') {
-	// 				setNewChats(!newChats);
-	// 			}
-	// 		};
-	// 	} else if (ws && userData?.role == 'caregiver') {
-	// 		ws.onmessage = (event) => {
-	// 			const receivedMessage = JSON.parse(event.data);
-	// 			if (receivedMessage.type === 'message') {
-	// 				setChats((prev) => {
-	// 					const newChats = prev.map((chat) => {
-	// 						if (chat.id === receivedMessage.chatId) {
-	// 							chat.messageChats.push(receivedMessage);
-	// 						}
-	// 						return chat;
-	// 					});
-	// 					return newChats;
-	// 				});
-	// 				if (receivedMessage.isOwner) {
-	// 					dispatch(setChat({ id: receivedMessage.chatId }));
-	// 				}
-	// 			} else if (receivedMessage.type === 'update_message') {
-	// 				setNewChats(!newChats);
-	// 			}
-	// 		};
-	// 	}
-	// }, [ws , userData.role, newChats, dispatch]);
-
 	const msgTotal = useSelector((state) => state?.chatReducer?.msgtotal);
 
 	return (

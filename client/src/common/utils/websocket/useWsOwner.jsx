@@ -90,7 +90,7 @@ const useWsOwner = () => {
             }
           }
           if (data.type === "update_message") {
-            dispatch(setChatTrigger());
+            dispatch(setChatTrigger(Math.random()));
           }
           setLastProcessedMessage(null);
         } catch (error) {

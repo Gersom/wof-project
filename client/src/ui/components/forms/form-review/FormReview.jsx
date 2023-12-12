@@ -16,7 +16,7 @@ const FormReview = ({reviewsData}) => {
     rating: 1,
     review: "",
   });
-  console.log(state);
+  
   const [errors, setErrors] = useState({
     review: "*Requerido",
   });

@@ -91,7 +91,7 @@ const useWsCaregiver = () => {
             }
           }
           if (data.type === "update_message") {
-            dispatch(setChatTrigger(true));
+            dispatch(setChatTrigger(Math.random()));
           }
 
           if (data.type === "payment_complete") {
