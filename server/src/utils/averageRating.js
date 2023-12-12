@@ -8,7 +8,7 @@ const averageRating = async (array,modelUpdate,id) => {
     if(suma==0) return 0
     if(suma>0){
         const prom = suma/array.length
-        await modelUpdate.update({rating:prom},{where:{id}})
+        await modelUpdate.update({rating:prom.toFixed(2)},{where:{id}})
     }
     return
 }

@@ -78,7 +78,7 @@ const Details = () => {
             success={success}
           />
         )}
-        {!isLoading && <CardReviewPets reviewsData={details.owner.reviews} />}
+        {!isLoading && <CardReviewPets id={details.owner.id} role={details.owner?.role}  reviewsData={details.owner.reviews} />}
       </div>
       <div className={styles.containerRight}>
         {!isLoading && <h1>{details.pet.name}</h1>}
