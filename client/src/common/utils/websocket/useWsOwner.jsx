@@ -68,7 +68,6 @@ const useWsOwner = () => {
         // Lógica para manejar mensajes recibidos
         try {
           const data = JSON.parse(event.data);
-          console.log(data);
 
           if (data.type === "request_update" && data.ownerId === ownerId) {
             if (lastProcessedMessage === data.type) return;

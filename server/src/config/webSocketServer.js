@@ -54,7 +54,6 @@ const configureWebSocket = (server) => {
     clients.forEach((client, index) => {
       if (client.role === role && client.ownerId == ownerId) {
         exist = true;
-        console.log('owner existente')
       }
     });
     if (!exist) clients.push({ ws, role, ownerId }); // Agrega un nuevo elemento si no existe
