@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import FilterSortLocationBar from "@src/ui/components/filter-sort-location-bar/FilterSortLocationBar";
 import { useSelector } from "react-redux";
-import { getCaredPets } from "@src/common/utils/helpers-redux/getCaredPets";
+import { getHiredCaregivers } from "@src/common/utils/helpers-redux/getHiredCaregivers.js";
 import CaregiverList from "@src/ui/components/cards/card-caregivers/caregiver-list/CaregiverList";
 
 const MyCaregivers = () => {
   const ownerId = useSelector((state) => state?.userReducer?.user?.owner?.id);
 
-  const [caredPets, setCaredPets] = useState([]);
+  const [hiredCaregivers, setHiredCaregivers] = useState([]);
   const [loading, setLoading] = useState(true); //Limpiar remanentes
   const role = useSelector((state) => state.userReducer.user.role);
 
@@ -16,10 +16,10 @@ const MyCaregivers = () => {
     setLoading(true);
 
     if (ownerId) {
-      getCaredPets(ownerId)
+      getHiredCaregivers(ownerId)
         .then((response) => {
           console.log("Cared Pets Response:", response);
-          setCaredPets(response);
+          setHiredCaregivers(response);
         })
         .catch((error) => {
           console.error("Error fetching cared pets:", error);
@@ -30,7 +30,7 @@ const MyCaregivers = () => {
     }
   }, [ownerId]);
 
-  console.log("Cantidad de elementos del array:", caredPets.length);
+  console.log("Cantidad de elementos del array:", hiredCaregivers.length);
 
   if (role === "owner") {
     return (
@@ -40,13 +40,13 @@ const MyCaregivers = () => {
 
         {loading ? (
           <p>Cargando...</p>
-        ) : caredPets.length === 0 ? (
+        ) : hiredCaregivers.length === 0 ? (
           <h1 className={styles.noClients}>
-            ¡Publica una oferta y encuentra al cuidador adecuado para tu
-            mascota!
+            ¡Revisa el apartado de ofertas y encuentra al cuidador adecuado para
+            tu mascota!
           </h1>
         ) : (
-          <CaregiverList customers={caredPets} />
+          <CaregiverList customers={hiredCaregivers} />
         )}
       </div>
     );
