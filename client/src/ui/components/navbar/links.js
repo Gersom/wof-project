@@ -27,7 +27,7 @@ const LINKS_OWNER = [
   {
     to: routerNames["lastsCaregivers"],
     imgSrc: star,
-    label: "Cuidadores anteriores",
+    label: "Mis cuidadores",
   },
   { to: routerNames["profile"], imgSrc: user, label: "Perfil" },
 ];
