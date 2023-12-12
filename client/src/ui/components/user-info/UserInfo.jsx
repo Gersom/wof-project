@@ -2,6 +2,7 @@ import {
   API_URL_ADMIN_INFO,
   API_URL_BAN_USER,
   API_URL_UNBAN_USER,
+  API_URL_ADMIN,
   API_URL_USER,
 } from "@src/common/constants/api";
 import axios from "axios";
@@ -86,11 +87,11 @@ const UserInfo = ({onUpdate}) => {
 
   const viewProfile = async (userData) => {
     if (userData.role === "owner") {
-      const { data } = await axios.get(API_URL_USER + "/" + userData.userId);
+      const { data } = await axios.get(API_URL_ADMIN + "/" + userData.userId);
       setSelectUser(data);
       setShowModal(true);
     } else if (userData.role === "caregiver") {
-      const { data } = await axios.get(API_URL_USER + "/" + userData.userId);
+      const { data } = await axios.get(API_URL_ADMIN + "/" + userData.userId);
       setSelectUser(data);
       setShowModal(true);
     }

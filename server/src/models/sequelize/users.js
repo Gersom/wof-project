@@ -122,6 +122,26 @@ UsersModel["findUserById"] = async (userId) => {
   return newUser;
 };
 
+UsersModel["findUserSuperById"] = async (userId) => {
+  const OwnersModel = require(`./owners`);
+  const CaregiversModel = require(`./caregivers`);
+
+  const newUser = await UsersModel.findByPk(userId, {
+    paranoid: false,
+    include: [
+      { 
+        model: CaregiversModel,
+      },
+      { 
+        model: OwnersModel
+      }
+    ]
+  })
+  return newUser;
+};
+
+
+
 UsersModel["deleteUser"] = async (userId) => {
   const userToDelete = await UsersModel.findByPk(userId);
   
