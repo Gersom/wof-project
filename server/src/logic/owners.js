@@ -33,7 +33,7 @@ const getOwnerLogic = async (id) => {
 
 const getHiredCaregiversLogic = async (id) => {
     const hiredCaregivers = await OwnersModel.findHiredCaregivers(id);
-    if(!hiredCaregivers) throw Error("Owner not found")
+    if(!hiredCaregivers) return [];
     const MyCaregivers = hiredCaregivers.servicePostings.map(c => {
         const requestByCaregiverId = c.serviceRequests.find(r => r.caregiverId == c.caregiver?.id)
 
