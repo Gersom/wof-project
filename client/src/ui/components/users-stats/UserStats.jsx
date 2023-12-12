@@ -26,8 +26,22 @@ const UserStats = () => {
         <div className={styles.card}>
           <span>🧑</span>
           <div className={styles.logo}>
-            <h4>Usuarios</h4>
-            <p> {userData && userData.usersCount}</p>
+            <h4>Total</h4>
+            <p> {userData && userData.usersTotal}</p>
+          </div>
+        </div>
+        <div className={styles.card}>
+          <span>🐱‍💻</span>
+          <div className={styles.logo}>
+            <h4>Activos</h4>
+            <p> {userData && userData.usersNotBanned}</p>
+          </div>
+        </div>
+        <div className={styles.card}>
+          <span>👿</span>
+          <div className={styles.logo}>
+            <h4>Banned</h4>
+            <p> {userData && userData.usersBanned}</p>
           </div>
         </div>
         <div className={styles.card}>
@@ -40,7 +54,7 @@ const UserStats = () => {
           </div>
         </div>
         <div className={styles.card}>
-          <span>🐕</span>
+          <span>🤝</span>
           <div className={styles.logo}>
             <h4>Cuidadores</h4>
             <p>
@@ -49,7 +63,7 @@ const UserStats = () => {
           </div>
         </div>
         <div className={styles.card}>
-          <span>🐾</span>
+          <span>🦮</span>
           <div className={styles.logo}>
             <h4> Mascotas </h4>
             <p>{userData && userData.petsCount}</p>

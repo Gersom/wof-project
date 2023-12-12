@@ -31,6 +31,7 @@ const MyCaregivers = () => {
   }, [ownerId]);
 
   console.log("Cantidad de elementos del array:", hiredCaregivers.length);
+  console.log(hiredCaregivers,"HIRED CAREGIVERS  CONTAIN");
 
   if (role === "owner") {
     return (

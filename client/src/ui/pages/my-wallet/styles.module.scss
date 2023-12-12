@@ -1,6 +1,6 @@
 .cardsContent {
   display: flex;
-  // justify-content: space-between;
+  justify-content: center;
   // flex-direction: row;
   padding-top: 2rem
 }
@@ -65,7 +65,7 @@
 .contentSecond {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   padding-top: 4rem;
 }
 

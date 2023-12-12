@@ -184,7 +184,8 @@ const FormProfile = () => {
       <div className={`${styles["container"]}`}>
         <form onSubmit={handleSubmit}>
           <div className={styles["profile_wrapper"]}>
-            <h1>Mi Perfil: {String(userData.role)}</h1>
+            <h2>{String(userData.role) === 'owner' ? '🐶 Dueño' : '🤝 Cuidador'}</h2>
+            <h1>Mi Perfil</h1>
             <div className={styles["profile_cards_container"]}>
               <div className={styles["profile_cards_wrapper"]}>
                 <div className={styles["profile_card"]}>
