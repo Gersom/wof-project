@@ -2,11 +2,13 @@
   display: flex;
   justify-content: center;
   // flex-direction: row;
-  padding-top: 2rem
+  padding-top: 2rem;
 }
 
 .walletContainer {
   padding: 2rem 8rem;
+
+
 }
 
 .walletContainer h1 {
@@ -29,6 +31,8 @@
   align-items: center;
   justify-content: space-evenly;
   margin-right: 1.3rem;
+
+
 }
 
 .icon {

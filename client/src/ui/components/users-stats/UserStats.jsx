@@ -3,7 +3,7 @@ import axios from "axios";
 import styles from "./styles.module.scss";
 import { API_URL_ADMIN_STATS } from "@src/common/constants/api";
 
-const UserStats = () => {
+const UserStats = ({triggerUpdate}) => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const UserStats = () => {
     };
 
     fetchData();
-  }, []);
+  }, [triggerUpdate]);
 
   return (
     <div className={styles.container}>

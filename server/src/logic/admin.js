@@ -122,6 +122,12 @@ const deleteUserLogic = async (userId) => {
   }
 };
 
+const getUserLogicSuper = async (id) => {
+  const User = await UsersModel.findUserSuperById(id);
+  if (!User) throw Error("User not found");
+  return User;
+};
+
 const restoreUserLogic = async (userId) => {
   try {
     const restoredUser = await UsersModel.restoreUser(userId);
@@ -140,4 +146,5 @@ module.exports = {
   getUsersInfoLogic,
   deleteUserLogic,
   restoreUserLogic,
+  getUserLogicSuper
 };

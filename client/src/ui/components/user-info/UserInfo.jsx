@@ -2,6 +2,7 @@ import {
   API_URL_ADMIN_INFO,
   API_URL_BAN_USER,
   API_URL_UNBAN_USER,
+  API_URL_ADMIN,
   API_URL_USER,
 } from "@src/common/constants/api";
 import axios from "axios";
@@ -20,7 +21,7 @@ import ArrowRightGrey from "@icons/arrowRightGrey.svg?react";
 import DoubleArrowLeftGrey from "@icons/doubleArrowLeftGrey.svg?react";
 import DoubleArrowRightGrey from "@icons/doubleArrowRightGrey.svg?react";
 
-const UserInfo = () => {
+const UserInfo = ({onUpdate}) => {
   const [userData, setUserData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -55,6 +56,7 @@ const UserInfo = () => {
           const updatedResults = prevUserData.results.map((user) =>
             user.userId === userId ? { ...user, banned: true } : user
           );
+          onUpdate();
           return { ...prevUserData, results: updatedResults };
         }
         return prevUserData;
@@ -72,8 +74,9 @@ const UserInfo = () => {
         if (prevUserData && prevUserData.results) {
           const updatedResults = prevUserData.results.map((user) =>
             user.userId === userId ? { ...user, banned: false } : user
-          );
-          return { ...prevUserData, results: updatedResults };
+            );
+            onUpdate();
+            return { ...prevUserData, results: updatedResults };
         }
         return prevUserData;
       });
@@ -84,11 +87,11 @@ const UserInfo = () => {
 
   const viewProfile = async (userData) => {
     if (userData.role === "owner") {
-      const { data } = await axios.get(API_URL_USER + "/" + userData.userId);
+      const { data } = await axios.get(API_URL_ADMIN + "/" + userData.userId);
       setSelectUser(data);
       setShowModal(true);
     } else if (userData.role === "caregiver") {
-      const { data } = await axios.get(API_URL_USER + "/" + userData.userId);
+      const { data } = await axios.get(API_URL_ADMIN + "/" + userData.userId);
       setSelectUser(data);
       setShowModal(true);
     }
@@ -165,21 +168,21 @@ const UserInfo = () => {
                     Perfil
                   </button>
                   {user.banned ?
-                  (
-                  <button
-                    onClick={() => handleUnBanClick(user.userId)}
-                    className={styles.notiButton3}
-                  >
-                    Desbloquear
-                  </button>
-                  ):(
-                  <button
-                     onClick={() => handleBanClick(user.userId)}
-                    className={styles.notiButton2}
-                  >
-                    Bloquear
-                  </button>
-                  )}
+                    (
+                      <button
+                        onClick={() => handleUnBanClick(user.userId)}
+                        className={styles.notiButton3}
+                      >
+                        Desbloquear
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleBanClick(user.userId)}
+                        className={styles.notiButton2}
+                      >
+                        Bloquear
+                      </button>
+                    )}
                 </div>
               </div>
             ))}

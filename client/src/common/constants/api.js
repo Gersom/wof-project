@@ -39,6 +39,7 @@ export const API_URL_CHAT = API_URL + "/chat";
 export const API_URL_CHAT_OWNER = API_URL_CHAT + "/owner/";
 export const API_URL_CHAT_CAREGIVER = API_URL_CHAT + "/caregiver/";
 
+export const API_URL_ADMIN = API_URL + "/admin";
 export const API_URL_ADMIN_STATS = API_URL + "/admin/users-stats";
 export const API_URL_ADMIN_INFO = API_URL + "/admin/users-info";
 export const API_URL_ADIMIN_PROFITS = API_URL + "/profits";

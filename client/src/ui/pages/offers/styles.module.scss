@@ -1,13 +1,24 @@
-.containerGrid{
+.containerGrid {
     display: grid;
     grid-template-rows: min-content min-content auto;
-    padding: 2rem 4rem;
+    padding: 2rem;
+  
     row-gap: 2rem;
-    h1{
-        font-family: 'Nanum-Brush';
-        color: var(--color-text-secondary);
-        padding: 0vw;
-        margin: 0vw;
-        font-size: 4.5rem;
+  
+    h1 {
+      font-family: 'Nanum-Brush';
+      color: var(--color-text-secondary);
+      padding: 0;
+      margin: 0;
+      font-size: 4.5rem;
     }
-}
+  
+    @media screen and (max-width: 680px) {
+      padding: 1rem;
+  
+      h1 {
+        font-size: 3rem;
+      }
+    }
+  }
+  
