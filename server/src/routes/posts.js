@@ -125,4 +125,12 @@ router.put("/", async (req, res) => {
 
 });
 
+router.get('/verified/:id', async (req, res) => {
+	const postId = req.params.id;
+	const post = await PostsModel.findDataById(postId);
+	if (post) {
+		res.status(200).json(post);
+	} else res.status(200).json({ error: 'Posts not found' });
+});
+
 module.exports = router;
