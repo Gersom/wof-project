@@ -47,7 +47,7 @@ const LINKS_CAREGIVER_ACTIVE = [
 ];
 
 const LINKS_ADMIN = [
-  { to: routerNames[""], imgSrc: arrows, lablel: "Gráficos" },
+  { to: routerNames["adminProfits"], imgSrc: arrows, label: "Ganancias" },
   { to: routerNames["adminUsers"], imgSrc: star, label: "Usuarios" },
   { to: routerNames["profile"], imgSrc: user, label: "Perfil" },
 ];

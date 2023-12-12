@@ -200,7 +200,7 @@ const FormProfile = () => {
                     <input
                       type="text"
                       name="email"
-                      value={dataForm.email}
+                      value={dataForm.email || ''}
                       disabled
                     />
                   </div>
@@ -215,7 +215,7 @@ const FormProfile = () => {
                     <input
                       type="password"
                       name="password"
-                      value={dataForm.password}
+                      value={dataForm.password || ''}
                       disabled
                     />
                     {/* <div
@@ -257,7 +257,7 @@ const FormProfile = () => {
                     </div>
                     <input
                       name="address"
-                      value={dataForm.address}
+                      value={dataForm.address || ''}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -318,7 +318,7 @@ const FormProfile = () => {
                   <input
                     type="text"
                     name="name"
-                    value={dataForm.name}
+                    value={dataForm.name || ''}
                     onChange={handleInputChange}
                   />
                   <span>{errors.name}</span>
@@ -334,7 +334,7 @@ const FormProfile = () => {
                   <input
                     type="text"
                     name="lastName"
-                    value={dataForm.lastName}
+                    value={dataForm.lastName || ''}
                     onChange={handleInputChange}
                   />
                   <span>{errors.lastName}</span>
@@ -350,7 +350,7 @@ const FormProfile = () => {
                   <input
                     type={phonePasswordShow ? "text" : "password"}
                     name="cellPhone"
-                    value={dataForm.cellPhone}
+                    value={dataForm.cellPhone || ''}
                     onChange={handleInputChange}
                   />
                   <div
@@ -374,7 +374,7 @@ const FormProfile = () => {
                   <input
                     type={dniPasswordShow ? "text" : "password"}
                     name="dni"
-                    value={dataForm.dni}
+                    value={dataForm.dni || ''}
                     onChange={handleInputChange}
                   />
                   <div
