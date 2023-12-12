@@ -18,6 +18,8 @@ export const API_URL_SERVICES_ALL = API_URL + "/service-requests/all";
 export const API_URL_CREATE_POST = API_URL + "/posts";
 export const API_URL_POSTS_CAREGIVERID = API_URL + "/posts?caregiverId=";
 export const API_URL_POST_UPDATE_STATUS = API_URL + "/posts?postId=";
+export const API_URL_POSTS_VERIFIED = API_URL + "/posts/verified/";
+
 
 export const API_URL_USER = API_URL + "/users";
 export const API_URL_LOGIN = API_URL_USER + "/login";
