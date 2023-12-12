@@ -97,7 +97,16 @@
 	border: 0.2rem solid var(--color-text-primary);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) and (min-width: 1024px){
+	.section {
+		flex-direction: column;
+		padding: 1rem;
+	}
+	.containerButtons {
+		margin: 1rem;
+	}
+}
+@media screen and (max-width: 850px) {
 	.section {
 		flex-direction: column;
 		padding: 1rem;
