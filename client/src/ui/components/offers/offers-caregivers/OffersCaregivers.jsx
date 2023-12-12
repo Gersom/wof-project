@@ -111,20 +111,24 @@ const OffersCaregivers = () => {
 						<PetImage data={pet} />
 					</figure>
 					<div className={styles.contOffers}>
-						{offersPet.length > 0 ? (
-							offersPet.map((offer, indx) => {
-								return (
-									<CardOffersCaregivers
-										data={{ ...offer, id: offer.id.toString() }}
-										key={'' + offer.caregiverId + indx}
-										rango={'intermedio'}
-										setData={onClickAccept}
-									/>
-								);
-							})
-						) : (
-							<h3 className={styles.h3NoOffers}><span>¡Ups!</span> <br/>Todavía no has recibido ofertas de cuidadores para esta mascota</h3>
-						)}
+						{
+              offersPet.length > 0 
+              ? (
+                offersPet.map((offer, indx) => (
+                  <CardOffersCaregivers
+                    data={{ ...offer, id: offer.id.toString() }}
+                    key={'' + offer.caregiverId + indx}
+                    rango={'intermedio'}
+                    setData={onClickAccept}
+                  />
+                ))
+              ) 
+              : (
+                <h3 className={styles.h3NoOffers}>
+                  <span>¡Ups!</span> <br/>Todavía no has recibido ofertas de cuidadores para esta mascota
+                </h3>
+              )
+            }
 					</div>
 				</div>
 			);

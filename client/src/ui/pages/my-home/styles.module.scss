@@ -1,42 +1,44 @@
-.mainContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+.mainContainerGrid {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 2rem;
+    padding: 2rem 1rem;  // Ajuste del padding para pantallas más estrechas
     width: 100%;
     height: 100%;
-    gap: 2rem;
-    padding: 2rem 4rem;
-    h1{
-        color: var(--color-text-secondary)
+    background-size: cover;
+}
+
+.containerLeft {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    row-gap: 1.5rem;
+    justify-content: center;
+    padding: 2rem 0rem;
+    align-items: flex-start;
+    justify-items: center;
+    width: 100%;
+}
+
+.containerRight {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: min-content min-content min-content min-content;
+    row-gap: 1.5rem;
+    justify-content: center;
+    justify-items: center;
+
+    h1 {
+        color: var(--color-text-secondary);
+        font-size: 3rem;  // Ajuste del tamaño del título para pantallas pequeñas
     }
-    .gridContainer{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 2rem;
-        width: 100%;
-        height: max-content;
-        grid-template-rows: 1fr;
-        align-items: start
+}
+
+.check {
+    display: flex;
+    gap: 0.5rem;
+
+    input {
+        margin-top: 7px;
     }
-	button {
-		width: max-content;
-        height: fit-content;
-        margin: 0;
-		padding: 1rem 10rem;
-		border-radius: 1rem;
-		border: 0.15rem solid transparent;
-		background-color: var(--color-blue-light);
-		color: var(--color-text-primary);
-		font-family: 'Lexend-Medium';
-		font-size: 1.3rem;
-		cursor: pointer;
-        
-		&:hover {
-			background-color: var(--color-text-primary);
-			color: var(--color-blue-light);
-			border: 0.15rem solid var(--color-blue-light);
-		}
-		transition: all 0.2s ease-in-out;
-	}
 }

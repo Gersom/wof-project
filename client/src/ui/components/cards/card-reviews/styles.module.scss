@@ -1,99 +1,103 @@
-.mainContainer{
+.mainContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
-
-
 h3.title {
-    font-size: 1.6rem;
-    color: #1e1e1e;
-    text-align: left;
-    margin-top: 1.5rem;
-  }
-  .cardCont {
-    width: 22rem;
-    height: max-content;
-    padding: 1.3rem 2rem;
-    border-radius: 0.5rem;
-    background: #FFF;
-  }
-  hr.firstRounded {
-    border-top: 0.2rem solid  #DDD;;
-    border-radius: 0.2rem;
-    width: 6.5rem;
-    margin-left: 0%;
-    margin-right: 60%;
-  }
+  font-size: 1.6rem;
+  color: #1e1e1e;
+  text-align: left;
+  margin-top: 1.5rem;
+}
+
+.cardCont {
+  width: 22rem;
+  height: max-content;
+  padding: 1.3rem 2rem;
+  border-radius: 0.5rem;
+  background: #FFF;
+}
+
+hr.firstRounded {
+  border-top: 0.2rem solid #DDD;
+  border-radius: 0.2rem;
+  width: 6.5rem;
+  margin-left: 0%;
+  margin-right: 60%;
+}
+
+.infoPerson {
+  display: flex;
+  align-items: center;
+}
+
+.textInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem;
+  margin-left: 1rem;
+  justify-content: center;
+}
+
+.paragraph {
+  color: #717171;
+  font-family: 'Lexend-Bold';
+  font-size: 1.05rem;
+  font-weight: 400;
+  margin-top: 1rem;
+  margin-bottom: 0.8rem;
+  text-align: left;
+}
+
+.personName {
+  color: #1e1e1e;
+  font-family: 'Lexend-Regular';
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  text-align: left;
+}
+
+.date {
+  color: #717171;
+  font-family: 'Lexend-Regular';
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+}
+
+.profilePic {
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+hr.secondRounded {
+  border-top: 0.2rem solid #DDD;
+  border-radius: 0.2rem;
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 800px) {
   .infoPerson {
-    display: flex;
+    flex-direction: column;
     align-items: center;
   }
-  .textInfo {
-    display: flex;
-    flex-direction: column;
-    padding: 0.8rem;
-    margin-left: 1rem;
-    justify-content: center;
-   
-  }
-  .paragraph{
-    color: #717171;
-    font-family: 'Lexend-Bold';
-    font-size: 1.05rem;
-    font-weight: 400;
-    margin-top: 1rem;
-    margin-bottom: 0.8rem;
-    text-align: left;
-  }
-  .personName {
-    color: #1e1e1e;
-    font-family: 'Lexend-Regular';
-    font-size: 1.5rem;
-    font-weight: 500;
-    line-height: 1.5rem;
-    text-align: left;
 
-  }
-  .date {
-    color: #717171;
-    font-family: 'Lexend-Regular';
-    font-size: 1.2rem;
-    font-style: normal;
-    font-weight: 400;
-    text-align: left;
-  }
   .profilePic {
-    width: 6rem;
-    height: 6rem;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-  hr.secondRounded {
-    border-top: 0.2rem solid #DDD;
-    border-radius: 0.2rem;
-    width: 20%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
-
-  @media screen and (max-width: 800px) {
-    .infoPerson {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .profilePic {
-      margin-bottom: 1rem;
-    }
-    .textInfo {
-      font-size: 0.8rem;
-    }
+  .textInfo {
+    font-size: 0.8rem;
+    text-align: center; /* Añadido para centrar el texto en pantallas pequeñas */
   }
-
-  
+}
