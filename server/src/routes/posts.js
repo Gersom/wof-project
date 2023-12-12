@@ -84,6 +84,8 @@ router.put("/", async (req, res) => {
 			...serviceCompletedRequest,
 			userId,
 			message: serviceCompletedRequest.message,
+			caregiverId: post.dataValues.caregiverId,
+			ownerId: post.dataValues.ownerId,
 		});
 
 		if (post.dataValues.caregiverVerified && post.dataValues.ownerVerified) {
@@ -91,9 +93,10 @@ router.put("/", async (req, res) => {
 			const chatToDelete = await ChatModel.findOne({
 				where: {
 					caregiverId: post.dataValues.caregiverId,
-					ownerId: post.ownerId,
+					ownerId: post.dataValues.ownerId,
 				},
 			});
+
 			await ChatModel.update(
 				{ petsOnCare: chatToDelete.dataValues.petsOnCare - 1 },
 				{
@@ -120,6 +123,14 @@ router.put("/", async (req, res) => {
 		return res.status(500).json({ error: 'EXPLOTO LA WEA' });
 	}
 
+});
+
+router.get('/verified/:id', async (req, res) => {
+	const postId = req.params.id;
+	const post = await PostsModel.findDataById(postId);
+	if (post) {
+		res.status(200).json(post);
+	} else res.status(200).json({ error: 'Posts not found' });
 });
 
 module.exports = router;
