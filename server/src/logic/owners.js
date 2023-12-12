@@ -33,9 +33,10 @@ const getOwnerLogic = async (id) => {
 
 const getHiredCaregiversLogic = async (id) => {
     const hiredCaregivers = await OwnersModel.findHiredCaregivers(id);
-    
-    const formatted = hiredCaregivers.map(c => {
-        const requestByCaregiverId = c.requests.find(r => r.caregiverId == c.caregiver.id)
+    if(!hiredCaregivers) throw Error("Owner not found")
+    const MyCaregivers = hiredCaregivers.servicePostings.map(c => {
+        const requestByCaregiverId = c.serviceRequests.find(r => r.caregiverId == c.caregiver?.id)
+
         return {
             id: c.id,
             address: c.address,
@@ -53,8 +54,8 @@ const getHiredCaregiversLogic = async (id) => {
                 price: requestByCaregiverId?.price
             }
         }
-    })
-    return formatted
+    }) 
+    return MyCaregivers
 }
 
 const postOwnerLogic = async (data) => {

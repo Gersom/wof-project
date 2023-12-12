@@ -8,7 +8,7 @@ import axios from "axios";
 import { API_URL_REVIEWS } from "@src/common/constants/api";
 import { useSelector } from "react-redux";
 
-const FormReview = () => {
+const FormReview = ({reviewsData}) => {
   const user = useSelector((state) => state.userReducer.user);
 
   const [state, setState] = useState({
@@ -59,13 +59,14 @@ const FormReview = () => {
     let response;
     try {
       let dataToSend;
+      console.log(user.role);
       if (user.role === "caregiver") {
         dataToSend = {
           rating: state.rating.toString(),
           comment: state.review,
           from: "caregiver",
           to: "owner",
-          ownerId: 2,
+          ownerId: reviewsData.ownerId,
           caregiverId: user.caregiver.id,
         };
       } else if (user.role === "owner") {
@@ -75,7 +76,7 @@ const FormReview = () => {
           from: "owner",
           to: "caregiver",
           ownerId: user.owner.id,
-          caregiverId: 2,
+          caregiverId: reviewsData.caregiverId,
         };
       }
       response = await axios.post(API_URL_REVIEWS, dataToSend);

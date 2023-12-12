@@ -5,7 +5,7 @@ const addMethods = require("../utils/addStaticMethods")
 
 
 const name = 'owners'
-const config = { 
+const config = {
   timestamps: false, // createAt, updateAt
   freezeTableName: true
 }
@@ -17,8 +17,8 @@ const schema = {
   },
   rating: {
     type: DataTypes.FLOAT,
-    defaultValue:0,
-    allowNull:true
+    defaultValue: 0,
+    allowNull: true
   }
 }
 
@@ -32,21 +32,33 @@ OwnersModel.belongsTo(UsersModel)
 addMethods(OwnersModel)
 
 OwnersModel['findHiredCaregivers'] = async (id) => {
-  const { PostsModel }      = require("../index")
-  const { PetsModel }       = require("../index");
+  const { PostsModel } = require("../index")
+  const { PetsModel } = require("../index");
   const { CaregiversModel } = require("../index")
-  const { UsersModel }      = require("../index")
-  const { SpeciesModel }    = require("../index")
-  const { BreedsModel }     = require("../index")
-  const { RequestsModel }   = require("../index")
-  
-  const hiredCaregivers = await PostsModel.findAll({where: {ownerId:id,caregiverId:{[Op.not]: null}},
-    attributes: ["id","address", "startDate", "endDate"],
-    include:[
-      {model: CaregiversModel, attributes:["id","rating"], include: {model: UsersModel,attributes:["name","profilePicture"]},},
-      {model: PetsModel, attributes: ["name"], include: [{ model: SpeciesModel }, { model: BreedsModel }]},
-      {model: RequestsModel,}
-    ]
+  const { UsersModel } = require("../index")
+  const { SpeciesModel } = require("../index")
+  const { BreedsModel } = require("../index")
+  const { RequestsModel } = require("../index")
+
+  // const hiredCaregivers = await PostsModel.findAll({where: {ownerId:id,caregiverId:{[Op.not]: null}},
+  //   attributes: ["id","address", "startDate", "endDate"],
+  //   include:[
+  //     {model: CaregiversModel, attributes:["id","rating"], include: {model: UsersModel,attributes:["name","profilePicture"]},},
+  //     {model: PetsModel, attributes: ["name"], include: [{ model: SpeciesModel }, { model: BreedsModel }]},
+  //     {model: RequestsModel,}
+  //   ]
+  // })
+
+  const hiredCaregivers = await OwnersModel.findOne({
+    where: { id },
+    include: {
+      model: PostsModel, where: { caregiverVerified: true, ownerVerified: true }, attributes: ["id", "address", "startDate", "endDate"],
+      include: [
+        {model: CaregiversModel, attributes: ["id", "rating"], include: { model: UsersModel, attributes: ["name", "profilePicture"]}},
+        {model: PetsModel, attributes: ["name"], include: [{ model: SpeciesModel }, { model: BreedsModel }]},
+        {model: RequestsModel}
+      ],
+    }
   })
 
   return hiredCaregivers
@@ -55,10 +67,10 @@ OwnersModel['findHiredCaregivers'] = async (id) => {
 OwnersModel["findAllOwners"] = async () => {
   const owners = await OwnersModel.findAll({
     include: {
-        model: UsersModel
+      model: UsersModel
     }
-})
-return owners
+  })
+  return owners
 }
 
 OwnersModel["findOwner"] = async (id) => {
@@ -70,7 +82,7 @@ OwnersModel["findOwner"] = async (id) => {
         model: UsersModel
       },
       {
-        model: PetsModel, attributes:["id","name"]
+        model: PetsModel, attributes: ["id", "name"]
       }
     ]
   })

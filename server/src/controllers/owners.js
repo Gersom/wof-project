@@ -26,7 +26,7 @@ const getHiredCaregivers = catchedAsync( async (req,res) => {
     const { id } = req.params
     const hiredCaregivers = await getHiredCaregiversLogic(id)
     res.status(200).json(hiredCaregivers)
-},ErrorHandler.getHiredCaregivers)
+},ErrorHandler.getHiredCaregiversErrorHandler)
 
 // CREATE ITEM
 const createOwner =catchedAsync( async (req, res) => {
