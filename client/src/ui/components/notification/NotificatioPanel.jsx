@@ -12,6 +12,8 @@ const NotificationPanel = () => {
   const [switchModal, setSwitchModal] = useState(false);
   const [switchModalReview, setSwitchModalReview] = useState(false);
   const [reviewsData, setReviewData] = useState({})
+
+  
   const handleAction = (notification) => {
     switch (notification.action) {
       case "Ver":
