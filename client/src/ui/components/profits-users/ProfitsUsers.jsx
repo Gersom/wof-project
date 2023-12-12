@@ -29,6 +29,7 @@ const ProfitsUsers = () => {
             owners={statistics?.roleCounts?.owner}
             caregivers={statistics?.roleCounts?.caregiver}
             banned={statistics?.usersBanned}
+            //com
           />
         </div>
       </div>
