@@ -1,4 +1,4 @@
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 import CardUser from '@src/ui/components/cards/card-user/CardUser';
 import Carousel from '@src/ui/components/carousel/Carousel';
 import { useParams } from 'react-router-dom';
@@ -7,14 +7,12 @@ import useGetDetailsCaregivers from '@src/common/hooks/useGetDetailsCaregivers';
 import CardInfoCaregiver from '@src/ui/components/cards/card-info-caregiver/CardInfoCaregiver';
 import CareInProgress from '@src/ui/components/care-in-progress/CareInProgress';
 import { AceptarButton } from '@src/ui/components/button/button';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import routerNames from '@src/common/constants/routes';
 
 const DetailsCaregivers = () => {
   const navigate = useNavigate();
-	const dispatch = useDispatch();
 	const { id } = useParams();
 	const { isLoading, details } = useGetDetailsCaregivers(id);
 	const myPets = useSelector((state) => state?.myPetsReducer?.myPets);
@@ -33,12 +31,6 @@ const DetailsCaregivers = () => {
 			}).filter((pet) => pet !== null) 
 		);
 	}, [myPets, id]);
-
-	const returnForm = (event) => {
-		event.preventDefault();
-		console.log('Formulario enviado');
-		// Aquí puedes manejar la lógica de envío del formulario si es necesario
-	};
 
 	return (
 		<div className={styles.mainContainerGrid}>
@@ -62,33 +54,17 @@ const DetailsCaregivers = () => {
 					/>
 				)}
 				<CardInfoCaregiver data={details} />
-				{posts.length > 0 && (
-					<>
-						{/* <form
-							name='form'
-							onSubmit={returnForm}
-							style={{ display: 'flex', alignItems: 'center' }}
-						>
-							<div className={styles.check}>
-								<input type='checkbox' name='acepto' id='miID' />
-								<label
-									htmlFor='miID'
-									style={{ color: 'Black', marginRight: '8px' }}
-								>
-									Acepto los términos y condiciones
-								</label>
-							</div>
-						</form> */}
-
-						<AceptarButton
-							type='Aceptar'
-							disabled={false}
-							onClick={() => {
-								navigate(-1)
-							}}
-						></AceptarButton>
-					</>
-				)}
+				{
+          posts.length > 0 
+          ? <AceptarButton
+            type='Aceptar'
+            disabled={false}
+            onClick={() => {
+              navigate(-1)
+            }}
+          />
+          : ''
+        }
 				{!isLoading && petsRelation?.length > 0 && (
 					<>
 						<h1>{details.user.name} esta cuidando de </h1>

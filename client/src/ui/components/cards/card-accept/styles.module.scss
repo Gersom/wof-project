@@ -49,14 +49,14 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	margin: 0.5rem 0px;
+	margin: 0.5rem auto;
   background-color: #52CD8B;
   width: 170px;
-
-  position: absolute;
-  top: 70px;
   height: 48px;
-  right: 10%;
+
+  // position: absolute;
+  // top: 70px;
+  // right: 10%;
 }
 
 .cancelButton {
@@ -66,13 +66,13 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	margin: 0.5rem 0px;
+	margin: 0.5rem auto;
   background-color: #cd5252;
   width: 170px;
-
-  position: absolute;
-  top: 70px;
   height: 48px;
-  right: 10%;
+
+  // position: absolute;
+  // top: 70px;
+  // right: 10%;
 }
   
