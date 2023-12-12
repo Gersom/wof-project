@@ -5,7 +5,10 @@ import { setAlert } from "@src/common/store/slices/alertSlice";
 import { setWs, setTryReconnect } from "@src/common/store/slices/wsSlice";
 import routerNames from "@src/common/constants/routes";
 import { useLocation } from "react-router-dom";
-import { setMsgChat, setChat , setChatTrigger } from "@src/common/store/slices/chatSlice";
+import {
+  setMsgChat,
+  setChatTrigger,
+} from "@src/common/store/slices/chatSlice";
 
 const useWsOwner = () => {
   const dispatch = useDispatch();
@@ -14,8 +17,8 @@ const useWsOwner = () => {
   const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
 
   const ownerId = useSelector((state) => state.userReducer.user?.owner?.id);
-  const ROLE = useSelector((state) => state?.userReducer?.user?.role);
   const wsOwner = useSelector((state) => state.wsReducer.ws);
+  const ROLE = useSelector((state) => state?.userReducer?.user?.role);
   const tryReconnect = useSelector((state) => state.wsReducer.tryReconnect);
 
   useEffect(() => {
@@ -41,7 +44,7 @@ const useWsOwner = () => {
       newWs.onclose = () => {
         console.log("Connection closed");
 
-        dispatch(setWs(null)); // Reiniciar la conexión WebSocket si se cierra
+        dispatch(setWs(null));
       };
     };
 
@@ -57,15 +60,7 @@ const useWsOwner = () => {
         wsOwner.close();
       }
     };
-  }, [
-    dispatch,
-    tryReconnect,
-    wsOwner,
-    location.pathname,
-    ROLE,
-    ownerId,
-    lastProcessedMessage,
-  ]);
+  }, [dispatch, tryReconnect, wsOwner, location.pathname, ROLE]);
 
   useEffect(() => {
     if (wsOwner) {
@@ -73,6 +68,7 @@ const useWsOwner = () => {
         // Lógica para manejar mensajes recibidos
         try {
           const data = JSON.parse(event.data);
+          console.log(data);
 
           if (data.type === "request_update" && data.ownerId === ownerId) {
             if (lastProcessedMessage === data.type) return;
@@ -83,11 +79,10 @@ const useWsOwner = () => {
                 type: "success",
               })
             );
-          } if (data.type === "message") {
+          }
+          if (data.type === "message") {
             setMsgChat(data);
-            if (data.isCaregiver) {
-              dispatch(setChat({ id: data.chatId }));
-            }
+
           }
           if (data.type === "update_message") {
             dispatch(setChatTrigger(Math.random()));
@@ -101,14 +96,14 @@ const useWsOwner = () => {
   }, [wsOwner, dispatch, ownerId, lastProcessedMessage]);
 
   const sendMessageOwner = (message) => {
-    if (wsOwner && wsOwner.readyState === WebSocket.OPEN) {
+    if (wsOwner) {
       wsOwner.send(JSON.stringify(message));
     } else {
       console.error("WebSocket connection is not established or is closed");
     }
   };
 
-  return { sendMessageOwner, wsOwner };
+  return { sendMessageOwner };
 };
 
 export default useWsOwner;

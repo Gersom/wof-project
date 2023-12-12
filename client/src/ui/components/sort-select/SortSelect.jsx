@@ -8,14 +8,16 @@ function SortSelect({ sorts, actionSort }) {
 	const dispatch = useDispatch();
 	const [active, setActive] = useState(false);
 	const classActive = active ? styles.show : '';
-	const [sortActive, setSortActive] = useState(sorts.filter((sort) => sort.value)[0].name);
+	const [sortActive, setSortActive] = useState(sorts.filter((sort) => sort.default)[0].name);
+	
 	const handleSort = (name) => {
 		setSortActive(name);
 		dispatch(actionSort(name));
 		setActive(false);
 	};
+
 	return (
-		<div className={styles.mainContainer}onClick={() => setActive(!active)}>
+		<div className={styles.mainContainer} onClick={() => setActive(!active)}>
 			<div className={styles.container}>
 				<div className={styles.sortContainer}>
 					<div>

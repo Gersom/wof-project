@@ -21,7 +21,7 @@ const configureWebSocket = (server) => {
   };
   const sendToCaregiver = (message, caregiverId) => {
     clients.forEach((client) => {
-      if (client.role === "caregiver" && client.caregiverId === caregiverId) {
+      if (client.role === "caregiver" && client.caregiverId == caregiverId) {
         client.ws.send(message);
       }
     });
@@ -30,14 +30,16 @@ const configureWebSocket = (server) => {
     clients.forEach((client) => {
       if (client.role == "owner" && client.ownerId == ownerId) {
         client.ws.send(message);
+        console.log('enviado a owner', ownerId)
       }
     });
   };
+
   const sendToBothById = (message, caregiverId, ownerId) => {
     clients.forEach((client) => {
-      if (client.role === "caregiver" && client.caregiverId === caregiverId) {
+      if (client.role === "caregiver" && client.caregiverId == caregiverId) {
         client.ws.send(message);
-      } else if (client.role === "owner" && client.ownerId === ownerId) {
+      } else if (client.role === "owner" && client.ownerId == ownerId) {
         client.ws.send(message);
       }
     });
@@ -50,8 +52,9 @@ const configureWebSocket = (server) => {
   const clientAddOwner = (ws, role, ownerId) => {
     let exist = false;
     clients.forEach((client, index) => {
-      if (client.role === role && client.ownerId === ownerId) {
+      if (client.role === role && client.ownerId == ownerId) {
         exist = true;
+        console.log('owner existente')
       }
     });
     if (!exist) clients.push({ ws, role, ownerId }); // Agrega un nuevo elemento si no existe
@@ -61,7 +64,7 @@ const configureWebSocket = (server) => {
   const clientAddCaregiver = (ws, role, caregiverId) => {
     let exist = false;
     clients.forEach((client, index) => {
-      if (client.role === role && client.caregiverId === caregiverId) {
+      if (client.role === role && client.caregiverId == caregiverId) {
         exist = true;
       }
     });

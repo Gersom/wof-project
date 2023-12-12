@@ -59,6 +59,14 @@
     transform: translate(-50%, -50%);
 }
 
+@media screen and (max-width: 650px) {
+    .navContainer{
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    
+}
 
 
 /* @media screen and (max-width:1400px) {

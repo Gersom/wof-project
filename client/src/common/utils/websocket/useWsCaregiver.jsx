@@ -6,13 +6,18 @@ import { setAlert } from "@src/common/store/slices/alertSlice";
 import { setWs, setTryReconnect } from "@src/common/store/slices/wsSlice";
 import routerNames from "@src/common/constants/routes";
 import { useLocation } from "react-router-dom";
-import { setMsgChat, setChat , setChatTrigger } from "@src/common/store/slices/chatSlice";
+import {
+  setMsgChat,
+  setChatTrigger,
+  setRole,
+} from "@src/common/store/slices/chatSlice";
 
 const useWsCaregiver = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
   const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
+
   const caregiverId = useSelector(
     (state) => state.userReducer.user?.caregiver?.id
   );
@@ -21,10 +26,15 @@ const useWsCaregiver = () => {
   const tryReconnect = useSelector((state) => state.wsReducer.tryReconnect);
 
   useEffect(() => {
+    dispatch(setRole(ROLE));
+  }, [dispatch, ROLE]);
+
+  useEffect(() => {
     if (ROLE !== "caregiver") return;
 
     const connectWebSocket = () => {
       const newWs = new WebSocket(WS_URL);
+
       if (!wsCaregiver) {
         newWs.onopen = () => {
           console.log("connected");
@@ -45,6 +55,7 @@ const useWsCaregiver = () => {
         dispatch(setWs(null)); // Reiniciar la conexión WebSocket si se cierra
       };
     };
+
     if (ROLE === "caregiver" && !wsCaregiver) {
       if (tryReconnect === 0) {
         connectWebSocket();
@@ -83,12 +94,9 @@ const useWsCaregiver = () => {
               })
             );
             setLastProcessedMessage(null);
-          } 
-           if (data.type === "message") {
+          }
+          if (data.type === "message") {
             dispatch(setMsgChat(data));
-            if (data.isOwner) {
-              dispatch(setChat({ id: data.chatId }));
-            }
           }
           if (data.type === "update_message") {
             dispatch(setChatTrigger(Math.random()));
@@ -121,7 +129,7 @@ const useWsCaregiver = () => {
     }
   };
 
-  return { sendMessageCaregiver, wsCaregiver };
+  return { sendMessageCaregiver };
 };
 
 export default useWsCaregiver;
