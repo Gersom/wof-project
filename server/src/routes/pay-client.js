@@ -46,18 +46,19 @@ router.post("/", async (req, res) => {
       })
     }
     
-    let totalRecievedBalance = 0
     const updateReceivedBalance = async () => {
       const caregiverTransactions = await CaregiverTransactionsModel.findAll({where:{caregiverId:body.caregiverId}})
+      let totalRecievedBalance = 0
       caregiverTransactions.map(caretr => {
         totalRecievedBalance += Number(d.amountPaid)
         return caretr
       })
 
-      return await CaregiversModel.updateData(body.caregiverId,{recievedBalance: totalRecievedBalance})
+      await CaregiversModel.updateData(body.caregiverId,{recievedBalance: totalRecievedBalance})
+      updateDueBalance(totalRecievedBalance)
     }
 
-    const updateDueBalance = async () => {
+    const updateDueBalance = async (asd) => {
       const transactions = await TransactionsModel.findAll({
         where: { caregiverId: body.caregiverId, id: {[Op.not]: transaction.id} },
         attributes: ["amount"],
@@ -70,7 +71,7 @@ router.post("/", async (req, res) => {
         totalDueBalance += originalA - roundedR
         return d
       })
-      return await CaregiversModel.updateData(body.caregiverId, { dueBalance: totalDueBalance - totalRecievedBalance })
+      return await CaregiversModel.updateData(body.caregiverId, { dueBalance: totalDueBalance - asd })
     }
 
     const createNotification = async () => {
@@ -98,7 +99,6 @@ router.post("/", async (req, res) => {
         const careTransaction = await createCaregiverTransaction()
         await createNotification()
         await updateReceivedBalance()
-        await updateDueBalance()
         res.status(200).json(careTransaction)
         // console.log('=> ya le pague al cuidador, ahora si me compras mis papas lays?')
       } else {
