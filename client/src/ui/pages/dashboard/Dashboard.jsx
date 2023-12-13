@@ -35,7 +35,11 @@ const Dashboard = () => {
 	return (
 		<>
 			<div className={styles.containerGrid}>
-				<Chat userData={userData}/>
+        {
+          userData.role === 'admin'
+          ? ''
+          : <Chat userData={userData}/>
+        }
 				<NavBar userData={userData} />
 				<Outlet />
 				<ModalCustom state={false}>
