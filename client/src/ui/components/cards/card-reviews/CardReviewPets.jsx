@@ -27,7 +27,6 @@ const CardReviewPets = ({ id, role }) => {
       }
     }
     getReviews()
-    console.log(reviewsData);
   }, []);
 
   return (
