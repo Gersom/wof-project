@@ -1,5 +1,5 @@
 const calculatePercentage = (originalAmount) => {
-  const percentage = 5 // %
+  const percentage = 10 // %
 
   var result = (originalAmount * percentage) / 100;
 
