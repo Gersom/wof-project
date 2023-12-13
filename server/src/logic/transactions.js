@@ -48,7 +48,6 @@ const postTransactionLogic = async (data) => {
     where: { caregiverId: data.caregiverId, },
     attributes: ["amount"],
   })
-
   let totalDueBalance = 0;
   caregiversTransactions.map(d => totalDueBalance = totalDueBalance + Number(d.amount))
   await CaregiversModel.updateData(data.caregiverId, { dueBalance: totalDueBalance })
@@ -56,7 +55,6 @@ const postTransactionLogic = async (data) => {
   return {
     success: "The new Transaction was created successfully.",
     data: newTransaction,
-    totalDueBalance
   };
 };
 
