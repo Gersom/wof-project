@@ -7,37 +7,19 @@ import Cards from './Cards'
 import ClientCards from './ClientCards'
 import validation from './validationEmailPaypal/validation';
 import { setAlert } from '@src/common/store/slices/alertSlice';
+import axios from 'axios'
+import { API_URL } from '@src/common/constants/api';
 
 const MyWallet = () => {
 	const dispatch = useDispatch();
 	const caregiverId = useSelector((state => state?.userReducer?.user?.caregiver?.id));
-	const myWallet = useSelector(state => state?.myWallet?.MyWallet)
 	const [emailPaypal, setEmailPaypal] = useState('')
 	const [errors,setErrors] = useState({})
-	useEffect(() => {
-		// dispatch(actionGetWallet(caregiverId))
-		// .then(() => {
-    //   if (myWallet && myWallet.emailPaypal) {
-    //     setEmailPaypal(myWallet.emailPaypal);
-    //   }
-    // });
-		const fetchData = async () => {
-      try {
-        await dispatch(actionGetWallet(caregiverId))
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-	},[caregiverId,dispatch])
 
-	useEffect(() => {
-    if (myWallet && myWallet.emailPaypal) {
-      setEmailPaypal(myWallet.emailPaypal);
-    }
-  }, [myWallet]);
-	
-	const onchangeInput = (event) =>{
+	const [walletData, setWalletData] = useState({})
+
+
+  const onchangeInput = (event) =>{
 		setEmailPaypal(event.target.value)
 		setErrors(validation({emailPaypal:event.target.value}))
 		console.log(emailPaypal);
@@ -48,10 +30,10 @@ const MyWallet = () => {
 		try {
 
 			event.preventDefault()
-			if(!emailPaypal) return alert('Ingresa un correo')
-			if(Object.keys(errors).length !== 0) return alert('Debe ingresar un correo válido')
-			if(emailPaypal === myWallet.emailPaypal) return alert('Ya se encuentra usando este correo paypal')
-			if(myWallet.emailPaypal == setEmailPaypal) console.log('ya esta');
+			if(!emailPaypal) return dispatch(setAlert({ message: "Ingresa un correo", type: "warning" }));
+			if(Object.keys(errors).length !== 0) return dispatch(setAlert({ message: "Debe ingresar un correo válido", type: "warning" }))
+			if(emailPaypal === walletData.emailPaypal) return dispatch(setAlert({ message: "Ya se encuentra usando este correo paypal", type: "warning" }));
+			if(walletData.emailPaypal == setEmailPaypal) console.log('ya esta');
 
 			await dispatch(actionsEmailPaypal({ emailPaypal, caregiverId }));
 			
@@ -64,10 +46,32 @@ const MyWallet = () => {
 		}
 	}
 
+
+  const getWallet = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/my-wallet?caregiverId=${caregiverId}`);
+      // console.log(response);
+      setWalletData(response.data)
+      setEmailPaypal(response.data.emailPaypal)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+	useEffect(() => {
+    if(caregiverId) getWallet()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [caregiverId]);
+	
+	
 	return (
 		<div className={styles.walletContainer}>
 			<h1>Mi Billetera</h1>
-			<Cards dueBalance={myWallet?.dueBalance} recievedBalance={myWallet?.recievedBalance} clientsNumber={myWallet?.clients?.length}/>
+			<Cards 
+        dueBalance={walletData?.moneyToWithdraw} 
+        recievedBalance={walletData?.moneyWithdrawn} 
+        clientsNumber={walletData?.totalClients}/>
+
 			<div className={styles.contentSecond}> 
 				<div className={styles.content}>
 					<div className={styles.paypalContent}>
@@ -88,7 +92,7 @@ const MyWallet = () => {
 					</div>
 					{/* <div className={styles.amountContent}>Ganancias:</div> */}
 				</div>
-				<ClientCards clients={myWallet?.clients}/>
+				<ClientCards clients={walletData?.clients}/>
 			</div>
 		</div>
 	);

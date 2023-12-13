@@ -5,7 +5,7 @@ const ClientCards = ({ clients}) => {
   return(
     <div className={styles.ClientCardsContent}>
       {clients?.map((c,index) => {
-        const date = new Date(c?.endDate);
+        const date = new Date(c?.date);
         
         const day = date.getDate();
         const monthIndex = date.getMonth();
@@ -21,7 +21,17 @@ const ClientCards = ({ clients}) => {
         
         const formattedDate = `${day} de ${monthName}`;
         
-        return <ClientCard key={index} imgClient={c?.imgClient} client={c?.client} date={formattedDate} petName={c?.petName} petSpecie={c.petSpecie} price={c?.price}/>
+        return <ClientCard key={index} 
+        imgClient={c?.profilePicture} 
+        client={c?.name} 
+        date={formattedDate} 
+        petName={c?.petName} 
+        petSpecie={`${c.specieIcon} ${c.specieName}`}
+        originalAmount={c?.originalAmount}
+        percentage={c?.percentage}
+        revenue={c?.revenue}
+        amountPaid={c?.amountPaid}
+        />
       })}
     </div>
   )

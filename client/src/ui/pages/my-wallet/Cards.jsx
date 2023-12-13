@@ -15,12 +15,12 @@ const Cards = ({dueBalance, recievedBalance,clientsNumber}) => {
     },
     {
       icon: moneyOne,
-      tema: 'Cobrado',
+      tema: 'Retirado',
       amount: `$ ${recievedBalance}`
     },
     {
       icon: money,
-      tema: 'Total',
+      tema: 'Generado',
       amount: `$ ${dueBalance + recievedBalance}`
     },
     {
