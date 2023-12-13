@@ -44,8 +44,6 @@ const FormProfile = () => {
   const [phonePasswordShow, setPhonePasswordShow] = useState(false);
   const [contrasenaPasswordShow, setContrasenaPasswordShow] = useState(false);
 
-
-  console.log(userData?.birthdate)
   const [dataForm, setDataForm] = useState({
     name: userData?.name,
     lastName: userData?.lastName,
@@ -134,6 +132,7 @@ const FormProfile = () => {
             type: "success",
           })
         );
+        dispatch(actionGetUser(userData.id));
       } catch (error) {
         console.error("Error al realizar la solicitud PUT:", error.message);
       }
@@ -149,8 +148,6 @@ const FormProfile = () => {
     
     setDataForm((prevDataForm) => ({ ...prevDataForm, [name]: value }));
     handleValidation({ ...dataForm, [name]: value }, setErrors);
-    console.log(userData);
-    console.log(dataForm);
   };
 
   const handleProvinciaChange = (event) => {
