@@ -1,8 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../../config/dbConnect/engines/postgresql');
 const addMethods = require('../utils/addStaticMethods');
-// const { v4: uuidv4 } = require('uuid');
-const generateRandomCode = require('../../utils/generateRandomCode');
+const { v4: uuidv4 } = require('uuid');
 
 const name = 'verify_email';
 const config = {
@@ -23,7 +22,7 @@ const schema = {
 	code: {
 		type: DataTypes.UUID,
 		allowNull: false,
-		defaultValue: async() => await generateRandomCode(),
+		defaultValue: () => uuidv4(),
 	},
 	verified: {
 		type: DataTypes.BOOLEAN,
