@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import FilterSortLocationBar from "@src/ui/components/filter-sort-location-bar/FilterSortLocationBar";
 import { useSelector } from "react-redux";
 import { getHiredCaregivers } from "@src/common/utils/helpers-redux/getHiredCaregivers.js";
 import CaregiverList from "@src/ui/components/cards/card-caregivers/caregiver-list/CaregiverList";
@@ -30,14 +29,10 @@ const MyCaregivers = () => {
     }
   }, [ownerId]);
 
-  console.log("Cantidad de elementos del array:", hiredCaregivers.length);
-  console.log(hiredCaregivers,"HIRED CAREGIVERS  CONTAIN");
-
   if (role === "owner") {
     return (
       <div className={styles.mainContainerl}>
         <h1 className={styles.myClients}>Mis Cuidadores</h1>
-        <FilterSortLocationBar role={role} />
 
         {loading ? (
           <p>Cargando...</p>

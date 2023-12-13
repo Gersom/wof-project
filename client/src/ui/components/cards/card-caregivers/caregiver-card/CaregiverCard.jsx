@@ -12,10 +12,7 @@ const CaregiverCard = ({ customerData }) => {
   } = caregiver;
   const { name: petName, species: petSpecies, breed: petBreed } = pet;
 
-  const [formattedServiceStartDate, setFormattedServiceStartDate] = useState(
-    []
-  );
-  const [formattedServiceEndDate, setFormattedServiceEndDate] = useState([]);
+  const [formatedDate, setFormatedDate] = useState(null);
 
   const formatDates = () => {
     const startServiceDate = new Date(startDate);
@@ -24,13 +21,10 @@ const CaregiverCard = ({ customerData }) => {
     const startDay = startServiceDate.getDate();
     const endDay = endServiceDate.getDate();
     const month = startServiceDate.toLocaleString("es-LA", { month: "short" });
-    const year = startServiceDate.getFullYear();
 
-    const formattedStartDate = `${startDay} de ${month} ${year}`;
-    const formattedEndDate = `${endDay} de ${month} ${year}`;
+    const formattedDate = `${startDay} al ${endDay} de ${month} `;
 
-    setFormattedServiceStartDate(formattedStartDate);
-    setFormattedServiceEndDate(formattedEndDate);
+    setFormatedDate(formattedDate);
   };
 
   useEffect(() => {
@@ -46,32 +40,28 @@ const CaregiverCard = ({ customerData }) => {
       </figure>
       <div className={styles.cont}>
         <div className={styles.contSec}>
-          <h5>Puntuación :</h5>
-          <img src={starReview} alt="starReview" />
-          <h4>{caregiverRating}</h4>
+          <h5>
+            Puntuación :{" "}
+            <span>
+              {" "}
+              <img src={starReview} alt="starReview" />
+              {caregiverRating}
+            </span>
+          </h5>
         </div>
         <hr className={styles.separator}></hr>
-        <div>
+        <div className={styles.contInfo}>
           <h4>
-            {petSpecies} {petName} - {petBreed}
+            {petName.charAt(0).toUpperCase() + petName.slice(1)} - {petBreed}
           </h4>
-          <h4 className={styles.address}>{address}</h4>
-          <hr className={styles.separatorSec}></hr>
           <div className={styles.dates}>
             <div className={styles.textDates}>
-              {" "}
-              <h5 className={styles.date}>
-                <p className={styles.texts}>Desde: </p>
-                {formattedServiceStartDate}
-              </h5>
+              <h5 className={styles.date}>{formatedDate}</h5>
+              <h4 className={styles.address}>{address}</h4>
             </div>
-            <div className={styles.textDates}>
-              <h5 className={styles.date}>
-                <p className={styles.texts}>Hasta: </p>
-                {formattedServiceEndDate}
-              </h5>
-              <h4>Total: {caregiverPrice}</h4>
-            </div>
+          </div>
+          <div className={styles.contPrice}>
+            <h4>Total: ${caregiverPrice}</h4>
           </div>
         </div>
       </div>
