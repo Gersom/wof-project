@@ -29,6 +29,7 @@ const Offers = () => {
 											postId={post.id}
 											ownerId={post?.owner?.id}
 											caregiverId={post?.caregiver?.id}
+                      status={post?.status}
 										/>
 									)
 							)}

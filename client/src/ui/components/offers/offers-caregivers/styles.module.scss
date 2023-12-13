@@ -154,5 +154,7 @@
         grid-template-rows: auto;
         order: calc(2);
     }
-    
+    .containerOffers {
+      grid-template-rows: initial;
+    }    
 }
