@@ -120,7 +120,7 @@ const ModalPrice = ({ data, toggleModal, setSuccess }) => {
             <h5>TARIFAS</h5>
             <h6>
               <img src={etiquetaTarifa} />
-              Tarifa por día
+              Tarifa total
             </h6>
             <div className={styles.priceInput}>
               <span>$.</span>
