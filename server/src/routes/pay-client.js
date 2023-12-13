@@ -46,22 +46,31 @@ router.post("/", async (req, res) => {
       })
     }
     
+    let totalRecievedBalance = 0
     const updateReceivedBalance = async () => {
-      let totalRecievedBalance = 0
       const caregiverTransactions = await CaregiverTransactionsModel.findAll({where:{caregiverId:body.caregiverId}})
-      caregiverTransactions.map(d => totalRecievedBalance = totalRecievedBalance + Number(d.amountPaid))
+      caregiverTransactions.map(caretr => {
+        totalRecievedBalance += Number(d.amountPaid)
+        return caretr
+      })
 
       return await CaregiversModel.updateData(body.caregiverId,{recievedBalance: totalRecievedBalance})
     }
 
     const updateDueBalance = async () => {
-      const caregiversTransactions = await TransactionsModel.findAll({
+      const transactions = await TransactionsModel.findAll({
         where: { caregiverId: body.caregiverId, id: {[Op.not]: transaction.id} },
         attributes: ["amount"],
       })
       let totalDueBalance = 0;
-      caregiversTransactions.map(d => totalDueBalance = totalDueBalance + Number(d.amount))
-      return await CaregiversModel.updateData(body.caregiverId, { dueBalance: totalDueBalance })
+      transactions.map(d => {
+        const originalA = Number(d.amount)
+        const revenueC = (percentage / 100) * originalA
+        const roundedR = revenueC.toFixed(2)
+        totalDueBalance += originalA - roundedR
+        return d
+      })
+      return await CaregiversModel.updateData(body.caregiverId, { dueBalance: totalDueBalance - totalRecievedBalance })
     }
 
     const createNotification = async () => {
