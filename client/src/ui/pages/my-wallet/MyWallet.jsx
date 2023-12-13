@@ -6,6 +6,7 @@ import form from './walletIcons/form.svg'
 import Cards from './Cards'
 import ClientCards from './ClientCards'
 import validation from './validationEmailPaypal/validation';
+import { setAlert } from '@src/common/store/slices/alertSlice';
 
 const MyWallet = () => {
 	const dispatch = useDispatch();
@@ -56,7 +57,7 @@ const MyWallet = () => {
 			
 			await dispatch(actionGetWallet(caregiverId));
 
-			alert('Se guardó su correo de PayPal correctamente');
+      dispatch(setAlert({ message: "Se guardó su correo de PayPal correctamente", type: "success" }));
 		} catch (error) {
 			console.error('Error al cambiar el correo de PayPal:', error);
 			// Puedes manejar errores aquí si es necesario
