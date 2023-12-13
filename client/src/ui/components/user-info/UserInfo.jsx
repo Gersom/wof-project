@@ -154,9 +154,9 @@ const UserInfo = ({onUpdate}) => {
                     <p>
                       {user.name} ({user.role})
                     </p>
-                    <p>
+                    {/* <p>
                       <span>Pago Total:</span> ${user.totalTransactions}
-                    </p>
+                    </p> */}
                     <p>Argentina</p>
                   </div>
                 </div>

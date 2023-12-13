@@ -83,9 +83,8 @@ const useWsCaregiver = () => {
     if (wsCaregiver) {
       wsCaregiver.onmessage = (event) => {
         try {
-          console.log(data.type, 'dfjibhasjkbfskabgjkgbkjadtbgkjbgksjbkdgjw');
-          
           const data = JSON.parse(event.data);
+          console.log(data.type, 'dfjibhasjkbfskabgjkgbkjadtbgkjbgksjbkdgjw');
           if (data.type === "offers_update") {
             if (lastProcessedMessage === data.type) return;
 
