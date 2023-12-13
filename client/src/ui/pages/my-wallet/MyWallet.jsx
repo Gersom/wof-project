@@ -68,7 +68,7 @@ const MyWallet = () => {
 			<h1>Mi Billetera</h1>
 			<Cards dueBalance={myWallet?.dueBalance} recievedBalance={myWallet?.recievedBalance} clientsNumber={myWallet?.clients?.length}/>
 			<div className={styles.contentSecond}> 
-				<div>
+				<div className={styles.content}>
 					<div className={styles.paypalContent}>
 						<div className={styles.dataPaypal}>Datos paypal:</div>
 						<div className={styles.emailContent}>
