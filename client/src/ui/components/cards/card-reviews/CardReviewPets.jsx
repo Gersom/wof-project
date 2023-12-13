@@ -35,6 +35,13 @@ const CardReviewPets = ({ id, role }) => {
       <div className={styles.cardCont}>
         <h3 className={styles.title}>Reseñas</h3>
         <hr className={styles.firstRounded}></hr>
+        {
+          !(reviewsData?.length>0) &&
+          <div style={{margin:"30px 0 20px 0", fontSize: "14px"}}>
+            Esta persona todavía no tiene reseñas.
+          </div>
+        }
+        
         {reviewsData &&
           reviewsData.map((review, index) => {
             const reviewDate = "2023-11-23T05:00:00.000Z";
@@ -60,7 +67,7 @@ const CardReviewPets = ({ id, role }) => {
 
             return (
               <div key={review.id}>
-                <h5 className={styles.paragraph}>"{review?.comment}"</h5>
+                <h5 className={styles.paragraph}>{`"${review?.comment}"`}</h5>
                 <div className={styles.infoPerson}>
                   <img
                     className={styles.profilePic}

@@ -8,7 +8,7 @@
     height: 100%;
     background-size: cover;
   
-    @media screen and (max-width: 680px) {
+    @media screen and (max-width: 800px) {
         grid-template-columns: 1fr;  
         background-size: contain; 
         max-width: 100%;
@@ -20,13 +20,16 @@
   .containerLeft {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: max-content max-content;
     row-gap: 1.5rem;
     justify-content: center;
     padding: 2rem 0rem;
     align-items: flex-start;
     justify-items: center;
     width: 100%;
+    @media screen and (min-width: 1200px) {
+      justify-content: flex-end;
+    }
     @media screen and (max-width: 680px) {
         grid-template-columns: 1fr;  
         background-size: contain; 
@@ -40,14 +43,14 @@
     grid-template-columns: auto;
     grid-template-rows: min-content min-content min-content min-content;
     row-gap: 1.5rem;
-    justify-content: center;
-    justify-items: center;
   
     h1 {
       color: var(--color-text-secondary);
       font-size: 5rem;
     }
-  
+    @media screen and (min-width: 1200px) {
+      justify-content: flex-start;
+    }
     @media screen and (max-width: 680px) {
       h1 {
         font-size: 3rem;  // Ajusta el tamaño del título en pantallas más pequeñas

@@ -54,16 +54,15 @@
 
     div {
       display: flex;
-      flex-direction: column; /* Cambiado a columna para pantallas pequeñas */
+      flex-direction: row; /* Cambiado a columna para pantallas pequeñas */
       gap: 0.5rem;
+      align-self: flex-start;
       justify-content: center;
       align-items: first baseline;
-      margin: 0.5rem 0rem;
-
+      margin: 0.5rem 0rem 1rem 0rem;
       h5 {
         color: #282c34;
         font-size: 1rem;
-        margin-bottom: 0.5rem; /* Añadido espacio inferior */
       }
 
       img {
