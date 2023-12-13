@@ -5,6 +5,8 @@ const { ChatModel } = require("../models");
 const {setClients} = require("../utils/web-socket/sendBanMessage");
 
 
+let clients = [];
+
 const configureWebSocket = (server) => {
   const wss = new WebSocket.Server({ server });
   // const clients = new Set(); // Keep track of clients
