@@ -70,20 +70,12 @@ const useWsCaregiver = () => {
         wsCaregiver.close();
       }
     };
-  }, [
-    dispatch,
-    tryReconnect,
-    wsCaregiver,
-    location.pathname,
-    ROLE,
-    caregiverId,
-  ]);
+  }, [dispatch, tryReconnect, wsCaregiver, location.pathname, ROLE, caregiverId, userId]);
 
   useEffect(() => {
     if (wsCaregiver) {
       wsCaregiver.onmessage = (event) => {
         try {
-          console.log(data.type, 'dfjibhasjkbfskabgjkgbkjadtbgkjbgksjbkdgjw');
           
           const data = JSON.parse(event.data);
           if (data.type === "offers_update") {
@@ -129,7 +121,7 @@ const useWsCaregiver = () => {
         }
       };
     }
-  }, [dispatch, lastProcessedMessage, wsCaregiver]);
+  }, [dispatch, lastProcessedMessage, navigate, wsCaregiver]);
 
   const sendMessageCaregiver = (message) => {
     if (wsCaregiver) {
