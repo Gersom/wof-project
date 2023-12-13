@@ -34,6 +34,7 @@ const getAllUsersLogic = async () => {
 const getUserByEmail= async (email)=>{
 
     const user = await UsersModel.findOne({
+      paranoid: false,
       where: { email: email },
     });
 

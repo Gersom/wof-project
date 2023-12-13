@@ -100,7 +100,7 @@ UsersModel["findAllUsers"] = async () => {
 UsersModel["createUser"] = async (data) => {
   const { email, name, password } = data
   if(!email || !name || !password) throw Error("missing data")
-  const emailUser = await UsersModel.findOne({where:{email}})
+  const emailUser = await UsersModel.findOne({ paranoid: false,where:{email}})
   if(emailUser) throw Error("the email already exists")
   const newUser = await UsersModel.create(data);
   return newUser;
