@@ -182,8 +182,17 @@ const FormProfile = () => {
       <div className={`${styles["container"]}`}>
         <form onSubmit={handleSubmit}>
           <div className={styles["profile_wrapper"]}>
-            <h2>{String(userData.role) === 'owner' ? '🐶 Dueño' : '🤝 Cuidador'}</h2>
             <h1>Mi Perfil</h1>
+            { String(userData.role) === 'owner' 
+              && <h2>🐶 Dueño</h2>
+            }
+            { String(userData.role) === 'caregiver' 
+              && <h2>🤝 Cuidador</h2>
+            }
+            { String(userData.role) === 'admin' 
+              && <h2>🎫 Administrador</h2>
+            }
+
             <div className={styles["profile_cards_container"]}>
               <div className={styles["profile_cards_wrapper"]}>
                 <div className={styles["profile_card"]}>
