@@ -18,12 +18,12 @@ const ClientCard = ({
       </div>
 
       <div className={styles.clientPrice}>
-        <span> + {originalAmount}.00</span>
+        <span> + $ {originalAmount}.00</span>
         <span style={{color:"#CE4B4B"}}>
-          {`- ${revenue} (${percentage}%)`}
+          {`- $ ${revenue} (${percentage}%)`}
         </span>
         <span style={{color:"#1E1E1E"}}>
-          {`= ${amountPaid} $`}
+          {`= $ ${amountPaid}`}
         </span>
       </div>
 
