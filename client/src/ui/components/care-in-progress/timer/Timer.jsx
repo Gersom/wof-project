@@ -4,6 +4,7 @@ import { useTimer } from "react-timer-hook";
 const Timer = ({ onExpire, expiryTimestamp, style }) => {
 
   const styleTimer = style === 'small' ? styles.timerSmall : styles.timer
+
   const { days, hours, seconds, minutes } = useTimer({
     expiryTimestamp: expiryTimestamp,
     onExpire: onExpire,

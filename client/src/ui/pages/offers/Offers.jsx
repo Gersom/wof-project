@@ -21,7 +21,7 @@ const Offers = () => {
 								(post, index) =>
 									post.status === 'paid' && (
 										<CareInProgress
-											endDate={post.startDate}
+											endDate={post.endDate}
 											startDate={post.startDate}
                       petName={post.pet.name}
 											image={post.pet.imageUrl}
