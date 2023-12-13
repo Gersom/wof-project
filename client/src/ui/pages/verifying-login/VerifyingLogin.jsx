@@ -113,6 +113,7 @@ const VerifyingLogin = () => {
   const integrateLogin = async () => {
     try {
       await Promise.all([handleAuth0Register()]);
+      manageRedirection();
     } catch (error) {
       console.error(
         "Error durante la integraci贸n del inicio de sesi贸n:",
@@ -154,17 +155,20 @@ const VerifyingLogin = () => {
     }
   };
 
+  // useEffect(() => {
+  //   if (isAuth0enticated) {
+  //     integrateLogin();
+  //   }
+  // }, [isLoading]);
+
   useEffect(() => {
     if (isAuth0enticated) {
       integrateLogin();
     }
-  }, [isLoading]);
-
-  useEffect(() => {
     if (isAuthenticated) {
       manageRedirection();
     }
-  }, [isAuthenticated, navigate, isLoading]);
+  }, [isAuthenticated,isAuth0enticated, navigate, isLoading]);
 
   const resetLocal = () => {
     saveToLocalStorage("session", "");
