@@ -3,6 +3,7 @@ const router = express.Router()
 const configurePaypal = require("../services/paypal/configure")
 const detailsPaypal = require("../services/paypal/details")
 const generateRandomCode = require("../utils/generateRandomCode")
+const { Op } = require('sequelize');
 
 router.post("/", async (req, res) => {
   try {
@@ -11,7 +12,8 @@ router.post("/", async (req, res) => {
       PostsModel, 
       CaregiversModel, 
       CaregiverTransactionsModel,
-      NotificationsModel
+      NotificationsModel,
+      TransactionsModel
     } = require('./../models/index')
 
     const postData = await PostsModel.findTransactionById(body?.postId)    
@@ -43,6 +45,24 @@ router.post("/", async (req, res) => {
         caregiverId: body?.caregiverId
       })
     }
+    
+    const updateReceivedBalance = async () => {
+      let totalRecievedBalance = 0
+      const caregiverTransactions = await CaregiverTransactionsModel.findAll({where:{caregiverId:body.caregiverId}})
+      caregiverTransactions.map(d => totalRecievedBalance = totalRecievedBalance + Number(d.amountPaid))
+
+      return await CaregiversModel.updateData(body.caregiverId,{recievedBalance: totalRecievedBalance})
+    }
+
+    const updateDueBalance = async () => {
+      const caregiversTransactions = await TransactionsModel.findAll({
+        where: { caregiverId: body.caregiverId, id: {[Op.not]: transaction.id} },
+        attributes: ["amount"],
+      })
+      let totalDueBalance = 0;
+      caregiversTransactions.map(d => totalDueBalance = totalDueBalance + Number(d.amount))
+      return await CaregiversModel.updateData(body.caregiverId, { dueBalance: totalDueBalance })
+    }
 
     const createNotification = async () => {
       await NotificationsModel.create({
@@ -62,19 +82,25 @@ router.post("/", async (req, res) => {
       productId,
       emailSubject:'WOF - Cuidado de mascota: ' + body.petName
     })
+    await updateReceivedBalance()
+    await updateDueBalance()
+    res.status(200).send("ffff")
+    // const paypalContructor = await configurePaypal()
+    // paypalContructor.payout.create(payoutDetails, async (error, payout) => {
+    //   if (!error) {
+    //     const careTransaction = await createCaregiverTransaction()
+    //     await createNotification()
+    //     await updateReceivedBalance()
+    //     await updateDueBalance()
+    //     res.status(200).json(careTransaction)
+    //     // console.log('=> ya le pague al cuidador, ahora si me compras mis papas lays?')
+    //   } else {
+    //     // console.error("=> papi paso un error, no pude darle dinero al cuidador, te he fallado :'(")
+    //     res.status(500).json(error.response)
+    //   }
+    // });
 
-    const paypalContructor = await configurePaypal()
-    paypalContructor.payout.create(payoutDetails, async (error, payout) => {
-      if (!error) {
-        const careTransaction = await createCaregiverTransaction()
-        await createNotification()
-        res.status(200).json(careTransaction)
-        // console.log('=> ya le pague al cuidador, ahora si me compras mis papas lays?')
-      } else {
-        // console.error("=> papi paso un error, no pude darle dinero al cuidador, te he fallado :'(")
-        res.status(500).json(error.response)
-      }
-    });
+
 
   } catch (error) {
     return res.status(501).json(error.message)
