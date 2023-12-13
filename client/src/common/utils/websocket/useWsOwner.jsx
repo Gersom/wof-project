@@ -63,7 +63,7 @@ const useWsOwner = () => {
         wsOwner.close();
       }
     };
-  }, [dispatch, tryReconnect, wsOwner, location.pathname, ROLE]);
+  }, [dispatch, tryReconnect, wsOwner, location.pathname, ROLE, ownerId, userId]);
 
   useEffect(() => {
     if (wsOwner) {
@@ -101,7 +101,7 @@ const useWsOwner = () => {
         }
       };
     }
-  }, [wsOwner, dispatch, ownerId, lastProcessedMessage]);
+  }, [wsOwner, dispatch, ownerId, lastProcessedMessage, navigate]);
 
   const sendMessageOwner = (message) => {
     if (wsOwner) {

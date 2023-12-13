@@ -70,14 +70,7 @@ const useWsCaregiver = () => {
         wsCaregiver.close();
       }
     };
-  }, [
-    dispatch,
-    tryReconnect,
-    wsCaregiver,
-    location.pathname,
-    ROLE,
-    caregiverId,
-  ]);
+  }, [dispatch, tryReconnect, wsCaregiver, location.pathname, ROLE, caregiverId, userId]);
 
   useEffect(() => {
     if (wsCaregiver) {
@@ -128,7 +121,7 @@ const useWsCaregiver = () => {
         }
       };
     }
-  }, [dispatch, lastProcessedMessage, wsCaregiver]);
+  }, [dispatch, lastProcessedMessage, navigate, wsCaregiver]);
 
   const sendMessageCaregiver = (message) => {
     if (wsCaregiver) {
