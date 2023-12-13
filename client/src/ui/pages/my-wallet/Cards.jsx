@@ -9,19 +9,19 @@ const Cards = ({dueBalance, recievedBalance,clientsNumber}) => {
 
   const array = [
     {
-      icon: money,
-      tema: 'Dinero total',
-      amount: `$ ${dueBalance + recievedBalance}`
+      icon:moneySecond,
+      tema: 'Por liberar',
+      amount: `$ ${dueBalance}`
     },
     {
       icon: moneyOne,
-      tema: 'Dinero ganado',
+      tema: 'Cobrado',
       amount: `$ ${recievedBalance}`
     },
     {
-      icon:moneySecond,
-      tema: 'Dinero por ganar',
-      amount: `$ ${dueBalance}`
+      icon: money,
+      tema: 'Total',
+      amount: `$ ${dueBalance + recievedBalance}`
     },
     {
       icon: pet,
