@@ -71,24 +71,24 @@ const DatePublicSelect = ({
 			return;
 		}
 
-		if (startDate < currentDate) {
-			dispatch(
-				setAlert({
-					message: 'La fecha de inicio no puede ser menor a la fecha actual',
-					type: 'warning',
-				})
-			);
-			return;
-		}
-		if (endDate < startDate) {
-			dispatch(
-				setAlert({
-					message: 'La fecha de fin no puede ser menor a la fecha de inicio',
-					type: 'warning',
-				})
-			);
-			return;
-		}
+		// if (startDate < currentDate) {
+		// 	dispatch(
+		// 		setAlert({
+		// 			message: 'La fecha de inicio no puede ser menor a la fecha actual',
+		// 			type: 'warning',
+		// 		})
+		// 	);
+		// 	return;
+		// }
+		// if (endDate < startDate) {
+		// 	dispatch(
+		// 		setAlert({
+		// 			message: 'La fecha de fin no puede ser menor a la fecha de inicio',
+		// 			type: 'warning',
+		// 		})
+		// 	);
+		// 	return;
+		// }
 		if (startDate > endDate) {
 			dispatch(
 				setAlert({
@@ -98,15 +98,16 @@ const DatePublicSelect = ({
 			);
 			return;
 		}
-		if (startDate === endDate) {
-			dispatch(
-				setAlert({
-					message: 'La fecha de inicio no puede ser igual a la fecha de fin',
-					type: 'warning',
-				})
-			);
-			return;
-		}
+		// if (startDate === endDate) {
+		// 	dispatch(
+		// 		setAlert({
+		// 			message: 'La fecha de inicio no puede ser igual a la fecha de fin',
+		// 			type: 'warning',
+		// 		})
+		// 	);
+		// 	return;
+		// }
+
 		if (startDate && endDate) {
 			if (data.status === 'completed') {
 				await fetch(`${API_URL_CREATE_POST}`, options);
