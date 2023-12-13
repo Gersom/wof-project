@@ -31,7 +31,7 @@ const UserStats = ({triggerUpdate}) => {
           </div>
         </div>
         <div className={styles.card}>
-          <span>🐱‍💻</span>
+          <span>💻</span>
           <div className={styles.logo}>
             <h4>Activos</h4>
             <p> {userData && userData.usersNotBanned}</p>

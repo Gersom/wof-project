@@ -41,6 +41,11 @@
     align-items: center;
     cursor: pointer;
 }
+.disabled{
+    cursor: default;
+    opacity: 0.5;
+
+}
 
 .containerOverlay{
     position: fixed;
