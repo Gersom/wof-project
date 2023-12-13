@@ -11,7 +11,10 @@ $color-grey: #cccccc;
   padding: 1.5rem;
   width: 100%;
   height: max-content;
-
+  min-width: 500px;
+  @media screen and (max-width: 1200px) {
+    min-width: initial;
+  }
   h3 {
     color: var(--color-text-dark);
     border-bottom: 0.2rem solid #DDDDDD;

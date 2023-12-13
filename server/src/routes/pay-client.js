@@ -82,23 +82,21 @@ router.post("/", async (req, res) => {
       productId,
       emailSubject:'WOF - Cuidado de mascota: ' + body.petName
     })
-    await updateReceivedBalance()
-    await updateDueBalance()
-    res.status(200).send("ffff")
-    // const paypalContructor = await configurePaypal()
-    // paypalContructor.payout.create(payoutDetails, async (error, payout) => {
-    //   if (!error) {
-    //     const careTransaction = await createCaregiverTransaction()
-    //     await createNotification()
-    //     await updateReceivedBalance()
-    //     await updateDueBalance()
-    //     res.status(200).json(careTransaction)
-    //     // console.log('=> ya le pague al cuidador, ahora si me compras mis papas lays?')
-    //   } else {
-    //     // console.error("=> papi paso un error, no pude darle dinero al cuidador, te he fallado :'(")
-    //     res.status(500).json(error.response)
-    //   }
-    // });
+
+    const paypalContructor = await configurePaypal()
+    paypalContructor.payout.create(payoutDetails, async (error, payout) => {
+      if (!error) {
+        const careTransaction = await createCaregiverTransaction()
+        await createNotification()
+        await updateReceivedBalance()
+        await updateDueBalance()
+        res.status(200).json(careTransaction)
+        // console.log('=> ya le pague al cuidador, ahora si me compras mis papas lays?')
+      } else {
+        // console.error("=> papi paso un error, no pude darle dinero al cuidador, te he fallado :'(")
+        res.status(500).json(error.response)
+      }
+    });
 
 
 
