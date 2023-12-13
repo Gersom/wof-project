@@ -3,7 +3,7 @@ const middlewares = require("./config/middlewares");
 const listen = require("./config/listen");
 const { dbConnect } = require("./config/dbConnect");
 const insertData = require("./services/database");
-const configureWebSocket = require("./config/webSocketServer");
+const {configureWebSocket} = require("./config/webSocketServer");
 
 const app = express();
 

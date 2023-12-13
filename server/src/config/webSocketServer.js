@@ -2,10 +2,22 @@ const WebSocket = require("ws");
 
 const { ChatModel } = require("../models");
 
+let clients = [];
+
+const sendBanMessage =(userId)=>{
+  console.log("SEND MESAGE TO ID:", userId);
+  clients.forEach((client) => {
+    //console.log("FOR EACH ID:", client);
+    if (client.userId == userId) {
+      console.log("FINDED CLIENT:", client.userId, userId);
+      client.ws.send(JSON.stringify({ type: 'ban_user', userId }));
+    } 
+  });
+}
+
 const configureWebSocket = (server) => {
   const wss = new WebSocket.Server({ server });
   // const clients = new Set(); // Keep track of clients
-  const clients = [];
 
   const sendToAllClients = (message) => {
     clients.forEach((client) => {
@@ -45,6 +57,7 @@ const configureWebSocket = (server) => {
     });
   };
 
+  
   // Event listeners
 
   const clientAddOwner = (ws, role, ownerId, userId) => {
@@ -188,4 +201,4 @@ const configureWebSocket = (server) => {
   return wss;
 };
 
-module.exports = configureWebSocket;
+module.exports ={ configureWebSocket, sendBanMessage}
