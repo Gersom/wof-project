@@ -44,6 +44,7 @@ const VerifyingLogin = () => {
   const getAuthToken = async () => await handleSilentLogin();
 
   const manageSpecialLogin = async () => {
+    console.log('funcion => manageSpecialLogin')
     const token = await handleSilentLogin();
     const response = await axios.post(API_URL_LOGIN, {
       email: user.email,
@@ -55,11 +56,11 @@ const VerifyingLogin = () => {
       userId: response.data.userId,
       token: response.data.token,
     });
-    
     manageRedirection();
   };
 
   const handleAuth0Register = async () => {
+    console.log('funcion => handleAuth0Register')
     const token = await handleSilentLogin();
 
     const userData = {
@@ -84,9 +85,9 @@ const VerifyingLogin = () => {
         try {
           const info = await axios.post(apiUrlRegister, userData);
           console.log("REGISTER NEW USER", info);
-          if (info.statusText === "Created") {
-            await manageSpecialLogin();
-          }
+          await manageSpecialLogin();
+          // if (info.statusText === "Created") {
+          // }
         } catch (error) {
           console.error(`Error creating new user): ${error.message}`);
         }
@@ -123,6 +124,7 @@ const VerifyingLogin = () => {
   };
 
   const manageRedirection = async () => {
+    console.log('funcion => manageRedirection')
     const storage = await getFromLocalStorage("session");
 
     if(storage.userId){
