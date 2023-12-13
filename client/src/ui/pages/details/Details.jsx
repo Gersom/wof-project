@@ -63,7 +63,7 @@ const Details = () => {
     await fetch(`${API_URL_SERVICES}${id}`, options);
 
   };
-
+  
   return (
     <div className={styles.mainContainerGrid}>
       <div className={styles.containerLeft}>

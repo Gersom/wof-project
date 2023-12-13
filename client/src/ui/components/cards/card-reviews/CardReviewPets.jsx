@@ -27,7 +27,6 @@ const CardReviewPets = ({ id, role }) => {
       }
     }
     getReviews()
-    console.log(reviewsData);
   }, []);
 
   return (
@@ -45,14 +44,10 @@ const CardReviewPets = ({ id, role }) => {
         {reviewsData &&
           reviewsData.map((review, index) => {
             const reviewDate = "2023-11-23T05:00:00.000Z";
-
-     
             const dateObject = new Date(reviewDate);
-
         
             const day = dateObject.getDate();
             const monthIndex = dateObject.getMonth();
-            const year = dateObject.getFullYear();
 
             const monthNames = [
               "Enero", "Febrero", "Marzo",
