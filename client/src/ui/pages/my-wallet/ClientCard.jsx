@@ -1,9 +1,13 @@
 import styles from './styles.module.scss';
 
-const ClientCard = ({ client, date, petName, petSpecie, price, imgClient }) => {
-  const originalPrice = price;
-  const discountPercentage = 5;
-  const discountedPrice = originalPrice - (originalPrice * (discountPercentage / 100));
+const ClientCard = ({ 
+  client, date, petName, petSpecie, imgClient,
+  originalAmount,
+  percentage,
+  revenue,
+  amountPaid
+}) => {
+  
   return (
     <div className={styles.clientCardContent}>
       <img src={imgClient} alt="imgProfile" className={styles.imgClient} />
@@ -12,13 +16,15 @@ const ClientCard = ({ client, date, petName, petSpecie, price, imgClient }) => {
         <div className={styles.clientDate}>{date}</div>
         <div className={styles.clientPet}>{`${petName} - ${petSpecie}`}</div>
       </div>
-      <div className={styles.clientPrice}>
-        {`$ ${originalPrice} `} <span style={{color:"red"}}> - ${discountPercentage}%</span>
-        <br />
-        <span style={{color:"green"}}>
-          {`$${discountedPrice.toFixed(2)}`}
-        </span>
 
+      <div className={styles.clientPrice}>
+        <span> + {originalAmount}.00</span>
+        <span style={{color:"#CE4B4B"}}>
+          {`- ${revenue} (${percentage}%)`}
+        </span>
+        <span style={{color:"#1E1E1E"}}>
+          {`= ${amountPaid} $`}
+        </span>
       </div>
 
     </div>

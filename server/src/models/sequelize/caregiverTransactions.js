@@ -41,10 +41,6 @@ const schema = {
 
 const CaregiverTransactionsModel = sequelize.define(name, schema, config)
 
-
-// add static methods (functions) to model
-addMethods(CaregiverTransactionsModel)
-
 // Add relationship
 TransactionsModel.hasOne(CaregiverTransactionsModel)
 CaregiverTransactionsModel.belongsTo(TransactionsModel)
@@ -54,5 +50,44 @@ CaregiverTransactionsModel.belongsTo(PostsModel)
 
 CaregiversModel.hasMany(CaregiverTransactionsModel)
 CaregiverTransactionsModel.belongsTo(CaregiversModel)
+
+// add static methods (functions) to model
+addMethods(CaregiverTransactionsModel)
+
+CaregiverTransactionsModel["findMyWallet"] = async (caregiverId) => {
+  const {
+    OwnersModel, UsersModel, PostsModel, PetsModel, SpeciesModel
+  } = require('../index')
+  const transactions = await CaregiverTransactionsModel.findAll({
+    where: { caregiverId },
+    attributes: [
+      ["id", "caregiverTransactionId"], "currencyCode", "originalAmount", "amountPaid", "percentage", "revenue", ["createdAt", "date"]
+    ],
+    include: [
+      {
+        model: PostsModel,
+        attributes: ["id", "status"],
+        include: [
+          {
+            model: PetsModel,
+            attributes: ["id", "name"],
+            include: [{
+              model: SpeciesModel
+            }]
+          },
+          {
+            model: OwnersModel,
+            attributes: ["id", "rating"],
+            include: [{
+              model: UsersModel,
+              attributes: ["id", "name", "profilePicture"],
+            }]
+          }
+        ]
+      }
+    ]
+  });
+  return transactions;
+};
 
 module.exports = CaregiverTransactionsModel

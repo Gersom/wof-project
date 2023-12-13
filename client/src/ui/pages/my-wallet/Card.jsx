@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-const Card = ({icon,tema,amount}) => {
+const Card = ({icon,tema,amount=0}) => {
   return (
   // <div className={styles.a}>
     <div className={styles.cardContent}>

@@ -11,28 +11,32 @@ const Cards = ({dueBalance, recievedBalance,clientsNumber}) => {
     {
       icon:moneySecond,
       tema: 'Por liberar',
-      amount: `$ ${dueBalance}`
+      amount: `$ ${Number(dueBalance).toFixed(2)}`
     },
     {
       icon: moneyOne,
-      tema: 'Cobrado',
-      amount: `$ ${recievedBalance}`
+      tema: 'Retirado',
+      amount: `$ ${Number(recievedBalance).toFixed(2)}`
     },
     {
       icon: money,
-      tema: 'Total',
-      amount: `$ ${dueBalance + recievedBalance}`
+      tema: 'Generado',
+      amount: `$ ${Number(dueBalance + recievedBalance).toFixed(2)}`
     },
     {
       icon: pet,
       tema: 'Clientes',
-      amount: clientsNumber
+      amount: '0' + clientsNumber
     },
   ]
 
   return (
     <div className={styles.cardsContent}>
-      {array?.map((a,index) => <Card icon={a?.icon} tema={a?.tema} amount={a?.amount} key={index}/>)}
+      {
+        array?.map((a,index) => (
+          <Card icon={a?.icon} tema={a?.tema} amount={a?.amount} key={index}/>
+        ))
+      }
     </div>
   )
 }

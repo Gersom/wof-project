@@ -7,8 +7,7 @@ const username = process.env.PG_USER
 const password = process.env.PG_PASSWORD
 const host = process.env.PG_HOST
 const uri = process.env.PG_URI
-
-const modeServer = process.env.MODE
+const RESET_DB = process.env.RESET_DB || 'yes'
 
 const sequelize = new Sequelize(
   buildURI({ uri, database, username, password, host }),
@@ -20,8 +19,9 @@ const dbConnectPostgresql = async () => {
     await sequelize.authenticate()
     console.log('*** PostgreSQL SUCCESS CONEXION ***');
 
-    let optionsSequelize = { force: true }
-    if (modeServer === 'prod') optionsSequelize = {}
+    let optionsSequelize = {}
+    if (RESET_DB === 'yes') optionsSequelize = { force: true }
+    if (RESET_DB === 'alter') optionsSequelize = { alter: true }
     
     await sequelize.sync(optionsSequelize);
     console.log('- Models synchronization completed');

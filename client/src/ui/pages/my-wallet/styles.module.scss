@@ -184,7 +184,12 @@
 }
 
 .clientPrice{
-  color: #1E1E1E;
+  color: #63707B;
+  display: flex;
+  flex-direction: column;
+  span{
+    width: max-content;
+  }
 }
 
 .Errors{

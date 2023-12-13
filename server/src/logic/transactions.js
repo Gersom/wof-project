@@ -1,5 +1,6 @@
 const { TransactionsModel, CaregiversModel } = require("../models");
 const { PostsModel } = require("../models");
+const calculatePercentage = require("./../utils/calculatePercentage")
 
 const getAllTransactionsLogic = async () => {
   const transactions = await TransactionsModel.findAllData();
@@ -14,8 +15,14 @@ const postTransactionLogic = async (data) => {
   if (!data.servicePostingId) {
     data.servicePostingId = data.postId;
   }
-
-  const newTransaction = await TransactionsModel.create(data);
+  const {
+    descuentoAmount, netoAmount
+  } = calculatePercentage(Number(data.amount))
+  const newTransaction = await TransactionsModel.create({
+    ...data, 
+    discount: descuentoAmount,
+    amountPayCaregiver: netoAmount
+  });
   await PostsModel.updateData(data.servicePostingId, {
     status: "paid",
     caregiverId: data.caregiverId,

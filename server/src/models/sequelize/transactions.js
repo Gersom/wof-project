@@ -48,14 +48,16 @@ const schema = {
   },
   postalCode: {
     type: DataTypes.STRING, allowNull: false,
-  },  
+  },
+  discount: {
+    type: DataTypes.STRING, allowNull: true,
+  },
+  amountPayCaregiver: {
+    type: DataTypes.STRING, allowNull: true,
+  },
 }
 
 const TransactionsModel = sequelize.define(name, schema, config)
-
-
-// add static methods (functions) to model
-addMethods(TransactionsModel)
 
 // Add relationship
 UsersModel.hasMany(TransactionsModel)
@@ -66,5 +68,19 @@ TransactionsModel.belongsTo(PostsModel)
 
 CaregiversModel.hasMany(TransactionsModel)
 TransactionsModel.belongsTo(CaregiversModel)
+
+
+// add static methods (functions) to model
+addMethods(TransactionsModel)
+
+TransactionsModel["findMyWallet"] = async (caregiverId) => {
+  const {
+    TransactionsModel
+  } = require('../index')
+  const transactions = await TransactionsModel.findAll({
+    where: { caregiverId }
+  });
+  return transactions;
+};
 
 module.exports = TransactionsModel
