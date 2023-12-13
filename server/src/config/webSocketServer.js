@@ -2,18 +2,8 @@ const WebSocket = require("ws");
 
 const { ChatModel } = require("../models");
 
-let clients = [];
+const {setClients} = require("../utils/web-socket/sendBanMessage");
 
-const sendBanMessage =(userId)=>{
-  console.log("SEND MESAGE TO ID:", userId);
-  clients.forEach((client) => {
-    //console.log("FOR EACH ID:", client);
-    if (client.userId == userId) {
-      console.log("FINDED CLIENT:", client.userId, userId);
-      client.ws.send(JSON.stringify({ type: 'ban_user', userId }));
-    } 
-  });
-}
 
 const configureWebSocket = (server) => {
   const wss = new WebSocket.Server({ server });
@@ -68,6 +58,7 @@ const configureWebSocket = (server) => {
       }
     });
     if (!exist) clients.push({ ws, role, ownerId, userId }); // Agrega un nuevo elemento si no existe
+    setClients(clients);
     console.log("New client connected", clients.length);
   };
 
@@ -79,7 +70,7 @@ const configureWebSocket = (server) => {
       }
     });
     if (!exist) clients.push({ ws, role, caregiverId, userId }); // Agrega un nuevo elemento si no existe
-    
+    setClients(clients);
     console.log("New client connected", clients.length);
   };
 
@@ -201,4 +192,4 @@ const configureWebSocket = (server) => {
   return wss;
 };
 
-module.exports ={ configureWebSocket, sendBanMessage}
+module.exports ={ configureWebSocket}

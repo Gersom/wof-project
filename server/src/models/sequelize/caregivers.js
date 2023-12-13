@@ -96,7 +96,7 @@ CaregiversModel["findWallet"] = async (id) => {
     ]
   })
 
-  const clients = wallet?.serviceRequests?.map(c => {
+  const clients = wallet?.transactions?.map(c => {
     return {
       price     : c.price,
       endDate   : c.servicePosting?.endDate,

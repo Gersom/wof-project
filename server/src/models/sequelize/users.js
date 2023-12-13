@@ -7,7 +7,7 @@ const CountriesModel = require(`./countries`);
 const addMethods = require("../utils/addStaticMethods");
 const generateUrl = require("./../../utils/generateUrl");
 const bcrypt = require("bcrypt");
-const { sendBanMessage } = require("../../config/webSocketServer");
+const { sendBanMessage } = require("../../utils/web-socket/sendBanMessage");
 
 const name = "users";
 const config = {
