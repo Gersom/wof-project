@@ -192,3 +192,57 @@
   font-size: 14px;
   text-align: left;
 }
+
+@media (width <= 1350px){
+  .clientData{
+    width: 20rem;
+
+  }
+
+  .clientCardContent{
+    width: 400px;
+  }
+}
+@media (width <= 1280px){
+  .cardsContent{
+    justify-content: flex-start
+  }
+}
+
+@media (width <= 1200px){
+  .contentSecond{
+    flex-direction: column;
+  }
+  .ClientCardsContent{
+    padding-left: 0;
+  }
+  .content{
+    padding-bottom: 30px;
+  }
+}
+
+@media (width <= 1145px){
+  .cardContent{
+    width: 60%;
+  }
+}
+
+@media (width <= 825px){
+  .cardsContent{
+    flex-direction: column;
+    align-items: center;
+  }
+  .contentSecond{
+    align-items: center;
+  }
+  .cardContent{
+    margin-bottom: 20px;
+  }
+}
+
+@media (width <= 755px){
+  .walletContainer{
+    max-width: 755px;
+  }
+}
+

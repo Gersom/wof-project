@@ -56,6 +56,7 @@ const VerifyingLogin = () => {
       token: response.data.token,
     });
     manageRedirection();
+    location.reload();
   };
 
   const handleAuth0Register = async () => {
