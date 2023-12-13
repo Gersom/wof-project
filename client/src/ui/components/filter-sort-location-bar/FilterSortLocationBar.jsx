@@ -13,7 +13,8 @@ const FilterSortLocationBar = ({role}) => {
 		setFilterModal((prevFilterModal) => !prevFilterModal);
 	};
 	const {filters, sorts, actionFilter, actionSort} = useSelectorSortFilter({role: role});
-	
+	const stylesDisabled = role === 'owner' ? styles.disabled : '';
+
 	return (
 		<nav className={styles.navContainer}>
 			<div className={styles.locationContainer}>
@@ -21,7 +22,7 @@ const FilterSortLocationBar = ({role}) => {
 				<h4>Argentina</h4>
 			</div>
 			<SortSelect sorts={sorts} actionSort={actionSort} />
-			<div className={styles.filterContainer} onClick={toggleFilterModal}>
+			<div className={`${styles.filterContainer} ${stylesDisabled}`} onClick={role === 'caregiver' && toggleFilterModal}>
 				<h4>Filtros</h4>
 				<img src={filter} alt='filter' />
 			</div>
