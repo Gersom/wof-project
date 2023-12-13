@@ -55,8 +55,8 @@ const VerifyingLogin = () => {
       userId: response.data.userId,
       token: response.data.token,
     });
-    manageRedirection();
     location.reload();
+    manageRedirection();
   };
 
   const handleAuth0Register = async () => {
@@ -86,6 +86,7 @@ const VerifyingLogin = () => {
           console.log("REGISTER NEW USER", info);
           if (info.statusText === "Created") {
             await manageSpecialLogin();
+            location.reload();
             await manageRedirection();
           }
         } catch (error) {
