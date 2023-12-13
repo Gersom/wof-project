@@ -1,4 +1,5 @@
 .notifica {
+  padding: 20px 10px 50px 10px;
   p {
     color: black;
   }
@@ -19,6 +20,9 @@
   border-radius: 12px;
   margin-bottom: 20px;
   border: solid 1px #717171;
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+  }
 }
 
 .card {
@@ -49,6 +53,11 @@
   border-radius: 10px;
   color: white;
   cursor: pointer;
+  @media screen and (max-width: 650px) {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+  }
 }
 
 .notiImg {
@@ -58,4 +67,8 @@
   flex: 0 0 60px;
   background-size: cover;
   background-position: center center;
+  @media screen and (max-width: 650px) {
+    width: 60px;
+    height: initial;
+  }
 }

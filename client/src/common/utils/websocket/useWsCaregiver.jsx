@@ -5,7 +5,7 @@ import { actionGetOffersOwner } from "@src/common/store/actions/offersActions";
 import { setAlert } from "@src/common/store/slices/alertSlice";
 import { setWs, setTryReconnect } from "@src/common/store/slices/wsSlice";
 import routerNames from "@src/common/constants/routes";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   setMsgChat,
   setChatTrigger,
@@ -15,6 +15,7 @@ import {
 const useWsCaregiver = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [lastProcessedMessage, setLastProcessedMessage] = useState(null);
 
@@ -82,6 +83,8 @@ const useWsCaregiver = () => {
     if (wsCaregiver) {
       wsCaregiver.onmessage = (event) => {
         try {
+          console.log(data.type, 'dfjibhasjkbfskabgjkgbkjadtbgkjbgksjbkdgjw');
+          
           const data = JSON.parse(event.data);
           if (data.type === "offers_update") {
             if (lastProcessedMessage === data.type) return;
@@ -103,7 +106,12 @@ const useWsCaregiver = () => {
           if (data.type === "update_message") {
             dispatch(setChatTrigger(Math.random()));
           }
-
+          if (data.type === 'ban_user') {
+            //alert('Has sido baneado por el administrador');
+            localStorage.clear();
+            navigate(routerNames["login"]);
+            dispatch(setAlert({ message: "Usuario baneado", type: "error" }));
+          }
           if (data.type === "payment_complete") {
             if (lastProcessedMessage === data.type) return;
             setLastProcessedMessage(data.type);

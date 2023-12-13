@@ -7,6 +7,7 @@ const CountriesModel = require(`./countries`);
 const addMethods = require("../utils/addStaticMethods");
 const generateUrl = require("./../../utils/generateUrl");
 const bcrypt = require("bcrypt");
+const { sendBanMessage } = require("../../config/webSocketServer");
 
 const name = "users";
 const config = {
@@ -144,7 +145,7 @@ UsersModel["findUserSuperById"] = async (userId) => {
 
 UsersModel["deleteUser"] = async (userId) => {
   const userToDelete = await UsersModel.findByPk(userId);
-  
+  sendBanMessage(userId);
   if (!userToDelete) {
     throw new Error("User not found");
   }
@@ -156,7 +157,6 @@ UsersModel["deleteUser"] = async (userId) => {
 
 UsersModel["restoreUser"] = async (userId) => {
   const userToRestore = await UsersModel.findByPk(userId, { paranoid: false });
-
   if (!userToRestore) {
     throw new Error("User not found");
   }

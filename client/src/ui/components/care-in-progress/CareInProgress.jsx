@@ -21,6 +21,7 @@ const CareInProgress = ({
   postId = 0,
   caregiverId = 0,
   ownerId = 0,
+  status='aaa'
 }) => {
   const dispatch = useDispatch();
   const [isTimerExpired, setTimerExpired] = useState(false);
@@ -200,7 +201,7 @@ const CareInProgress = ({
         <div className={styles.buttonsCont}>
           {/* <button className={styles.supportBtn}>Soporte</button> */}
           <button
-            disabled={isServiceFinished || isBeforeStartDate || isVerified}
+            disabled={isServiceFinished || isBeforeStartDate || isVerified || status==='completed'}
             onClick={handleFinishService}
           >
             Finalizar Servicio

@@ -114,7 +114,7 @@ const getUsersInfoLogic = async (page = 1, pageSize = 10) => {
 const deleteUserLogic = async (userId) => {
   try {
     const deletedUser = await UsersModel.deleteUser(userId);
-    console.log('User logically deleted:', deletedUser);
+    console.log('User logically deleted:', userId);
     return deletedUser;
   } catch (error) {
     console.error('Error deleting user logically:', error.message);
@@ -131,7 +131,7 @@ const getUserLogicSuper = async (id) => {
 const restoreUserLogic = async (userId) => {
   try {
     const restoredUser = await UsersModel.restoreUser(userId);
-    console.log('User logically restored:', restoredUser);
+    console.log('User logically restored:', userId);
     return restoredUser;
   } catch (error) {
     console.error('Error restoring user logically:', error.message);
