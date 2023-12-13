@@ -36,24 +36,24 @@ const CardAccept = ({
   return (
     <article className={styles.article}>
       <h3>Publicación</h3>
-      <div className={styles.info}>
-        <h4>Tiempo a cuidar:</h4>
+      <div className={styles.contArt}>
+        <div className={styles.info}>
+          <h4>Tiempo a cuidar:</h4>
+          <h5>Desde: {formatDate(startDate)}</h5>
+          <h5>Hasta: {formatDate(endDate)}</h5>
+        </div>
+        <div className={styles.contButtons}>
+          {!completedAcept ? (
+            <button className={styles.linkContainer} onClick={handleAccept}>
+              Deseo Cuidar
+            </button>
+          ) : (
+            <button className={styles.cancelButton} onClick={handleCancel}>
+              Cancelar oferta
+            </button>
+          )}
+        </div>
       </div>
-      <div className={styles.info}>
-        <h5>Desde: {formatDate(startDate)}</h5>
-      </div>
-      <div className={styles.info}>
-        <h5>Hasta: {formatDate(endDate)}</h5>
-      </div>
-      {!completedAcept ? (
-        <button className={styles.linkContainer} onClick={handleAccept}>
-          Deseo Cuidar
-        </button>
-      ) : (
-        <button className={styles.cancelButton} onClick={handleCancel}>
-          Cancelar oferta
-        </button>
-      )}
     </article>
   );
 };
