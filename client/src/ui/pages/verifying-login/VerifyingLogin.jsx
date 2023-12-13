@@ -16,10 +16,16 @@ import {
 import routerNames from "@src/common/constants/routes";
 import styles from "./styles.module.scss";
 import logo from "@icons/nav/logo.svg";
+import { useDispatch } from "react-redux";
+import { setAlert } from "@src/common/store/slices/alertSlice";
+import Login from "../login/Login";
 
 // ... (imports)
 
 const VerifyingLogin = () => {
+
+  const dispatch = useDispatch();
+
   const apiUrlRegister = API_URL_REGISTER;
   const apiUrlCheckUserExistence = API_URL_EXIST_USER_WHIT_EMAIL;
   const navigate = useNavigate();
@@ -46,17 +52,30 @@ const VerifyingLogin = () => {
   const manageSpecialLogin = async () => {
     console.log('funcion => manageSpecialLogin')
     const token = await handleSilentLogin();
-    const response = await axios.post(API_URL_LOGIN, {
-      email: user.email,
-      password: token,
-    });
-    console.log("SPECIAL LOGIN USER", response, user.email, token);
+    try {
+      const response = await axios.post(API_URL_LOGIN, {
+        email: user.email,
+        password: token,
+      });
+      console.log("SPECIAL LOGIN USER", response, user.email, token);
 
-    saveToLocalStorage("session", {
-      userId: response.data.userId,
-      token: response.data.token,
-    });
-    manageRedirection();
+      saveToLocalStorage("session", {
+        userId: response.data.userId,
+        token: response.data.token,
+      });
+
+      manageRedirection();
+
+    } catch (error) {
+      if (error?.response?.data?.error === "Usuario baneado") {
+        resetLocal();
+        dispatch(setAlert({ message: "Usuario baneado", type: "error" }));
+      }
+      else {
+
+        dispatch(setAlert({ message: "Error al iniciar sesión", type: "error" }));
+      }
+    }
   };
 
   const handleAuth0Register = async () => {
@@ -93,17 +112,31 @@ const VerifyingLogin = () => {
         }
       } else {
         console.log("EMAIL FOUND! LOGIN USER");
-        const response = await axios.post(API_URL_LOGIN, {
-          email: user.email,
-          password: token,
-        });
-        console.log("NORMAL LOGIN USER", user.email, token);
+        try {
+          const response = await axios.post(API_URL_LOGIN, {
+            email: user.email,
+            password: token,
+          });
+          console.log("NORMAL LOGIN USER", user.email, token);
 
-        saveToLocalStorage("session", {
-          userId: response.data.userId,
-          token: response.data.token,
-        });
-        await manageRedirection();
+          saveToLocalStorage("session", {
+            userId: response.data.userId,
+            token: response.data.token,
+          });
+          await manageRedirection();
+
+        } catch (error) {
+
+          if (error?.response?.data?.error === "Usuario baneado") {
+            resetLocal();
+            dispatch(setAlert({ message: "Usuario baneado", type: "error" }));
+          }
+          else {
+
+            dispatch(setAlert({ message: "Error al iniciar sesión", type: "error" }));
+          }
+
+        }
       }
       //console.log("DATA REGISTER AUTH0" ,data);
     } catch (error) {
@@ -127,15 +160,15 @@ const VerifyingLogin = () => {
     console.log('funcion => manageRedirection')
     const storage = await getFromLocalStorage("session");
 
-    if(storage.userId){
+    if (storage.userId) {
       const { data } =
         (await axios.get(`${API_URL_USER}/${storage?.userId}`)) || {};
       const { role } = data || {};
-  
+
       if (!data) return;
-      
+
       setAuthenticated(true);
-  
+
       const redirectTo = (path) => {
         if (
           storage?.history &&
@@ -147,7 +180,7 @@ const VerifyingLogin = () => {
           navigate(path);
         }
       };
-  
+
       switch (role) {
         case "caregiver":
           return redirectTo(routerNames["offersCaregivers"]);
@@ -177,7 +210,7 @@ const VerifyingLogin = () => {
 
   const resetLocal = () => {
     saveToLocalStorage("session", "");
-    navigate("/");
+    navigate(routerNames["login"]);
   };
 
   return (
