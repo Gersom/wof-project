@@ -24,8 +24,7 @@ const ModalPrice = ({ data, toggleModal, setSuccess }) => {
         userId: dataUser.id,
         ownerId: data.owner.id,
       });
-      console.log(dataPost);
-      console.log(data);
+      
       return response.data;
     } catch (error) {
       dispatch(setAlert({ message: "Algo ha salido mal!", type: "error" }));

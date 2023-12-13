@@ -17,7 +17,6 @@ const MyCaregivers = () => {
     if (ownerId) {
       getHiredCaregivers(ownerId)
         .then((response) => {
-          console.log("Cared Pets Response:", response);
           setHiredCaregivers(response);
         })
         .catch((error) => {

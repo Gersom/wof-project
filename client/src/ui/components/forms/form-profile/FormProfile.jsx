@@ -95,7 +95,7 @@ const FormProfile = () => {
         }
       })
       .catch((error) => {
-        console.log(error.message);
+        console.error(error.message);
       });
   }, []);
 
@@ -109,7 +109,7 @@ const FormProfile = () => {
         }
       })
       .catch((error) => {
-        console.log(error.message);
+        console.error(error.message);
       });
   }, []);
 
@@ -125,7 +125,7 @@ const FormProfile = () => {
     } else {
       try {
         await axios.put(`${apiUrl}/${userData?.id}`, dataForm);
-        // console.log("Respuesta del servidor:", response.data);
+
         dispatch(
           setAlert({
             message: `${dataForm.name} ha sido editado`,
@@ -162,9 +162,10 @@ const FormProfile = () => {
 
   const handlerChangeImage = async (event) => {
     const file = event.target.files[0];
-    console.log(file);
+
+    
     const imagen = await handleImageUpload(file);
-    console.log(imagen);
+   
     setDataForm((prevDataForm) => ({
       ...prevDataForm,
       profilePicture: imagen,
