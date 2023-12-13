@@ -49,13 +49,13 @@ const VerifyingLogin = () => {
       email: user.email,
       password: token,
     });
-    console.log("LOGIN USER", response, user.email, token);
+    console.log("SPECIAL LOGIN USER", response, user.email, token);
 
     saveToLocalStorage("session", {
       userId: response.data.userId,
       token: response.data.token,
     });
-    location.reload();
+    
     manageRedirection();
   };
 
@@ -70,7 +70,7 @@ const VerifyingLogin = () => {
       profilePicture: user.picture,
       role: "",
     };
-
+    console.log("handleAuth0Register: ", token);
     console.log("regiter TOKEN: ", token);
 
     try {
@@ -80,25 +80,23 @@ const VerifyingLogin = () => {
       const exist = data;
 
       if (!exist) {
-        //console.log("REGISTER NEW USER");
+        console.log("EMAIL NOT FOUND! REGISTER NEW USER");
         try {
           const info = await axios.post(apiUrlRegister, userData);
           console.log("REGISTER NEW USER", info);
           if (info.statusText === "Created") {
             await manageSpecialLogin();
-            location.reload();
-            await manageRedirection();
           }
         } catch (error) {
           console.error(`Error creating new user): ${error.message}`);
         }
       } else {
-        //console.log("LOGIN USER");
+        console.log("EMAIL FOUND! LOGIN USER");
         const response = await axios.post(API_URL_LOGIN, {
           email: user.email,
           password: token,
         });
-        console.log("LOGIN USER", user.email, token);
+        console.log("NORMAL LOGIN USER", user.email, token);
 
         saveToLocalStorage("session", {
           userId: response.data.userId,
@@ -127,34 +125,37 @@ const VerifyingLogin = () => {
   const manageRedirection = async () => {
     const storage = await getFromLocalStorage("session");
 
-    const { data } =
-      (await axios.get(`${API_URL_USER}/${storage?.userId}`)) || {};
-    const { role } = data || {};
-
-    if (!data) return;
-
-    setAuthenticated(true);
-
-    const redirectTo = (path) => {
-      if (
-        storage?.history &&
-        storage?.history !== routerNames["loading"] &&
-        storage?.history !== routerNames["landing"]
-      ) {
-        navigate(storage.history);
-      } else {
-        navigate(path);
+    if(storage.userId){
+      const { data } =
+        (await axios.get(`${API_URL_USER}/${storage?.userId}`)) || {};
+      const { role } = data || {};
+  
+      if (!data) return;
+      
+      setAuthenticated(true);
+  
+      const redirectTo = (path) => {
+        if (
+          storage?.history &&
+          storage?.history !== routerNames["loading"] &&
+          storage?.history !== routerNames["landing"]
+        ) {
+          navigate(storage.history);
+        } else {
+          navigate(path);
+        }
+      };
+  
+      switch (role) {
+        case "caregiver":
+          return redirectTo(routerNames["offersCaregivers"]);
+        case "owner":
+          return redirectTo(routerNames["myPets"]);
+        default:
+          return redirectTo(routerNames["profile"]);
       }
-    };
-
-    switch (role) {
-      case "caregiver":
-        return redirectTo(routerNames["offersCaregivers"]);
-      case "owner":
-        return redirectTo(routerNames["myPets"]);
-      default:
-        return redirectTo(routerNames["profile"]);
     }
+
   };
 
   // useEffect(() => {
@@ -170,7 +171,7 @@ const VerifyingLogin = () => {
     if (isAuthenticated) {
       manageRedirection();
     }
-  }, [isAuthenticated,isAuth0enticated, navigate, isLoading]);
+  }, [isAuthenticated, isAuth0enticated, navigate, isLoading]);
 
   const resetLocal = () => {
     saveToLocalStorage("session", "");
